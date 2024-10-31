@@ -32,7 +32,6 @@ class DatabaseConnection {
         return this.con != null;
     }
     // Gets all columns at once, connection can be closed immedately after calling
-    // T is assumed to be the type of ALL returned columns- cannot return columns that are a mix of different types
     public ArrayList<Object>  executeQuery(String query) {
         boolean connectionWasActive = this.isConnected();
         if (!connectionWasActive) {
