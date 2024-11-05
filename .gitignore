@@ -16,6 +16,12 @@ dist-ssr
 /Trial 1
 /Trial 2
 
+/public
+/src
+*.js
+*.json
+*.ts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
