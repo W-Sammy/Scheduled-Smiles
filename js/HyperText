@@ -1,0 +1,13 @@
+import React, { useState } from 'react';
+
+interface Props{
+children: string;
+onClick: () => void;
+}
+
+const HyperText = () => {
+    
+
+}
+
+export default HyperText

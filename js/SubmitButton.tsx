@@ -1,17 +1,16 @@
 import React from 'react'
-import "../css/Button.css"
 
 
-interface Props{
+interface props{
     children: string;
 
     //onClick: () => void;
 }
 
-const Button = ({children}: Props) => {
+const SubmitButton = ({children}: props) => {
     return(
         <button className = "button1">{children}</button>
     )
 }
 
-export default Button
+export default SubmitButton

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import "../css/InputBox.css"
 
+//Box form to grab multiple inputs to send
+//Has input boxes
+//has buttons
 
 const InputBox = () => {
     
+
+
     const [inputValue, setInputValue] = useState('');
 
     const handleChange = (event: any) => {
+        event.preventDefault();
         setInputValue(event.target.value);
     };
 

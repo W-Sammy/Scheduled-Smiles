@@ -2,11 +2,39 @@
     background-color: #3c5747;
     height: 600px;
     width: 600px;
-  }
-.SignIn .button1 {
-  background-color: #000000;
-  height: 100px;
-  width: 100px;
-  border-radius: 25px;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 60px;
+}
+
+.SignIn .Logo{
+    padding-left: 150px;
+}
+
+.SignIn .title{
+    text-align: center;
+}
+
+.SignIn .inputfield{
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.SignIn .buttonsign {
+    background-color: #7d3636;
+    height: 30px;
+    width: 100px;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.SignIn .labels{
+    padding-right: 10px;
+    line-break:normal;
+
+}
+
+.SignIn .input{
 
 }

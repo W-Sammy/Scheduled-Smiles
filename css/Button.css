@@ -1,5 +1,7 @@
 .button1 {
-    background-color: #08585B;
-    height: 50px;
-    width: 120px;
-  }
+    background-color: #1f7174;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+}
