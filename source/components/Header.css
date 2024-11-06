@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* center vertically */
+    background-color: #008080;
+    padding: .75em;
+}
+
+.header .login {
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    padding: 1em;
+    width: 100%;
+    top: 0;
+    position: sticky;
+    z-index: 100;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #004c4c;
+    font-size: 1.5em;
+    margin: 0 1em;
+}
