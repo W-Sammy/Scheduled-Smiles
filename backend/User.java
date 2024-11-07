@@ -101,6 +101,8 @@ public class User {
 
 class NewUser extends User {
     // attributes
+    private byte userID;
+    private int roleID = 0; // set as default
     private String password;
 
     // constructor 
@@ -116,17 +118,7 @@ class NewUser extends User {
         return password;
     } // end getPassword()
 
-    // setter functions
-    @Override
-    public void setUserID(byte userID) {
-        super.setUserID(userID);
-    } // end setUserID()
-
-    @Override
-    public void setRoleID(int roleID) {
-        super.setRoleID(roleID);
-    } // end setRoleID()
-
+    // sets the password for the variable password
     public void setPassword(String password) {
         this.password = password;
     } // end setPassword()
@@ -135,17 +127,12 @@ class NewUser extends User {
 class Patient extends User {
     // Attributes
     private final int roleID = 0;
-    //private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
+    // private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
     
     // Constructor
     public Patient(byte userID, int roleID, String firstName, String lastName, String address,
                   char sex, int phoneNumber, String email, int birthDate) {
       super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
-    }
-    
-    // Getter for roleID
-    public int getRoleID() {
-       return roleID;
     }
 
     /*
@@ -178,12 +165,6 @@ class Patient extends User {
       this.hourlyRate = hourlyRate;
     }
     
-    @Override
-    // Getter for roleID
-    public int getRoleID(){
-      return roleID;
-    }
-    
     // Getter for hourlyRate
     public double getHourlyRate(){
       return hourlyRate;
@@ -198,28 +179,10 @@ class Patient extends User {
 class Admin extends Staff {
     // attributes
     private final int roleID = 2;
-    private double hourlyRate;
 
     // constructor
     public Admin(byte userID, int roleID, String firstName, String lastName, String address,
                     char sex, int phoneNumber, String email, int birthDate, double hourlyRate) {
         super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate, hourlyRate);
     } // end constructor
-
-    @Override
-    // get the roleID
-    public int getRoleID(){
-      return roleID;
-    }
-
-    @Override
-    // get the hourly rate
-    public double getHourlyRate() {
-        return hourlyRate;
-    } // end getHourlyRate()
-
-    @Override
-    public void setHourlyRate(double hourlyRate) {
-        this.hourlyRate = hourlyRate;
-    } // end setHourlyRate()
 }
