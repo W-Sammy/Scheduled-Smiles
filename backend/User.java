@@ -1,5 +1,3 @@
-package backend;
-
 public class User {
     // attributes
     private byte userID;
