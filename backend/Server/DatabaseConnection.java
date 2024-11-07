@@ -1,4 +1,4 @@
-package Server;
+package Server.Enum;
 
 import java.sql.*;
 import java.util.*;
