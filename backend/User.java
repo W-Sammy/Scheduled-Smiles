@@ -136,7 +136,7 @@ class NewUser extends User {
 
 class Patient extends User {
     // Attributes
-    private int roleID = 0;
+    private final int roleID = 0;
     //private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
     
     // Constructor
@@ -170,7 +170,7 @@ class Patient extends User {
 
  class Staff extends User {
     // Private Attributes
-    private int roleID = 1;
+    private final int roleID = 1;
     private double hourlyRate;
     
     // Contructor
@@ -199,7 +199,8 @@ class Patient extends User {
 
 class Admin extends Staff {
     // attributes
-    private int roleID = 2;
+    private final int roleID = 2;
+    private double hourlyRate;
 
     // constructor
     public Admin(byte userID, int roleID, String firstName, String lastName, String address,
@@ -216,11 +217,11 @@ class Admin extends Staff {
     @Override
     // get the hourly rate
     public double getHourlyRate() {
-        return super.getHourlyRate();
+        return hourlyRate;
     } // end getHourlyRate()
 
     @Override
     public void setHourlyRate(double hourlyRate) {
-        super.setHourlyRate(hourlyRate);
+        this.hourlyRate = hourlyRate;
     } // end setHourlyRate()
 }
