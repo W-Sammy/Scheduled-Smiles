@@ -1,0 +1,56 @@
+.Register {
+    background-color: #bdc2b8;
+    height: 600px;
+    width: 600px;
+    text-align: center;
+    padding-top: 30px;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+.Register .title{
+    color: #3f6154;
+    line-height: 10px;
+    text-align: left;
+    padding-left: 50px;
+    font-size: xx-large;
+}
+
+.Register .hyperlinkBack{
+    line-height: 0;
+    text-align: right;
+    padding-right: 20px;
+    top: 0;
+}
+
+.Register .inputField{
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 40px;
+}
+
+.Register .input{
+    width: fit-content;
+    padding-left: 10px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    background-color: #e4d9d9;
+    color:#666060;
+    border-color:rgba(41, 124, 113, 0.158);
+    border-radius: 6px;
+}
+
+.Register .input2{
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 50px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    background-color: #e4d9d9;
+    color:#666060;
+    border-color:rgba(41, 124, 113, 0.158);
+    border-radius: 6px;
+}

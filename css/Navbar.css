@@ -1,12 +1,13 @@
 .navbar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    align-items: top; /* Centers vertically */
     padding: 1em;
-    width: 100%;
     top: 0;
     position: sticky;
     z-index: 100;
+    
 }
 
 .navbar a {

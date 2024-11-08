@@ -6,9 +6,10 @@ import "../css/Landing.css"
 
 function Landing() {
     return (
+        <>        
+        <Header />
+        <Navbar />
         <div className="landingPage">
-            <Header />
-            <Navbar />
             <div className="betterTeethContainer">
                 <img
                     src={betterTeeth}
@@ -18,6 +19,7 @@ function Landing() {
                 <a className="scheduleBtn">Scheduled Now</a>
             </div>
         </div>
+        </>
     );
 }
 

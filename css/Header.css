@@ -4,9 +4,12 @@
     align-items: center; /* center vertically */
     background-color: #008080;
     padding: .75em;
+    width: 100%;
+    min-width: 100%;
 }
 
 .header .login {
     color: white;
     text-decoration: none;
+    text-align: right;
 }
