@@ -7,14 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+
 dist
 dist-ssr
 *.local
-/.anima
+.anima
 
-/Trial 1
-/Trial 2
+# Front End dependent files, add # to pull
+*.json
+*.js
+*.ts
+frontend/public
+node_modules
 
 # Editor directories and files
 .vscode/*
