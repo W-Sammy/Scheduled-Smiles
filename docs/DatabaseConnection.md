@@ -49,7 +49,7 @@ List<List<byte[]>> results = db.queryBytes("SELECT roleId FROM roleTypes");
     [5],
     [7]
 ]
-List<List<byte[]>> results = db.queryStrings("SELECT role FROM roleTypes");
+List<List<String>> results = db.queryStrings("SELECT role FROM roleTypes");
 [
     [2],
     [4],
