@@ -3,15 +3,25 @@ import "../css/Button.css"
 
 
 interface Props{
-    children: string;
+    display: string;
+    buttonType: string;
 
     //onClick: () => void;
 }
 
-const Button = ({children}: Props) => {
-    return(
-        <button className = "button1">{children}</button>
-    )
+const Button = ({display,buttonType}: Props) => {
+
+    if( buttonType == "submit"){
+        return(
+            <button type="submit" className = "genericButton">{display}</button>
+        )
+    }
+    else{
+        return(
+            <button type="button" className = "genericButton">{display}</button>
+        )
+    }
+
 }
 
 export default Button

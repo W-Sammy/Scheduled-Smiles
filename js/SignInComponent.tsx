@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import "../css/SignInComponent.css";
 import Button from "./Button.tsx"
+import HyperText from "./HyperText.tsx"
 
 const SignInComponent = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
 
     const handleEmail = (event:any) => {
         event.preventDefault();
@@ -23,43 +23,39 @@ const SignInComponent = () => {
         event.preventDefault();
         console.log('Username:', email);
         console.log('Password:', password);
-      };
+    };
     
-
-    return (<>
-    
-        <div>Scheduled Smiles Sign in box</div> 
-
+    return (
+    <>
         <form onSubmit={handleSubmit}>
 
-            <div className="SignIn">
-                <img className='Logo' src="../assets/Logo.png" height="247" width="300"/>
-                <h2 className='title'>Scheduled Smiles Sign in box</h2>
+            <div className="signIn">
+                <img className='Logo' src="../assets/Logo.png" height="192" width="230"/>
+                <h2 className='title'>Scheduled Smiles</h2>
 
-                <div className='inputfield'>
-                    <label className='labels'> Email : </label>
-                    <input type="email" value={email} onChange={handleEmail} className="input" placeholder="sophie@example.com" />
+                <div className='inputField'>
+                    <label className='labels2'> Email :</label>
+                    <input type="email" value={email} onChange={handleEmail} className="input" placeholder="Sophie@example.com" />
                     <br/>
                     <label className='labels'> Password : </label>
-                    <input type="password" value={password} onChange={handlePassword} className="input" placeholder="password" />
+                    <input type="password" value={password} onChange={handlePassword} className="input" placeholder="Password" />
                 </div>
 
-                <div className="buttonsign"> 
-                    <Button children="Sign-in2"/>
-                    <Button>Sign-in3</Button>
-
+                <div className='hyperlinkPassword'>
+                    <HyperText link="forgotPasswordLink" display="Forgot your password?"/>
                 </div>
-            </div>
-            <Button>Sign-in</Button>
 
+                <div className="buttonSignIn">
+                    <Button buttonType="submit" display="Sign-in2"/>
+                </div>
 
-            <div>
-            Input : {email}
-            password : {password}
+                <div className="hyperlinkRegister">
+                    Don't have an account yet? <HyperText display='Register Now' link='registerLink'/>
+                </div>
             </div>
 
         </form>
-        </>
+    </>
     )
 }
 

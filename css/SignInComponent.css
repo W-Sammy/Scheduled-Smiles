@@ -1,40 +1,78 @@
-.SignIn {
-    background-color: #3c5747;
+.signIn {
+    background-color: #bdc2b8;
     height: 600px;
     width: 600px;
-    text-align: left;
-    padding-left: 30px;
-    padding-top: 60px;
-}
-
-.SignIn .Logo{
-    padding-left: 150px;
-}
-
-.SignIn .title{
     text-align: center;
+    padding-top: 30px;
 }
 
-.SignIn .inputfield{
-    line-height: 30px;
-    margin-bottom: 20px;
-}
-
-.SignIn .buttonsign {
-    background-color: #7d3636;
-    height: 30px;
-    width: 100px;
-    border-radius: 25px;
-    align-items: center;
+.signIn .Logo{
     justify-content: center;
+    
 }
 
-.SignIn .labels{
+.signIn .title{
+    justify-content: center;
+    font-size: 40px;
+    color: #3f6154;
+}
+
+.signIn .inputField{
+    line-height: 40px;
+    text-align: left;
+    padding-left: 135px;
+}
+
+
+.signIn .labels{
+    font-weight: 600;
     padding-right: 10px;
     line-break:normal;
+    text-align: left;
+    color: #3f6154;
+    padding-left: 20px;
+}
+
+.signIn .labels2{
+    font-weight: 600;
+    padding-right: 42px;
+    line-break:normal;
+    text-align: left;
+    color: #3f6154;
+    padding-left: 20px;
 
 }
 
-.SignIn .input{
+
+.signIn .input{
+    width: fit-content;
+    padding-left: 10px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    background-color: #e4d9d9;
+    color:#666060;
+    border-color:rgba(41, 124, 113, 0.158);
+    border-radius: 6px;
+}
+
+.signIn .hyperlinkPassword{
+    text-align: center;
+    padding-right: 152px;
+
+}
+
+.signIn .buttonSignIn{
+    text-align: center;
+    padding-top: 35px;
+}
+
+
+.signIn .hyperlinkRegister{
+    color: #3f6154;
+    font-weight: 520;
+    font-size: 93%;
+    text-align: left;
+    padding-left: 148px;
+    padding-top: 25px;
 
 }
