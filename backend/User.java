@@ -1,7 +1,7 @@
 public class User {
     // attributes
-    private byte userID;
-    private int roleID = 0;
+    private byte[] userID = new byte[32];
+    private int roleID;
     private String firstName;
     private String lastName;
     private String address;
@@ -11,7 +11,7 @@ public class User {
     private int birthDate;
 
     // constructor
-    public User(byte userID, int roleID, String firstName, String lastName, String address, 
+    public User(byte[] userID, int roleID, String firstName, String lastName, String address, 
                 char sex, int phoneNumber, String email, int birthDate) {
         this.userID = userID;
         this.roleID = roleID;
@@ -25,7 +25,7 @@ public class User {
     } // end constructor
 
     // getter functions
-    public byte getUserID() {
+    public byte[] getUserID() {
         return userID;
     } // end getUserID()
 
@@ -62,7 +62,7 @@ public class User {
     } // end getBirthDate()
 
     // setter functions
-    public void setUserID(byte userID) {
+    public void setUserID(byte[] userID) {
         this.userID = userID;
     } // end setUserID()
 
@@ -101,12 +101,12 @@ public class User {
 
 class NewUser extends User {
     // attributes
-    private byte userID;
+    private byte[] userID;
     private int roleID = 0; // set as default
     private String password;
 
     // constructor 
-    public NewUser(byte userID, int roleID, String firstName, String lastName, String address, 
+    public NewUser(byte[] userID, int roleID, String firstName, String lastName, String address, 
                     char sex, int phoneNumber, String email, int birthDate, String password) {
         super(userID, roleID, firstName, lastName, 
                 address, sex, phoneNumber, email, birthDate);
@@ -130,7 +130,7 @@ class Patient extends User {
     // private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
     
     // Constructor
-    public Patient(byte userID, int roleID, String firstName, String lastName, String address,
+    public Patient(byte[] userID, int roleID, String firstName, String lastName, String address,
                   char sex, int phoneNumber, String email, int birthDate) {
       super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
     }
@@ -159,7 +159,7 @@ class Patient extends User {
     private double hourlyRate;
     
     // Contructor
-    public Staff(byte userID, int roleID, String firstName, String lastName, String address,
+    public Staff(byte[] userID, int roleID, String firstName, String lastName, String address,
                  char sex, int phoneNumber, String email, int birthDate, double hourlyRate){
       super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);         
       this.hourlyRate = hourlyRate;
@@ -181,7 +181,7 @@ class Admin extends Staff {
     private final int roleID = 2;
 
     // constructor
-    public Admin(byte userID, int roleID, String firstName, String lastName, String address,
+    public Admin(byte[] userID, int roleID, String firstName, String lastName, String address,
                     char sex, int phoneNumber, String email, int birthDate, double hourlyRate) {
         super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate, hourlyRate);
     } // end constructor
