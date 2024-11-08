@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import betterTeeth from "./assets/betterTeeth.png";
-import "./App.css";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import betterTeeth from "../assets/betterTeeth.png";
+import "../css/Landing.css"
 
-function App() {
+function Landing() {
     return (
         <div className="landingPage">
             <Header />
@@ -21,4 +21,4 @@ function App() {
     );
 }
 
-export default App;
+export default Landing;

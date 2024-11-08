@@ -4,6 +4,8 @@
     width: 600px;
     text-align: center;
     padding-top: 30px;
+    justify-content: center;
+
 }
 
 .signIn .Logo{
