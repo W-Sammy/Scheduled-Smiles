@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 import java.lang.StringBuilder;
 
-public class DatabaseConnection {
+public class DatabaseConnection implements AutoCloseable {
     final static private String hostname = "scheduledsmiles.cdmwceky6go6.us-west-1.rds.amazonaws.com";
     final static private int port = 3306; // 3306 is default
     final static private String databaseName = "scheduledSmiles"; // case sensitive, will refuse connection if the name doesn't match.
@@ -13,12 +13,13 @@ public class DatabaseConnection {
     static private String databaseUrl;
     private static volatile Connection con = null;
     public DatabaseConnection() {
-        this.databaseUrl = String.format("jdbc:mysql://%s:%s/%s", this.hostname, this.port, this.databaseName);
+        databaseUrl = String.format("jdbc:mysql://%s:%s/%s", hostname, port, databaseName);
+        connect();
     }
     public boolean isConnected() {
         return this.con != null;
     }
-    
+
     // Helper function, executes a query
     public List<List<byte[]>> queryBytes(String query) {
         final List<List<byte[]>> resultBytes = new ArrayList<>();
@@ -137,10 +138,12 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-    public void disconnect() {
+    
+    @Override
+    public void close() {
         try {
-            this.con.close();
-            this.con = null;
+            con.close();
+            con = null;
         } catch (Exception e) {
             System.out.println("Error: Failed to close database connection. Is a connection active? Trace:");
             e.printStackTrace();
