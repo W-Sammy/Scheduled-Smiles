@@ -1,4 +1,4 @@
-package backend.Server.Enum;
+package Server.Enum;
 
 public class HttpConstants {
     

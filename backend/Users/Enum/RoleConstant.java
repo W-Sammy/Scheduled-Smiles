@@ -1,4 +1,4 @@
-package backend.User.Enum;
+package Users.Enum;
 
 public class RoleConstant {
     
