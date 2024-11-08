@@ -102,7 +102,7 @@ public class User {
 class NewUser extends User {
     // attributes
     private byte[] userID;
-    private byte[] roleID = 0; // set as default
+    private byte[] roleID = new byte[32]; // set as default
     private String password;
 
     // constructor 
@@ -126,7 +126,7 @@ class NewUser extends User {
 
 class Patient extends User {
     // Attributes
-    private final byte[] roleID = 0;
+    private final byte[] roleID = new byte[32];
     // private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
     
     // Constructor
@@ -155,7 +155,7 @@ class Patient extends User {
 
  class Staff extends User {
     // Private Attributes
-    private final byte[] roleID = 1;
+    private final byte[] roleID = new byte[32];
     private double hourlyRate;
     
     // Contructor
@@ -178,7 +178,7 @@ class Patient extends User {
 
 class Admin extends Staff {
     // attributes
-    private final byte[] roleID = 2;
+    private final byte[] roleID = new byte[32];
 
     // constructor
     public Admin(byte[] userID, byte[] roleID, String firstName, String lastName, String address,
