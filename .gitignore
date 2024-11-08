@@ -14,11 +14,11 @@ dist-ssr
 .anima
 
 # Front End dependent files, add # to pull
-#*.json
-#*.js
-#*.ts
-#frontend/public
-#node_modules
+*.json
+*.js
+*.ts
+frontend/public
+node_modules
 
 # Editor directories and files
 .vscode/*
