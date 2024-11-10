@@ -1,13 +1,11 @@
-public class Bill extends Appointment
-{
+public class Bill extends Appointment {
     //private attributes
-    private byte billID;
+    private byte[] billID;
     private double amountDue;
     private boolean status;
 
     //constuctor
-    public Bill(byte typeID, int timestamp, boolean completionStatus, boolean cancelStatus, double cost, byte billID, double amountDue, boolean status)
-    {
+    public Bill(byte[] typeID, int timestamp, boolean completionStatus, boolean cancelStatus, double cost, byte[] billID, double amountDue, boolean status){
         super(typeID, timestamp, completionStatus, cancelStatus, cost);
         this.billID = billID;
         this.amountDue = amountDue;
@@ -15,32 +13,26 @@ public class Bill extends Appointment
     }
 
     //getter methods
-    public byte getBillID()
-    {
+    public byte[] getBillID() {
         return billID;
     }
 
-    public double getAmountDue()
-    {
+    public double getAmountDue() {
         return amountDue;
     }
 
-    public boolean getStatus()
-    {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setBillID(byte billID)
-    {
+    public void setBillID(byte[] billID) {
         this.billID = billID;
     }
-    public void setAmountDue(double amountDue)
-    {
+    public void setAmountDue(double amountDue) {
         this.amountDue = amountDue;
     }
 
-    public void setStatus(boolean status)
-    {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }

@@ -1,15 +1,13 @@
-public class Appointment
-{
+public class Appointment{
     //private attributes
-    private byte typeID;
+    private byte[] typeID = new byte[32];
     private int timestamp;
-    private Boolean completionStatus;
-    private Boolean cancelStatus;
+    private boolean completionStatus;
+    private boolean cancelStatus;
     private double cost;
 
     //constructor
-    public Appointment(byte typeID, int timestamp, boolean completionStatus, boolean cancelStatus, double cost)
-    {
+    public Appointment(byte[] typeID, int timestamp, boolean completionStatus, boolean cancelStatus, double cost) {
         this.typeID = typeID;
         this.timestamp = timestamp;
         this.completionStatus = completionStatus;
@@ -19,54 +17,44 @@ public class Appointment
 
 
     //getter methods
-    public byte getTypeID()
-    {
+    public byte[] getTypeID() {
         return typeID;
     }
 
-    public int getTimestamp()
-    {
+    public int getTimestamp() {
         return timestamp;
     }
 
-    public Boolean getCompletionStatus()
-    {
-        return completionStatus;
+    public boolean getCompletionStatus() {
+        return completionStatus; 
     }
 
-    public Boolean getCancelStatus()
-    {
+    public boolean getCancelStatus() {
         return cancelStatus;
     }
 
-    public double getCost()
-    {
+    public double getCost(){
         return cost;
     }    
 
     //setter methods
-    public void setTypeID(byte typeID)
-    {
+    public void setTypeID(byte[] typeID) {
         this.typeID = typeID;
     }
 
-    public void setTimestamp(int timestamp)
-    {
+    public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
     }
 
-    public void setCompletionStatus(Boolean completionStatus)
-    {
+    public void setCompletionStatus(boolean completionStatus) {
         this.completionStatus = completionStatus;
     }
 
-    public void setCancelStatus(Boolean cancelStatus)
-    {
+    public void setCancelStatus(boolean cancelStatus) {
         this.cancelStatus = cancelStatus;
     }
 
-    public void setCost(double cost)
-    {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

@@ -28,7 +28,7 @@ public class User {
     public User(byte[] userID, String firstName, String lastName, String address, 
                 char sex, String phoneNumber, String email, int birthDate) {
         this.userID = userID;
-        this.firstName = firstName;
+        this.firstName = firstName; 
         this.lastName = lastName;
         this.address = address;
         this.sex = sex;
