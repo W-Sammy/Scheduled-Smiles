@@ -1,3 +1,11 @@
+.registerBox{
+    display: none;
+    position: fixed;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
 .Register {
     background-color: #bdc2b8;
     height: 600px;

@@ -1,11 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schedules smiles</title>
-  </head>
-  <body>
-    <div id="root"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Schedules smiles</title>
+        <link rel="stylesheet" href="./css/Landing.css">
+        <link rel="stylesheet" href="./css/Header.css">
+        <link rel="stylesheet" href="./css/Navbar.css">   
+        <link rel="stylesheet" href="./css/signIn.css">  
+        <link rel="stylesheet" href="./css/register.css">  
+        <link rel="stylesheet" href="./css/forgotPassword.css">  
+        <script src="./js/signIn.js"></script>
+    </head>
+    <body>  
+    <header class="header">
+        <a onclick="openSignIn()" class="hyperlinkBack">Sign-in/Login</a>
+    </header>
+    <nav class="navbar">
+        <a href="#payment">Make Payment</a>
+        <a href="#aboutUs">About Us</a>
+    </nav>  
+        <div class="landingPage">
+            <div class="betterTeethContainer">
+                <img
+                    src="./assets/betterTeeth.png"
+                    class="betterTeethImg"
+                    alt="better teeth, better smiles"
+                />
+                <a class="scheduleBtn">Scheduled Now</a>
+            </div>
+        </div>
+
+    <div class="signInBox" id="signInOverlay">
+        <form>
+            <div class="wrapSignIn">
+                <img class='Logo' src="./assets/Logo.png" height="192" width="230"/>
+                <h2 class='title'>Scheduled Smiles</h2>
+
+                <div class='inputField'>
+                    <label class='labels2'> Email :</label>
+                    <input type="email" class="input" placeholder="Sophie@example.com" />
+                    <br/>
+                    <label class='labels'> Password : </label>
+                    <input type="password" class="input" placeholder="Password" />
+                </div>
+
+                <div class='hyperlinkPassword'>
+                    <a onclick="openForgotPassword()">Forgot your password?</a>
+                </div>
+
+                <div class="buttonSignIn">
+                    <Button type="submit"> TEST </Button>
+                </div>
+
+                <div class="hyperlinkRegister">
+                    Don't have an account yet? 
+                    <a onclick="openRegister()">Register!</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="registerBox" id="registerOverlay">
+        <form>
+            <div class="Register">
+
+                <a onclick="openSignIn()" class="hyperlinkBack">back</a>
+
+                <h2 class='title'>Scheduled Smiles </h2>
+                <h2 class='title'>Create your new Account!</h2>
+    
+                <div class='inputField'>
+                    <input type="text" class="input" placeholder="First Name" />
+                    <input type="text" class="input" placeholder="Last Name" />
+                    <input type="email" class="input" placeholder="Email" />
+    
+                    <div>Minimal 8 characters: (a-z)(0-9)<br/></div>
+                    <input type="password" class="input2" placeholder="Password" />
+                    <input type="text" class="input2" placeholder="Phone Number: (123-4567)" />
+                    <input type="text" class="input2" placeholder="Address" />
+                    <input type="date" class="input2" placeholder="Date of Birth" />
+                </div>
+    
+                <div class="buttonRegister">
+                    <Button type="submit">Submit</Button>
+                </div>
+                
+            </div>
+    
+            </form>
+        </div>
+
+
   </body>
 </html>
