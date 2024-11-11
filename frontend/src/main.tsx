@@ -8,6 +8,6 @@ import Landing from "../js/Landing"
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<App/>
+		<Landing/>
 	</StrictMode>,
 )

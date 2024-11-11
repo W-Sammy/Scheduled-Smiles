@@ -11,7 +11,7 @@ const InputBox = () => {
 
     const [inputValue, setInputValue] = useState('');
 
-    const handleChange = (event: any) => {
+    const handleChange = (event) => {
         event.preventDefault();
         setInputValue(event.target.value);
     };
