@@ -1,0 +1,20 @@
+.happy{
+
+    background-color: aqua;
+    color: blueviolet;
+
+}
+
+*{
+    color: black;
+    background-color: black;
+
+}
+div {
+    color: black;
+    background-color: chocolate;
+}
+body {
+
+    background-color: aqua;
+}
