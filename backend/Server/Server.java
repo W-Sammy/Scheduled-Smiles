@@ -1,27 +1,22 @@
 package Server;
 
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.FileInputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.URLDecoder;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-// Used for testing to create shallow JSON strings. -Kyle
-import java.lang.StringBuilder;
-
 import static Server.Enum.HttpConstants.*;
 import static Server.Enum.Pages.*;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.URI;
+import java.net.URLDecoder;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Server implements Runnable {
     private static String hostname = "localhost"; // Change this if we actually host this on a domain. -Kyle

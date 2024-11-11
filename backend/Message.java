@@ -1,6 +1,6 @@
 public class Message {
     // Attributes
-    private String content="";
+    private String content;
     private int timestamp;
 
     // Contructor
@@ -16,7 +16,6 @@ public class Message {
     public int getTimestamp() {
         return this.timestamp;
     }
-    
     // Setters 
     public void setContent(String content) {
         this.content = content;
