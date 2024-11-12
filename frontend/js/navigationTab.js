@@ -1,10 +1,11 @@
 function newTab(){
 
-    const para = document.createElement("p");
-    const node = document.createTextNode("");
+    const para = document.createElement("div");
+    const node = document.createTextNode("open tabby");
     para.appendChild(node);
+    para.className="tab";
     
-    const element = document.getElementById("div1");
+    const element = document.getElementById("navigation");
     element.appendChild(para);
 
 }
