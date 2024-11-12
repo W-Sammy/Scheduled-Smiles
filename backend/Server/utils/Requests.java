@@ -1,6 +1,8 @@
 package Server.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.net.URI;
 import java.util.Map;
@@ -39,5 +41,4 @@ public class Requests {
         }
         return queryParameters;
     }
-    
 }

@@ -1,0 +1,61 @@
+html, body {
+    background-color: #23272A; /* MY EYES! */
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; /* less harsh to look at during dev, subject to change in actual app */
+}
+
+body > div > * {
+    float: left;
+    padding-right: 35px;
+}
+
+#responseStatus {
+    background-color: #424549;
+    height: 1.5em;
+    width: 10em;
+    color: white;
+}
+
+#endpoint {
+    background-color: #424549;
+    height: 1.5em;
+    width: 45em;
+    color: white;
+}
+
+#requestBody, #responseBody {
+    border-radius: 15px;
+    background-color: #424549;
+    padding: 10px;
+    height: 200px;
+    width: 150px;
+    color: white;
+}
+
+#responseBody {
+    width: 500px;
+}
+
+select {
+  appearance: none;
+  padding: 5px;
+}
+option {
+    background-color: #424549 !important;
+}
+#buttons * {
+    background-color: inherit;
+    color: inherit;
+}
+
+#apiDoc {
+    margin: 5px;    
+    display: block;
+    border-radius: 15px;
+    background-color: #424549 !important;
+    padding: 10px;
+}
+
+#apiDoc * {
+  white-space : pre-wrap !important;
+}

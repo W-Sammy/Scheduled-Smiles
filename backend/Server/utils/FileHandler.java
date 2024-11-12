@@ -7,8 +7,8 @@ public class FileHandler {
         // restrict instantiation -Kyle
     }
     public static File getFile(final String rawPath, final String serverContext, final String localContext) {
-        final String path = rawPath.split(serverContext, 2)[1];
-        final String filePath = (MAPPED_FILES.containsKey(path)) ? MAPPED_FILES.get(path) : localContext + path;
+        final String path = (rawPath.equals(serverContext) || rawPath.length() <= 1) ? "/" : rawPath.split(serverContext, 2)[1];
+        final String filePath = localContext + ((MAPPED_FILES.containsKey(path)) ? MAPPED_FILES.get(path) : path);
         final File file = new File(filePath);
         return (file.exists() && !file.isDirectory()) ? file : null;
     }

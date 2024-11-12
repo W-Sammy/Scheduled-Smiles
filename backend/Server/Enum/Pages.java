@@ -11,6 +11,7 @@ public class Pages {
         "style", "styles.css",
         "login", "login.html",
         "404", "404.html",
-        "", "index.html" // temporary
+        "", "index.html", // temporary
+        "/", "index.html" // temporary
     );
 }

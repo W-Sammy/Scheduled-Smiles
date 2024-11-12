@@ -37,8 +37,10 @@ public class DatabaseConnection implements AutoCloseable {
                     }
                 }
                 return resultBytes;
+            } catch (SQLDataException e) {
+                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: Failed to open a database transaction. Trace:");
+                System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
                 e.printStackTrace();
             }
         }
@@ -61,8 +63,10 @@ public class DatabaseConnection implements AutoCloseable {
                     }
                 }
                 return resultBytes;
+            } catch (SQLDataException e) {
+                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: Failed to open a database transaction. Trace:");
+                System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
                 e.printStackTrace();
             }
         }
@@ -86,8 +90,10 @@ public class DatabaseConnection implements AutoCloseable {
                     }
                 }
                 return resultBytes;
+            } catch (SQLDataException e) {
+                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: Failed to open a database transaction. Trace:");
+                System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
                 e.printStackTrace();
             }
         }
@@ -110,8 +116,10 @@ public class DatabaseConnection implements AutoCloseable {
                     }
                 }
                 return resultBytes;
+            } catch (SQLDataException e) {
+                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: Failed to open a database transaction. Trace:");
+                System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
                 e.printStackTrace();
             }
         }
@@ -134,8 +142,10 @@ public class DatabaseConnection implements AutoCloseable {
                     }
                 }
                 return resultBytes;
+            } catch (SQLDataException e) {
+                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: Failed to open a database transaction. Trace:");
+                System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
                 e.printStackTrace();
             }
         }
@@ -157,9 +167,10 @@ public class DatabaseConnection implements AutoCloseable {
                 this.username,
                 this.password
             );
-        } catch (Exception e) {
-            System.out.println("Error: Failed to connect to database. Trace:");
-            e.printStackTrace();
+        } catch (SQLTimeoutException e) {
+            System.out.println("DatabaseConnection Error: Failed to connect to database, connection timed out.");
+        } catch (SQLException e) {
+            System.out.println("DatabaseConnection Error: Failed to connect to database, invalid url or login credentials.");
         }
     }
     
@@ -169,7 +180,7 @@ public class DatabaseConnection implements AutoCloseable {
             con.close();
             con = null;
         } catch (Exception e) {
-            System.out.println("Error: Failed to close database connection. Is a connection active? Trace:");
+            System.out.println("DatabaseConnection Error: Failed to close database connection. Is a connection active? Trace:");
             e.printStackTrace();
         }
     }
