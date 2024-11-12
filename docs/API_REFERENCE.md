@@ -4,6 +4,7 @@ This document details the structure of this project's Server API Endpoint, and s
 &nbsp;&nbsp;&nbsp;&nbsp;*note from author: we use POST requests for most of these because we do __not__ want users __bookmarking__ our api endpoints. yes, GET request would work just as well in most of these situations.*
 
 ## General Operations with the Database
+
 | Operation | Method | Endpoint | Body | Returns |
 | :-- | :-: | :-: | :-- | :-: |
 | Getting data<br>from the database | POST | /api/database/get | <pre>\{<br>  "query": ...,<br>  "type": \["string"\|"hex"\|"integer"\|"boolean"\] <br>\}</pre> | A JSON-formatted list of string lists, in order corrosponding the queries that were requested. Strings will be of the requested `type` specified for each query.<br>(string, hex-byte representation, integer, boolean)
@@ -12,6 +13,7 @@ This document details the structure of this project's Server API Endpoint, and s
 ## Specialized Operations with the Database
 Some operations are sensitive, or repetitve enough to warrant their specific, streamlined implementation in our API. As such, these endpoints may overlap in function with one another. They are as follows:
 <br>
+
 | Operation | Method | Endpoint | Body | Returns |
 | :-- | :-: | :-: | :-- | :-: |
 | Checking if something exists | GET | /api/verify | <pre>\{ "query": ... \}</pre> | A JSON-formatted body containing `true` if any results are found matching the given `query`, and `false` otherwise. |
