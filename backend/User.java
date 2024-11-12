@@ -1,17 +1,18 @@
+import java.util.ArrayList;
 public class User {
     // attributes
-    private byte[] userID = new byte[32];
-    private int roleID;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private char sex;
-    private String phoneNumber; // max is 10 characters
-    private String email;
-    private int birthDate;
+    protected byte[] userID = new byte[32];
+    protected byte[] roleID = new byte[32]; 
+    protected String firstName;
+    protected String lastName;
+    protected String address;
+    protected char sex;
+    protected String phoneNumber; // max is 10 characters
+    protected String email;
+    protected int birthDate;
 
     // constructor
-    public User(byte[] userID, int roleID, String firstName, String lastName, String address, 
+    public User(byte[] userID, byte[] roleID, String firstName, String lastName, String address, 
                 char sex, String phoneNumber, String email, int birthDate) {
         this.userID = userID;
         this.roleID = roleID;
@@ -23,13 +24,24 @@ public class User {
         this.email = email;
         this.birthDate = birthDate;
     } // end constructor
-
+    // Without roleID
+    public User(byte[] userID, String firstName, String lastName, String address, 
+                char sex, String phoneNumber, String email, int birthDate) {
+        this.userID = userID;
+        this.firstName = firstName; 
+        this.lastName = lastName;
+        this.address = address;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.birthDate = birthDate;
+    }
     // getter functions
     public byte[] getUserID() {
         return userID;
     } // end getUserID()
 
-    public int getRoleID() {
+    public byte[] getRoleID() {
         return roleID;
     } // end getRoleID()
 
@@ -66,7 +78,7 @@ public class User {
         this.userID = userID;
     } // end setUserID()
 
-    public void setRoleID(int roleID) {
+    public void setRoleID(byte[] roleID) {
         this.roleID = roleID;
     } // end setRoleID()
 
@@ -101,16 +113,12 @@ public class User {
 
 class NewUser extends User {
     // attributes
-    private byte[] userID;
-    private int roleID = 0; // set as default
     private String password;
-
     // constructor 
-    public NewUser(byte[] userID, int roleID, String firstName, String lastName, String address, 
+    public NewUser(byte[] userID, byte[] roleID, String firstName, String lastName, String address, 
                     char sex, String phoneNumber, String email, int birthDate, String password) {
-        super(userID, roleID, firstName, lastName, 
-                address, sex, phoneNumber, email, birthDate);
-        this.password = password;
+                    super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
+                    this.password = password;
     } // end constructor
 
     // gets the password for the variable password
@@ -126,15 +134,14 @@ class NewUser extends User {
 
 class Patient extends User {
     // Attributes
-    private final int roleID = 0;
-    // private ArrayList<Appointment> upcomingAppointments; // List of upcoming appointments
+    private ArrayList<Appointment> upcomingAppointments = new ArrayList<>(); //initialization of ArrayList for soon to be appointment functions
     
     // Constructor
-    public Patient(byte[] userID, int roleID, String firstName, String lastName, String address,
+    public Patient(byte[] userID, byte[] roleID, String firstName, String lastName, String address,
                   char sex, String phoneNumber, String email, int birthDate) {
-      super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
+                  super(userID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
+                  this.roleID = roleID;
     }
-
     /*
     // Gets upcoming appointments
     public ArrayList<Appointments> getUpcomingAppointments(){
@@ -155,14 +162,14 @@ class Patient extends User {
 
  class Staff extends User {
     // Private Attributes
-    private final int roleID = 1;
     private double hourlyRate;
     
     // Contructor
-    public Staff(byte[] userID, int roleID, String firstName, String lastName, String address,
+    public Staff(byte[] userID, byte[] roleID, String firstName, String lastName, String address,
                  char sex, String phoneNumber, String email, int birthDate, double hourlyRate){
-      super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);         
+      super(userID, firstName, lastName, address, sex, phoneNumber, email, birthDate);         
       this.hourlyRate = hourlyRate;
+      this.roleID = roleID;
     }
     
     // Getter for hourlyRate
@@ -176,13 +183,24 @@ class Patient extends User {
     }
 }
 
-class Admin extends Staff {
-    // attributes
-    private final int roleID = 2;
-
+class Admin extends User {
+    // Attributes
+    private double hourlyRate;
     // constructor
-    public Admin(byte[] userID, int roleID, String firstName, String lastName, String address,
+    public Admin(byte[] userID, byte[] roleID, String firstName, String lastName, String address,
                     char sex, String phoneNumber, String email, int birthDate, double hourlyRate) {
-        super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate, hourlyRate);
+        super(userID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
+        this.roleID = roleID;   
+        this.hourlyRate = hourlyRate;
     } // end constructor
+    
+    // Getter for hourlyRate
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+      
+      // Setter for hourlyRate
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }    
 }

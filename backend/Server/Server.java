@@ -1,12 +1,8 @@
 package Server;
 
-import com.sun.net.httpserver.HttpServer;
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-
 // In house packages
 import Server.utils.ServerConnectionHandler;
+
 
 public class Server implements Runnable {
     private static String hostname = "localhost"; // Change this if we actually host this on a domain. -Kyle
