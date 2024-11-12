@@ -15,3 +15,8 @@
     font-size: 15px;
     font-weight: 600;
 }
+
+.header .link:hover{
+    color: rgb(177, 177, 177);
+    font-size: 15px;
+}
