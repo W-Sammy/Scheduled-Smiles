@@ -1,9 +1,10 @@
 .signInBox{
     display: none;
-    position: fixed;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .wrapSignIn {
@@ -16,13 +17,8 @@
     border-radius: 10px;
 }
 
-.body{
-    background-color: #3f6154;
-}
-
 .Logo{
     justify-content: center;
-    
 }
 
 .title{
@@ -31,10 +27,26 @@
     color: #3f6154;
 }
 
+.titleRegister{
+    color: #3f6154;
+    line-height: 10px;
+    text-align: left;
+    padding-left: 50px;
+    font-size: xx-large;
+}
+
 .inputField{
     line-height: 40px;
     text-align: left;
     padding-left: 135px;
+}
+
+.inputFieldRegister{
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 40px;
 }
 
 .labels{
@@ -44,16 +56,6 @@
     text-align: left;
     color: #3f6154;
     padding-left: 20px;
-}
-
-.labels2{
-    font-weight: 600;
-    padding-right: 42px;
-    line-break:normal;
-    text-align: left;
-    color: #3f6154;
-    padding-left: 20px;
-
 }
 
 .input{
@@ -67,9 +69,23 @@
     border-radius: 6px;
 }
 
+.input2{
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 50px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    background-color: #e4d9d9;
+    color:#666060;
+    border-color:rgba(41, 124, 113, 0.158);
+    border-radius: 6px;
+}
+
 .hyperlinkPassword{
     text-align: center;
     padding-right: 152px;
+    color: #3f6154;
+    font-weight: bold;
 
 }
 
@@ -86,4 +102,15 @@
     padding-left: 148px;
     padding-top: 25px;
 
+}
+
+.hyperlinkBack{
+    line-height: 0;
+    text-align: right;
+    padding-right: 25px;
+    top: 1px;
+    right: 1px;
+    float: right;
+    color: #3f6154;
+    font-weight: 520;
 }

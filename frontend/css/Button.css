@@ -1,8 +1,12 @@
 .genericButton {
     background-color: #2d6b6d;
+    border-color: #35575825;
     text-align: center;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-    
-}
+    border-radius: 24px;
+    padding: 10px 19px;
+    font-size: 14px;
+    color: #FFFCEE;
+    display: inline-block;
+    font-size: medium;
+    font: bold;
+    text-shadow: .2px .2px .1px rgb(245, 252, 246);

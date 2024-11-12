@@ -13,3 +13,7 @@ function openForgotPassword() {
     document.getElementById("signInOverlay").style.display = "none";
     document.getElementById("passwordOverlay").style.display = "block";
 }
+
+function closeSignIn() {
+    document.getElementById("signInOverlay").style.display = "none";
+}

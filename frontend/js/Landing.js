@@ -1,6 +1,3 @@
-import betterTeeth from "../assets/betterTeeth.png";
-import "../css/Landing.css"
-
 function Landing() {
     <div className="landingPage">
         <div className="betterTeethContainer">
@@ -13,5 +10,3 @@ function Landing() {
         </div>
     </div>
 }
-
-
