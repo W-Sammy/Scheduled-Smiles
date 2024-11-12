@@ -1,10 +1,9 @@
 .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center; /* Centers horizontally */
     align-items: top; /* Centers vertically */
     padding: 1em;
-    top: 0;
+    margin-top: 2em;
     position: sticky;
     z-index: 100;
     text-align: center;
@@ -16,6 +15,4 @@
     color: #004c4c;
     font-size: 1.5em;
     margin: 0 1em;
-    text-align: center;
-
 }
