@@ -118,6 +118,30 @@ public class DatabaseConnection implements AutoCloseable {
         return null;
     }
     
+    public List<List<String>> queryHexStrings(String query) {
+        final List<List<String>> resultBytes = new ArrayList<>();
+        if (this.isConnected()) {
+            try (final Statement transaction = this.con.createStatement()) {
+                final ResultSet results = transaction.executeQuery(query);
+                final ResultSetMetaData resultMetaData = results.getMetaData();
+                final int columnCount = resultMetaData.getColumnCount();
+                while(results.next()) {
+                    resultBytes.add(new ArrayList<String>());
+                    int i = 1;
+                    while (i <= columnCount) {
+                        resultBytes.get(resultBytes.size() - 1).add(getHexBytes(results.getBytes(i)));
+                        i++;
+                    }
+                }
+                return resultBytes;
+            } catch (Exception e) {
+                System.out.println("Error: Failed to open a database transaction. Trace:");
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
     public String getHexBytes(byte[] bytes) {
         final StringBuilder hexString = new StringBuilder();
         for (byte b : bytes) {
