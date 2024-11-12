@@ -224,22 +224,34 @@ public class ServerConnectionHandler implements HttpHandler {
     private static void handleApiRequest() throws IOException {        
         boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
         if (isValidRequest) {
-            switch (requestPath[2]) {
-                case "database":
-                    handleDatabaseRequest();
+            switch (requestMethod) {
+                case "GET":
+                    switch (requestPath[2]) {
+                        case "verify":
+                            
+                        break;
+                        case "login":
+                            
+                        break;
+                        default:
+                            isValidRequest = false;
+                    }
                 break;
-                case "register":
-                    registerUser();
+                case "POST":
+                    switch (requestPath[2]) {
+                        case "database":
+                            handleDatabaseRequest();
+                        break;
+                        case "register":
+                            registerUser();
+                        break;
+                        default:
+                            isValidRequest = false;
+                    }
                 break;
-                case "login":
-                    getUser();
-                break;
-                // THIS IS NOT SPECFICALLY AN FR, LEAVE UNIMPLEMENTED OR IMPLEMENT LAST -Kyle
-                case "upload":
-                    uploadFile();
-                break;
+                // This is where we'd have a PUT case for uploading images... if we were going to implement that. -Kyle
                 default:
-                
+                    isValidRequest = false;
             }
         }
         if (!isValidRequest) {

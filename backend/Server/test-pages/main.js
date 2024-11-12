@@ -24,15 +24,14 @@ function sendRequest(endpoint, method, requestBody) {
             "Content-type": "application/json; charset=UTF-8"
         }
     }).then(response => {
-        if(response.ok){
-            return Promise.all([response.status, response.text()])
-        }
-        throw new Error('Request failed!')
+        return Promise.all([response.status, response.text()])
     }, networkError => {
-      console.log(networkError.message) 
+      console.log(networkError.message)
+      loadResponse("", networkError.message)
     }).then((values) => {
+      var responseText =  (values[0] >= 400) ? values[1] : JSON.stringify(JSON.parse(values[1]), null, 2)
       console.log(values)
-      loadResponse(...values)
+      loadResponse(values[0], responseText)
     })
 }
 
@@ -57,6 +56,6 @@ window.onload = () => {
 function loadResponse(responseStatus, responseText) {
     const responseBodyArea = document.getElementById("responseBody")
     const responseStatusArea = document.getElementById("responseStatus")
-    responseBodyArea.value = JSON.stringify(JSON.parse(responseText), null, 2)
+    responseBodyArea.value = responseText
     responseStatusArea.innerHTML = responseStatus
 }
