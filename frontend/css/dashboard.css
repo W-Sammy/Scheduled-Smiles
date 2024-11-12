@@ -4,7 +4,6 @@
 }
 
 .navigationTabs{
-    z-index: -2;
     display: flex;
     flex-wrap: wrap;
     transform: translate(20px, -80px);
@@ -67,15 +66,26 @@
 
 }
 
+.viewBox{
+    color: aqua;
+
+}
+
 .notifcationsBox{
     position: relative;
+    display: flex;
     right: 20px;
-    text-align: right;    
+    justify-content: center;    
+    text-align: left;
     background-color: #48715617;
     height: 720px;
     width: 400px;
     float: right;
-    z-index: 1;
     border-radius: 20px;
+
+}
+
+.note{
+    color: aqua;
 
 }

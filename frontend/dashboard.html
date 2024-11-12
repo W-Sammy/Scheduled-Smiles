@@ -49,13 +49,37 @@
         </div>
 
         <div class="overviewBox" id="overview">
-            <!--Need JS script to Popular Bar template with user info-->      
+            <!--Need JS script to Popular Bar template with user info-->
+            <script>    
+                for(let i=0; i < 3; i++){
+                    const para = document.createElement("p");
+                    const node = document.createTextNode("open tabby");
+                    para.appendChild(node);
+                    para.className="viewBox";
+                    
+                    const element = document.getElementById("overview");
+                    element.appendChild(para);
+                }
+            </script>    
 
         </div>
 
         <div class="notifcationsBox" id="notifcation">
-            <!--Need JS script to Popular Bar template with user info-->      
-            Popup
+            <!--Need JS script to Popular Bar template with user info-->  
+            <div>
+                <p> run away world</p>
+            </div>    
+            <script>    
+                for(let i=0; i < 3; i++){
+                    const para = document.createElement("p");
+                    const node = document.createTextNode("open thee notes");
+                    para.appendChild(node);
+                    para.className="note";
+                    
+                    const element = document.getElementById("notfication");
+                    element.appendChild(para);
+                }
+            </script>
 
         </div>
     </body> 
