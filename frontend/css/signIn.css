@@ -86,7 +86,9 @@
     padding-right: 152px;
     color: #3f6154;
     font-weight: bold;
-
+}
+.hyperlinkPassword:hover{
+    color: #7fa194;
 }
 
 .buttonSignIn{
@@ -94,15 +96,27 @@
     padding-top: 35px;
 }
 
-.hyperlinkRegister{
+.textRegister{
     color: #3f6154;
-    font-weight: 520;
-    font-size: 93%;
+    font-weight: 550;
+    font-size: 88%;
     text-align: left;
     padding-left: 148px;
-    padding-top: 25px;
-
+    padding-top: 25px; 
 }
+
+.hyperlinkRegister{
+    color: #3f6154;
+    font-weight: bolder;
+    font-size: 100%;
+    text-align: left;
+    padding-top: 25px;
+}
+
+.hyperlinkRegister:hover{
+    color: #7fa194;
+}
+
 
 .hyperlinkBack{
     line-height: 0;
@@ -113,4 +127,7 @@
     float: right;
     color: #3f6154;
     font-weight: 520;
+}
+.hyperlinkBack:hover{
+    color: #7fa194;
 }
