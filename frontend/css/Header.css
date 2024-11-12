@@ -2,17 +2,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: center; /* center vertically */
-    background-color: #008080;
+    background-color: #166568;
     padding: .75em;
-    width: 100%;
-    min-width: 100%;
+    box-shadow:0px 5px 3px 5px #003a3a48;
 }
 
 .header .link{
     color: white;
     text-decoration: none;
     text-align: right;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
 }
 
