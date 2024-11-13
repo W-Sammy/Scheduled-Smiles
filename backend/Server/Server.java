@@ -19,6 +19,7 @@ public class Server implements Runnable {
     
     // Testing
     public static void main(final String... args) throws IOException {
+        localContext = (args[0] != null) ? args[0] : localContext;
         server = HttpServer.create(new InetSocketAddress(hostname, port), backlog);
         server.createContext(serverContext, new ServerConnectionHandler(serverContext, localContext));
         server.setExecutor(null); // creates a default executor
