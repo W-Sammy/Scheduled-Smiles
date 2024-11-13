@@ -1,49 +1,58 @@
+/* Body and Background */
 body {
   background-image: url('../assets/landingPage_bg.png');
   background-attachment: fixed;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.betterTeethContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Aligns items to the left */
-  gap: 1em; /* Space between image and button */
-}
-
+/* Landing Page Container */
 .landingPage {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align content to the left */
-
+  align-items: flex-start;
+  padding: 2vh 5vw;
 }
 
+/* Better Teeth Container */
+.betterTeethContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+  max-width: 50vw;
+  margin-bottom: 3vh;
+}
+
+/* Better Teeth Image */
 .betterTeethImg {
+  width: 80vw;
   max-width: 100%;
-  width: 85%;
-  margin-top: 4.5em;
-  margin-left: 3em;
+  margin-top: 4em;
 }
 
+/* Schedule Button */
 .scheduleBtn {
   background-color: rgba(0, 128, 128, 0.75);
   border: none;
   color: #FFFCEE;
-  padding: 18px 30px;
-  font-size: 20px;
+  padding: 2vh 3vw; 
+  font-size: 1vw; 
   cursor: pointer;
-  border-radius: 30px;
-  margin-top: -4em;
+  border-radius: 2em; 
+  margin-top: -5em;
   align-self: flex-start;
-  margin-left: 14.5em;
+  margin-left: 17.5em;
 }
 
+/* Logo on Landing Page */
 .logoLandingPage {
-  height: 13.5em;
-  width: 18em;
+  height: 25vh; 
+  width: 16vw; 
   align-self: flex-end;
-  margin-right: 6em;
-  margin-top: 2em;
+  margin-right: 3em;
+  margin-top: 1em;
 }
