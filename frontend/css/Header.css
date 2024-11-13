@@ -9,6 +9,7 @@
     padding-top: .5em;
     padding-bottom: .5em;
     box-shadow: 0em .1em 1em .1em rgb(44, 44, 44);
+    z-index: 3;
 }
 
 .header .link{
