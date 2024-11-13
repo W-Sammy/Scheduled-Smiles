@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 public class Appointment{
     //private attributes
     private byte[] typeID = new byte[32];	//ID assigned to each appointment
@@ -15,7 +16,7 @@ public class Appointment{
     //constructor
     public Appointment(byte[] typeID, byte[] patientID, ArrayList<byte[]> staffList, int stationNumber, String treatment,
 						ArrayList<String> healthCondition, String notes, int timestamp, boolean completionStatus, boolean cancelStatus) {
-        this.typeID = typeID;
+        this.typeID = typeID; 
 		this.patientID = patientID;
 		this.staffList = staffList;
 		this.stationNumber = stationNumber;
@@ -33,6 +34,30 @@ public class Appointment{
         return typeID;
     }
 
+	public byte[] getpatientID() {
+		return patientID;
+	}
+	
+	public ArrayList<byte[]> getStaffList() {
+		return staffList;
+	}
+
+	public int getStationNumber() {
+		return stationNumber;
+	}
+
+	public String getTreatment() {
+		return treatment;
+	}
+
+	public ArrayList<String> getHealthCondition() {
+		return healthCondition;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
     public int getTimestamp() {
         return timestamp;
     }
@@ -45,14 +70,34 @@ public class Appointment{
         return cancelStatus;
     }
 
-    public double getCost(){
-        return cost;
-    }    
-
     //setter methods
     public void setTypeID(byte[] typeID) {
         this.typeID = typeID;
     }
+
+	public void setPatientID(byte[] patientID) {
+		this.patientID = patientID;
+	}
+	
+	public void setStaffList(ArrayList<byte[]> staffList) {
+		this.staffList = staffList;
+	}
+
+	public void setStationNumber(int stationNumber) {
+		this.stationNumber = stationNumber;
+	}
+
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+
+	public void setHealthCondition(ArrayList<String> healthCondition) {
+		this.healthCondition = healthCondition;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 
     public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
@@ -65,30 +110,52 @@ public class Appointment{
     public void setCancelStatus(boolean cancelStatus) {
         this.cancelStatus = cancelStatus;
     }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    /* needs to be connected to the database
-    public void scheduleAppointment()
+	// Iterator equivalent
+	public String whatsInside(ArrayList<byte[]> identifier) {
+		String s = "";
+		for(byte[] b : identifier) {
+			s = s + Arrays.toString(b) + ", ";
+		}
+		return s;
+	}
+	// ToString equivalent
+    public String viewAppointment()
     {
-        
-    }
+        return "\nAppointmentID: " + Arrays.toString(typeID) +
+		"\n\nPatientID: " + Arrays.toString(patientID) +
+		"\n\nRelated Staff: " + whatsInside(staffList) +
+		"\n\nStation Number: " + stationNumber +
+		"\n\nTreatment Type: " + treatment +
+		"\n\nHealth Condition(s): " + healthCondition.toString() +
+		"\n\nNotes: " + notes +
+		"\n\nTimestamp: " + timestamp +
+		"\n\nCompleted: " + completionStatus +
+		"\n\nCanceled: " + cancelStatus;
 
-    public void cancelAppointment()
-    {
-        
     }
+    /*FOR TESTING PURPOSES ONLY
+	
+	public static void main(String[] args) {
+		byte[] typeID = new byte[]{1, 2, 3};
+		byte[] patientID = new byte[]{3, 2, 1};
+		ArrayList<byte[]> staffList = new ArrayList<>();
+		byte[] staffOne = new byte[]{12, 13, 14};
+		byte[] staffTwo = new byte[]{15, 16, 17};
+		staffList.add(staffOne);
+		staffList.add(staffTwo);
+		int stationNumber = 2;
+		String treatment = "Check-Up";
+		ArrayList<String> healthCondition = new ArrayList<>();
+		healthCondition.add("Underbite");
+		healthCondition.add("Gum Disease");
+		String notes = "Patient scheduled for fillers";
+		int timestamp = 102931;
+		boolean completionStatus = false;
+		boolean cancelStatus = false;
+		Appointment testCase = new Appointment(typeID, patientID, staffList, stationNumber, treatment, healthCondition, notes, timestamp, completionStatus, cancelStatus);
+		System.out.println(testCase.viewAppointment());
+		
 
-    public void rescheduleAppointment()
-    {
-        
-    }
-
-    public void viewAppointment()
-    {
-        
-    }
-    */
+	}
+	*/
 }
