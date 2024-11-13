@@ -5,11 +5,10 @@
         <title>Scheduled Smiles</title>
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/dashboard.css">
-        <script src ="navigationTab.js"></script>
-        <script src="overviewBox.js"></script>
+        <script src ="./js/navigationTab.js"></script>
+        <script src="./js/overviewBox.js"></script>
     </head>
 
-    
     <body class="body">
         <header class="header" style="margin-bottom: 50px;">
             <!--Need JS script to complete Log out feature-->       
@@ -17,13 +16,12 @@
             
         </header>
 
-
-        <div class= "navigationTabs" id="navigation" onload="newTab()">
+        <div class= "navigationTabs" id="navigation">
             <!--Need JS script to Populate Tabs with Links-->       
             <script>    
                     for(let i=0; i < 3; i++){
                         const para = document.createElement("div");
-                        const node = document.createTextNode("open tabby");
+                        const node = document.createTextNode("Open the Tab");
                         para.appendChild(node);
                         para.className="tab";
                         
@@ -36,56 +34,56 @@
         <!--Need JS script Introduce user-->       
         <span class="welcomeMessage" id="welcome"> Welcome <script src=""></script> 
         </span>
- 
-        <div class="userInfoBox" id="info">
-            <!--Need JS script to Popular Bar template with user info-->
-            <img src="" alt="">test<img>
-            <div class="infoField">
+
+        <div class="contentBoard" id="content">
+
+            <div class="userInfoBox" id="info">
+                <!--Need JS script to Populate info template with user info-->
                 <img src="" alt="">test<img>
-                <p class="name">name </p>
-                <p class="email"> email</p>
-                <p class="ID">#id </p>
-                <p></p>
+                <div class="infoField">
+                    <img src="" alt="">test<img>
+                    <p class="name">name </p>
+                    <p class="email"> email</p>
+                    <p class="ID">#id </p>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="overviewBox" id="overview">
+                <!--Need JS script to Populate overview template with user info-->
+                <!--If needed, nest with another box that holds the Text (UI/UX)-->>
+                <script>    
+                    for(let i=0; i < 3; i++){
+                        const para = document.createElement("div");
+                        const node = document.createTextNode("Open the view box");
+                        para.appendChild(node);
+                        para.className="viewBox";
+
+                        const element = document.getElementById("overview");
+                        element.appendChild(para);
+                    }
+                </script>    
+            
+            </div>
+
+            <div class="notifcationsBox" id="notifcation">
+                <!--Need JS script to Populate notes template with user info-->  
+                <div>
+                    <p class="noticationTitle"> run away world</p>
+                </div>    
+                <script>    
+                    for(let i=0; i < 3; i++){
+                        const para = document.createElement("p");
+                        const node = document.createTextNode("open thee notes");
+                        para.appendChild(node);
+                        para.className="note";
+                        const element = document.getElementById("notfication");
+                        element.appendChild(para);
+                    }
+                </script>
+
             </div>
         </div>
-
-        <div class="overviewBox" id="overview">
-            <!--Need JS script to Popular Bar template with user info-->
-            <script>    
-                for(let i=0; i < 3; i++){
-                    const para = document.createElement("p");
-                    const node = document.createTextNode("open tabby");
-                    para.appendChild(node);
-                    para.className="viewBox";
-                    
-                    const element = document.getElementById("overview");
-                    element.appendChild(para);
-                }
-            </script>    
-
-
-            
-        </div>
-
-        <div class="notifcationsBox" id="notifcation">
-            <!--Need JS script to Popular Bar template with user info-->  
-            <div>
-                <p> run away world</p>
-            </div>    
-            <script>    
-                for(let i=0; i < 3; i++){
-                    const para = document.createElement("p");
-                    const node = document.createTextNode("open thee notes");
-                    para.appendChild(node);
-                    para.className="note";
-                    
-                    const element = document.getElementById("notfication");
-                    element.appendChild(para);
-                }
-            </script>
-
-        </div>
-
 
     </body> 
 </html>
