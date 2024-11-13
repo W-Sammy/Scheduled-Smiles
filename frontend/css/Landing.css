@@ -40,3 +40,10 @@ body {
   margin-left: 14.5em;
 }
 
+.logoLandingPage {
+  height: 13.5em;
+  width: 18em;
+  align-self: flex-end;
+  margin-right: 6em;
+  margin-top: 2em;
+}
