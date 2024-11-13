@@ -48,21 +48,24 @@
     border-radius: 20px;
 }
 
+/*
 .contentBoard{
     z-index: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+*/
 
 .userInfoBox{
     background-color: #2e9da14d;
     height: 720px;
     width: 300px;
     align-content: center;
-    padding: 80px 20px 20px 20px;
+    padding: 80px 20px 0px 20px;
     border-radius: 20px;
     margin-left: 20px;
+    float: left;
 
 }
 
@@ -70,6 +73,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-self: flex-end;
     justify-content: space-between;
     background-color: #ffffffe1;
     font-size: 20px;
@@ -81,18 +85,29 @@
 }
 
 .overviewBox{
-    background-color: #00ff55;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    /*background-color: #00fff2;*/
     border-radius: 20px;
     align-items: center;
 
 }
 
 .viewBox{
+    border-radius: 20px;
     color: rgb(0, 99, 99);
-
+    text-align: left;
+    background: #2e9da1;
+    padding: 20px;
+    margin: 20px;
 }
 
 .notifcationsBox{
+    float: right;
     display: flex;
     justify-content: center;    
     text-align: left;
@@ -101,7 +116,7 @@
     width: 400px;
     border-radius: 20px;
     margin-right: 20px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 0px 20px;
 }
 
 .notifcationTitle{
