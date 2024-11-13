@@ -134,8 +134,30 @@ public class ServerConnectionHandler implements HttpHandler {
                     sendResponse(STATUS_CODES.get("OK"), file.length(), fs);
                 }
             } else {
-                // TODO: handle file not found differently based on the type of file requested -Kyle
-                sendResponse(STATUS_CODES.get("NOT_FOUND"), "File: " + String.join("/", requestPath) + " not found.");
+                // variables for simplicity - kaylina
+                String requestedFile = String.join("/", requestPath); 
+                String fileExtension = requestedFile.substring(requestedFile.lastIndexOf('.'));
+
+                switch (fileExtension) {
+                    case ".png":
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "Image File: " + requestedFile + " not found.");
+                        break;
+                    case ".html":
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "HTML File: " + requestedFile + " not found.");
+                        break;
+                    case ".css":
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "CSS File: " + requestedFile + " not found.");
+                        break;
+                    case ".js":
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "JavaScript File: " + requestedFile + " not found.");
+                        break;
+                    case ".java":
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "Java File: " + requestedFile + " not found.");
+                        break;
+                    default:
+                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "File: " + requestedFile + " not found.");
+                        break;
+                }
             }
         }
     }
@@ -268,8 +290,9 @@ public class ServerConnectionHandler implements HttpHandler {
                 System.out.println("Got a GET request: " + requestUri.toString());
                 sendFileResponse();
             break;
-            case "POST": // TODO: Non-api POST calls should return invalid. -Kyle
+            case "POST":
                 System.out.println("Got a POST request: " + requestUri.toString());
+                con.sendResponseHeaders(STATUS_CODES.get("NOT_ALLOWED"), NO_RESPONSE_LENGTH);
             
             break;
             case "OPTIONS":
