@@ -6,12 +6,14 @@ import java.io.UnsupportedEncodingException;
 import java.util.Set;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.lang.reflect.Type;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
+import Server.utils.DatabaseGenericParameter;
 import static Server.Enum.HttpConstants.*; // only need the CHARSET attribute, is there a better way to import this? -Kyle
 
 public class Json {
@@ -24,6 +26,21 @@ public class Json {
     public static JsonElement convertToJsonElement(final InputStream jsonStream) throws UnsupportedEncodingException {
         final InputStreamReader isr = new InputStreamReader(jsonStream, CHARSET.name());
         return new Gson().fromJson(isr, JsonElement.class);
+    }
+    
+    public static String convertFromJson(List<List<DatabaseGenericParameter>> obj) {
+        final List<List<String>> newObj = new ArrayList<>();
+        int i = 0, j = 0;
+        while (i < obj.size()) {
+            newObj.add(new ArrayList<String>());
+            j = 0;
+            while (j < obj.get(i).size()) {
+                newObj.get(i).add(obj.get(i).get(j).toString());
+                j++;
+            }
+            i++;
+        }
+        return convertFromJson(newObj, String.class);
     }
     
     public static <T> String convertFromJson(List<List<T>> obj, Class<T> type) {

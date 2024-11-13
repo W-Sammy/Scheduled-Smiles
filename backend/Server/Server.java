@@ -13,7 +13,7 @@ public class Server implements Runnable {
     private static final int backlog = -1; // maximum number of connections allowed in queue. >=0 values set value to OS-specific defualts. -Kyle
     private static final int serverCloseDelay = 2; // how many seconds to wait for connections to close themselves after server stop
     private static int port = 8081; // Defualt port for http servers is 8080 -Kyle
-    private static final String localContext = "./backend/Server/test-pages/"; // File context on local machine to serve requested files (NOT related to Java imports, this is for HTTP connections) -Kyle
+    private static String localContext = "./test-pages/"; // File context on local machine to serve requested files (NOT related to Java imports, this is for HTTP connections) -Kyle
     private static final String serverContext = "/"; // the root context to for the server to respond to when listening for requests. (the part that needs to go at the end of the URL) -Kyle
     private static HttpServer server;
     

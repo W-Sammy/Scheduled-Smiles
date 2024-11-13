@@ -25,6 +25,7 @@ import static Server.utils.FileHandler.*;
 import static Server.utils.Requests.*;
 import static Server.utils.Json.*;
 import Server.DatabaseConnection;
+import Server.utils.DatabaseGenericParameter;
 
 public class ServerConnectionHandler implements HttpHandler {
     // settings
@@ -134,30 +135,8 @@ public class ServerConnectionHandler implements HttpHandler {
                     sendResponse(STATUS_CODES.get("OK"), file.length(), fs);
                 }
             } else {
-                // variables for simplicity - kaylina
-                String requestedFile = String.join("/", requestPath); 
-                String fileExtension = requestedFile.substring(requestedFile.lastIndexOf('.'));
-
-                switch (fileExtension) {
-                    case ".png":
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "Image File: " + requestedFile + " not found.");
-                        break;
-                    case ".html":
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "HTML File: " + requestedFile + " not found.");
-                        break;
-                    case ".css":
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "CSS File: " + requestedFile + " not found.");
-                        break;
-                    case ".js":
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "JavaScript File: " + requestedFile + " not found.");
-                        break;
-                    case ".java":
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "Java File: " + requestedFile + " not found.");
-                        break;
-                    default:
-                        sendResponse(STATUS_CODES.get("NOT_FOUND"), "File: " + requestedFile + " not found.");
-                        break;
-                }
+                // TODO: handle file not found differently based on the type of file requested -Kyle
+                sendResponse(STATUS_CODES.get("NOT_FOUND"), "File: " + String.join("/", requestPath) + " not found.");
             }
         }
     }
@@ -171,36 +150,32 @@ public class ServerConnectionHandler implements HttpHandler {
                 isValidRequest = membersMatch(requestJsonObject.keySet(), "query", "type");
                 if (isValidRequest) {
                     final String queryString = requestJsonObject.get("query").getAsString();
-                    final String queryType = requestJsonObject.get("type").getAsString();
                     // Databse connection
                     try (DatabaseConnection db = new DatabaseConnection()) {
                         if (db.isConnected()) {
-                            switch (queryType) {    
-                                case "string":
-                                    results = convertFromJson(db.queryStrings(queryString), String.class);
-                                break;
-                                case "hex":
-                                    results = convertFromJson(db.queryHexStrings(queryString), String.class);
-                                break;
-                                case "integer":
-                                    results = convertFromJson(db.queryIntegers(queryString), int.class);
-                                break;
-                                case "boolean":
-                                    results = convertFromJson(db.queryBooleans(queryString), boolean.class);
-                                break;
-                                default:
-                                    isValidRequest = false;
-                            }
+                            results = convertFromJson(db.query(queryString));
+                        }
+                    } catch (Exception e) {
+                        // Errors handled in DatabaseConnection, pass
+                        // e.printStackTrace();
+                    }
+                    sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
+                }
+            break;
+            case "send":
+                isValidRequest = membersMatch(requestJsonObject.keySet(), "query");
+                if (isValidRequest) {
+                    final String queryString = requestJsonObject.get("query").getAsString();
+                    // Databse connection
+                    try (DatabaseConnection db = new DatabaseConnection()) {
+                        if (db.isConnected()) {
+                            results = convertFromJson(db.update(queryString));
                         }
                     } catch (Exception e) {
                         // Errors handled in DatabaseConnection, pass
                     }
                     sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
                 }
-            break;
-            case "send":
-                // TODO: implement queries that don't explicity return a value in DatabaseConnection before implementing here. -Kyle
-                isValidRequest = membersMatch(requestJsonObject.keySet(), "query");
             break;
             default:
                 isValidRequest = false;
@@ -290,9 +265,8 @@ public class ServerConnectionHandler implements HttpHandler {
                 System.out.println("Got a GET request: " + requestUri.toString());
                 sendFileResponse();
             break;
-            case "POST":
+            case "POST": // TODO: Non-api POST calls should return invalid. -Kyle
                 System.out.println("Got a POST request: " + requestUri.toString());
-                con.sendResponseHeaders(STATUS_CODES.get("NOT_ALLOWED"), NO_RESPONSE_LENGTH);
             
             break;
             case "OPTIONS":
