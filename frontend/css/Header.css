@@ -1,0 +1,27 @@
+.header {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end; /* Positions contents to the right */
+    top: 0; /* Flushes header to the top of the page */
+    left: 0; /* Flushes header to the left */
+    width: 100%; /* Header fully covers top portion */
+    background-color: #008080;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    box-shadow: 0em .1em 1em .1em rgb(44, 44, 44);
+    z-index: 3;
+}
+
+.header .link{
+    color: white;
+    text-decoration: none;
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 1em;
+}
+
+.header .link:hover{
+    color: rgb(177, 177, 177);
+    font-size: 18px;
+}
