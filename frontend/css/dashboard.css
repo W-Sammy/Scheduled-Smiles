@@ -123,7 +123,9 @@ div > * a:hover{
 .notifcationsBox{
     float: right;
     display: flex;
-    justify-content: center;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;    
     text-align: left;
     background-color: #48715617;
     height: 780px;
@@ -134,11 +136,23 @@ div > * a:hover{
 }
 
 .notifcationTitle{
-    background-color: #ff0000;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ff9898;
+    height: 2em;
+    width: 25em;
+    border-radius: 10px;
+    font-weight: bolder;
+
 }
 
 
 .note{
     color: aqua;
+    height: 100px;
+    width: 100px;
+    background-color: #ff0000;
 
 }
