@@ -6,8 +6,7 @@
     margin-top: 2em;
     position: sticky;
     z-index: 100;
-    text-align: center;
-    
+    text-align: center; 
 }
 
 .navbar a {

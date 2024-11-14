@@ -25,3 +25,8 @@
     color: rgb(177, 177, 177);
     font-size: 18px;
 }
+
+body{
+    margin: 0px;
+    background-image: url('../assets/bg_photo.png');
+}

@@ -1,6 +1,5 @@
-.body{
+body{
     background-color: #e2e1da;
-    margin: 0px;
 }
 
 .navigationTabs{    
@@ -21,17 +20,32 @@
     color: #e2e7e4;
     text-shadow: 0px 0px 3px #42b384;
     width: 8em;
-    height: 2em;
+    height: 2.8em;
     text-align: center;
     font-weight: 500;
     font-size: 20px;
-    padding-bottom: 10px;
 }
 
 .tab:hover{
     color: #ffffff;
     text-shadow: 0px 0px 3px #48ddb8;
     background-color: rgb(66, 165, 170);
+}
+
+div > * a {
+    display: inline-block;
+    flex-direction: column;
+    align-content: center;
+    color: #e2e7e4;
+    width: 8em;
+    height: 2em;
+    text-decoration: none;
+    padding-top: 10px;
+    margin-bottom: 3px;
+}
+
+div > * a:hover{
+    color: #ffffff;
 }
 
 .welcomeMessage{

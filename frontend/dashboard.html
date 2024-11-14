@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/dashboard.css">
@@ -17,18 +18,25 @@
         </header>
 
         <div class= "navigationTabs" id="navigation">
-            <!--Need JS script to Populate Tabs with Links-->       
-            <script>    
-                    for(let i=0; i < 3; i++){
-                        const para = document.createElement("div");
-                        const node = document.createTextNode("Open the Tab");
-                        para.appendChild(node);
-                        para.className="tab";
-                        
-                        const element = document.getElementById("navigation");
-                        element.appendChild(para);
-                    }
-            </script>
+            <!--Need JS script to Populate Tabs with Links-->
+            <div class="tab" id="chat">
+                <a href="chat.html">Chat</a>
+            </div>
+            <div class="tab" id="session">
+                <a href="session.html">Appointment</a>
+            </div>
+            <div class="tab" id="payroll">
+                <a href="payroll.html">Payroll</a>
+            </div>
+            <div class="tab" id="scheduler">
+                <a href="scheduler.html">Schedule</a>
+            </div>
+            <div class="tab" id="billing">
+                <a href="billing.html">Billing</a>
+            </div>
+            <div class="tab" id="history">
+                <a href="history.html">History</a>
+            </div>
         </div>
         
         <!--Need JS script Introduce user-->       
@@ -51,7 +59,7 @@
 
             <div class="overviewBox" id="overview">
                 <!--Need JS script to Populate overview template with user info-->
-                <!--If needed, nest with another box that holds the Text (UI/UX)-->>
+                <!--If needed, nest with another box that holds the Text (UI/UX)-->
                 <script>    
                     for(let i=0; i < 3; i++){
                         const para = document.createElement("div");
