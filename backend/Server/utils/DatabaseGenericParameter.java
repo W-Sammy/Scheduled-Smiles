@@ -1,5 +1,7 @@
 package Server.utils;
+import java.lang.UnsupportedOperationException;
 import java.io.Serializable;
+import java.util.HexFormat;
 
 public class DatabaseGenericParameter implements Serializable {
     private String stringValue = "";
@@ -67,6 +69,31 @@ public class DatabaseGenericParameter implements Serializable {
     }
     public String getType() {
         return stringType;
+    }
+    // Bad to intentionall throw errors, but we CANNOT be returning mismatched types. -Kyle
+    public boolean getAsBoolean() throws UnsupportedOperationException {
+        if (this.isBoolean()) {
+            return Boolean.parseBoolean(stringValue);
+        }
+        throw new UnsupportedOperationException("Value is not of type int");
+    }
+    public String getAsString() throws UnsupportedOperationException {
+        if (this.isString()) {
+            return stringValue;
+        }
+        throw new UnsupportedOperationException("Value is not of type int");
+    }
+    public byte[] getAsBytes() throws UnsupportedOperationException {
+        if (this.isBytes()) {
+            return HexFormat.of().parseHex(stringValue);
+        }
+        throw new UnsupportedOperationException("Value is not of type byte[]");
+    }
+    public int getAsInteger() throws UnsupportedOperationException {
+        if (this.isInteger()) {
+            return Integer.parseInt(stringValue);
+        }
+        throw new UnsupportedOperationException("Value is not of type int");
     }
     @Override
     public String toString() {

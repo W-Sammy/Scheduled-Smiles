@@ -13,13 +13,13 @@ public class Server implements Runnable {
     private static final int backlog = -1; // maximum number of connections allowed in queue. >=0 values set value to OS-specific defualts. -Kyle
     private static final int serverCloseDelay = 2; // how many seconds to wait for connections to close themselves after server stop
     private static int port = 8081; // Defualt port for http servers is 8080 -Kyle
-    private static String localContext = "./test-pages/"; // File context on local machine to serve requested files (NOT related to Java imports, this is for HTTP connections) -Kyle
+    private static String localContext = "./"; // File context on local machine to serve requested files (NOT related to Java imports, this is for HTTP connections) -Kyle
     private static final String serverContext = "/"; // the root context to for the server to respond to when listening for requests. (the part that needs to go at the end of the URL) -Kyle
     private static HttpServer server;
-    
+
     // Testing
     public static void main(final String... args) throws IOException {
-        localContext = (args != null && args[0] != null) ? args[0] : localContext;
+        localContext = (args != null && args.length > 1 && args[0] != null) ? args[0] : localContext;
         server = HttpServer.create(new InetSocketAddress(hostname, port), backlog);
         server.createContext(serverContext, new ServerConnectionHandler(serverContext, localContext));
         server.setExecutor(null); // creates a default executor
@@ -33,13 +33,14 @@ public class Server implements Runnable {
         // -----
         server.stop(serverCloseDelay);
         if (isRunning()) {
-            System.out.println(String.format("Server was not properly close on hostname %s, port %s", hostname, port));
+            System.out.println(String.format("Server was not properly closed on hostname %s, port %s", hostname, port));
         } else {
             System.out.println(String.format("Server close on port %s", port));
         }
     }
     
-    public Server(final String hostname, final int port) throws IOException {
+    public Server(final String hostname, final int port, final String context) throws IOException {
+        this.localContext = context;
         this.hostname = hostname;
         this.port = port;
         server = HttpServer.create(new InetSocketAddress(hostname, port), backlog);

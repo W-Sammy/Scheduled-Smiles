@@ -61,7 +61,7 @@ public class DatabaseConnection implements AutoCloseable {
                 System.out.println("DatabaseConnection Error: Update failed- does the table exist? Were the correct columns specified? Did the values have correct types? Detail:\n" + e.getMessage());
             } catch (Exception e) {
                 System.out.println("DatabaseConnection Error: Failed to execute database transaction. Trace:");
-                e.printStackTrace();
+                e.printStackTrace();    
             }
         }
         return resultRows;
@@ -73,14 +73,14 @@ public class DatabaseConnection implements AutoCloseable {
             try (final Statement transaction = this.con.createStatement()) {
                 result = transaction.executeUpdate(query);
             } catch (SQLDataException e) {
-                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
+                System.out.println("DatabaseConnection Error: Bad query. Detail:\n" + e.getMessage());
             } catch (Exception e) {
                 System.out.println("DatabaseConnection Error: Failed to execute database update. Trace:");
                 e.printStackTrace();
             }
         }
-        return null;
-    }
+        return result;
+    }   
     public List<List<DatabaseGenericParameter>> query(String query) {
         final List<List<DatabaseGenericParameter>> resultArray = new ArrayList<>();
         if (this.isConnected()) {
@@ -116,7 +116,7 @@ public class DatabaseConnection implements AutoCloseable {
                 }
                 return resultArray;
             } catch (SQLDataException e) {
-                System.out.println("DatabaseConnection Error: Wrong value type requested. Detail:\n" + e.getMessage());
+                System.out.println("DatabaseConnection Error: Bad query. Detail:\n" + e.getMessage());
             } catch (Exception e) {
                 System.out.println("DatabaseConnection Error: Failed to execute database update. Trace:");
                 e.printStackTrace();
