@@ -7,7 +7,6 @@ public class Appointment{
     private ArrayList<byte[]> staffList = new ArrayList<>();	//list of staff who worked on this appointment, dynamic storage should not cause errors unless information is somehow manipulated in backend
     private int stationNumber;	//Which station the appointment took place in; reflects an input accepted from frontend
     private String treatment;	//Which treatment was given to the patient, finalizing as singular treatment option only, also used to calculate cost of treatment for billing
-    private ArrayList<String> healthCondition = new ArrayList<>();	//list of possible health conditions retreived from frontend; can have mulitple or none
     private String notes;	//Singular input box for notes about the patient written by staff; retrieved from frontend 
     private int timestamp;	//Scheduled start time of the appointment
     private boolean completionStatus;	//Check if appointment has been completed
@@ -16,13 +15,12 @@ public class Appointment{
 
     //constructor
     public Appointment(byte[] typeID, byte[] patientID, ArrayList<byte[]> staffList, int stationNumber, String treatment,
-						ArrayList<String> healthCondition, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid) {
+						String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid) {
         this.typeID = typeID; 
 		this.patientID = patientID;
 		this.staffList = staffList;
 		this.stationNumber = stationNumber;
 		this.treatment = treatment;
-		this.healthCondition = healthCondition;
 		this.notes = notes;
 		this.timestamp = timestamp;
 		this.completionStatus = completionStatus;
@@ -50,10 +48,6 @@ public class Appointment{
 
 	public String getTreatment() {
 		return treatment;
-	}
-
-	public ArrayList<String> getHealthCondition() {
-		return healthCondition;
 	}
 
 	public String getNotes() {
@@ -98,10 +92,6 @@ public class Appointment{
 		this.treatment = treatment;
 	}
 
-	public void setHealthCondition(ArrayList<String> healthCondition) {
-		this.healthCondition = healthCondition;
-	}
-
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
@@ -137,7 +127,6 @@ public class Appointment{
 		"\n\nRelated Staff: " + whatsInside(staffList) +
 		"\n\nStation Number: " + stationNumber +
 		"\n\nTreatment Type: " + treatment +
-		"\n\nHealth Condition(s): " + healthCondition.toString() +
 		"\n\nNotes: " + notes +
 		"\n\nTimestamp: " + timestamp +
 		"\n\nCompleted: " + completionStatus +
@@ -156,15 +145,12 @@ public class Appointment{
 		staffList.add(staffTwo);
 		int stationNumber = 2;
 		String treatment = "Check-Up";
-		ArrayList<String> healthCondition = new ArrayList<>();
-		healthCondition.add("Underbite");
-		healthCondition.add("Gum Disease");
 		String notes = "Patient scheduled for fillers";
 		int timestamp = 102931;
 		boolean completionStatus = false;
 		boolean cancelStatus = false;
 		boolean paid = false;
-		Appointment testCase = new Appointment(typeID, patientID, staffList, stationNumber, treatment, healthCondition, notes, timestamp, completionStatus, cancelStatus, paid);
+		Appointment testCase = new Appointment(typeID, patientID, staffList, stationNumber, treatment, notes, timestamp, completionStatus, cancelStatus, paid);
 		System.out.println(testCase.viewAppointment());
 		
 
