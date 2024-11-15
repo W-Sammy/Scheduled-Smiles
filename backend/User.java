@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 public class User {
     // attributes
     protected byte[] userID = new byte[32];
@@ -115,9 +114,9 @@ class NewUser extends User {
     // attributes
     private String password;
     // constructor 
-    public NewUser(byte[] userID, byte[] roleID, String firstName, String lastName, String address, 
+    public NewUser(byte[] roleID, String firstName, String lastName, String address, 
                     char sex, String phoneNumber, String email, int birthDate, String password) {
-                    super(userID, roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
+                    super(roleID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
                     this.password = password;
     } // end constructor
 
@@ -133,31 +132,12 @@ class NewUser extends User {
 }
 
 class Patient extends User {
-    // Attributes
-    private ArrayList<Appointment> upcomingAppointments = new ArrayList<>(); //initialization of ArrayList for soon to be appointment functions
-    
     // Constructor
     public Patient(byte[] userID, byte[] roleID, String firstName, String lastName, String address,
                   char sex, String phoneNumber, String email, int birthDate) {
                   super(userID, firstName, lastName, address, sex, phoneNumber, email, birthDate);
                   this.roleID = roleID;
     }
-    /*
-    // Gets upcoming appointments
-    public ArrayList<Appointments> getUpcomingAppointments(){
-       return upcomingAppointments;
-    }
-    
-    // Adds an appointment to upcomingAppointments
-    public void addAppointment(Appointment appointment){
-       this.upcomingAppointments.add(appointment);
-    }
-    
-    // Removes appointment from upcomingAppointments
-    public void removeAppointment(Appointment appointment){
-       this.upcomingAppointment.remove(appointment);
-    }
-    */
  }
 
  class Staff extends User {

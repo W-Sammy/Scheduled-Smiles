@@ -12,10 +12,11 @@ public class Appointment{
     private int timestamp;	//Scheduled start time of the appointment
     private boolean completionStatus;	//Check if appointment has been completed
     private boolean cancelStatus;	//Check if appointment has been cancelled
+	private boolean paid; //Check if this appointment has been paid by patient (for payment page)
 
     //constructor
     public Appointment(byte[] typeID, byte[] patientID, ArrayList<byte[]> staffList, int stationNumber, String treatment,
-						ArrayList<String> healthCondition, String notes, int timestamp, boolean completionStatus, boolean cancelStatus) {
+						ArrayList<String> healthCondition, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid) {
         this.typeID = typeID; 
 		this.patientID = patientID;
 		this.staffList = staffList;
@@ -26,6 +27,7 @@ public class Appointment{
 		this.timestamp = timestamp;
 		this.completionStatus = completionStatus;
 		this.cancelStatus = cancelStatus;
+		this.paid = paid;
     }
 
 
@@ -69,6 +71,11 @@ public class Appointment{
     public boolean getCancelStatus() {
         return cancelStatus;
     }
+	
+	public boolean getPaid()
+	{
+		return paid;
+	}
 
     //setter methods
     public void setTypeID(byte[] typeID) {
@@ -110,6 +117,10 @@ public class Appointment{
     public void setCancelStatus(boolean cancelStatus) {
         this.cancelStatus = cancelStatus;
     }
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
 	// Iterator equivalent
 	public String whatsInside(ArrayList<byte[]> identifier) {
 		String s = "";
@@ -130,8 +141,8 @@ public class Appointment{
 		"\n\nNotes: " + notes +
 		"\n\nTimestamp: " + timestamp +
 		"\n\nCompleted: " + completionStatus +
-		"\n\nCanceled: " + cancelStatus;
-
+		"\n\nCanceled: " + cancelStatus +
+		"\n\nPaid: " + paid;
     }
     /*FOR TESTING PURPOSES ONLY
 	
@@ -152,7 +163,8 @@ public class Appointment{
 		int timestamp = 102931;
 		boolean completionStatus = false;
 		boolean cancelStatus = false;
-		Appointment testCase = new Appointment(typeID, patientID, staffList, stationNumber, treatment, healthCondition, notes, timestamp, completionStatus, cancelStatus);
+		boolean paid = false;
+		Appointment testCase = new Appointment(typeID, patientID, staffList, stationNumber, treatment, healthCondition, notes, timestamp, completionStatus, cancelStatus, paid);
 		System.out.println(testCase.viewAppointment());
 		
 
