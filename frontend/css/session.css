@@ -1,6 +1,6 @@
 .appointmentBox{
     display: flex;
-    flex-flow: row wrap;    
+    flex-flow: row wrap; 
     justify-content: left;
     background-color: #cdeee5;    
     margin: 50px;
@@ -13,7 +13,7 @@
 
 .title{
     margin: 20px;
-    flex-basis: 95%;
+    flex-basis: 89%;
     /*text-shadow:
     -2px -2px 0 #427f8125,
     2px -2px 0 #427f8125,
@@ -34,7 +34,7 @@
     flex-wrap: wrap;
     border-radius: 26px;
     justify-content: space-between;
-    height: 135px;
+    height: 140px;
     width: 490px;
     background-color: #fcfdf7;
     border: 10px solid #b7e2d0;
@@ -112,17 +112,21 @@
     background-color: #e05555;
 }
 
+
 .returnButton{
+    flex-basis: 5%;
     color: #f8faee;
     background-color: #549799;
     font-size: 1em;
     display: flex;
+    align-self: flex-start;
     align-items: center;
     justify-content: center;
     height: 2em;
     width: 5em;
-    margin: 5px;
-    margin-right: 10px;
+    margin: 20px;
+    margin-left: 0;
+    margin-right: 20px;
     border-radius: 13px;
     position: relative;
     float: right;
