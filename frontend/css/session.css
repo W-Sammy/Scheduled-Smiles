@@ -119,6 +119,7 @@
     justify-content: space-between;
     width: 100%;
     flex-basis: 100%;
+    background-color: #5aaeb1;
 }
 
 .returnButton{
@@ -143,18 +144,26 @@
     background-color: #5aaeb1;
 }
 
+.infoBox{
+    margin: 10px;
+    height: auto;
+    width: 500px;
+    background-color: #b85b5b;
+}
+
 .startForm{
     display: flex;
     flex-direction: column;
     background-color: #fdfff6c2;
     margin: 20px;
-    height: 500px;
-    width: 100%;
+    height: auto;
+    width: auto;
     padding: 18px;
+    margin: 5px;
 }
 
 .startForm > *{
-    margin: 5;
+    margin: 5px;
 }
 
 input[type=text]{
@@ -167,11 +176,8 @@ label{
 
 
 .historyBox{
-    float: right;
-    justify-content: right;
-    align-items: flex-end;   
-    height: 50px;
-    width: 50px;
+    height: auto;
+    width: 250px;
     background-color: #e05555;
-    margin: 5px;
+    margin: 10px;
 }

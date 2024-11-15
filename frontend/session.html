@@ -96,7 +96,7 @@
 
         </div>
 
-        <div class="appointmentBox" id="sessionForm">
+        <div class="appointmentBox" id="sessionForm" style="justify-content: space-between;">
             <div class="titleSection">
                 <h1 class="title" >
                     Starting a new Session:
@@ -106,22 +106,40 @@
             <form class="infoBox" id="inputForm"> 
                 <div class="startForm">                    
                     <label for="patient">Patient's ID:</label>
-                    <input type="text" class="info" id="patient" placeholder="ID #"></input>                    
+                    <input type="text" class="info" id="patient" placeholder="ID #">                 
                     <label for="date">Date:</label>
-                    <input type="text" class="info" id="date" placeholder="MM/DD/YYYY"></input>
+                    <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
                     <label for="time">Time Start:</label>
-                    <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM"></input>
+                    <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM">
                     <label for="staff">Leading Staff 1:</label>
-                    <input type="text" class="info" id="staff" placeholder="The special hat"></input>
+                    <input type="text" class="info" id="staff" placeholder="The special hat">
                     <label for="staff2">Staff 2</label>
-                    <input type="text" class="info" id="staff2" placeholder="The special tail"></input>
+                    <input type="text" class="info" id="staff2" placeholder="The special tail">
                     <label for="staff3">Staff 3</label>
-                    <input type="text" class="info" id="staff3" placeholder="The special feet"></input>
+                    <input type="text" class="info" id="staff3" placeholder="The special feet">
+                    <label for="station1">Station 1</label>
+                    <input type="radio" name="station" id="station1">
+                    <label for="station2">Station 2</label>
+                    <input type="radio" name="station" id="station2">
+                    <label for="station3">Station 3</label>
+                    <input type="radio" name="station" id="station3">
+                    <label for="station4">Station 4</label>
+                    <input type="radio" name="station" id="station4">
+
+                    <select name="treatments" id="treatmentList">
+                        <option value="" disabled selected>Pick a Treatment</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="filling">Fillings</option>
+                        <option value="xray">X-Rays</option>
+                        <option value="checkup">Check-up</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                    <input type="checkbox" id="" name="" value="">
+                    <input type="submit" class="confirm">
                 </div>
             </form>
             <div class="historyBox" id="historyList">
                 bomb the times
-
             </div>
         </div>
     </body>
