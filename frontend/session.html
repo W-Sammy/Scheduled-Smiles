@@ -15,7 +15,7 @@
             <a class="link"> Log out</a>
             
         </header>
-        <div class="appointmentBox" id="appointmentList">
+        <div class="appointmentBox" id="appointmentList" style="min-width: 400px;">
             <h1 class="title">Current Appointments: Select an appointment</h1>
             <div class="appointment">
                 <div class="infoField">
@@ -93,28 +93,36 @@
                 <div class="confirm">Approve</div>
                 <div class="delete">Deny</div>
             </div>
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>
+
         </div>
 
-        <div class="appointmentBox" id="sessionForm" 
-        style="flex-direction: row-reverse; justify-content: right;"
-        >
-            <span class="returnButton">
-                Return
-            </span>
-            <h1 class="title">Starting a new Session:</h1>
+        <div class="appointmentBox" id="sessionForm">
+            <div class="titleSection">
+                <h1 class="title" >
+                    Starting a new Session:
+                </h1>                
+                <span class="returnButton">Appointment List</span>
+            </div>
+            <form class="infoBox" id="inputForm"> 
+                <div class="startForm">                    
+                    <label for="patient">Patient's ID:</label>
+                    <input type="text" class="info" id="patient" placeholder="ID #"></input>                    
+                    <label for="date">Date:</label>
+                    <input type="text" class="info" id="date" placeholder="MM/DD/YYYY"></input>
+                    <label for="time">Time Start:</label>
+                    <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM"></input>
+                    <label for="staff">Leading Staff 1:</label>
+                    <input type="text" class="info" id="staff" placeholder="The special hat"></input>
+                    <label for="staff2">Staff 2</label>
+                    <input type="text" class="info" id="staff2" placeholder="The special tail"></input>
+                    <label for="staff3">Staff 3</label>
+                    <input type="text" class="info" id="staff3" placeholder="The special feet"></input>
+                </div>
+            </form>
+            <div class="historyBox" id="historyList">
+                bomb the times
 
-
+            </div>
         </div>
     </body>
 </html>
