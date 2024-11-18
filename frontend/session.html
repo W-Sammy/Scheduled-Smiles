@@ -96,7 +96,12 @@
 
         </div>
 
-        <div class="appointmentBox" id="sessionForm" style="justify-content: space-between;">
+        <div class="appointmentBox" id="sessionForm" 
+            style="
+            flex-wrap: wrap;
+            justify-content: space-around; 
+            min-width: 1200px;
+            max-width: 1600px;">
             <div class="titleSection">
                 <h1 class="title" >
                     Starting a new Session:
@@ -104,7 +109,8 @@
                 <span class="returnButton">Appointment List</span>
             </div>
             <form class="infoBox" id="inputForm"> 
-                <div class="startForm">                    
+                <div class="startForm">
+
                     <label for="patient">Patient's ID:</label>
                     <input type="text" class="info" id="patient" placeholder="ID #">                 
                     <label for="date">Date:</label>
@@ -117,14 +123,21 @@
                     <input type="text" class="info" id="staff2" placeholder="The special tail">
                     <label for="staff3">Staff 3</label>
                     <input type="text" class="info" id="staff3" placeholder="The special feet">
-                    <label for="station1">Station 1</label>
-                    <input type="radio" name="station" id="station1">
-                    <label for="station2">Station 2</label>
-                    <input type="radio" name="station" id="station2">
-                    <label for="station3">Station 3</label>
-                    <input type="radio" name="station" id="station3">
-                    <label for="station4">Station 4</label>
-                    <input type="radio" name="station" id="station4">
+
+                    <div class="stationRadio">
+                        <label for="station1">Station 1</label>
+                        <input type="radio" name="station" id="station1">
+                        <label for="station2">Station 2</label>
+                        <input type="radio" name="station" id="station2">
+                        <label for="station3">Station 3</label>
+                        <input type="radio" name="station" id="station3">
+                        <label for="station4">Station 4</label>
+                        <input type="radio" name="station" id="station4">
+                        <label for="station5">Station 5</label>
+                        <input type="radio" name="station" id="station5">
+                        <label for="station6">Station 6</label>
+                        <input type="radio" name="station" id="station6">
+                    </div>
 
                     <select name="treatments" id="treatmentList">
                         <option value="" disabled selected>Pick a Treatment</option>
@@ -134,7 +147,24 @@
                         <option value="checkup">Check-up</option>
                         <option value="emergency">Emergency</option>
                     </select>
-                    <input type="checkbox" id="" name="" value="">
+                    <div class="healthBox">
+                        <label for="health1">Cavities</label>
+                        <input type="checkbox" id="healthCheck1" name="health1" value="Cavities">
+                        <label for="health2">Over Bite</label>
+                        <input type="checkbox" id="healthCheck2" name="health2" value="Over Bite">
+                        <label for="health3">Under Bit</label>
+                        <input type="checkbox" id="healthCheck3" name="health3" value="Under Bite">
+                        <label for="health4">Molar Degration</label>
+                        <input type="checkbox" id="healthCheck4" name="health4" value="Molar Degration">
+                        <label for="health5">Gum inflam</label>
+                        <input type="checkbox" id="healthCheck5" name="health5" value="Gum inflam.">
+                        <label for="health6">Root Canal</label>
+                        <input type="checkbox" id="healthCheck6" name="health6" value="Root Canal">
+                        <label for="health7">Fluorosis</label>
+                        <input type="checkbox" id="healthCheck7" name="health7" value="Fluorosis">
+                        <label for="health8">Damaged Tooth</label>
+                        <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
+                    </div>
                     <input type="submit" class="confirm">
                 </div>
             </form>
