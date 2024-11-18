@@ -168,8 +168,15 @@
     margin: 5px;
 }
 
+.inputBox{
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+}
+
 input{
     max-width: 200px;
+    max-height: 20px;
     margin: 5px;
 }
 
@@ -180,12 +187,15 @@ select{
 
 label{
     margin: 5px;
+    display: inline-block;
 }
 
-.stationRadio{
+.stationBox{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    height: 170px;
+    width: 300px;
 }
 
 .healthBox{
@@ -193,11 +203,8 @@ label{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
-    height: 200px;
-    width:  450px;
-    color: aliceblue;
-    background-color: #000000;
+    height: 180px;
+    width:  500px;
 }
 
 .historyBox{

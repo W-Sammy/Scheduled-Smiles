@@ -108,23 +108,25 @@
                 </h1>                
                 <span class="returnButton">Appointment List</span>
             </div>
-            <form class="infoBox" id="inputForm"> 
-                <div class="startForm">
+            <form class="infoBox" id="infoForm"> 
+                <div class="formBox">
+                    
+                    <div class="inputBox">
+                        <label for="patient">Patient's ID:</label>
+                        <input type="text" class="info" id="patient" placeholder="ID #">                 
+                        <label for="date">Date:</label>
+                        <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
+                        <label for="time">Time Start:</label>
+                        <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM">
+                        <label for="staff">Leading Staff 1:</label>
+                        <input type="text" class="info" id="staff" placeholder="The special hat">
+                        <label for="staff2">Staff 2</label>
+                        <input type="text" class="info" id="staff2" placeholder="The special tail">
+                        <label for="staff3">Staff 3</label>
+                        <input type="text" class="info" id="staff3" placeholder="The special feet">
+                    </div>
 
-                    <label for="patient">Patient's ID:</label>
-                    <input type="text" class="info" id="patient" placeholder="ID #">                 
-                    <label for="date">Date:</label>
-                    <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
-                    <label for="time">Time Start:</label>
-                    <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM">
-                    <label for="staff">Leading Staff 1:</label>
-                    <input type="text" class="info" id="staff" placeholder="The special hat">
-                    <label for="staff2">Staff 2</label>
-                    <input type="text" class="info" id="staff2" placeholder="The special tail">
-                    <label for="staff3">Staff 3</label>
-                    <input type="text" class="info" id="staff3" placeholder="The special feet">
-
-                    <div class="stationRadio">
+                    <div class="stationBox">
                         <label for="station1">Station 1</label>
                         <input type="radio" name="station" id="station1">
                         <label for="station2">Station 2</label>
@@ -148,22 +150,37 @@
                         <option value="emergency">Emergency</option>
                     </select>
                     <div class="healthBox">
-                        <label for="health1">Cavities</label>
-                        <input type="checkbox" id="healthCheck1" name="health1" value="Cavities">
-                        <label for="health2">Over Bite</label>
-                        <input type="checkbox" id="healthCheck2" name="health2" value="Over Bite">
-                        <label for="health3">Under Bit</label>
-                        <input type="checkbox" id="healthCheck3" name="health3" value="Under Bite">
-                        <label for="health4">Molar Degration</label>
-                        <input type="checkbox" id="healthCheck4" name="health4" value="Molar Degration">
-                        <label for="health5">Gum inflam</label>
-                        <input type="checkbox" id="healthCheck5" name="health5" value="Gum inflam.">
-                        <label for="health6">Root Canal</label>
-                        <input type="checkbox" id="healthCheck6" name="health6" value="Root Canal">
-                        <label for="health7">Fluorosis</label>
-                        <input type="checkbox" id="healthCheck7" name="health7" value="Fluorosis">
-                        <label for="health8">Damaged Tooth</label>
-                        <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
+                        <div>
+                            <label for="health1">Cavities</label>
+                            <input type="checkbox" id="healthCheck1" name="health1" value="Cavities">
+                        </div>
+                        <div>
+                            <label for="health2">Over Bite</label>
+                            <input type="checkbox" id="healthCheck2" name="health2" value="Over Bite">
+                        </div>
+                        <div>
+                            <label for="health3">Under Bit</label>
+                            <input type="checkbox" id="healthCheck3" name="health3" value="Under Bite">
+                        </div>
+                        <div>
+                            <label for="health4">Molar Degration</label>
+                            <input type="checkbox" id="healthCheck4" name="health4" value="Molar Degration">
+                        </div>
+                        <div>
+                            <label for="health5">Gum inflam</label>
+                            <input type="checkbox" id="healthCheck5" name="health5" value="Gum inflam.">
+                        </div>
+                        <div>
+                            <label for="health6">Root Canal</label>
+                            <input type="checkbox" id="healthCheck6" name="health6" value="Root Canal">
+                        </div>
+                        <div>
+                            <label for="health7">Fluorosis</label>
+                            <input type="checkbox" id="healthCheck7" name="health7" value="Fluorosis">
+                        </div>
+                            <div><label for="health8">Damaged Tooth</label>
+                            <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
+                        </div>
                     </div>
                     <input type="submit" class="confirm">
                 </div>
