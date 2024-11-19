@@ -30,3 +30,12 @@ body{
     margin: 0px;
     background-color: #f1efe0;
 }
+
+#back {
+    margin-right: auto; /* Pushes the back button to the far left */
+    margin-left: 1em;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/calendar.css">
+        <link rel="stylesheet" href="./css/Header.css">
+        <script src="./js/calendar.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a class="link" id="back">←</a>
+            <a class="link">Logout</a>
+        </header>
+        <div class="schedule-container">
+            <!-- Calendar Start -->
+            <div class="calendar-container">
+                <div id="cal1" class="calendar">
+                    <div class="calendar-header">
+                        <div class="month-buttons prevent-select">
+                            <div class="prev">&#10094;</div>
+                            <div class="next">&#10095;</div>
+                        </div>
+                        <ul class="month">
+                            <li data-month="1" data-days="31">January</li>
+                            <li data-month="2" data-days="28">February</li>
+                            <li data-month="3" data-days="31">March</li>
+                            <li data-month="4" data-days="30">April</li>
+                            <li data-month="5" data-days="31">May</li>
+                            <li data-month="6" data-days="30">June</li>
+                            <li data-month="7" data-days="31">July</li>
+                            <li data-month="8" data-days="31">August</li>
+                            <li data-month="9" data-days="30">September</li>
+                            <li data-month="10" data-days="31">October</li>
+                            <li data-month="11" data-days="30" class="active">November</li>
+                            <li data-month="12" data-days="31">December</li>
+                        </ul>
+                        <br>
+                        <div class="year-buttons prevent-select">
+                            <div class="prev">&#10094;</div>
+                            <div data-max="2037" class="year">
+                                <!-- javascript inserts here -->
+                            </div>
+                            <div class="next">&#10095;</div>
+                        </div>
+                    </div>
+                    <ul class="day-names">
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                        <li>Sun</li>
+                    </ul>
+                    <ul class="day-numbers">
+                        <!-- javascript inserts here -->
+                    </ul>
+                </div>
+                <!-- Legend Start -->
+                <div class="legend-container">
+                    <label class="legend-item">
+                        <div class="open-color color-box"></div>
+                        Open
+                    </label>
+                    <label class="legend-item">
+                        <div class="reserved-color color-box"></div>
+                        Reserved
+                    </label>
+                    <label class="legend-item">
+                        <div class="closed-color color-box"></div>
+                        Closed
+                    </label>
+                </div>
+                <!-- Legend End -->
+            </div>
+            <!-- Calendar End -->
+
+            <div class="appointment-section">   
+                <!-- Appointment schedule start -->
+                <div class="appointment-container">
+                    <h3>Select the time you would like to start an appointment</h3>
+                    <div>
+                        <select class="select-month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select class="select-day">
+                            <option value="1">Mon</option>
+                            <option value="2">Tues</option>
+                            <option value="3">Wed</option>
+                            <option value="4">Thurs</option>
+                            <option value="5">Fri</option>
+                            <option value="6">Sat</option>
+                            <option value="7">Sun</option>
+                        </select>
+                        <select class="select-time">
+                            <option value="7:00 AM">7:00 AM</option>
+                            <option value="8:00 AM">8:00 AM</option>
+                            <option value="9:00 AM">9:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                        </select>
+                        <br>
+                        <h3>Enter Patient's Name</h3>
+                        <input type="text" class="patient-name" placeholder="Name">
+                        <p>or</p>
+                        <h3>Enter Patient's ID</h3>
+                        <input type="text" class="patient-id" placeholder="ID">
+                        <br>
+                        <button id="request-appt-btn">Request Appointment</button>
+                    </div>
+                </div>
+                <!-- Appointment schedule end -->
+            </div>
+        </div>
+
+
+    </body>
+</html>

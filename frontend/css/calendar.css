@@ -1,0 +1,325 @@
+/* Adjust to match theme colors as needed -Kyle */
+@property --calendar-main-bg-color { /* bg for header and submit button */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #116d71;
+}
+@property --calendar-main-text-color { /* fg for header and submit button */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
+}
+@property --calendar-secondary-bg-color { /* bg for day buttons */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #eee;
+}
+@property --calendar-secondary-text-color { /* fg for day buttons */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #777;
+}
+@property --calendar-tertiary-bg-color { /* bg for day names */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ddd;
+}
+@property --calendar-tertiary-text-color { /* fg for day names */
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #666;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100vh; /* Makes the body fill the viewport height */
+  background-color: #f5f5f5; /* Optional background color */
+
+} /* Pretty to look at, but just placeholders */
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.calendar-submit {
+    display: block;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+    background: var(--calendar-main-bg-color);
+    color: var(--calendar-main-text-color);
+    width: fit-content;
+}
+
+/* Change this however you'd like, the rest should resize itself to fit -Kyle */
+.calendar {
+    width: auto; 
+    display: block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: clip;
+}
+
+.calendar ul {
+    list-style-type: none;
+}
+
+.calendar label {
+    cursor: pointer;
+}
+.calendar input {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.calendar input+label {
+    display: block;
+}
+
+.calendar li {
+    list-style-type: none;
+}
+
+/* Month header */
+.calendar-header {
+  padding: 30px 5px;
+  width: auto;
+  background: var(--calendar-main-bg-color);
+  text-align: center;
+}
+
+.calendar-header > * {
+  margin: 0px 5px;
+}
+
+/* Month list */
+.month {
+  margin: 0;
+  padding: 0;
+}
+
+.month > * {
+  color: var(--calendar-main-text-color);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month > *:not(.active) {
+  display: none;
+}
+
+.year {
+    color: var(--calendar-main-text-color);
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.calendar-header .prev, .calendar-header .next {
+    position: sticky;
+    color: var(--calendar-main-text-color);
+}
+
+/* Previous button */
+.calendar-header .prev {
+    float: left;
+    padding-left: 15px;
+}
+
+/* Next button */
+.calendar-header .next {
+    float: right;
+    padding-right: 15px;
+}
+
+/* Month header */
+.calendar-header .month-buttons {
+    margin: 0 5px;
+    width: calc(100% - 5px);
+}
+
+.calendar-header .month-buttons > * {
+    display: inline-block;
+}
+
+/* Year header */
+.calendar-header .year-buttons {
+    margin: 0 45%;
+    width: 10%;
+}
+
+.year-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers year and buttons horizontally */
+  gap: 10px; /* Space between ‹, year, and › */
+}
+
+.calendar-header .year-buttons > * {
+    display: inline-block;
+}
+
+/* Previous button */
+.calendar-header .prev {
+    float: left;
+    padding-left: 15px;
+}
+
+/* Next button */
+.calendar-header .next {
+    float: right;
+    padding-right: 15px;
+}
+
+/* Weekdays (Mon-Sun) */
+.day-names {
+    margin: 0;
+    padding: 5px 0 10px 0;
+    background-color: var(--calendar-tertiary-bg-color);
+}
+
+.day-names li {
+    position: relative;
+    display: inline-block;
+    width: calc(100% / 7 - 5px); /* exact amount to match day element wrapping */
+    color: var(--calendar-tertiary-text-color);
+    text-align: center;
+}
+
+/* Days (1-31) */
+.day-numbers {
+  padding: 10px 0;
+  background: var(--calendar-secondary-bg-color);
+  margin: 0;
+  min-height: 212px;
+}
+
+.day-numbers li {
+    position: relative;
+    display: inline-block;
+    width: calc(100% / 7 - 10px); /* exact amount for wrapping */
+    height: calc(100% / 5); /* ensure consistent sizing between different months (fucking febuary man */
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: var(--calendar-secondary-text-color);
+    padding: 5px;
+}
+
+/* Highlight the "current" day */
+.day-numbers li .active {
+    background: var(--calendar-main-bg-color);
+    color: var(--calendar-main-text-color) !important;
+}
+
+/* Highlight the "current" day */
+.day-numbers li:has(input:checked) {
+    background: var(--calendar-main-bg-color);
+    color: var(--calendar-main-text-color) !important;
+}
+
+
+.schedule-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #a6d2cb;
+  padding: 20px;
+  width: 85%;
+  border-radius: 20px;
+}
+
+.calendar-container {
+  width: 65%;
+}
+
+.appointment-section {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Legend styles */
+
+.legend-container {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+/* Legend Text (Open, Reserved, Closed) */
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+}
+
+/* Legend color-box open */
+.open-color {
+  background-color: green;
+}
+
+/* Legend color-box reserved */
+.reserved-color {
+  background-color: red;
+}
+
+/* Legend color-box closed */
+.closed-color {
+  background-color: blue;
+}
+
+/* Appointment Schedule */
+
+.appointment-container {
+  width: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  margin-left: 20px;
+
+}
+
+/* Input field */
+.appointment-container select {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Schedule Appointment Btn */
+#request-appt-btn {
+  background-color: #64a1a3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.appointment-section h3 {
+  font-size: 18px;
+  color: #64a1a3;
+}
+
