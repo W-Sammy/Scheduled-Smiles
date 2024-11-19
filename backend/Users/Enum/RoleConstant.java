@@ -1,16 +1,21 @@
 package Users.Enum;
-public enum RoleConstant {
-    PATIENT(0),
-    STAFF(1),
-    ADMIN(2);
-    //Value does not change 
-    private final int value;
-    // Constructor assigning role value to User type
-    RoleConstant(int value) {
-        this.value = value;
+
+import java.util.Map;
+
+import static Server.utils.Requests.*; // only need the hash256 method, is there a better way to import this? -Kyle
+
+public class RoleConstant {
+    private RoleConstant() {
+        // restrict instantiation -Kyle
     }
-    // Getter 
-    public int getValue() {
-        return this.value;
-    }
+    public static final Map<String, byte[]> ROLE_IDS = Map.of(
+        "Staff", hash256("Staff"),
+        "Patient", hash256("Patient"),
+        "Admin", hash256("Admin")
+    );
+    public static final Map<String, String> ROLE_DOMAINS = Map.of( // email extensions, after the ampersand (...@[domain])
+        "Staff", "scheduledsmiles.com",
+        "Admin", "scheduledsmiles.adm.com"
+        // Don't include patient email since it'd just be a wildcard. -Kyle
+    );
 }

@@ -19,12 +19,12 @@ public class Server implements Runnable {
 
     // Testing
     public static void main(final String... args) throws IOException {
-        localContext = (args != null && args.length > 1 && args[0] != null) ? args[0] : localContext;
+        localContext = (args != null && args.length >= 1 && args[0] != null) ? args[0] : localContext;
         server = HttpServer.create(new InetSocketAddress(hostname, port), backlog);
         server.createContext(serverContext, new ServerConnectionHandler(serverContext, localContext));
         server.setExecutor(null); // creates a default executor
         server.start();
-        System.out.println(String.format("Server open on port %s", port));
+        System.out.println(String.format("Server open on port %s from context %s", port, localContext));
         System.out.println(String.format("Connect via: http://localhost:%s", port));
         // testing
         System.out.println(" ".repeat(5) + "Press enter to quit");

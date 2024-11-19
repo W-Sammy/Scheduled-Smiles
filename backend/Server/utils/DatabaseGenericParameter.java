@@ -31,9 +31,9 @@ public class DatabaseGenericParameter implements Serializable {
         if(isBoolean()) {
             return String.format("TINYINT(%s)", (Boolean.parseBoolean(stringValue)) ? 1 : 0);
         } else if(isBytes()) {
-            return String.format("UNHEX(%s)", stringValue);
+            return String.format("UNHEX(\'%s\')", stringValue);
         } else if(isInteger()) {
-            return stringType;
+            return stringValue;
         } else { // must be string, or we don't care.
             return String.format("\'%s\'", stringValue);
         }

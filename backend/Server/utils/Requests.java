@@ -7,9 +7,12 @@ import java.net.URLDecoder;
 import java.net.URI;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import static Server.Enum.HttpConstants.*; // only need the CHARSET attribute, is there a better way to import this? -Kyle
 import static Server.utils.Json.*;
+import static Users.Enum.RoleConstant.*;
 
 public class Requests {
     private Requests() {
@@ -40,5 +43,31 @@ public class Requests {
             }
         }
         return queryParameters;
+    }
+    
+    public static byte[] hash256(final byte[] content) {
+        try {
+            return MessageDigest.getInstance("SHA-256").digest(content);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("This should never happen, but it did. \"SHA-256\" is has not been recognized as a valid algorithm to use!");
+            return null;
+        }
+    }
+    
+    public static byte[] hash256(final String content) {
+        return hash256(content.getBytes(CHARSET));
+    }
+    
+    public static byte[] getRoleId(final String email) {
+        final int splitIdx = email.lastIndexOf("@");
+        if (splitIdx != -1) {
+            final String domain = email.substring(splitIdx);
+            for (Map.Entry<String, String> entry : ROLE_DOMAINS.entrySet()) {
+                if (entry.getValue().equals(domain)) {
+                    return ROLE_IDS.get(entry.getKey());
+                }
+            }
+        }
+        return ROLE_IDS.get("Patient");
     }
 }
