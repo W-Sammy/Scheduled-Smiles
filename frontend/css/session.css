@@ -5,7 +5,8 @@
     background-color: #cdeee5;    
     margin: 50px;
     margin-top: 70px;
-    width: auto;   
+    width: auto;  
+    min-width: 900px; 
     border-radius: 20px;
     border: 35px solid #b7e2d0;
 }
@@ -119,7 +120,6 @@
     justify-content: space-between;
     width: 100%;
     flex-basis: 100%;
-    background-color: #5aaeb1;
 }
 
 .returnButton{
@@ -147,37 +147,187 @@
 .infoBox{
     margin: 10px;
     height: auto;
-    width: 500px;
-    background-color: #b85b5b;
+    width: 70%;
+    max-height: 850px;
+    border-radius: 20px;
+    background-color: #fffff5;
 }
 
 .startForm{
     display: flex;
     flex-direction: column;
-    background-color: #fdfff6c2;
     margin: 20px;
     height: auto;
     width: auto;
-    padding: 18px;
+    padding: 40px;
+    padding-left: 60px;
     margin: 5px;
 }
 
 .startForm > *{
+    height: auto;
+    width: auto;
     margin: 5px;
 }
 
-input[type=text]{
+.inputBox{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 200px;
+    width: 500px;
+    margin: 50px;
+}
+
+input{
+    max-width: 200px;
+    max-height: 20px;
     margin: 5px;
+    border-radius: 2px;
+
+}
+
+input[type='text']{
+    border-color: rgba(39, 117, 74, 0.349);
+}
+
+select{
+    max-width: 200px;
+    margin: 5px; 
+    margin-left: 70px;
+    border-color: rgba(39, 117, 74, 0.349);
+    border-radius: 2px;
 }
 
 label{
     margin: 5px;
+    font-size: 18.5px;
+    display: inline-block;
 }
 
+.stationBox{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 90px;
+    width: 350px;
+    margin: 50px;
+    margin-top: 10px;
+
+}
+
+.healthBox{
+    align-self: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 180px;
+    width:  520px;
+    margin: 50px;
+    margin-bottom: 1px;
+}
 
 .historyBox{
-    height: auto;
-    width: 250px;
-    background-color: #e05555;
+    height: 810px;
+    width: 27%;
+    min-width: 400px;
+    max-width: 600px;
+    border-radius: 20px;
+    background-color: #fffff5;
     margin: 10px;
+    margin-left: 3px;
+    padding-bottom: 20px;
+    font-size: 1.1em;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+input[type='submit']{
+    border-color: rgba(46, 151, 93, 0.082);
+    color: #f8faee;
+    background-color: #549799;
+    font-size: 1.2em;
+    display: flex;
+    padding: 10px;
+    max-height: none;
+    height: 50px;
+    max-width: none;
+    border-radius: 13px;
+    margin: 50px;
+    margin-top: 0px;
+    margin-left: 0px;
+    justify-items: flex-end;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+input[type='submit']:hover{
+    background-color: #5aaeb1;
+}
+
+/*
+.uploadBox{
+    background-color: #9c9393;
+    width: 40%;
+    height: 200px;
+    margin: 20px;
+}
+    */
+
+.trackingBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.displayBox{
+    margin: 20px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.displayBox > * {
+    background-color: #f5fffa;
+    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+}
+
+.displayName{
+    background-color: #f5fffa;
+    width: 70%;
+    min-width: 300px;
+    line-height: .1px;
+    align-items: center;
+}
+
+.displayStaff{
+    flex-direction: column;
+    width: 70%;
+    min-width: 300px;
+    
+}
+
+.displayStation{
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.textInput{
+    background-color: #f5fffa;
+
+    display: flex;
+    margin: 20px;
 }
