@@ -10,11 +10,13 @@
     </head>
 
     <body>
+
         <header class="header" style="margin-bottom: 50px;">
             <!--Need JS script to complete Log out feature-->       
             <a class="link"> Log out</a>
             
         </header>
+
         <div class="appointmentBox" id="appointmentList" style="min-width: 400px;">
             <h1 class="title">Current Appointments: Select an appointment</h1>
             <div class="appointment">
@@ -100,8 +102,7 @@
             style="
             flex-wrap: wrap;
             justify-content: space-around; 
-            min-width: 1200px;
-            max-width: 1600px;">
+            min-width: 1200px;">
             <div class="titleSection">
                 <h1 class="title" >
                     Starting a new Session:
@@ -117,7 +118,7 @@
                         <label for="date">Date:</label>
                         <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
                         <label for="time">Time Start:</label>
-                        <input type="text" class="info" id="time" placeholder="HH:MM     AM/PM">
+                        <input type="text" class="info" id="time" placeholder="HH:MM               AM/PM">
                         <label for="staff">Leading Staff 1:</label>
                         <input type="text" class="info" id="staff" placeholder="The special hat">
                         <label for="staff2">Staff 2</label>
@@ -165,6 +166,9 @@
                     </select>
                     
                     <div class="healthBox">
+                        <div style="flex-basis: 100%;"><label>Patient's Health Condition:</label>
+                            <span style="color: rgba(107, 107, 86, 0.521);">Select any conditions that apply</span>
+                        </div>
                         <div>
                             <label for="health1">Cavities</label>
                             <input type="checkbox" id="healthCheck1" name="health1" value="Cavities">
@@ -202,8 +206,88 @@
                     </div>
                 </div>
             </form>
+            
             <div class="historyBox" id="historyList">
-                bomb the times
+                <div class="title">Appointment History</div>
+
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="appointmentBox" id="sessionList">
+            <div class="uploadBox" id="upload">
+                <label style="margin-left: 20px; margin-top: 20px;"> Upload to Board: </label>
+                <div class="stationBox">
+                    <div>
+                        <label for="board1">Board 1</label>
+                        <input type="radio" name="board" id="board1">
+                    </div>
+                    <div>
+                        <label for="board2">Board 2</label>
+                        <input type="radio" name="board" id="board2">
+                    </div>
+                    <div>
+                        <label for="board3">Board 3</label>
+                        <input type="radio" name="board" id="board3">
+                    </div>
+                    <div>
+                        <label for="board4">Board 4</label>
+                        <input type="radio" name="board" id="board4">
+                    </div>
+                </div>
             </div>
         </div>
     </body>

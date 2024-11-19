@@ -147,7 +147,8 @@
     margin: 10px;
     height: auto;
     width: 70%;
-    border-radius: 35px;
+    max-height: 850px;
+    border-radius: 20px;
     background-color: #fffff5;
 }
 
@@ -192,18 +193,20 @@ input[type='text']{
 select{
     max-width: 200px;
     margin: 5px; 
-    margin-left: 50px;
+    margin-left: 70px;
     border-color: rgba(39, 117, 74, 0.349);
     border-radius: 2px;
 }
 
 label{
     margin: 5px;
+    font-size: 18.5px;
     display: inline-block;
 }
 
 .stationBox{
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     flex-wrap: wrap;
     height: 90px;
@@ -218,19 +221,26 @@ label{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-between;
     height: 180px;
-    width:  500px;
+    width:  520px;
     margin: 50px;
     margin-bottom: 1px;
 }
 
 .historyBox{
-    height: auto;
+    height: 810px;
     width: 27%;
-    border-radius: 35px;
+    min-width: 400px;
+    max-width: 600px;
+    border-radius: 20px;
     background-color: #fffff5;
     margin: 10px;
     margin-left: 3px;
+    padding-bottom: 20px;
+    font-size: 1.1em;
+    scroll-behavior: smooth;
+    overflow-y: auto;
 }
 
 input[type='submit']{
@@ -247,8 +257,19 @@ input[type='submit']{
     margin: 50px;
     margin-top: 0px;
     margin-left: 0px;
+    justify-items: flex-end;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
 }
 
 input[type='submit']:hover{
     background-color: #5aaeb1;
+}
+
+.uploadBox{
+    background-color: #9c9393;
+    width: 40%;
+    height: 200px;
+    margin: 20px;
 }
