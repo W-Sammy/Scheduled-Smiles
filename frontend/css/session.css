@@ -5,7 +5,8 @@
     background-color: #cdeee5;    
     margin: 50px;
     margin-top: 70px;
-    width: auto;   
+    width: auto;  
+    min-width: 900px; 
     border-radius: 20px;
     border: 35px solid #b7e2d0;
 }
@@ -267,9 +268,66 @@ input[type='submit']:hover{
     background-color: #5aaeb1;
 }
 
+/*
 .uploadBox{
     background-color: #9c9393;
     width: 40%;
     height: 200px;
+    margin: 20px;
+}
+    */
+
+.trackingBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.displayBox{
+    margin: 20px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.displayBox > * {
+    background-color: #f5fffa;
+    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+}
+
+.displayName{
+    background-color: #f5fffa;
+    width: 70%;
+    min-width: 300px;
+    line-height: .1px;
+    align-items: center;
+}
+
+.displayStaff{
+    flex-direction: column;
+    width: 70%;
+    min-width: 300px;
+    
+}
+
+.displayStation{
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.textInput{
+    background-color: #f5fffa;
+
+    display: flex;
     margin: 20px;
 }
