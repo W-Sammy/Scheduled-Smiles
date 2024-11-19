@@ -170,19 +170,31 @@
 
 .inputBox{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    height: 600px;
+    height: 200px;
+    width: 500px;
+    margin: 50px;
 }
 
 input{
     max-width: 200px;
     max-height: 20px;
     margin: 5px;
+    border-radius: 2px;
+
+}
+
+input[type='text']{
+    border-color: rgba(39, 117, 74, 0.349);
 }
 
 select{
     max-width: 200px;
     margin: 5px; 
+    margin-left: 50px;
+    border-color: rgba(39, 117, 74, 0.349);
+    border-radius: 2px;
 }
 
 label{
@@ -194,8 +206,11 @@ label{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 170px;
-    width: 300px;
+    height: 90px;
+    width: 350px;
+    margin: 50px;
+    margin-top: 10px;
+
 }
 
 .healthBox{
@@ -205,6 +220,8 @@ label{
     flex-direction: row;
     height: 180px;
     width:  500px;
+    margin: 50px;
+    margin-bottom: 1px;
 }
 
 .historyBox{
@@ -214,4 +231,24 @@ label{
     background-color: #fffff5;
     margin: 10px;
     margin-left: 3px;
+}
+
+input[type='submit']{
+    border-color: rgba(46, 151, 93, 0.082);
+    color: #f8faee;
+    background-color: #549799;
+    font-size: 1.2em;
+    display: flex;
+    padding: 10px;
+    max-height: none;
+    height: 50px;
+    max-width: none;
+    border-radius: 13px;
+    margin: 50px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+input[type='submit']:hover{
+    background-color: #5aaeb1;
 }

@@ -126,22 +126,36 @@
                         <input type="text" class="info" id="staff3" placeholder="The special feet">
                     </div>
 
-                    <div class="stationBox">
-                        <label for="station1">Station 1</label>
-                        <input type="radio" name="station" id="station1">
-                        <label for="station2">Station 2</label>
-                        <input type="radio" name="station" id="station2">
-                        <label for="station3">Station 3</label>
-                        <input type="radio" name="station" id="station3">
-                        <label for="station4">Station 4</label>
-                        <input type="radio" name="station" id="station4">
-                        <label for="station5">Station 5</label>
-                        <input type="radio" name="station" id="station5">
-                        <label for="station6">Station 6</label>
-                        <input type="radio" name="station" id="station6">
+                    <label for="stationBox1" style="margin-left: 40px;"> Station Number: </label>
+                    <div class="stationBox" id="stationBox1">
+                        <div>
+                            <label for="station1">Station 1</label>
+                            <input type="radio" name="station" id="station1">
+                        </div>
+                        <div>
+                            <label for="station2">Station 2</label>
+                            <input type="radio" name="station" id="station2">
+                        </div>
+                        <div>
+                            <label for="station3">Station 3</label>
+                            <input type="radio" name="station" id="station3">
+                        </div>
+                        <div>
+                            <label for="station4">Station 4</label>
+                            <input type="radio" name="station" id="station4">
+                        </div>
+                        <div>
+                            <label for="station5">Station 5</label>
+                            <input type="radio" name="station" id="station5">
+                        </div>
+                        <div>
+                            <label for="station6">Station 6</label>
+                            <input type="radio" name="station" id="station6">
+                        </div>
                     </div>
 
-                    <select name="treatments" id="treatmentList">
+                    <label for="treatmentList" style="margin-left: 50px;">Undergoing Treatment:</label><br>
+                    <select name="treatments" id="treatmentList" class="treatmentBox">
                         <option value="" disabled selected>Pick a Treatment</option>
                         <option value="cleaning">Cleaning</option>
                         <option value="filling">Fillings</option>
@@ -149,6 +163,7 @@
                         <option value="checkup">Check-up</option>
                         <option value="emergency">Emergency</option>
                     </select>
+                    
                     <div class="healthBox">
                         <div>
                             <label for="health1">Cavities</label>
@@ -182,7 +197,9 @@
                             <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
                         </div>
                     </div>
-                    <input type="submit" class="confirm">
+                    <div class="titleSection" style="flex-direction: row-reverse;">
+                            <input type="submit" value="Create Session">
+                    </div>
                 </div>
             </form>
             <div class="historyBox" id="historyList">
