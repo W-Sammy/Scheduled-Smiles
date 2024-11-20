@@ -202,7 +202,7 @@ body {
   padding: 10px 0;
   background: var(--calendar-secondary-bg-color);
   margin: 0;
-  min-height: 212px;
+  min-height: 210px;
 }
 
 .day-numbers li {
@@ -237,6 +237,7 @@ body {
   padding: 20px;
   width: 85%;
   border-radius: 20px;
+  margin-top: 2em;
 }
 
 .calendar-container {
@@ -254,9 +255,7 @@ body {
 .legend-container {
   width: 20%;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
 }
 
 /* Legend Text (Open, Reserved, Closed) */
@@ -266,11 +265,15 @@ body {
   justify-content: center;
   font-size: 12px;
   padding: 5px;
+  color: white;
+  margin-bottom: -2em;
 }
 
 .color-box {
   width: 15px;
   height: 15px;
+  border: thin solid white;
+  margin-right: 5px;
 }
 
 /* Legend color-box open */
@@ -288,7 +291,7 @@ body {
   background-color: blue;
 }
 
-/* Appointment Schedule */
+/* Appointment Schedule and input rows */
 
 .appointment-container {
   width: auto;
@@ -299,11 +302,34 @@ body {
 
 }
 
+.appointment-section h3 {
+  font-size: 18px;
+  color: #64a1a3;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-row input{
+  width: 50%;
+  padding: 8px;
+}
+
+.staff-select-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Input field */
 .appointment-container select {
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
 }
+
 
 /* Schedule Appointment Btn */
 #request-appt-btn {
@@ -312,14 +338,11 @@ body {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-left: auto;
+  margin-left: auto; /* places btn to far right */
+  margin-top: 20px;
   display: block;
   padding: 10px;
   border-radius: 10px;
 }
 
-.appointment-section h3 {
-  font-size: 18px;
-  color: #64a1a3;
-}
 

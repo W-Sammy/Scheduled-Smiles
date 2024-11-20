@@ -10,6 +10,13 @@
             <a class="link" id="back">←</a>
             <a class="link">Logout</a>
         </header>
+        <div class="logo-container">
+            <img src="./assets/logo.png" class="logo" alt="Scheduled Smiles Logo">
+            <div class="logo-text">
+                <h4 class="logo-text">Scheduled</h4>
+                <h4 class="logo-text">Smiles</h4>    
+            </div>
+        </div>
         <div class="schedule-container">
             <!-- Calendar Start -->
             <div class="calendar-container">
@@ -41,6 +48,22 @@
                             </div>
                             <div class="next">&#10095;</div>
                         </div>
+                        <!-- Legend Start -->
+                        <div class="legend-container">
+                            <label class="legend-item">
+                                <div class="open-color color-box"></div>
+                                Open
+                            </label>
+                            <label class="legend-item">
+                                <div class="reserved-color color-box"></div>
+                                Reserved
+                            </label>
+                            <label class="legend-item">
+                                <div class="closed-color color-box"></div>
+                                Closed
+                            </label>
+                        </div>
+                        <!-- Legend End -->
                     </div>
                     <ul class="day-names">
                         <li>Mon</li>
@@ -55,53 +78,19 @@
                         <!-- javascript inserts here -->
                     </ul>
                 </div>
-                <!-- Legend Start -->
-                <div class="legend-container">
-                    <label class="legend-item">
-                        <div class="open-color color-box"></div>
-                        Open
-                    </label>
-                    <label class="legend-item">
-                        <div class="reserved-color color-box"></div>
-                        Reserved
-                    </label>
-                    <label class="legend-item">
-                        <div class="closed-color color-box"></div>
-                        Closed
-                    </label>
-                </div>
-                <!-- Legend End -->
             </div>
             <!-- Calendar End -->
 
             <div class="appointment-section">   
                 <!-- Appointment schedule start -->
                 <div class="appointment-container">
-                    <h3>Select the time you would like to start an appointment</h3>
-                    <div>
-                        <select class="select-month">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <select class="select-day">
-                            <option value="1">Mon</option>
-                            <option value="2">Tues</option>
-                            <option value="3">Wed</option>
-                            <option value="4">Thurs</option>
-                            <option value="5">Fri</option>
-                            <option value="6">Sat</option>
-                            <option value="7">Sun</option>
-                        </select>
+                    <h3>Enter Patient's Name or ID</h3>
+                    <div class="input-row">
+                        <input type="text" class="patient-name" placeholder="Name">
+                        <p>or</p>
+                        <input type="email" class="patient-email" placeholder="Email">   
+                    </div>
+                    <h3>Select Time</h3>
                         <select class="select-time">
                             <option value="7:00 AM">7:00 AM</option>
                             <option value="8:00 AM">8:00 AM</option>
@@ -116,13 +105,25 @@
                             <option value="5:00 PM">5:00 PM</option>
                         </select>
                         <br>
-                        <h3>Enter Patient's Name</h3>
-                        <input type="text" class="patient-name" placeholder="Name">
-                        <p>or</p>
-                        <h3>Enter Patient's ID</h3>
-                        <input type="text" class="patient-id" placeholder="ID">
-                        <br>
-                        <button id="request-appt-btn">Request Appointment</button>
+                        <h3>Additional Staff</h3>
+                        <div class="staff-select-row">
+                            <select class="staff-select">
+                                <option value="">None</option>                                
+                                <option value="staff1">Staff 1</option>
+                                <option value="staff2">Staff 2</option>
+                                <option value="staff3">Staff 3</option>
+                                <option value="staff4">Staff 4</option>
+                            </select>
+                            <br>
+                            <select class="staff-select">
+                                <option value="">None</option>
+                                <option value="staff1">Staff 1</option>
+                                <option value="staff2">Staff 2</option>
+                                <option value="staff3">Staff 3</option>
+                                <option value="staff4">Staff 4</option>
+                            </select>
+                        </div>
+                        <button id="request-appt-btn">Schedule</button>
                     </div>
                 </div>
                 <!-- Appointment schedule end -->

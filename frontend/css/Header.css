@@ -31,6 +31,9 @@ body{
     background-color: #f1efe0;
 }
 
+
+
+/* calendar.html */
 #back {
     margin-right: auto; /* Pushes the back button to the far left */
     margin-left: 1em;
@@ -38,4 +41,31 @@ body{
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 3.5em;
+    left: 0.5em;
+}
+
+.logo {
+    width: auto;
+    height: 4em;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.logo-text h4 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: lighter;
+    color: #64a1a3;
 }
