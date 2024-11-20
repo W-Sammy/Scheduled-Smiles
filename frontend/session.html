@@ -117,7 +117,7 @@
                         <label for="date">Date:</label>
                         <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
                         <label for="time">Time Start:</label>
-                        <input type="text" class="info" id="time" placeholder="HH:MM               AM/PM">
+                        <input type="time" class="info" id="time">
                         <label for="staff">Leading Staff 1:</label>
                         <input type="text" class="info" id="staff" placeholder="The special hat">
                         <label for="staff2">Staff 2</label>
@@ -177,7 +177,7 @@
                             <input type="checkbox" id="healthCheck2" name="health2" value="Over Bite">
                         </div>
                         <div>
-                            <label for="health3">Under Bit</label>
+                            <label for="health3">Under Bite</label>
                             <input type="checkbox" id="healthCheck3" name="health3" value="Under Bite">
                         </div>
                         <div>
@@ -209,7 +209,7 @@
             <div class="historyBox" id="historyList">
                 <div class="title">Appointment History</div>
 
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -218,7 +218,7 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -227,7 +227,7 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -236,7 +236,7 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -245,7 +245,7 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -254,7 +254,7 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-                <div class="appointment" style="width: auto; min-width:300px; max-width:500px;">
+                <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
                         <span class="info" id="patient">No one but pit here</span>
@@ -301,24 +301,48 @@
             <div class="trackingBox" id="tracking">
                 <div class="displayBox">
                     <!-- Need Js to handle Input of User and Staff based on previous -->
-                    <span class="displayName"><h1 id="patient">Patient:</h1></span>
-                    <div class="displayStation" id="stationNumber">
-                        <h3>Station: 3</h3>
-                    </div>
+                    <span class="displayName"><h1 id="patient">Patient:</h1></span>                    
                     <div class="displayStaff" id="staff">
                         <h2>Staff 1:</h2>
                         <h2>Staff 2:</h2>
                         <h2>Staff 3:</h2>
                     </div> 
+                    <div class="displayStation" id="stationNumber">
+                        <h3>Station: 3</h3>
+                    </div>
+
+                    <div class="displayStation" id="treatmentMarked">
+                        <h3>Treatment: The test of having decay</h3>
+                    </div>
                 </div>
 
-                <div class="textInput" id="notes"> 
+                <div class="recordBox"> 
+                    <!-- JS to grab records store in session and maybe database-->
+                    <div class="displayRecord" id="record"> 
+                        <p>The Largest Box for records</p>                        
+                        <label for="recordInput">Create a Note:</label>
+                        <textarea id="recordInput">
+                            test the biggest testdsadasda
+                        </textarea>
 
-                    Test this run
-                    <input type="text" placeholder=" Type in my words brothers">
+                    </div>
+                    <div class="recordSection" id="recordList">
+                        <p class="title">Previous Notes</p>
+                        <div>
+                            <div class="appointment"> Test</div>
+                            <div class="appointment"> Test</div>
+                            <div class="appointment"> Test</div>
+                        </div>
 
+
+                    </div>
                 </div>
-
+                
+                <div class="titleSection">
+                        <label for="submitEndTime">Enter the time the Session ends</label>
+                        <input required type="time" class="info" id="submitEndTime">
+                        <input type="submit" value="End Session" >
+                </div>
 
             </div>
 
