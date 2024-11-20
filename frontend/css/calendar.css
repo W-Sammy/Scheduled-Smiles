@@ -345,4 +345,9 @@ body {
   border-radius: 10px;
 }
 
+#request-appt-btn:active {
+  background-color: var(--calendar-main-bg-color);
+  transform: scale(0.95); /* Slightly shrink the button */
+}
+
 
