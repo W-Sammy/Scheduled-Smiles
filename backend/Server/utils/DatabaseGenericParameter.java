@@ -7,7 +7,8 @@ public class DatabaseGenericParameter implements Serializable {
     private String stringValue = "";
     // semantics not clearly defined, sorry to anyone having to work on this -Kyle
     private String stringType;
-    public DatabaseGenericParameter() { 
+    public DatabaseGenericParameter() {
+        stringType = "null";
     }
     public DatabaseGenericParameter(String value) {
         stringValue = value;
@@ -26,6 +27,14 @@ public class DatabaseGenericParameter implements Serializable {
     public DatabaseGenericParameter(boolean value) {
         stringValue = String.valueOf(value);
         stringType = "bool";
+    }
+    public DatabaseGenericParameter(double value) {
+        stringValue = String.valueOf(value);
+        stringType = "double";
+    }
+    public DatabaseGenericParameter(char value) {
+        stringValue = String.valueOf(value);
+        stringType = "char";
     }
     public String getAsParameter() {
         if(isBoolean()) {
@@ -67,6 +76,15 @@ public class DatabaseGenericParameter implements Serializable {
     public boolean isInteger() {
         return stringType.equals("int");
     }
+    public boolean isDouble() {
+        return stringType.equals("double");
+    }
+    public boolean isChar() {
+        return stringType.equals("char");
+    }
+    public boolean isNull() {
+        return stringType.equals("null");
+    }
     public String getType() {
         return stringType;
     }
@@ -75,7 +93,7 @@ public class DatabaseGenericParameter implements Serializable {
         if (this.isBoolean()) {
             return Boolean.parseBoolean(stringValue);
         }
-        throw new UnsupportedOperationException("Value is not of type int");
+        throw new UnsupportedOperationException("Value is not of type boolean");
     }
     public String getAsString() throws UnsupportedOperationException {
         if (this.isString()) {
@@ -94,6 +112,18 @@ public class DatabaseGenericParameter implements Serializable {
             return Integer.parseInt(stringValue);
         }
         throw new UnsupportedOperationException("Value is not of type int");
+    }
+    public double getAsDouble() throws UnsupportedOperationException {
+        if (this.isDouble()) {
+            return Double.parseDouble(stringValue);
+        }
+        throw new UnsupportedOperationException("Value is not of type double");
+    }
+    public char getAsChar() throws UnsupportedOperationException {
+        if (this.isChar()) {
+            return stringValue.charAt(0);
+        }
+        throw new UnsupportedOperationException("Value is not of type char");
     }
     @Override
     public String toString() {
