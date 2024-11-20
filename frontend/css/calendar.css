@@ -203,6 +203,7 @@ body {
   background: var(--calendar-secondary-bg-color);
   margin: 0;
   min-height: 210px;
+  height: 322px;
 }
 
 .day-numbers li {
@@ -211,10 +212,10 @@ body {
     width: calc(100% / 7 - 10px); /* exact amount for wrapping */
     height: calc(100% / 5); /* ensure consistent sizing between different months (fucking febuary man */
     text-align: center;
-    margin-bottom: 5px;
     font-size:12px;
     color: var(--calendar-secondary-text-color);
     padding: 5px;
+    height: 55px;
 }
 
 /* Highlight the "current" day */
@@ -236,12 +237,14 @@ body {
   background-color: #a6d2cb;
   padding: 20px;
   width: 85%;
+  height: auto;
   border-radius: 20px;
   margin-top: 2em;
 }
 
 .calendar-container {
   width: 65%;
+  height: auto;
 }
 
 .appointment-section {
@@ -299,7 +302,8 @@ body {
   border-radius: 10px;
   background-color: #f8f9fa;
   margin-left: 20px;
-
+  height: 100%;
+  position: relative;
 }
 
 .appointment-section h3 {
@@ -338,11 +342,12 @@ body {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-left: auto; /* places btn to far right */
-  margin-top: 20px;
   display: block;
   padding: 10px;
   border-radius: 10px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 
 #request-appt-btn:active {
