@@ -10,6 +10,8 @@ public class Pages {
         "home", "index.html",
         "style", "styles.css",
         "login", "login.html",
-        "", "index.html" // temporary
+        "404", "404.html",
+        "", "index.html", // temporary
+        "/", "index.html" // temporary
     );
 }

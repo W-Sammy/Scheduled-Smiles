@@ -37,5 +37,5 @@ public class HttpConstants {
         "JS", String.format("text/javascript; charset=%s", CHARSET),
         "CSS", String.format("text/css; charset=%s", CHARSET)
     );
-    public static final String ALLOWED_METHODS = "GET,POST"; // we only allow these in our server anyways, so I've defined them as a constant here. If we expand our accepted list of methods, remove this. -Kyle
+    public static final String ALLOWED_METHODS = "GET,POST,OPTIONS"; // we only allow these in our server anyways, so I've defined them as a constant here. If we expand our accepted list of methods, remove this. -Kyle
 }
