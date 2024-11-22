@@ -18,91 +18,6 @@ public class Populate {
     private Populate() {
         // restrict instantiation -Kyle
     }
-    /*
-    [
-  [
-    "appointmentID"
-  ],
-  [
-    "isCanceled"
-  ],
-  [
-    "isComplete"
-  ],
-  [
-    "isPaid"
-  ],
-  [
-    "notes"
-  ],
-  [
-    "patientID"
-  ],
-  [
-    "staff1ID"
-  ],
-  [
-    "staff2ID"
-  ],
-  [
-    "staff3ID"
-  ],
-  [
-    "startTime"
-  ]
-]
-
-[
-  [
-    "CURRENT_CONNECTIONS"
-  ],
-  [
-    "MAX_SESSION_CONTROLLED_MEMORY"
-  ],
-  [
-    "MAX_SESSION_TOTAL_MEMORY"
-  ],
-  [
-    "TOTAL_CONNECTIONS"
-  ],
-  [
-    "USER"
-  ],
-  [
-    "address"
-  ],
-  [
-    "birthDate"
-  ],
-  [
-    "detail"
-  ],
-  [
-    "email"
-  ],
-  [
-    "firstName"
-  ],
-  [
-    "hashedPass"
-  ],
-  [
-    "lastName"
-  ],
-  [
-    "phoneNumber"
-  ],
-  [
-    "roleID"
-  ],
-  [
-    "sex"
-  ],
-  [
-    "userID"
-  ]
-]
-    */
     private static boolean verifyWhere(final String where, final String tableName, final DatabaseConnection db) {
         return db.update(String.format("SELECT 1 FROM %s WHERE %s", tableName, where)) > 0;
     }
@@ -115,7 +30,7 @@ public class Populate {
         }
         // Aggregate columns
         final String[] columns = {
-            "patientID", "staff1ID", "staff2ID", "staff3ID", /* stationNumber and treatment not tracked?? -Kyle */ "notes", "startTime", "isComplete", "isCanceled", "isPaid"
+            "patientID", "staff1ID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid"
         };
         // Get appointment types
         final String queryString = String.format("SELECT %s FROM appointments WHERE %s", String.join(", ", columns), id.equalsTo("appointmentID");
@@ -131,7 +46,7 @@ public class Populate {
             staffList.add(result.get(3).getAsBytes());
         }
         // Appointment(byte[] typeID, byte[] patientID, ArrayList<byte[]> staffList, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
-        return new Appointment(appointmentId, result.get(0).getAsBytes(), staffList, /* stationNumber and treatment not tracked?? -Kyle */ -1, "untracked in db", result.get(4).getAsString(), result.get(5).getAsInteger(), result.get(6).getAsBoolean(), result.get(7).getAsBoolean(), result.get(8).getAsBoolean());
+        return new Appointment(appointmentId, result.get(0).getAsBytes(), staffList, result.get(4).getAsInteger(), result.get(5).getAsString(), result.get(6).getAsString(), result.get(7).getAsInteger(), result.get(8).getAsBoolean(), result.get(9).getAsBoolean(), result.get(10).getAsBoolean());
     }
     public static Chat populate(final byte[] receiverID, final byte[] senderID, final DatabaseConnection db) {
         final DatabaseGenericParameter sid = new DatabaseGenericParameter(senderID);
@@ -147,7 +62,7 @@ public class Populate {
             "textContent", "createdAt"
         };
         // Get appointment types
-        final String queryString = String.format("SELECT %s FROM messages WHERE %s AND %s", String.join(", ", columns), sid.equalsTo("senderID"), rid.equalsTo("receiverID");
+        final String queryString = String.format("SELECT %s FROM messages WHERE %s AND %s ORDER BY createAt DESC", String.join(", ", columns), sid.equalsTo("senderID"), rid.equalsTo("receiverID");
         final List<List<DatabaseGenericParameter>> result = db.query(queryString);
         
         for (L row : result) {
