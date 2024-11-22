@@ -14,9 +14,9 @@ Some operations are sensitive, or repetitve enough to warrant their specific, st
 
 | Operation | Method | Endpoint | Body | Returns |
 | :-- | :-: | :-: | :-- | :-- |
-| Checking if something exists | GET | /api/verify | <pre>\{ "query": ... \}</pre> | <pre>\{ \[true\|false\] \}</pre> |
-| Registering a new user | POST | /api/register | <pre>\{<br>  "roleId": ...,<br>  "userId": ...,<br>  "firstName": ...,<br>  "lastName": ...,<br>  "address": ...,<br>  "sex": ...,<br>  "phone": ...,<br>  "email": ...,<br>  "birthDate": ...,<br>  "password": ...<br>\}</pre> | <pre>\{ \[true\|false\] \}</pre> |
-| Checking if a user's password matches | GET | /api/login | <pre>\{<br>  "email": ...,<br>  "password": ...<br>\} | <pre>\{<br>  "roleId": ...,<br>  "userId": ...,<br>  "firstName": ...,<br>  "lastName": ...,<br>  "address": ...,<br>  "sex": ...,<br>  "phone": ...,<br>  "email": ...,<br>  "birthDate": ...<br>\}</pre>or<br><pre>\{ false \}</pre> |
+| Checking if something exists | POST | /api/verify | <pre>\{ "query": ... \}</pre> | <pre>\{ \[true\|false\] \}</pre> |
+| Registering a new user | POST | /api/register | <pre>\{<br>  "firstName": ...,<br>  "lastName": ...,<br>  "address": ...,<br>  "sex": ...,<br>  "phone": ...,<br>  "email": ...,<br>  "birthDate": ...,<br>  "password": ...<br>\}</pre> | <pre>\{ \[true\|false\] \}</pre> |
+| Checking if a user's password matches | POST | /api/login | <pre>\{<br>  "email": ...,<br>  "password": ...<br>\} | <pre>\{<br>  "roleId": ...,<br>  "userId": ...,<br>  "firstName": ...,<br>  "lastName": ...,<br>  "address": ...,<br>  "sex": ...,<br>  "phone": ...,<br>  "email": ...,<br>  "birthDate": ...<br>\}</pre>or<br><pre>\{ false \}</pre> |
 | Uploading an image (not an FR, likely won't implement) | PUT | /api/upload | Idk exactly how the body of a multipart submission is supposed to look like, I think it's a bytestream? | either HTTP response code 201 with the `Content-Location` header set to the newly uploaded file's location, or HTTP 204 if the file already exists, with `Content-Location` set to the existing file's location. IDK what to return if the upload fails due to insufficent disk space or something else, as the offical MDN docs (they define http semantics) don't specify that use case or what to do for it. |
 
 ## Additional Notes

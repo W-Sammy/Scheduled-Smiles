@@ -95,6 +95,9 @@ public class DatabaseConnection implements AutoCloseable {
                         int columnType = results.getMetaData().getColumnType(i); // inefficent to get column type for every row after the first one but I don't see a better way -Kyle
                         // Might need to stick this into it's own function -Kyle
                         switch (columnType) {
+                            case Types.NULL:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter()); // empty constructor defaults the type to null
+                            break;
                             case Types.TINYINT: // Retrieve sql TINYINT as java boolean, instead of converting them to bulkier int in java
                                 resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBoolean(i)));
                             break;
