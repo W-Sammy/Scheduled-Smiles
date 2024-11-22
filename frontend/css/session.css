@@ -380,15 +380,19 @@ input[type='submit']:hover{
 .displayRecord > textarea{
     display: flex;
     min-height: 200px;
+    resize: none;
     outline: none !important;
     border:2px solid rgb(161, 201, 187);
+    background-color: #edf1ed;
 }
 
 .recordSection > div{
-    height: 1000px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin: 10px;
+    flex: 1;
     border-radius: 5px;
-    background-color: #549799;
+    background-color: #b7e2d0;
     justify-content: space-around;
 }
 
@@ -405,18 +409,13 @@ input[type='submit']:hover{
     margin: 5px;
 }
 
-
-
 .trackingBox > .titleSection{
     justify-content: flex-end;
 }
 
-.trackingBox > .titleSection >*{
-    margin-left: 20px;
-    font-size: 18.5px;
-}
 
 .trackingBox > .titleSection > input[type="submit"]{
     margin-right: 90px;
+    margin-bottom: 15px;
     font-size: 17px;
 }
