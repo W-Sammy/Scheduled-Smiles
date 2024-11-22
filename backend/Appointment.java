@@ -34,7 +34,7 @@ public class Appointment{
         return typeID;
     }
 
-	public byte[] getpatientID() {
+	public byte[] getPatientID() {
 		return patientID;
 	}
 	
