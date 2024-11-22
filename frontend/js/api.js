@@ -1,5 +1,6 @@
 // Functions to interact with our API -Kyle
 
+
 // JSDoc definitions
 /**
  * A callback function to use after an API response is returned.
@@ -32,9 +33,19 @@ async function request(requestBody, endpoint, method) {
         return null
     }).then((values) => {
         var responseStatus = values[0] < 400
-        var responseText = (!responseStatus) ? null : JSON.stringify(JSON.parse(values[1]), null, 2)
+        var responseText = (!responseStatus) ? null : JSON.stringify(JSON.parse(values[1]))
         return responseText
     })
+}
+
+/**
+ * Converts a date string to UTC timestamp.
+ * @param {String} dateString Ex: "2024-11-20"
+ * @returns {Number} The UTC timestamp corrosponding to the given date.
+ */
+function dateStringToUtc(dateString) {
+    const date = new Date(dateString + "Z")
+    return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds())
 }
 
 // Module functions
@@ -46,7 +57,7 @@ async function request(requestBody, endpoint, method) {
  * @param {apiCallback} callback The function to call with the result.
  * @returns {void}
  */
-export function callApi(requestBody, endpoint, method, callback) {
+function callApi(requestBody, endpoint, method, callback) {
     fetch(window.location.origin + endpoint, {
         method: method,
         mode: "no-cors",
@@ -62,7 +73,7 @@ export function callApi(requestBody, endpoint, method, callback) {
         callback(false, null)
     }).then((values) => {
         var responseStatus = values[0] < 400
-        var responseText = (!responseStatus) ? null : JSON.stringify(JSON.parse(values[1]), null, 2)
+        var responseText = (!responseStatus) ? null : JSON.stringify(JSON.parse(values[1]))
         callback(responseStatus, responseText)
     })
 }
@@ -72,12 +83,38 @@ export function callApi(requestBody, endpoint, method, callback) {
  * @param {String} email
  * @returns {Boolean} True if an account with the specified email can be found in the database, and false otherwise.
  */
-export async function accountExists(email) {
-    const requestBody = `{ query: "SELECT 1 WHERE email='${email}'" }`
+async function accountEmailExists(email) {
+    const requestBody = `{ "query": "SELECT 1 FROM users WHERE email='${email}'" }`
     const endpoint = "/api/verify"
     const method = "POST"
     const response = await request(requestBody, endpoint, method)
     return response === "true"
+}
+
+/**
+ * Returns if an account ID already exists.
+ * @param {String} id The hex representation of the user's ID.
+ * @returns {Boolean} True if an account with the specified email can be found in the database, and false otherwise.
+ */
+async function accountIdExists(id) {
+    const requestBody = `{ "query": "SELECT 1 FROM users WHERE userID=UNHEX('${id}')" }`
+    const endpoint = "/api/verify"
+    const method = "POST"
+    const response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+
+/**
+ * Returns if the details of the account with the specified ID.
+ * @param {String} id The hex representation of the user's ID.
+ * @returns {String|null} A JSON formatted body of the account details, and null if something went wrong.
+ */
+async function getIdAccount(id) {
+    const requestBody = `{ "userID": "${id}" }`
+    const endpoint = "/api/login"
+    const method = "POST"
+    const response = await request(requestBody, endpoint, method)
+    return (response !== false) ? response : null
 }
 
 /**
@@ -86,8 +123,8 @@ export async function accountExists(email) {
  * @param {String} password
  * @returns {Boolean} True if an account with the specified email can be found in the database and the password is correct- false otherwise.
  */
-export async function passwordCorrect(email, password) {
-    const requestBody = `{ email: "${email}", password: "${password}" }`
+async function passwordCorrect(email, password) {
+    const requestBody = `{ "email": "${email}", "password": "${password}" }`
     const endpoint = "/api/login"
     const method = "POST"
     const response = await request(requestBody, endpoint, method)
@@ -100,11 +137,11 @@ export async function passwordCorrect(email, password) {
  * @param {String} password
  * @returns {String|null} The JSON formatted body of details from the given account, or null if the email and password do not match.
  */
-export async function getAccount(email, password) {
-    const requestBody = `{ email: "${email}", password: "${password}" }`
+async function getAccount(email, password) {
+    const requestBody = `{ "email": "${email}", "password": "${password}" }`
     const endpoint = "/api/login"
     const method = "POST"
-    const response = await request(requestBody, endpoint, method)
+    let response = await request(requestBody, endpoint, method)
     return (response !== false) ? response : null
 }
 
@@ -120,11 +157,24 @@ export async function getAccount(email, password) {
  * @param {String} password The password to use for the new account.
  * @returns {Boolean} True if the account was created successfully and false if something went wrong.
  */
-export async function createAccount(firstName, lastName, address, sex, phone, email, birthDate, password) {
-    const requestBody = `{ firstName: "${firstName}", lastName: "${lastName}", address: "${address}", sex: "${sex}", phone: "${phone}", email: "${email}", birthDate: "${birthDate}", password: "${password}",  }`
+async function createAccount(firstName, lastName, address, sex, phone, email, birthDate, password) {
+    const requestBody = `{ "firstName": "${firstName}", "lastName": "${lastName}", "address": "${address}", "sex": "${sex}", "phone": "${phone}", "email": "${email}", "birthDate": ${birthDate}, "password": "${password}" }`
     const endpoint = "/api/register"
     const method = "POST"
     const response = await request(requestBody, endpoint, method)
     return response === "true"
+}
+
+/**
+ * Returns role name for a given role ID.
+ * @param {String} roleId The hex representation of the roleId.
+ * @returns {String|null} A JSON formatted body containing the role name, or null if no role was foumd.
+ */
+async function getRoleName(roleId) {
+    const requestBody = `{ "roleId": "${roleId}" }`
+    const endpoint = "/api/lookup"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return (response !== false) ? response : null
 }
 // TODO: getAppointment and getChat/getMessages -Kyle

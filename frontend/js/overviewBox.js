@@ -1,4 +1,4 @@
-document.body.onload = addBox;
+// throws an error // document.body.onload = addBox;
 
 
 var box = document.getElementById("overview");

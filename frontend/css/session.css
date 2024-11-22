@@ -16,6 +16,17 @@
     white-space: nowrap;
     margin: 20px;
     flex-basis: 89%;
+    /*text-shadow:
+    -2px -2px 0 #427f8125,
+    2px -2px 0 #427f8125,
+    -2px 2px 0 #427f8125,
+    2px 2px 0 #427f8125,  
+    -3px 0 0 #427f8125,
+    3px 0 0 #427f8125,
+    0 3px 0 #427f8125,
+    0 -3px 0 #427f8125;
+    color: #fdfffe;
+    */
     color: #85b99f;
 }
 
@@ -49,7 +60,23 @@
     margin: 3px;
     font-size: 1.1em;
 }
+/*
+.date{
 
+}
+
+.patient{
+
+}
+
+.time{
+
+}
+
+.staff{
+
+}
+*/
 .confirm{
     color: #f8faee;
     background-color: #549799;
@@ -121,46 +148,38 @@
 
 .infoBox{
     margin: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
+    height: auto;
     width: 70%;
+    max-height: 850px;
     border-radius: 20px;
-    background-color: #f5fff5;
+    background-color: #fffff5;
 }
 
-.infoBox > form{
-    overflow-x: auto;
+.startForm{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 20px;
-    border-radius: 20px;
-    background-color: #d4e4da;
+    height: auto;
+    width: auto;
+    padding: 40px;
+    padding-left: 60px;
+    margin: 5px;
 }
 
-.infoBox > form > div{
-    margin: 20px;
-    margin-left: 20px;
-    margin-right: 5px;
-}
-
-.infoBox > div{
-    flex-direction: row-reverse; 
-    padding: 0px;
-    margin: 0px;
-}
-
-.infoBox > div > input{
-    margin-top: 10px;
-    margin-right: 20px;
+.startForm > *{
+    height: auto;
+    width: auto;
+    margin: 5px;
 }
 
 .inputBox{
-    margin: 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     height: 200px;
-    min-width: 500px;
-
+    width: 500px;
+    margin: 50px;
 }
 
 input{
@@ -168,6 +187,7 @@ input{
     max-height: 20px;
     margin: 5px;
     border-radius: 2px;
+
 }
 
 input[type='text']{
@@ -181,7 +201,7 @@ input[type='time']{
 select{
     max-width: 200px;
     margin: 5px; 
-    margin-bottom: 20px;
+    margin-left: 70px;
     border-color: rgba(39, 117, 74, 0.349);
     border-radius: 2px;
 }
@@ -198,9 +218,10 @@ label{
     flex-direction: column;
     flex-wrap: wrap;
     height: 90px;
-    width: 320px;
-    margin-left: 15px;
+    width: 350px;
+    margin: 50px;
     margin-top: 10px;
+
 }
 
 .healthBox{
@@ -209,13 +230,14 @@ label{
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    height: 170px;
+    height: 180px;
     width:  520px;
-    margin-bottom: 0px;
+    margin: 50px;
+    margin-bottom: 1px;
 }
 
 .historyBox{
-    height: 580px;
+    height: 830px;
     width: 27%;
     min-width: 400px;
     max-width: 600px;
@@ -245,6 +267,7 @@ input[type='submit']{
     height: 50px;
     max-width: none;
     border-radius: 13px;
+    margin: 50px;
     margin-top: 0px;
     margin-left: 0px;
     justify-items: flex-end;
@@ -299,7 +322,7 @@ input[type='submit']:hover{
 }
 
 .displayName{
-    flex: .9;    
+    flex: 1;    
     background-color: #f5fffa;
     width: fill;
     min-width: 300px;
@@ -333,7 +356,6 @@ input[type='submit']:hover{
 }
 
 .displayRecord{
-    margin-top: 10px;
     display: flex;
     flex:1;
     flex-direction: column;    
@@ -362,7 +384,6 @@ input[type='submit']:hover{
     outline: none !important;
     border:2px solid rgb(161, 201, 187);
     background-color: #edf1ed;
-    margin-bottom: 30px;
 }
 
 .recordSection > div{
