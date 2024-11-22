@@ -19,9 +19,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
+import Users.User;
 import static Users.Enum.RoleConstant.*;
 import static Users.Enum.AppointmentType.*;
 
+import static Server.utils.Populate.*;
 import static Server.Enum.HttpConstants.*;
 import static Server.Enum.Pages.*;
 import static Server.utils.FileHandler.*;
@@ -124,6 +126,11 @@ public class ServerConnectionHandler implements HttpHandler {
         final InputStream is = new ByteArrayInputStream(responseBodyJson.getBytes(CHARSET));
         sendResponse(statusCode, HEADER_TYPES.get("JSON"), responseBodyJson.length(), is);
     }
+    private static void sendResponse(final int statusCode, final Object responseBody) throws IOException {
+        final String responseBodyJson = convertFromJson(responseBody);
+        final InputStream is = new ByteArrayInputStream(responseBodyJson.getBytes(CHARSET));
+        sendResponse(statusCode, HEADER_TYPES.get("JSON"), responseBodyJson.length(), is);
+    }
     
     private static void sendFileResponse() throws IOException {
         try (final OutputStream responseBodyStream = con.getResponseBody()) {
@@ -189,7 +196,6 @@ public class ServerConnectionHandler implements HttpHandler {
             System.out.println("Operation successful!");
         }
     }
-    
     
     private static void registerUser() throws IOException {
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
@@ -307,23 +313,44 @@ public class ServerConnectionHandler implements HttpHandler {
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         final boolean isValidRequest = membersMatch(requestJsonObject.keySet(),
             "email", "password"
+        ) || membersMatch(requestJsonObject.keySet(),
+            "userID"
         );
         if (isValidRequest) {
-            String results = "";
-            final byte[] passwordDigest = hash256(requestJsonObject.get("password").getAsString());
-            final DatabaseGenericParameter email = new DatabaseGenericParameter(requestJsonObject.get("email").getAsString());
-            final DatabaseGenericParameter password = new DatabaseGenericParameter(passwordDigest);
-            final String queryString = String.format("SELECT * FROM users WHERE %s AND %s", email.equalsTo("email"), password.equalsTo("hashedPass"));
-            try (DatabaseConnection db = new DatabaseConnection()) {
-                if (db.isConnected()) {
-                    results = convertFromJson(db.query(queryString));
+            boolean failed = true;
+            if (membersMatch(requestJsonObject.keySet(), "userID")) {
+                try (DatabaseConnection db = new DatabaseConnection()) {
+                    if (db.isConnected()) {
+                        final User user = populateUser(unhex(requestJsonObject.get("userID").getAsString()), db);
+                        sendResponse(STATUS_CODES.get("OK"), user);
+                        failed = false;
+                    }
+                } catch (Exception e) {
+                    // Errors handled in DatabaseConnection, pass
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                // Errors handled in DatabaseConnection, pass
-                e.printStackTrace();
+            } else {
+                final byte[] passwordDigest = hash256(requestJsonObject.get("password").getAsString());
+                final DatabaseGenericParameter email = new DatabaseGenericParameter(requestJsonObject.get("email").getAsString());
+                final DatabaseGenericParameter password = new DatabaseGenericParameter(passwordDigest);
+                final String queryString = String.format("SELECT userID FROM users WHERE %s AND %s", email.equalsTo("email"), password.equalsTo("hashedPass"));
+                try (DatabaseConnection db = new DatabaseConnection()) {
+                    if (db.isConnected()) {
+                        final DatabaseGenericParameter result = db.query(queryString).get(0).get(0);
+                        if (!result.isNull()) {
+                            final User user = populateUser(result.getAsBytes(), db);
+                            sendResponse(STATUS_CODES.get("OK"), user);
+                            failed = false;
+                        }
+                    }
+                } catch (Exception e) {
+                    // Errors handled in DatabaseConnection, pass
+                    e.printStackTrace();
+                }
             }
-            results = (results.equals("[]")) ? "false" : results;
-            sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
+            if (failed) {
+                sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
+            }
         } else {
             // Malformed/Invalid request body
             sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body");
@@ -334,9 +361,20 @@ public class ServerConnectionHandler implements HttpHandler {
         }
     }
     
-    // THIS IS NOT SPECFICALLY AN FR, LEAVE UNIMPLEMENTED OR IMPLEMENT LAST -Kyle
-    private static void uploadFile() {
-        
+    private static void returnRoleName() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final boolean isValidRequest = membersMatch(requestJsonObject.keySet(), "roleId");
+        if (isValidRequest) {
+            final String role = getRoleName(unhex(requestJsonObject.get("roleId").getAsString()));
+            sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(role));
+        } else {
+            // Malformed/Invalid request body
+            sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body");
+        }
+        // Testing
+        if (isValidRequest) {
+            System.out.println("Operation successful!");
+        }
     }
     
     private static void handleApiRequest() throws IOException {
@@ -359,6 +397,9 @@ public class ServerConnectionHandler implements HttpHandler {
                         break;
                         case "register":
                             registerUser();
+                        break;
+                        case "lookup":
+                            returnRoleName();
                         break;
                         default:
                             isValidRequest = false;

@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 import java.net.URI;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.HexFormat;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -69,5 +70,16 @@ public class Requests {
             }
         }
         return ROLE_IDS.get("Patient");
+    }
+    
+    public static byte[] unhex(final String value) {
+        return HexFormat.of().parseHex(value);
+    }
+    public static String hex(final byte[] digest) {
+        String stringValue = "";
+        for (byte i : digest) {
+            stringValue += String.format("%02X", i);
+        }
+        return stringValue;
     }
 }

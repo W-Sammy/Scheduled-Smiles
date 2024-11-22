@@ -47,6 +47,11 @@ public class DatabaseGenericParameter implements Serializable {
             return String.format("\'%s\'", stringValue);
         }
     }
+    // unsafe as hell
+    public DatabaseGenericParameter _cast(final String type) {
+        stringType = type;
+        return this; // return self for chaining -Kyle
+    }
     // these might not be needed
     public String equalsTo(final String value) {
         return String.format("%s = %s", value, getAsParameter());
