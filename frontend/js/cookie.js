@@ -14,7 +14,7 @@ const domainCookieString = (window.location.host.split(".").length - 1 < 2) ? nu
  * @param {String} cookieString The cookie.
  * @returns {Object} An object with attribute values matching the cookie key/value pairs.
  */
-export function cookieStringToObject(cookieString) { // sorry dann and keav, this dont look so good -Kyle
+function cookieStringToObject(cookieString) { // sorry dann and keav, this dont look so good -Kyle
     return Object.fromEntries(Array.from(cookieString.split(";"), entry => {
         let [key, value] = entry.trim().split("=")
         return [key, decodeURIComponent(value)]
@@ -28,7 +28,7 @@ export function cookieStringToObject(cookieString) { // sorry dann and keav, thi
  * @param {Number} [maxAge=120] The maximum lifetime of the cookie, in seconds.
  * @returns {void}
  */
-export function setCookie(key, value, maxAge = 120) {
+function setCookie(key, value, maxAge = 120) {
     const cookieArray = [
         `${key}=${encodeURIComponent(value)}`,
         "path=/",
@@ -44,7 +44,7 @@ export function setCookie(key, value, maxAge = 120) {
  * @param {String} key The key of the cookie to clear.
  * @returns {void}
  */
-export function clearCookie(key) {
+function clearCookie(key) {
     const cookieArray = [
         `${key}=`,
         "path=/",
@@ -59,7 +59,7 @@ export function clearCookie(key) {
  * @param {String} key The key of the cookie to delete.
  * @returns {void}
  */
-export function deleteCookie(key) {
+function deleteCookie(key) {
     const cookieArray = [
         `${key}=`,
         "expires=Thu, 01 Jan 1970 00:00:00 UTC", // the beginning of time...
@@ -74,7 +74,7 @@ export function deleteCookie(key) {
  * Deletes all cookies from the hostname root and all subdomains.
  * @returns {void}
  */
-export function deleteAllCookies() {
+function deleteAllCookies() {
     Object.keys(getCookieAsObject()).forEach(key => {
         deleteCookie(key)
     })
@@ -85,7 +85,7 @@ export function deleteAllCookies() {
  * @param {String} key The key of the cookie to look for.
  * @returns {Boolean} True if a cookie with the given key exists, and false otherwise.
  */
-export function checkCookieExists(key) {
+function checkCookieExists(key) {
     return document.cookie.split(";").some(e => e.trim().startsWith(key+"="))
 }
 
@@ -94,7 +94,7 @@ export function checkCookieExists(key) {
  * @param {String} key The key of the cookie to look for.
  * @returns {String|null} The value of the cookie, or null if no cookie with the given key was found.
  */
-export function getCookieValue(key) {
+function getCookieValue(key) {
     return (checkCookieExists(key)) ? document.cookie.split(";").filter(e => e.trim().startsWith(key+"="))[0].trim().substring(key.length+1) : null
 }
 
@@ -102,7 +102,7 @@ export function getCookieValue(key) {
  * Returns the cookies from the current session as an Object mapped by key/value pairs.
  * @returns {Object} An object with attribute values matching the cookie key/value pairs.
  */
-export function getCookieAsObject() {
+function getCookieAsObject() {
     return cookieStringToObject(document.cookie)
 }
 
@@ -113,7 +113,7 @@ export function getCookieAsObject() {
  * @param {Number} [maxAge=120] The maximum lifetime of the cookies created from the object, in seconds.
  * @returns {void}
  */
-export function setCookieFromObject(cookieObj, maxAge = 120) {
+function setCookieFromObject(cookieObj, maxAge = 120) {
     for(const [key, value] of Object.entries(cookieObj)) {
         setCookie(key, value, maxAge)
     }

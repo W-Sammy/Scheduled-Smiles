@@ -6,9 +6,8 @@
         <title>Scheduled Smiles</title>
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/session.css">
-        <script type="module" src="./js/api.js"></script>
-        <script type="module" src="./js/cookie.js"></script>        
-
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
     </head>
 
     <body>
@@ -207,14 +206,15 @@
                             <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
                         </div>
                     </div>
-                </form>            
-                <div class="titleSection">
-                    <input type="submit" value="Create Session">
-                </div>   
-            </div>
+                    <div class="titleSection" style="flex-direction: row-reverse;">
+                            <input type="submit" value="Create Session">
+                    </div>
+                </div>
+            </form>
             
             <div class="historyBox" id="historyList">
                 <div class="title">Appointment History</div>
+
                 <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
@@ -224,8 +224,52 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-            </div>               
-
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+            </div>
         </div>
 
         <div class="appointmentBox" id="sessionList">
