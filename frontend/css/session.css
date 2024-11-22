@@ -184,6 +184,7 @@ select{
     margin-bottom: 20px;
     border-color: rgba(39, 117, 74, 0.349);
     border-radius: 2px;
+    background-color: #e9f0ed;
 }
 
 label{

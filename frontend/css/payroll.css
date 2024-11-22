@@ -1,0 +1,42 @@
+body > .appointmentBox{
+    margin: 30px;
+
+}
+
+.staffSelector{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 30px;
+    margin-top: 80px;
+    margin-bottom: 0px;
+}
+
+.staffSelector > div{
+    border: 4px solid #94c7b2;
+    border-radius: 30px;
+    background-color: #bde2d8;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 28px;
+    padding-right: 32px;
+    padding-left: 36px;
+}
+
+.staffSelector > div > *{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    padding: 0px;
+}
+
+.staffSelector > div > select{
+    font-size: 16.5px;
+    padding: 6px;
+    padding-left: 8px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
