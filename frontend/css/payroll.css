@@ -40,3 +40,55 @@ body > .appointmentBox{
     padding-right: 12px;
     border-radius: 8px;
 }
+
+div > .appointment{
+    background-color: rgb(207, 238, 223);
+    justify-content: space-evenly;
+}
+div > .appointment > * {
+    margin: 5px;
+}
+.appointmentBox > div{
+    display: flex;
+    flex-direction: row;
+    background-color: #fffff5;
+    border-radius: 20px;
+}
+
+.infoBox > *{
+    margin: 50px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.infoBox > li{
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.titleSelector > .title{
+    font-size: large;
+    color: #94c7b2;
+}
+
+.workBox{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.workBox > *{
+    background-color: aqua;
+
+}
+
+.workBox > .infoBox{
+    background-color: aqua;
+}
