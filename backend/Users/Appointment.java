@@ -1,14 +1,15 @@
 package Users;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Appointment {
     //private attributes
     @SerializedName("appointmentID")
-    private byte[] appointmentID = new byte[32]; //Who the patient this appointment is for
+    private byte[] appointmentID = new byte[32];
+    @SerializedName("patientID")
+    private byte[] patientID = new byte[32];
     @SerializedName("staffList")
     private List<byte[]> staffList;
     @SerializedName("stationNumber")
@@ -42,15 +43,11 @@ public class Appointment {
 
 
     //getter methods (dont need setter since there is no empty constructor)
-    public byte[] getTypeID() {
-        return typeID;
-    }
-
 	public byte[] getpatientID() {
 		return patientID;
 	}
 	
-	public ArrayList<byte[]> getStaffList() {
+	public List<byte[]> getStaffList() {
 		return staffList;
 	}
 

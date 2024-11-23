@@ -85,7 +85,7 @@ public class Populate {
             final String queryString = String.format("SELECT %s FROM messages WHERE %s ORDER BY createdAt DESC", String.join(", ", columns), pid.equalsTo("pairID"));
             final List<List<DatabaseGenericParameter>> result = db.query(queryString);
             for (List<DatabaseGenericParameter> row : result) {
-                chats.get(idx).addMessages(pid, row.get(0).getAsString(), row.get(1).getAsInteger());
+                chats.get(idx).addMessages(pid.getAsBytes(), row.get(0).getAsString(), row.get(1).getAsInteger());
             }
         }
         // Chat(byte[] senderID, byte[] receiverID)
@@ -110,7 +110,7 @@ public class Populate {
         final List<List<DatabaseGenericParameter>> result = db.query(queryString);
         
         for (List<DatabaseGenericParameter> row : result) {
-            chat.addMessages(row.get(0).getAsString(), row.get(1).getAsInteger());
+            chat.addMessages(pid.getAsBytes(), row.get(0).getAsString(), row.get(1).getAsInteger());
         }
         // Chat(byte[] senderID, byte[] receiverID)
         return chat;
