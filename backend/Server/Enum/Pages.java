@@ -8,10 +8,17 @@ public class Pages {
     }
     public static final Map<String, String> MAPPED_FILES = Map.of(
         "home", "index.html",
-        "style", "styles.css",
-        "login", "login.html",
+        "", "index.html",
+        "/", "index.html",
         "404", "404.html",
-        "", "index.html", // temporary
-        "/", "index.html" // temporary
+        "billing", "billing.html",
+        "payroll", "payroll.html",
+        "session", "session.html",
+        "dashboard", "dashboard.html",
+        "calendar", "calendar.html",
+        "history", "history.html",
+        "chat", "chat.html",
+        "scheduler", "scheduler.html",
+        "patient-billing", "patientBilling.html"
     );
 }
