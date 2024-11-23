@@ -22,7 +22,7 @@ body > .appointmentBox{
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    min-width: 610px;
+    min-width: 680px;
 
     padding: 28px;
     padding-right: 32px;
@@ -42,6 +42,12 @@ body > .appointmentBox{
     padding-left: 8px;
     padding-right: 12px;
     border-radius: 8px;
+}
+
+.staffSelector > div > input[type="submit"]{
+    font-size: .90em;
+    height: auto;
+    width: auto;
 }
 
 div > .appointment{
@@ -75,6 +81,7 @@ div > .appointment > * {
     flex-direction: column;
     flex: 1;
     margin: 20px;
+    max-width: .1px;
 }
 
 .appointmentBox > .infoBox > .infoBox{
@@ -113,11 +120,29 @@ div > .appointment > * {
     border-radius: 16px;
     width: 90%;
     height: 40%;
-    margin: 20px;
+    margin: 15px;
     margin-top: 0px;
 }
 
 .workBox > .infoBox{
-    width: 90%;
+    width: auto;
     margin-bottom: 20px;
+    background-color: #F0FFF2;
+    border: 7px solid #a1d1a7;
+    justify-content: space-between;
+}
+
+.workBox > .infoBox > *{
+    margin: 20px;
+    margin-bottom: 10px;
+}
+
+div>h4{
+    font-size: medium;
+    color: #18a52b;
+}
+
+.graph > * {
+    margin: 15px;
+    margin-top: 0px;
 }
