@@ -62,7 +62,7 @@ public class Requests {
     public static byte[] getRoleId(final String email) {
         final int splitIdx = email.lastIndexOf("@");
         if (splitIdx != -1) {
-            final String domain = email.substring(splitIdx);
+            final String domain = email.substring(splitIdx + 1);
             for (Map.Entry<String, String> entry : ROLE_DOMAINS.entrySet()) {
                 if (entry.getValue().equals(domain)) {
                     return ROLE_IDS.get(entry.getKey());

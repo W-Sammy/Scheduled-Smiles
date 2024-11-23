@@ -22,7 +22,7 @@ public class Populate {
     }
     public static Appointment populateAppt(final byte[] appointmentId, DatabaseConnection db) {
         final DatabaseGenericParameter id = new DatabaseGenericParameter(appointmentId);
-        // Verify ID exists 
+        // Verify ID exists
         final boolean idExists = verifyWhere(id.equalsTo("appointmentID"), "appointments", db);
         if (!idExists) {
             return null;
@@ -80,12 +80,12 @@ public class Populate {
         int idx = 0;
         for (DatabaseGenericParameter pid : pids) {
             final List<DatabaseGenericParameter> idPair = db.query(String.format("SELECT senderID, receiverID FROM messagePairTypes WHERE %s", pid.equalsTo("pairID"))).get(0);
-            chats.add(new Chat(idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes()));
+            chats.add(new Chat(pid, idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes()));
             idx = chats.size() - 1;
             final String queryString = String.format("SELECT %s FROM messages WHERE %s ORDER BY createdAt DESC", String.join(", ", columns), pid.equalsTo("pairID"));
             final List<List<DatabaseGenericParameter>> result = db.query(queryString);
             for (List<DatabaseGenericParameter> row : result) {
-                chats.get(idx).addMessages(row.get(0).getAsString(), row.get(1).getAsInteger());
+                chats.get(idx).addMessages(pid, row.get(0).getAsString(), row.get(1).getAsInteger());
             }
         }
         // Chat(byte[] senderID, byte[] receiverID)

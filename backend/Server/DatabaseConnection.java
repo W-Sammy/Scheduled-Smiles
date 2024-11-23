@@ -39,7 +39,7 @@ public class DatabaseConnection implements AutoCloseable {
             }
         }
         return result;
-    }   
+    }
     public List<List<DatabaseGenericParameter>> query(String query) {
         final List<List<DatabaseGenericParameter>> resultArray = new ArrayList<>();
         if (this.isConnected()) {
