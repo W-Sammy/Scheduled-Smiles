@@ -122,6 +122,12 @@ div > .appointment > * {
     height: 40%;
     margin: 15px;
     margin-top: 0px;
+
+    width: auto;
+    margin-bottom: 20px;
+    background-color: #F0FFF2;
+    border: 7px solid #a1d1a7;
+    justify-content: space-between;
 }
 
 .workBox > .infoBox{
