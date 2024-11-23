@@ -1,11 +1,12 @@
 body > .appointmentBox{
     margin: 30px;
-
+    max-height: 700px;
+    min-width: 1440px;
 }
 
 .staffSelector{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     margin: 30px;
     margin-top: 80px;
@@ -21,6 +22,8 @@ body > .appointmentBox{
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    min-width: 610px;
+
     padding: 28px;
     padding-right: 32px;
     padding-left: 36px;
@@ -44,6 +47,7 @@ body > .appointmentBox{
 div > .appointment{
     background-color: rgb(207, 238, 223);
     justify-content: space-evenly;
+    width: 450px;
 }
 div > .appointment > * {
     margin: 5px;
@@ -53,13 +57,37 @@ div > .appointment > * {
     flex-direction: row;
     background-color: #fffff5;
     border-radius: 20px;
+    overflow-y: auto;
+}
+
+.appointmentBox > .infoBox{
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.appointmentBox > .infoBox > div{
+    overflow-y: auto;
+    min-width: 600px;
+}
+
+.appointmentBox > .infoBox > hr{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 20px;
+}
+
+.appointmentBox > .infoBox > .infoBox{
+    min-width: unset;
 }
 
 .infoBox > *{
     margin: 50px;
     margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;   
 }
+
+
 
 .infoBox > li{
     margin: 50px;
@@ -74,21 +102,29 @@ div > .appointment > * {
     color: #94c7b2;
 }
 
-.workBox{
+.appointmentBox > .workBox{
     display: flex;
+    height: 100%;
     flex: 1;
-    flex-wrap: wrap;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: 10px;
+    
 }
 
 .workBox > *{
+    border-radius: 16px;
     background-color: aqua;
+    width: 90%;
+    height: 50%;
+    margin: 20px;
 
 }
 
 .workBox > .infoBox{
     background-color: aqua;
+    width: 90%;
+    margin-bottom: 20px;
 }
