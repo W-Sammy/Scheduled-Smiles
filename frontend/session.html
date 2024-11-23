@@ -13,9 +13,8 @@
     <body>
 
         <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
-            
+            <!--Need JS script to complete Log out feature-->
+            <a class="link">Log out</a>
         </header>
 
         <div class="appointmentBox" id="appointmentList" style="min-width: 400px;">
@@ -41,8 +40,7 @@
                 </div>
                 <div class="confirm">Approve</div>
                 <div class="delete">Deny</div>
-            </div>            
-            <div class="appointment">
+            </div>            <div class="appointment">
                 <div class="infoField">
                     <span class="info" id="order">Box of the Points made# </span>
                     <span class="info" id="date">DD/DD/DD/DD</span>
@@ -110,67 +108,62 @@
                 </h1>                
                 <span class="returnButton">Appointment List</span>
             </div>
-            
+            <form class="infoBox" id="infoForm"> 
+                <div class="formBox">
+                    
+                    <div class="inputBox">
+                        <label for="patient">Patient's ID:</label>
+                        <input type="text" class="info" id="patient" placeholder="ID #">                 
+                        <label for="date">Date:</label>
+                        <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
+                        <label for="time">Time Start:</label>
+                        <input type="time" class="info" id="time">
+                        <label for="staff">Leading Staff 1:</label>
+                        <input type="text" class="info" id="staff" placeholder="The special hat">
+                        <label for="staff2">Staff 2</label>
+                        <input type="text" class="info" id="staff2" placeholder="The special tail">
+                        <label for="staff3">Staff 3</label>
+                        <input type="text" class="info" id="staff3" placeholder="The special feet">
+                    </div>
 
-            <div class="infoBox">
-                <form id="infoForm"> 
-                        <div class="inputBox">
-                            <label for="patient">Patient's ID:</label>
-                            <input type="text" class="info" id="patient" placeholder="ID #">                 
-                            <label for="date">Date:</label>
-                            <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
-                            <label for="time">Time Start:</label>
-                            <input type="time" class="info" id="time">
-                            <label for="staff">Leading Staff 1:</label>
-                            <input type="text" class="info" id="staff" placeholder="The special hat">
-                            <label for="staff2">Staff 2</label>
-                            <input type="text" class="info" id="staff2" placeholder="The special tail">
-                            <label for="staff3">Staff 3</label>
-                            <input type="text" class="info" id="staff3" placeholder="The special feet">
+                    <label for="stationBox1" style="margin-left: 40px;"> Station Number: </label>
+                    <div class="stationBox" id="stationBox1">
+                        <div>
+                            <label for="station1">Station 1</label>
+                            <input type="radio" name="station" id="station1">
                         </div>
                         <div>
-                            <label for="stationBox1"> Station Number: </label>
-                            <div class="stationBox" id="stationBox1">
-                                <div>
-                                    <label for="station1">Station 1</label>
-                                    <input type="radio" name="station" id="station1">
-                                </div>
-                                <div>
-                                    <label for="station2">Station 2</label>
-                                    <input type="radio" name="station" id="station2">
-                                </div>
-                                <div>
-                                    <label for="station3">Station 3</label>
-                                    <input type="radio" name="station" id="station3">
-                                </div>
-                                <div>
-                                    <label for="station4">Station 4</label>
-                                    <input type="radio" name="station" id="station4">
-                                </div>
-                                <div>
-                                    <label for="station5">Station 5</label>
-                                    <input type="radio" name="station" id="station5">
-                                </div>
-                                <div>
-                                    <label for="station6">Station 6</label>
-                                    <input type="radio" name="station" id="station6">
-                                </div>
-                            </div>
+                            <label for="station2">Station 2</label>
+                            <input type="radio" name="station" id="station2">
                         </div>
                         <div>
-                            <label for="treatmentList">Undergoing Treatment:</label><br>
-                            <select name="treatments" id="treatmentList" class="treatmentBox">
-                                <option value="" disabled selected>Pick a Treatment</option>
-                                <option value="cleaning">Cleaning</option>
-                                <option value="filling">Fillings</option>
-                                <option value="xray">X-Rays</option>
-                                <option value="checkup">Check-up</option>
-                                <option value="emergency">Emergency</option>
-                            </select>
+                            <label for="station3">Station 3</label>
+                            <input type="radio" name="station" id="station3">
                         </div>
+                        <div>
+                            <label for="station4">Station 4</label>
+                            <input type="radio" name="station" id="station4">
+                        </div>
+                        <div>
+                            <label for="station5">Station 5</label>
+                            <input type="radio" name="station" id="station5">
+                        </div>
+                        <div>
+                            <label for="station6">Station 6</label>
+                            <input type="radio" name="station" id="station6">
+                        </div>
+                    </div>
 
-                </form>   
-                <form id="infoForm2">
+                    <label for="treatmentList" style="margin-left: 50px;">Undergoing Treatment:</label><br>
+                    <select name="treatments" id="treatmentList" class="treatmentBox">
+                        <option value="" disabled selected>Pick a Treatment</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="filling">Fillings</option>
+                        <option value="xray">X-Rays</option>
+                        <option value="checkup">Check-up</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                    
                     <div class="healthBox">
                         <div style="flex-basis: 100%;"><label>Patient's Health Condition:</label>
                             <span style="color: rgba(107, 107, 86, 0.521);">Select any conditions that apply</span>
@@ -207,14 +200,15 @@
                             <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
                         </div>
                     </div>
-                </form>            
-                <div class="titleSection">
-                    <input type="submit" value="Create Session">
-                </div>   
-            </div>
+                    <div class="titleSection" style="flex-direction: row-reverse;">
+                            <input type="submit" value="Create Session">
+                    </div>
+                </div>
+            </form>
             
             <div class="historyBox" id="historyList">
                 <div class="title">Appointment History</div>
+
                 <div class="appointment" >
                     <div class="infoField">
                         <span class="info" id="date">DD/DD/DD/DD</span>
@@ -224,8 +218,52 @@
                     <a class="confirm">Review</a>
                     <a class="delete">Delete</a>
                 </div>
-            </div>               
-
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+                <div class="appointment" >
+                    <div class="infoField">
+                        <span class="info" id="date">DD/DD/DD/DD</span>
+                        <span class="info" id="patient">No one but pit here</span>
+                        <span class="info" id="time">86:34</span>
+                    </div>
+                    <a class="confirm">Review</a>
+                    <a class="delete">Delete</a>
+                </div>
+            </div>
         </div>
 
         <div class="appointmentBox" id="sessionList">
