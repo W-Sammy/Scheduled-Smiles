@@ -1,0 +1,49 @@
+body {
+  background-image: url('../assets/landingPage_bg.png');
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+}
+
+.betterTeethContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the left */
+  gap: 1em; /* Space between image and button */
+}
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+
+}
+
+.betterTeethImg {
+  max-width: 100%;
+  width: 85%;
+  margin-top: 4.5em;
+  margin-left: 3em;
+}
+
+.scheduleBtn {
+  background-color: rgba(0, 128, 128, 0.75);
+  border: none;
+  color: #FFFCEE;
+  padding: 18px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-top: -4em;
+  align-self: flex-start;
+  margin-left: 14.5em;
+}
+
+.logoLandingPage {
+  height: 13.5em;
+  width: 18em;
+  align-self: flex-end;
+  margin-right: 6em;
+  margin-top: 2em;
+}
