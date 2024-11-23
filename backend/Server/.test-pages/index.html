@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is the title of the webpage!</title>
+    <!-- Rendering markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <script>
+        function main() {
+            var [endpoint, method, body] = getData()
+            sendRequest(endpoint, method, body)
+            
+        }
+
+        function getData() {
+            const requestBodyArea = document.getElementById("requestBody")
+            const endpointArea = document.getElementById("endpoint")
+            const methodsSelect = document.getElementById("methods")
+            var requestBody = requestBodyArea.value
+            var method = methodsSelect.value
+            var endpoint = endpointArea.value
+            return [endpoint, method, requestBody]
+        }
+
+        function sendRequest(endpoint, method, requestBody) {
+            console.log("Sending " + method + " to " + endpoint + ":\n" + requestBody);
+            fetch(window.location.origin + endpoint, {
+                method: method,
+                body: JSON.stringify(JSON.parse(requestBody)),
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(response => {
+                return Promise.all([response.status, response.text()])
+            }, networkError => {
+              console.log(networkError.message)
+              loadResponse("", networkError.message)
+            }).then((values) => {
+              var responseText =  (values[0] >= 400) ? values[1] : JSON.stringify(JSON.parse(values[1]), null, 2)
+              console.log(values)
+              loadResponse(values[0], responseText)
+            })
+        }
+
+        // Dev only. remove before deployment. Requires import of the marked JS library -Kyle
+        function renderApiDoc() {
+            const md = markdownit({
+              html: true,
+              linkify: true,
+              typographer: true
+            })
+          fetch("https://raw.githubusercontent.com/W-Sammy/Scheduled-Smiles/refs/heads/backend/docs/API_REFERENCE.md")      // The path to the raw Markdown file
+            .then(response => response.text())
+            .then(markdown => {
+              document.getElementById("apiDoc").innerHTML = md.render(markdown)//marked.parse(markdown)
+            })
+        }
+
+        window.onload = () => {
+            renderApiDoc()
+        }
+            
+        function loadResponse(responseStatus, responseText) {
+            const responseBodyArea = document.getElementById("responseBody")
+            const responseStatusArea = document.getElementById("responseStatus")
+            responseBodyArea.value = responseText
+            responseStatusArea.innerHTML = responseStatus
+        }
+    </script>
+    <style>
+        html, body {
+            background-color: #23272A; /* MY EYES! */
+            color: white;
+            font-family: Arial, Helvetica, sans-serif; /* less harsh to look at during dev, subject to change in actual app */
+        }
+
+        body > div > * {
+            float: left;
+            padding-right: 35px;
+        }
+
+        #responseStatus {
+            background-color: #424549;
+            height: 1.5em;
+            width: 10em;
+            color: white;
+        }
+
+        #endpoint {
+            background-color: #424549;
+            height: 1.5em;
+            width: 45em;
+            color: white;
+        }
+
+        #requestBody, #responseBody {
+            border-radius: 15px;
+            background-color: #424549;
+            padding: 10px;
+            height: 200px;
+            width: 150px;
+            color: white;
+        }
+
+        #responseBody {
+            width: 500px;
+        }
+
+        select {
+          appearance: none;
+          padding: 5px;
+        }
+        option {
+            background-color: #424549 !important;
+        }
+        #buttons * {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        #apiDoc {
+            margin: 5px;    
+            display: block;
+            border-radius: 15px;
+            background-color: #424549 !important;
+            padding: 10px;
+        }
+
+        #apiDoc * {
+          white-space : pre-wrap !important;
+        }
+    </style>
+  </head>
+  <body>
+    <p>This page is a tool for debugging our project's API. Check console output in DevTools windows (ctrl+shift+i).</p>
+    <textarea id="endpoint" spellcheck="false" placeholder="Endpoint">/api/database/get</textarea>
+    <div>
+        <div>
+            <textarea id="requestBody" spellcheck="false" placeholder="Request Body (JSON formatted)">{ "query": "SELECT roleId FROM roleTypes", "type": "hex" }</textarea>
+            <div id="buttons">
+                <select name="methods" id="methods">
+                    <option value="GET">GET</option>
+                    <option value="POST" selected>POST</option>
+                    <option value="OPTIONS">OPTIONS</option>
+                    <option value="PUT">PUT</option>
+                </select>
+                <button onclick="main()">Send Request</button>
+            </div>
+        </div>
+        <div>
+            <textarea readonly spellcheck="false" placeholder="Response Data" id="responseBody"></textarea>
+            <div>
+                <textarea readonly spellcheck="false" placeholder="Reponse Code" id="responseStatus"></textarea>
+            </div>
+        </div>
+        <span id="apiDoc"></span>
+    </div>
+  </body>
+</html>

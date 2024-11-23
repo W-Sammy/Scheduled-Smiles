@@ -22,7 +22,7 @@ public class Populate {
     }
     public static Appointment populateAppt(final byte[] appointmentId, DatabaseConnection db) {
         final DatabaseGenericParameter id = new DatabaseGenericParameter(appointmentId);
-        // Verify ID exists 
+        // Verify ID exists
         final boolean idExists = verifyWhere(id.equalsTo("appointmentID"), "appointments", db);
         if (!idExists) {
             return null;
