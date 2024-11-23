@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Scheduled Smiles</title>
+        <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/dashboard.css">
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
+        <script src="./js/overviewBox.js"></script>
+    </head>
+
+    <body>
+        <header class="header" style="margin-bottom: 50px;">
+            <a onclick="logout()" class="logout link"> Log out</a>
+        </header>
+
+        <div class= "navigationTabs" id="navigation">
+            <!--Tabs populated by JS-->
+            
+        </div>
+        
+        <!--JS script Introduce user-->
+        <span class="welcomeMessage" id="welcome">Welcome</span>
+
+        <div class="contentBoard" id="content">
+
+            <div class="userInfoBox" id="info">
+                <!--JS populates user info-->
+                <img src="" alt="">test<img>
+                <div class="infoField">
+                    <img src="" alt="">test<img>
+                    <p id="name" class="name">[]</p>
+                    <p id="email" class="email">[]</p>
+                    <p id="dob" class="dob">[]</p>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="overviewBox" id="overview">
+                <!--Need JS script to Populate overview template with user info-->
+                <!--If needed, nest with another box that holds the Text (UI/UX)-->
+                <script>    
+                    for(let i=0; i < 3; i++){
+                        const para = document.createElement("div");
+                        const node = document.createTextNode("Open the view box");
+                        para.appendChild(node);
+                        para.className="viewBox";
+
+                        const element = document.getElementById("overview");
+                        element.appendChild(para);
+                    }
+                </script>    
+            
+            </div>
+
+            <div class="notifcationsBox" id="notifcation">
+                <!--Need JS script to Populate notes template with user info-->  
+                <div>
+                    <h class="notifcationTitle"> run away world</h>
+                </div>    
+                <script>    
+                    for(let i=0; i < 3; i++){
+                        const para = document.createElement("p");
+                        const node = document.createTextNode("open thee notes");
+                        para.appendChild(node);
+                        para.className="note";
+                        const element = document.getElementById("notifcation");
+                        element.appendChild(para);
+                    }
+                </script>
+
+            </div>
+        </div>
+
+    </body> 
+</html>

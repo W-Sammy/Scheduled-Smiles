@@ -1,0 +1,57 @@
+/* Body and Background */
+body {
+  background-image: url('../assets/landingPage_bg.png');
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  padding: 0;
+}
+
+/* Landing Page Container */
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2vh 5vw;
+}
+
+/* Better Teeth Container */
+.betterTeethContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+  max-width: 50vw;
+  margin-bottom: 3vh;
+}
+
+/* Better Teeth Image */
+.betterTeethImg {
+  width: 80vw;
+  max-width: 100%;
+  margin-top: 4em;
+}
+
+/* Schedule Button */
+.scheduleBtn {
+  background-color: rgba(0, 128, 128, 0.75);
+  border: none;
+  color: #FFFCEE;
+  padding: 2vh 3vw; 
+  font-size: 1vw; 
+  cursor: pointer;
+  border-radius: 2em; 
+  margin-top: -5em;
+  align-self: flex-start;
+  margin-left: 17.5em;
+}
+
+/* Logo on Landing Page */
+.logoLandingPage {
+  height: 25vh; 
+  width: 16vw; 
+  align-self: flex-end;
+  margin-right: 3em;
+  margin-top: 1em;
+}

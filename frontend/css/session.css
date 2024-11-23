@@ -1,0 +1,401 @@
+.appointmentBox{
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: left;
+    background-color: #cdeee5;    
+    margin: 50px;
+    margin-top: 70px;
+    width: auto;  
+    min-width: 900px; 
+    border-radius: 20px;
+    border: 35px solid #b7e2d0;
+}
+
+.title{
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 20px;
+    flex-basis: 89%;
+    color: #85b99f;
+}
+
+.appointment{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 26px;
+    justify-content: space-between;
+    height: 140px;
+    width: 490px;
+    min-width:300px; 
+    max-width:500px;
+    background-color: #fcfdf7;
+    border: 10px solid #b7e2d0;
+    padding: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.infoField{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+}
+
+.info{
+    margin: 3px;
+    font-size: 1.1em;
+}
+
+.confirm{
+    color: #f8faee;
+    background-color: #549799;
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    height: 2em;
+    width: 5em;
+    margin: 5px;
+    margin-right: 10px;
+    border-radius: 13px;
+}
+.confirm:hover{
+    background-color: #5aaeb1;
+}
+
+
+.delete{
+    color: #f8faee;
+    background-color: #b85b5b;
+    font-size: 1em;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    height: 2em;
+    width: 5em;
+    margin: 5px;
+    margin-right: 10px;
+    border-radius: 13px;
+}
+.delete:hover{
+    background-color: #e05555;
+}
+
+.titleSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.returnButton{
+    display: flex;
+    color: #f8faee;
+    background-color: #549799;
+    font-size: 18.5px;
+    min-width: 190px;
+    width: 190px;
+    justify-content: center;
+    margin: 20px;
+    margin-left: 0px;
+    margin-right: 20px;
+    border-radius: 13px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: .5em;
+    padding-top: .5em;
+}
+
+.returnButton:hover{
+    background-color: #5aaeb1;
+}
+
+.infoBox{
+    margin: 10px;
+    padding-bottom: 10px;
+    width: 70%;
+    border-radius: 20px;
+    background-color: #fffff5;
+}
+
+.infoBox > form{
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #d4e4da;
+}
+
+.infoBox > form > div{
+    margin: 20px;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.infoBox > div{
+    flex-direction: row-reverse; 
+    padding: 0px;
+    margin: 0px;
+}
+
+.infoBox > div > input{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.inputBox{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 200px;
+    min-width: 500px;
+
+}
+
+input{
+    max-width: 200px;
+    max-height: 20px;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+input[type='text']{
+    border-color: rgba(39, 117, 74, 0.349);
+}
+
+input[type='time']{
+    border-color: rgba(39, 117, 74, 0.349);
+}
+
+select{
+    max-width: 200px;
+    margin: 5px; 
+    margin-bottom: 20px;
+    border-color: rgba(39, 117, 74, 0.349);
+    border-radius: 2px;
+    background-color: #e9f0ed;
+}
+
+label{
+    margin: 5px;
+    font-size: 18.5px;
+    display: inline-block;
+}
+
+.stationBox{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 90px;
+    width: 320px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.healthBox{
+    align-self: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 170px;
+    width:  520px;
+    margin-bottom: 0px;
+}
+
+.historyBox{
+    height: 580px;
+    width: 27%;
+    min-width: 400px;
+    max-width: 600px;
+    border-radius: 20px;
+    background-color: #fffff5;
+    margin: 10px;
+    margin-left: 3px;
+    padding-bottom: 20px;
+    font-size: 1.1em;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+.historyBox > .appointment{
+    width: auto; 
+}
+
+
+input[type='submit']{
+    border-color: rgba(46, 151, 93, 0.082);
+    color: #f8faee;
+    background-color: #549799;
+    font-size: 1.2em;
+    display: flex;
+    padding: 10px;
+    max-height: none;
+    height: 50px;
+    max-width: none;
+    border-radius: 13px;
+    margin-top: 0px;
+    margin-left: 0px;
+    justify-items: flex-end;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+input[type='submit']:hover{
+    background-color: #5aaeb1;
+}
+
+/*
+.uploadBox{
+    background-color: #9c9393;
+    width: 40%;
+    height: 200px;
+    margin: 20px;
+}
+    */
+
+.trackingBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.trackingBox > *{
+    margin: 40px;
+    margin-bottom: 10px;
+}
+
+.displayBox{
+    margin: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.displayBox > * {
+    background-color: #f5fffa;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+}
+
+.displayName{
+    flex: .9;    
+    background-color: #f5fffa;
+    width: fill;
+    min-width: 300px;
+    line-height: .1px;
+    align-items: center;
+}
+
+.displayStaff{
+    flex-direction: column;
+    line-height: .7px;
+    width: auto;
+    min-width: 300px;
+}
+
+.displayStation{
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.recordBox{
+    background-color: #f5fffa;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+    margin-top: 0;
+    margin-bottom: 0px;
+    border-radius: 12px;
+    
+}
+
+.displayRecord{
+    margin-top: 10px;
+    display: flex;
+    flex:1;
+    flex-direction: column;    
+    justify-content: space-around;
+}
+
+.displayRecord > *{
+    margin: 15px;
+    flex:1;
+}
+
+.displayRecord > p{
+    background-color: #d4e4da;
+    min-height: 200px;
+}
+
+.displayRecord > label{
+    margin: 0px;
+    margin-left:15px;
+}
+
+.displayRecord > textarea{
+    display: flex;
+    min-height: 200px;
+    resize: none;
+    outline: none !important;
+    border:2px solid rgb(161, 201, 187);
+    background-color: #edf1ed;
+    margin-bottom: 30px;
+}
+
+.recordSection > div{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    flex: 1;
+    border-radius: 5px;
+    background-color: #b7e2d0;
+    justify-content: space-around;
+}
+
+.recordSection > div > .appointment{
+    display: flex;
+    width: auto;
+    height: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    background-color: #fcfdf7;
+    border: 2px solid #b7e2d0;
+    padding: 0px;
+    padding-left: 15px;
+    margin: 5px;
+}
+
+.trackingBox > .titleSection{
+    justify-content: flex-end;
+}
+
+
+.trackingBox > .titleSection > input[type="submit"]{
+    margin-right: 90px;
+    margin-bottom: 15px;
+    font-size: 17px;
+}

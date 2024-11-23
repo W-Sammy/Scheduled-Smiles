@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/calendar.css">
+        <link rel="stylesheet" href="./css/Header.css">
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a class="link" id="back">←</a>
+            <a class="link">Logout</a>
+        </header>
+        <div class="logo-container">
+            <img src="./assets/logo.png" class="logo" alt="Scheduled Smiles Logo">
+            <div class="logo-text">
+                <h4 class="logo-text">Scheduled</h4>
+                <h4 class="logo-text">Smiles</h4>    
+            </div>
+        </div>
+        <div class="schedule-container">
+            <!-- Calendar Start -->
+            <div class="calendar-container">
+                <div id="cal1" class="calendar">
+                    <div class="calendar-header">
+                        <div class="month-buttons prevent-select">
+                            <div class="prev">&#10094;</div>
+                            <div class="next">&#10095;</div>
+                        </div>
+                        <ul class="month">
+                            <li data-month="1" data-days="31">January</li>
+                            <li data-month="2" data-days="28">February</li>
+                            <li data-month="3" data-days="31">March</li>
+                            <li data-month="4" data-days="30">April</li>
+                            <li data-month="5" data-days="31">May</li>
+                            <li data-month="6" data-days="30">June</li>
+                            <li data-month="7" data-days="31">July</li>
+                            <li data-month="8" data-days="31">August</li>
+                            <li data-month="9" data-days="30">September</li>
+                            <li data-month="10" data-days="31">October</li>
+                            <li data-month="11" data-days="30" class="active">November</li>
+                            <li data-month="12" data-days="31">December</li>
+                        </ul>
+                        <br>
+                        <div class="year-buttons prevent-select">
+                            <div class="prev">&#10094;</div>
+                            <div data-max="2037" class="year">
+                                <!-- javascript inserts here -->
+                            </div>
+                            <div class="next">&#10095;</div>
+                        </div>
+                        <!-- Legend Start -->
+                        <div class="legend-container">
+                            <label class="legend-item">
+                                <div class="open-color color-box"></div>
+                                Open
+                            </label>
+                            <label class="legend-item">
+                                <div class="reserved-color color-box"></div>
+                                Reserved
+                            </label>
+                            <label class="legend-item">
+                                <div class="closed-color color-box"></div>
+                                Closed
+                            </label>
+                        </div>
+                        <!-- Legend End -->
+                    </div>
+                    <ul class="day-names">
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                        <li>Sun</li>
+                    </ul>
+                    <ul class="day-numbers">
+                        <!-- javascript inserts here -->
+                    </ul>
+                </div>
+            </div>
+            <!-- Calendar End -->
+
+            <div class="appointment-section">   
+                <!-- Appointment schedule start -->
+                <div class="appointment-container">
+                    <h3>Enter Patient's Name or E-mail</h3>
+                    <div class="input-row">
+                        <input type="text" class="patient-name" placeholder="Name" spellcheck="false">
+                        <p>or</p>
+                        <input type="email" class="patient-email" placeholder="Email" spellcheck="false">   
+                    </div>
+                    <h3>Select Time</h3>
+                        <select class="select-time">
+                            <option value="7:00 AM">7:00 AM</option>
+                            <option value="8:00 AM">8:00 AM</option>
+                            <option value="9:00 AM">9:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                        </select>
+                        <br>
+                        <h3>Additional Staff</h3>
+                        <div class="staff-select-row">
+                            <select class="staff-select">
+                                <option value="">None</option>                                
+                                <option value="staff1">Staff 1</option>
+                                <option value="staff2">Staff 2</option>
+                                <option value="staff3">Staff 3</option>
+                                <option value="staff4">Staff 4</option>
+                            </select>
+                            <br>
+                            <select class="staff-select">
+                                <option value="">None</option>
+                                <option value="staff1">Staff 1</option>
+                                <option value="staff2">Staff 2</option>
+                                <option value="staff3">Staff 3</option>
+                                <option value="staff4">Staff 4</option>
+                            </select>
+                        </div>
+                        <button id="request-appt-btn">Schedule</button>
+                    </div>
+                </div>
+                <!-- Appointment schedule end -->
+            </div>
+        </div>
+
+
+    </body>
+</html>
