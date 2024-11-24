@@ -20,12 +20,14 @@ function loadTabs() {
             let res = response.toLowerCase()
             // Equality operators don't work normal, probably a dumb effing encoding issue -Kyle
             if (res.includes( "patient")) {
-                addTabToNav("Billing", "billing", "billing.html")
+                addTabToNav("Billing", "billing", "payment-history.html")
+                addTabToNav("History", "history", "history.html")
+                addTabToNav("Schedule", "scheduler", "patient-calendar.html")
             }
             if (res.includes("patient") || res.includes("staff")) {
                 addTabToNav("Appointment", "session", "session.html")
                 addTabToNav("Schedule", "scheduler", "calendar.html")
-                addTabToNav("History", "history", "history.html")
+                addTabToNav("Payroll", "payroll", "payroll.html")
             } else if (res.includes("admin")) {
                 addTabToNav("Payroll", "payroll", "payroll.html")
             } else {
