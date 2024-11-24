@@ -6,53 +6,35 @@
         <title>Scheduled Smiles</title>
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/dashboard.css">
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
         <script src ="./js/navigationTab.js"></script>
         <script src="./js/overviewBox.js"></script>
     </head>
 
     <body>
         <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
-            
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
 
         <div class= "navigationTabs" id="navigation">
-            <!--Need JS script to Populate Tabs with Links-->
-            <div class="tab" id="chat">
-                <a href="chat.html">Chat</a>
-            </div>
-            <div class="tab" id="session">
-                <a href="session.html">Appointment</a>
-            </div>
-            <div class="tab" id="payroll">
-                <a href="payroll.html">Payroll</a>
-            </div>
-            <div class="tab" id="scheduler">
-                <a href="scheduler.html">Schedule</a>
-            </div>
-            <div class="tab" id="billing">
-                <a href="billing.html">Billing</a>
-            </div>
-            <div class="tab" id="history">
-                <a href="history.html">History</a>
-            </div>
+            <!--Tabs populated by JS-->
+            
         </div>
         
-        <!--Need JS script Introduce user-->       
-        <span class="welcomeMessage" id="welcome"> Welcome <script src=""></script> 
-        </span>
+        <!--JS script Introduce user-->
+        <span class="welcomeMessage" id="welcome">Welcome</span>
 
         <div class="contentBoard" id="content">
 
             <div class="userInfoBox" id="info">
-                <!--Need JS script to Populate info template with user info-->
+                <!--JS populates user info-->
                 <img src="" alt="">test<img>
                 <div class="infoField">
                     <img src="" alt="">test<img>
-                    <p class="name">name </p>
-                    <p class="email"> email</p>
-                    <p class="ID">#id </p>
+                    <p id="name" class="name">[]</p>
+                    <p id="email" class="email">[]</p>
+                    <p id="dob" class="dob">[]</p>
                     <p></p>
                 </div>
             </div>

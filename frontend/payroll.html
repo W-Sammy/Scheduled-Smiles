@@ -5,16 +5,198 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
         <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/payroll.css">
+        <link rel="stylesheet" href="./css/session.css">
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
     </head>
 
     <body>
         <header class="header" style="margin-bottom: 50px;">
             <!--Need JS script to complete Log out feature-->       
             <a class="link"> Log out</a>
-            
         </header>
-        <div>
-            test of the body
+
+        <!--Staff Selector: Usable by Admin's only-->
+        <div class="staffSelector">
+            <div>
+                <h3>
+                    View Employee's working hours:
+                </h3>
+                <select name="staffDropDownList" id="staffList">
+                    <option value="Temp">BESTTTTTTTTY PERSON</option>
+                    <option value="Temp">WORKINGGGGGGGGG PERSON</option>
+                </select>
+                <input type="submit" class="confirm" value="Pay Staff"> 
+            </div>
+        </div>
+
+
+        <div class="appointmentBox">
+            <!-- Numerical Chart to Display Hours-->
+            <div class="infoBox" id="sessionToPay">
+                <!-- Display Session that Staff has done/been recorded--->
+                <div>
+                    <div class="titleSelection">
+                        <p><h2 class="title">Current Month's Sessions</h2></p>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>                    
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    <div class="appointment">
+                        <span id="sessionCheck">Session #:</span>
+                        <span id="patientID">Patient:</span>
+                        <span id="hourCheck">Hours Serviced:</span>
+                        <span id="treatmentCheck">Treatment:</span>
+                    </div>
+                    
+                </div>
+                <hr>
+
+                <!--Total hour Display and calulations-->
+                <div class="infoBox" id="hourCalculation">
+                    
+                    <div class="titleSelection">
+                        <p><h2 class="title">Accumulated Hours Serviced</h2></p>
+                    </div>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+                    <li>Hour 50</li>
+
+                    <hr>
+                    
+                    <ul><h2>Total Hours:</h2></ul>
+                </div>
+
+            </div>
+
+            <!-- Visual Diplay of Hours based on month/week-->
+            <!--Additional display Hourly rates and Admin Pay button-->
+            <div class="workBox">
+
+                <span class="titleSelection">
+                    <h2 class="title">Salary Statistics</h2>
+                </span>
+
+                <div class="graph" id="hourGraph">
+                    <!--Graph display for User's previous hours-->
+                    <!--Use Numerical Values if Graph is too complex-->
+                    <div>
+                        <span class="titleSelection">
+                            <h2 class="title">Last Month</h2>
+                        </span>
+                        <ul> Total Hours: 20 hours</ul>
+
+                        <span class="titleSelection">
+                            <h2 class="title">Past Month</h2>
+                        </span>
+                        <ul> Total Hours: 25 hours</ul>
+                    </div>
+                </div>
+
+                <div class="infoBox" id="salaryCalculation">
+                    <div>
+                        <h3>Current Month Hours:</h3>
+                        <h4>Current Month Hours</h4>
+                    </div>
+                    <div>
+                        <h3>Salary Rate:</h3>
+                        <h4>Current Month Hours</h4>
+                    </div>
+                    <div>
+                        <h3>Total Pay:</h3>
+                        <h4>Current Month Hours</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
