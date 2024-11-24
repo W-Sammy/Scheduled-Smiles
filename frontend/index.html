@@ -38,15 +38,18 @@
                 <div class="wrapSignIn">
                     <a onclick="closeSignIn()" class="hyperlinkBack">Close</a>
                     <br>
-                    <img class='logo' src="./assets/Logo.png" height="192" width="230"/>
+                    <img class='logo' src="./assets/Logo.png"/>
                     <h2 class='title'>Scheduled Smiles</h2>
 
                     <div class='inputField'>
-                        <label class='labels' style="padding-right: 42px;"> Email :</label>
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Sophie@example.com" required/>
-                        <br/>
-                        <label class='labels'> Password : </label>
-                        <input pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                        <div class="leftJustifyBlock">
+                            <label class='labels' style="padding-right: 42px;"> Email :</label>
+                            <label class='labels'> Password : </label>
+                        </div>
+                        <div class="leftJustifyBlock">
+                            <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Sophie@example.com" required/>
+                            <input pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                        </div>
                     </div>
 
                     <div class='hyperlinkPassword'>
@@ -73,20 +76,24 @@
                     <h2 class='titleRegister'>Scheduled Smiles </h2>
                     <h2 class='titleRegister'>Create your new Account!</h2>
                     <div class='inputFieldRegister'>
-                        <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
-                        <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
-                        <span style="color: #7c7c7cc2; font-weight: bold;">Minimal 8 characters: (a-z)(0-9)</span>
-                        <br>
-                        <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
-                        <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="Phone Number: (123-4567)" />
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
-                        <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
-                        <label class='labels'>Sex:</label>
-                        <select name="sex">
-                          <option value="M">Male</option>
-                          <option value="F">Female</option>
-                        </select>
+                        <div>
+                            <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
+                            <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
+                            <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
+                        </div>
+                            <span style="color: #7c7c7cc2; font-weight: bold;">Minimal 8 characters: (a-z)(0-9)</span>
+                            <br>
+                        <div>
+                            <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
+                            <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="Phone Number: (123-4567)" />
+                            <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
+                            <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
+                            <label class='labels'>Sex:</label>
+                            <select name="sex">
+                              <option value="M">Male</option>
+                              <option value="F">Female</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="buttonRegister">
                         <Button type="submit" class="genericButton">Submit</Button>
