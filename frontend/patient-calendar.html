@@ -86,9 +86,9 @@
                 <div class="appointment-container">
                     <h3>Enter Name or E-mail</h3>
                     <div class="input-row">
-                        <input type="text" class="patient-name" placeholder="Name" spellcheck="false">
+                        <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="patient-name" placeholder="Name" spellcheck="false">
                         <p>or</p>
-                        <input type="email" class="patient-email" placeholder="Email" spellcheck="false">   
+                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="patient-email" placeholder="Email" spellcheck="false">   
                     </div>
                     <h3>Select Time</h3>
                         <select class="select-time">
@@ -105,7 +105,7 @@
                             <option value="5:00 PM">5:00 PM</option>
                         </select>
                         <br>
-                        <button id="request-appt-btn">Schedule</button>
+                        <button id="request-appt-btn" onclick="scheduleAppt">Schedule</button>
                     </div>
                 </div>
                 <!-- Appointment schedule end -->

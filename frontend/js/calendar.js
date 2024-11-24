@@ -1,5 +1,6 @@
 window.onload = () => {
     loadCalendars()
+    populateDummyData()
 }
 
 // Plceholder function
@@ -134,4 +135,24 @@ function getYear() {
 function _isLeapYear(year)
 {
   return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+}
+
+// populates dummy data
+function populateDummyData() {
+    const staffList = ["Brandon", "Dann", "Erds", "John", "Kaylina", "Keav'n", "Kyle", "Sammy"];
+
+    // selects all dropdown elements with class "staff-select"
+    const staffDropdowns = document.querySelectorAll(".staff-select");
+
+    staffDropdowns.forEach((dropdown) => {
+
+
+        staffList.forEach((staff, i) => {
+            const option = document.createElement("option");
+            option.value = `staff${i+1}`;
+            option.textContent = staff;
+            dropdown.appendChild(option);
+        })
+    })
+
 }
