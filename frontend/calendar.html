@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="./css/Header.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src="./js/calendar.js"></script>
     </head>
     <body>
         <header class="header">
@@ -110,21 +111,13 @@
                         <div class="staff-select-row">
                             <select class="staff-select">
                                 <option value="">None</option>                                
-                                <option value="staff1">Staff 1</option>
-                                <option value="staff2">Staff 2</option>
-                                <option value="staff3">Staff 3</option>
-                                <option value="staff4">Staff 4</option>
                             </select>
                             <br>
                             <select class="staff-select">
                                 <option value="">None</option>
-                                <option value="staff1">Staff 1</option>
-                                <option value="staff2">Staff 2</option>
-                                <option value="staff3">Staff 3</option>
-                                <option value="staff4">Staff 4</option>
                             </select>
                         </div>
-                        <button id="request-appt-btn">Schedule</button>
+                        <button id="request-appt-btn" onclick="scheduleAppt">Schedule</button>
                     </div>
                 </div>
                 <!-- Appointment schedule end -->
