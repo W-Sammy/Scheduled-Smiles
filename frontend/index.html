@@ -77,22 +77,38 @@
                     <h2 class='titleRegister'>Create your new Account!</h2>
                     <div class='inputFieldRegister'>
                         <div>
-                            <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
-                            <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
-                            <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
+                            <div class="leftJustifyBlock">
+                                <label class='labels'>First Name:</label>
+                                <label class='labels'>Last Name:</label>
+                                <label class='labels'>Email:</label>
+                            </div>
+                            <div class="leftJustifyBlock">
+                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
+                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
+                                <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
+                            </div>
                         </div>
-                            <span style="color: #7c7c7cc2; font-weight: bold;">Minimal 8 characters: (a-z)(0-9)</span>
-                            <br>
+                        <div style="color: #7c7c7cc2; font-weight: bold; margin: 0px;">Minimal 8 characters: (A-Z)(a-z)(0-9)</div>
                         <div>
-                            <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
-                            <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="Phone Number: (123-4567)" />
-                            <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
-                            <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
-                            <label class='labels'>Sex:</label>
-                            <select name="sex">
-                              <option value="M">Male</option>
-                              <option value="F">Female</option>
-                            </select>
+                            <div class="leftJustifyBlock">
+                                <label class='labels'>Password:</label>
+                                <label class='labels'>Phone Number:</label>
+                                <label class='labels'>Address:</label>
+                                <label class='labels'>Date of Birth:</label>
+                            </div>
+                            <div class="leftJustifyBlock">
+                                <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
+                                <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="(123-4567)" />
+                                <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
+                                <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
+                            </div>
+                            <div>
+                                <label class='labels'>Sex:</label>
+                                <select name="sex">
+                                  <option value="M">Male</option>
+                                  <option value="F">Female</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="buttonRegister">
@@ -105,12 +121,16 @@
         <div class="signInBox" id="passwordOverlay">
             <form id="forgotPassword">
                 <div class="wrapSignIn">
-                    <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
-                    <div class='inputField'>
-                        <span style="color: #7c7c7cc2; font-weight: bold;">Enter Email for a password reset request</span>
-                        <br>
-                        <label class='labels' style="padding-right: 42px;"> Email :</label>
-                        <input pattern="[\x00-\x7F]+" type="email" class="input" placeholder="Sophie@example.com" />
+                    
+                    <div class="inputFieldRegister">
+                        <p>
+                            <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
+                        </p>
+                        <div style="color: #3f6154; font-weight: bold; margin:10px;">Enter Email for a password reset request</div>
+                        <div>
+                            <label class='labels' style="padding-right: 42px;"> Email :</label>
+                            <input pattern="[\x00-\x7F]+" type="email" class="input" placeholder="Sophie@example.com" />
+                        </div>
                     </div>
                     <div class="buttonForgotPassword">
                         <Button type="submit" class="genericButton"> Request Password Reset </Button>

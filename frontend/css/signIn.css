@@ -18,6 +18,7 @@
     text-align: center;
     padding: 40px;
     justify-content: center;
+    align-items: center;
     border-radius: 10px;    
 
 }
@@ -36,10 +37,11 @@
 
 .titleRegister{
     color: #3f6154;
-    line-height: 10px;
     text-align: left;
     padding-left: 50px;
     font-size: xx-large;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .inputField{
@@ -56,21 +58,21 @@
     flex-wrap: wrap;
     flex-direction: column;
     text-align: left;
-    padding-left: 40px;
 }
 
 .inputFieldRegister>*{
-    margin: 20px;
+    margin: 10px;
 }
 
 .inputFieldRegister > div{
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
 }
 
 .inputFieldRegister > div > *{
-    margin: 10px;
+    margin: 2px;
 }
 
 
@@ -148,22 +150,36 @@
 .hyperlinkBack{
     line-height: 0;
     text-align: right;
-    padding-right: 5px;
+    margin-right: 2px;
+    margin-bottom: 10PX;
     top: 1px;
     right: 1px;
     float: right;
     color: #3f6154;
     font-weight: 520;
 }
+
 .hyperlinkBack:hover{
     color: #7fa194;
 }
 
 select{
+    font-size: 1em;
     max-width: 200px;
     margin: 5px; 
     margin-bottom: 20px;
     border-color: rgba(39, 117, 74, 0.349);
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: #e4d9d9;
+}
+div > p {
+    margin: 10px;
+}
+
+.genericButton{
+    margin-top: 10px;
+}
+
+span{
+    margin-bottom: 50px;
 }
