@@ -11,14 +11,11 @@ public class Pages {
     public static final Map<String, String> MAPPED_FILES = Map.of(
         "/", "index.html",
         "404", "404.html",
-        "billing", "billing.html",
         "payroll", "payroll.html",
         "session", "session.html",
         "dashboard", "dashboard.html",
         "calendar", "calendar.html",
-        "history", "history.html",
-        "chat", "chat.html",
-        "scheduler", "scheduler.html",
-        "patient-billing", "patientBilling.html"
+        "history", "payment-history.html",
+        "chat", "chat.html"
     );
 }
