@@ -4,20 +4,33 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
-        <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/chat.css">
+        <link rel="stylesheet" href="./css/Header.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
     </head>
-
     <body>
-        <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
-            
+        <header class="header">
+            <a class="link" id="back">←</a>
+            <a class="link">Logout</a>
         </header>
-        <div>
-            test of the body
+        <div class="contacts-section">
+            <!-- Contacts -->
+            <div class="contacts-list">
+                <div class="contacts">
+                     <!-- People List In Between <a></a> -->
+                    <a href="" class="contact">hihi</a>
+                    <a href="" class="contact">hihi</a>
+                    <a href="" class="contact">dwedwe</a>
+                </div>
+            </div>
         </div>
-
+        <div class="send-message-section">
+             <!-- Send Message start -->
+            <div class="input-row">
+                <textarea class="message-input" placeholder="Send A Message..." spellcheck="false"></textarea>
+                <button class="send-btn">Send</button>
+            </div>
+        </div> 
     </body>
 </html>

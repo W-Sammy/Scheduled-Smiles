@@ -1,0 +1,126 @@
+@property --calendar-main-bg-color { /* bg for header and submit button */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #116d71;
+}
+  @property --calendar-main-text-color { /* fg for header and submit button */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: white;
+}
+  @property --calendar-secondary-bg-color { /* bg for day buttons */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #eee;
+}
+  @property --calendar-secondary-text-color { /* fg for day buttons */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #777;
+}
+  @property --calendar-tertiary-bg-color { /* bg for day names */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ddd;
+}
+  @property --calendar-tertiary-text-color { /* fg for day names */
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #666;
+}
+
+.contacts-section {
+    width: 15%;
+    min-height: 100%;
+    padding: 20px;
+    background-color: #64a1a3;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    max-height: calc(100% - 40px);
+}
+
+.contact {
+    margin: 0;
+    padding: 10px;
+    background-color: #ececec;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.contact:hover {
+    background-color: #cce7ff;
+}
+
+.send-message-section {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-end; 
+    height: 100%; 
+    position: fixed; 
+    width: 85%;
+    bottom: 20px;
+    right: 10px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%; 
+    padding: 10px;
+    background-color: #D4DDD3;
+    border-radius: 5px;
+
+}
+
+.message-input {
+    flex-grow: 1;
+    padding: 0 10px;
+    background-color: #D4DDD3;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    min-height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+    resize: none;
+    overflow-y: auto;
+    outline: none;
+    font-size: 28px;
+
+}
+
+.message-input::placeholder {
+    color: #008080;
+}
+
+.send-btn {
+    background-color: #008080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 50px;
+    width: 80px;
+}
+
+.send-btn:hover {
+    background-color: #005f5f;
+}
+
+.send-btn:active {
+    background-color: var(--calendar-main-bg-color);
+    transform: scale(0.95); /* Slightly shrink the button */
+}
