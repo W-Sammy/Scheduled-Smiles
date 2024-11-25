@@ -43,12 +43,12 @@
 
                     <div class='inputField'>
                         <div class="leftJustifyBlock">
-                            <label class='labels' style="padding-right: 42px;"> Email :</label>
-                            <label class='labels'> Password : </label>
+                            <label class='labels' style="padding-right: 42px;">Email:</label>
+                            <label class='labels'>Password:</label>
                         </div>
                         <div class="leftJustifyBlock">
-                            <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Sophie@example.com" required/>
-                            <input pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                            <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" required/>
+                            <input name="password" pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="buttonSignIn">
-                        <Button type="submit" class="genericButton"> Login </Button>
+                        <button type="submit" class="genericButton"> Login </button>
                     </div>
 
                     <div class="textRegister">
@@ -83,12 +83,12 @@
                                 <label class='labels'>Email:</label>
                             </div>
                             <div class="leftJustifyBlock">
-                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
-                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
-                                <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
+                                <input name="firstName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="John" required/>
+                                <input name="lastName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Doe" required/>
+                                <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" required/>
                             </div>
                         </div>
-                        <div style="color: #7c7c7cc2; font-weight: bold; margin: 0px;">Minimal 8 characters: (A-Z)(a-z)(0-9)</div>
+                        <div style="color: #7c7c7cc2; font-weight: bold; margin: 0px;">Minimal 8 characters:</div>
                         <div>
                             <div class="leftJustifyBlock">
                                 <label class='labels'>Password:</label>
@@ -97,14 +97,14 @@
                                 <label class='labels'>Date of Birth:</label>
                             </div>
                             <div class="leftJustifyBlock">
-                                <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
-                                <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="(123-4567)" />
-                                <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
-                                <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
+                                <input name="password" pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="*********" required/>
+                                <input name="phoneNumber" pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="###-###-####" required/>
+                                <input name="address" pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="999 Anywhere St." required/>
+                                <input name="birthDate" pattern="[\x00-\x7F]+" type="date" class="input2" required/>
                             </div>
                             <div>
                                 <label class='labels'>Sex:</label>
-                                <select name="sex">
+                                <select name="sex" required>
                                   <option value="M">Male</option>
                                   <option value="F">Female</option>
                                 </select>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="buttonRegister">
-                        <Button type="submit" class="genericButton">Submit</Button>
+                        <button type="submit" class="genericButton">Submit</button>
                     </div>  
                 </div>
             </form>
@@ -127,12 +127,12 @@
                         </p>
                         <div style="color: #3f6154; font-weight: bold; margin:10px;">Enter Email for a password reset request</div>
                         <div style="align-items: center; justify-content: center;">
-                            <label class='labels' style="margin-left: 20px; margin-right: 20px;"> Email :</label>
-                            <input pattern="[\x00-\x7F]+" type="email" class="input" placeholder="Sophie@example.com" />
+                            <label class='labels' style="margin-left: 20px; margin-right: 20px;">Email:</label>
+                            <input name="email" pattern="[\x00-\x7F]+" type="email" class="input" placeholder="test@example.us" />
                         </div>
                     </div>
                     <div class="buttonForgotPassword">
-                        <Button type="submit" class="genericButton"> Request Password Reset </Button>
+                        <button type="submit" class="genericButton">Request Password Reset</button>
                     </div>
                 </div>
             </form>
