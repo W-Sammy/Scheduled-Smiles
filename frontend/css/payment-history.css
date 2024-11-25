@@ -1,37 +1,5 @@
-/* Adjust to match theme colors as needed -Kyle */
-@property --calendar-main-bg-color { /* bg for header and submit button */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #116d71;
-}
-  @property --calendar-main-text-color { /* fg for header and submit button */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: white;
-}
-  @property --calendar-secondary-bg-color { /* bg for day buttons */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #eee;
-}
-  @property --calendar-secondary-text-color { /* fg for day buttons */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #777;
-}
-  @property --calendar-tertiary-bg-color { /* bg for day names */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #ddd;
-}
-  @property --calendar-tertiary-text-color { /* fg for day names */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #666;
-}
-
 body {
-    font-family: Verdana, sans-serif;
+    font-family: Verdana, Sans-Serif;
     margin: 0;
     padding: 0;
     display: flex; /* Enables flexbox */
@@ -88,7 +56,7 @@ body {
 }
 
 #payment-history th {
-    background-color: var(--calendar-main-bg-color);
+    background-color: #116d71;
     color: white;
     font-weight: 550;
     padding: 10px;
@@ -96,7 +64,7 @@ body {
 
 #payment-history td {
     background-color: #ecebeb;
-    color: var(--calendar-tertiary-text-color);
+    color: #ddd;
     padding: 15px;
 }
 
@@ -163,6 +131,6 @@ body {
 }
 
 #pay-now-btn:active {
-    background-color: var(--calendar-main-bg-color);
+    background-color: #116d71;
     transform: scale(0.95); /* Slightly shrink the button */
 }
