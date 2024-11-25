@@ -159,6 +159,7 @@ public class ServerConnectionHandler implements HttpHandler {
             return false;
         try (DatabaseConnection db = new DatabaseConnection()) {
             if (db.isConnected()) {
+                final String queryString = requestJsonObject.get("query").getAsString();
                 switch (requestPath[3]) {
                     case "get":
                         results = convertFromJson(db.query(queryString));
@@ -317,7 +318,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 returnValue = getRoleName(unhex(requestValue));
             break;
             case "roleName":
-                returnValue = (ROLE_IDS.containsKey(requestValue)) ? ROLE_IDS.get(requestValue) : null;
+                returnValue = (ROLE_IDS.containsKey(requestValue)) ? hex(ROLE_IDS.get(requestValue)) : null;
             break;
             default:
                 return false;
@@ -335,11 +336,11 @@ public class ServerConnectionHandler implements HttpHandler {
         final int timestamp = requestJsonObject.get("startTime").getAsInt();
         final int before = timestamp - oneHour;
         final int after = timestamp + oneHour;
-        final String queryString = String.join(" UNION ", {
+        final String queryString = String.join(" UNION ",
             String.format("SELECT staff1ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before),
             String.format("SELECT staff2ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before),
-            String.format("SELECT staff3ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before),
-        });
+            String.format("SELECT staff3ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before)
+        );
         JsonElement result = convertToJsonElement("");
         try (DatabaseConnection db = new DatabaseConnection()) {
             if (db.isConnected()) {
@@ -365,10 +366,8 @@ public class ServerConnectionHandler implements HttpHandler {
             switch (requestPath[3]) {
                 case "role":
                     return lookupRoleValue();
-                break;
                 case "availability":
                     return lookupStaffAvailability();
-                break;
             }
         }
         return false;
@@ -408,7 +407,9 @@ public class ServerConnectionHandler implements HttpHandler {
                     isValidRequest = false;
             }
         }
-        if (!isValidRequest) {
+        if (isValidRequest) {
+            System.out.println("API request returned without error");
+        } else {
             System.out.println("API request was found to be invalid");
             // Malformed/Invalid request body
             sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body or invalid endpoint");
