@@ -45,7 +45,14 @@ function registerSubmitted(event) {
     event.preventDefault()
     let formE = event.target
     let [first, last, email, pass, phone, addr, dob, sex] = Array.from(formE.elements, e => e.value)
-    dob = dateStringToUtc(dob)
+    // Kyle here, sorry for this monstrosity:
+    // 1. Reformat given date string from YYYY-MM-DD to MM-DD-YYYY (can cause bugs, see: https://stackoverflow.com/a/31732581)
+    // 2. Create Date Object, get time (returns as milliseconds, need to convert to seconds)
+    // 3. Add timezone offset of client device (returns as minutes, need to convert to seconds)
+    dob = Math.round((new Date(dob.replace(
+        "([0-9]{4})-([0-9]{2})-([0-9]{2})",
+        "$2-$3-$1"
+    ))).getTime() / 1000) + ((new Date()).getTimezoneOffset() * 60)
     accountEmailExists(email).then(exists => {
         if (exists) {
             return false

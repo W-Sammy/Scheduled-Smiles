@@ -55,8 +55,10 @@ function loadFields() {
     getIdAccount(getCookieValue("userID")).then(response => {
         if (response != "false") {
             let account = JSON.parse(response)
+            const dob = new Date(0)
+            dob.setUTCSeconds(account.birthDate)
             welcome.innerHTML += `, ${account.firstName}!`
-            bday.innerHTML = new Date(0, 0, 0, 0, 0, account.birthDate).toDateString()
+            bday.innerHTML = dob.toDateString()
             name.innerHTML = `${account.firstName}, ${account.lastName}`
             email.innerHTML = account.email
         }

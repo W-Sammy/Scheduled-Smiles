@@ -38,16 +38,6 @@ async function request(requestBody, endpoint, method) {
     })
 }
 
-/**
- * Converts a date string to UTC timestamp.
- * @param {String} dateString Ex: "2024-11-20"
- * @returns {Number} The UTC timestamp corrosponding to the given date.
- */
-function dateStringToUtc(dateString) {
-    const date = new Date(dateString + "Z")
-    return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds())
-}
-
 // Module functions
 /**
  * Sends a query to the database.

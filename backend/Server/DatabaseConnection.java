@@ -67,6 +67,9 @@ public class DatabaseConnection implements AutoCloseable {
                             case Types.LONGVARCHAR:
                                 resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i)));
                             break;
+                            case Types.DECIMAL:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getDouble(i)));
+                            break;
                             case Types.BIGINT:
                             case Types.INTEGER:
                                 resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getInt(i)));

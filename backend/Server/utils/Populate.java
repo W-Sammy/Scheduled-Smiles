@@ -73,19 +73,19 @@ public class Populate {
             pids.add(row.get(0));
         }
         // Aggregate columns
-        final String[] columns = {
+        final String[] columns = {  
             "textContent", "createdAt"
         };
         final ArrayList<Chat> chats = new ArrayList<Chat>();
         int idx = 0;
         for (DatabaseGenericParameter pid : pids) {
             final List<DatabaseGenericParameter> idPair = db.query(String.format("SELECT senderID, receiverID FROM messagePairTypes WHERE %s", pid.equalsTo("pairID"))).get(0);
-            chats.add(new Chat(pid, idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes()));
+            chats.add(new Chat(pid.getAsBytes(), idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes()));
             idx = chats.size() - 1;
             final String queryString = String.format("SELECT %s FROM messages WHERE %s ORDER BY createdAt DESC", String.join(", ", columns), pid.equalsTo("pairID"));
             final List<List<DatabaseGenericParameter>> result = db.query(queryString);
             for (List<DatabaseGenericParameter> row : result) {
-                chats.get(idx).addMessages(pid.getAsBytes(), row.get(0).getAsString(), row.get(1).getAsInteger());
+                chats.get(idx).addMessages(row.get(0).getAsString(), row.get(1).getAsInteger());
             }
         }
         // Chat(byte[] senderID, byte[] receiverID)
@@ -94,7 +94,6 @@ public class Populate {
     public static Chat populateChat(final byte[] receiverID, final byte[] senderID, final DatabaseConnection db) {
         final DatabaseGenericParameter sid = new DatabaseGenericParameter(senderID);
         final DatabaseGenericParameter rid = new DatabaseGenericParameter(receiverID);
-        final Chat chat  = new Chat(senderID, receiverID);
         // Verify ID exists 
         final boolean idExists = verifyWhere(sid.equalsTo("senderID"), "messagePairTypes", db) && verifyWhere(rid.equalsTo("receiverID"), "messagePairTypes", db);
         if (!idExists) {
@@ -102,6 +101,7 @@ public class Populate {
         }
         // Get stupid pair id
         final DatabaseGenericParameter pid = db.query(String.format("SELECT pairID WHERE %s AND %s",  sid.equalsTo("senderID"), rid.equalsTo("receiverID"))).get(0).get(0);
+        final Chat chat  = new Chat(pid.getAsBytes(), senderID, receiverID);
         // Aggregate columns
         final String[] columns = {
             "textContent", "createdAt"
@@ -110,7 +110,7 @@ public class Populate {
         final List<List<DatabaseGenericParameter>> result = db.query(queryString);
         
         for (List<DatabaseGenericParameter> row : result) {
-            chat.addMessages(pid.getAsBytes(), row.get(0).getAsString(), row.get(1).getAsInteger());
+            chat.addMessages(row.get(0).getAsString(), row.get(1).getAsInteger());
         }
         // Chat(byte[] senderID, byte[] receiverID)
         return chat;
@@ -145,13 +145,17 @@ public class Populate {
         final char sex = result.get(4).getAsChar();
         final String phone = result.get(5).getAsString();
         final String email = result.get(6).getAsString();
-        final int bday = result.get(7).getAsInteger();
+        final int bday = result.get(7).getAsInteger();  
         double wage = 0.0;
         // Get role-specific info
         if (Arrays.equals(roleId, ROLE_IDS.get("Admin")) || Arrays.equals(roleId, ROLE_IDS.get("Staff"))) {
-            wage = db.query("SELECT hrlyWage WHERE " + id.equalsTo("staffID")).get(0).get(0).getAsDouble();
+            // lazy, sorry- "I don't care if it's pretty, atp make sure it just works" - Sammy "The Scrum Master" W. -Kyle
+            try {
+                wage = db.query("SELECT hrlyWage FROM staff WHERE " + id.equalsTo("staffID")).get(0).get(0).getAsDouble();
+            } catch (Exception e) /* this should be index out of bounds exception or something -Kyle */ {
+                wage = -1; // negtive values should throw errors in backend, so never pass this value back. only pass to frontend to show to US that something went wrong. -Kyle
+            }            
         }
-
         // Theres probably a better way to do this but im too tired -Kyle
         if (Arrays.equals(roleId, ROLE_IDS.get("Admin"))) {
             return new Admin(userId, first, last, address, sex, phone, email, bday, wage);
