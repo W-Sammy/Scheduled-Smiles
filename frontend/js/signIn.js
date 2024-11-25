@@ -86,6 +86,9 @@ function showBlockElement(...elementIds) {
     }
 }
 
+
+//Overlay Pop-ops
+//Open Login overlay
 function openSignIn() {
     if(isUserSignedIn()) {
         redirectToDashboard()
@@ -94,17 +97,24 @@ function openSignIn() {
         hideElement("registerOverlay", "passwordOverlay")
     }
 }
+
+//Open Register overlay
 function openRegister() {
     hideElement("signInOverlay", "passwordOverlay")
     showBlockElement("registerOverlay")
 }
+
+//Open Forgot Password Overlay
 function openForgotPassword() {
     hideElement("signInOverlay", "registerOverlay")
     showBlockElement("passwordOverlay")
 }
+
+//Close Login overlay
 function closeSignIn() {
     hideElement("signInOverlay")
 }
+
 // Navigation
 function redirectToDashboard() {
     window.location.href = DASHBOARD_URL;

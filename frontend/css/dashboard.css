@@ -58,25 +58,29 @@ div > * a:hover{
     border-radius: 20px;
 }
 
-/*
+
 .contentBoard{
     z-index: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
-*/
+
 
 .userInfoBox{
     background-color: #2e9da14d;
-    height: 720px;
-    width: 300px;
+    flex: 1;
     align-content: center;
-    padding: 80px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
     border-radius: 20px;
     margin-left: 20px;
     float: left;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 330px;
 }
 
 .infoField{
@@ -91,32 +95,40 @@ div > * a:hover{
     height: 90%;
     border-radius: 20px;
     line-height: 3;
-
+    margin-bottom: 20px;
 }
 
 .overviewBox{
+    background-color: #ff0000;
     display: flex;
     flex-direction: column;
     float: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin:20px;
+    margin-top: 0px;
     /*background-color: #00fff2;*/
     border-radius: 20px;
     align-items: center;
-
+    flex: 1;
 }
 
 .viewBox{
     border-radius: 20px;
     color: rgb(0, 99, 99);
+    display: flex;
     text-align: left;
-    background: #2e9da1;
+    border: 12px solid #7bc6c9;
+    background: #e0f1ed;
     padding: 20px;
     margin: 20px;
+    margin-top: 4px;
+    width: 90%;
 }
 
-.notifcationsBox{
+.viewBox > .title{
+    margin: 0px;
+}
+
+.notificationsBox{
     float: right;
     display: flex;
     flex-direction: column;
@@ -131,7 +143,7 @@ div > * a:hover{
     padding: 20px 20px 0px 20px;
 }
 
-.notifcationTitle{
+.notificationTitle{
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -151,4 +163,10 @@ div > * a:hover{
     width: 100px;
     background-color: #ff0000;
 
+}
+img {
+    margin: 30px;
+    margin-bottom: 20px;
+    height: 60px;
+    width: 60px;
 }
