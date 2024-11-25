@@ -25,7 +25,7 @@ VALUES('JohnDoe@email.com',
        '123 Address Lane',
        '3141592654',
        SHA256('Patient')),
-       
+
       ('JaySohn@email.com',
        SHA256('password732'),
        'Jay',
@@ -47,7 +47,7 @@ VALUES('StephFu@scheduledsmiles.com',
        '456 Address Ave',
        '9169678121',
        SHA256('Staff')),
-       
+
       ('StewartFerris@scheduledsmiles.com',
        SHA256('password917'),
        'Stewart',
@@ -57,7 +57,7 @@ VALUES('StephFu@scheduledsmiles.com',
        '456 Address Blvd',
        '9160258429',
        SHA256('Staff')),
-       
+
       ('EliseFlossmore@scheduledsmiles.com',
        SHA256('password917'),
        'Elise',
@@ -79,7 +79,7 @@ VALUES('AdamMinh@scheduledsmiles.adm.com',
        '789 Address Way',
        '9166534124',
        SHA256('Admin')),
-       
+
       ('AnnieYeager@scheduledsmiles.adm.com',
        SHA256('password471'),
        'Annie',
@@ -90,17 +90,6 @@ VALUES('AdamMinh@scheduledsmiles.adm.com',
        '9167954329',
        SHA256('Admin'));
 
-# insert sample staff wages
-INSERT INTO staff(staffID, hrlyWage)
-VALUES(userID_of('StephFu@scheduledsmiles.com'),
-       88.75),
-       
-      (userID_of('StewartFerris@scheduledsmiles.com'),
-       34.50),
-       
-      (userID_of('EliseFlossmore@scheduledsmiles.com'),
-       55.75);
-
 # insert sample appointments
 INSERT INTO appointments(stationNumber, treatment, patientID, startTime, staff1ID, staff2ID, staff3ID)
 VALUES(1,
@@ -110,7 +99,7 @@ VALUES(1,
        userID_of('StewartFerris@scheduledsmiles.com'),
        NULL,
        NULL),
-       
+
       (2,
        'Checkup',
        userID_of('JaySohn@email.com'),
@@ -118,7 +107,7 @@ VALUES(1,
        userID_of('StewartFerris@scheduledsmiles.com'),
        NULL,
        NULL),
-       
+
       (1,
        'Checkup',
        userID_of('JaneDoe@email.com'),
@@ -204,7 +193,7 @@ VALUES(1,
        userID_of('StephFu@scheduledsmiles.com'),
        userID_of('EliseFlossmore@scheduledsmiles.com'),
        userID_of('StewartFerris@scheduledsmiles.com'));
-
+       
 # change completion for email on date
 UPDATE appointments
 SET isComplete = 1, notes = 'Operation Successful, Patient must...'
