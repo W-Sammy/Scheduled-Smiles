@@ -10,26 +10,26 @@ function logout() {
 
 function loadTabs() {
     if (!checkCookieExists("roleID")) {
-        alert("Not Logged In!")
+        showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
         return
     }
     getRoleName(getCookieValue("roleID")).then(response => {
         if (response == null) {
-            alert("Not Logged In!")
+            showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
         } else {
             let res = response.toLowerCase()
             // Equality operators don't work normal, probably a dumb effing encoding issue -Kyle
             if (res.includes( "patient")) {
-                addTabToNav("Billing", "billing", "billing.html")
+                addTabToNav("Billing", "billing", "billing")
             }
             if (res.includes("patient") || res.includes("staff")) {
-                addTabToNav("Appointment", "session", "session.html")
-                addTabToNav("Schedule", "scheduler", "calendar.html")
-                addTabToNav("History", "history", "history.html")
+                addTabToNav("Appointment", "session", "session")
+                addTabToNav("Schedule", "scheduler", "calendar")
+                addTabToNav("History", "history", "history")
             } else if (res.includes("admin")) {
-                addTabToNav("Payroll", "payroll", "payroll.html")
+                addTabToNav("Payroll", "payroll", "payroll")
             } else {
-                alert("Not Logged In!")
+                showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
             }
         }
     })

@@ -309,11 +309,11 @@ public class ServerConnectionHandler implements HttpHandler {
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         final Set<String> requestKeys = requestJsonObject.keySet();
         String returnValue;
-        if (requestKeys.size() == 1)
+        if (requestKeys.size() != 1)
             return false;
-        
-        final String requestValue = requestJsonObject.get(requestKeys.iterator().next()).getAsString();
-        switch (requestValue) {
+        final String requestKey = requestKeys.iterator().next();
+        final String requestValue = requestJsonObject.get(requestKey).getAsString();
+        switch (requestKey) {
             case "roleId":
                 returnValue = getRoleName(unhex(requestValue));
             break;
@@ -362,7 +362,7 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static boolean handleLookupRequest() throws IOException {
-        if (requestPath.length == 4) {
+        if (requestPath.length >= 4) {
             switch (requestPath[3]) {
                 case "role":
                     return lookupRoleValue();

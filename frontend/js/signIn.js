@@ -35,6 +35,7 @@ function signInSubmitted(event) {
             redirectToDashboard()
         } else {
             // TODO: signin failed, failed to contact database?
+            showWarning("Error, couldn't contact server. Try again later", 5, "bottom", null, formE)
         }
     }).catch(e => {
         // testing
@@ -68,7 +69,7 @@ function registerSubmitted(event) {
                 redirectToDashboard()
             })
         } else {
-            // TODO: registeration failed, notify user acc already exists
+            showWarning("Error, an account with that email already exists", 5, "bottom", null, formE)
         }
     }).catch(e => {
         // testing
@@ -78,7 +79,7 @@ function registerSubmitted(event) {
 function forgotPasswordSubmitted(event) {
     event.preventDefault()
     // TODO: implement in backend
-    alert("Action unsupported for now!")
+    showNotification("Account unsupported!", 5, "top", "10%")
 }
 
 // DOM manipulation functions

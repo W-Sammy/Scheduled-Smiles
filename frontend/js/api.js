@@ -162,7 +162,7 @@ async function createAccount(firstName, lastName, address, sex, phone, email, bi
  */
 async function getRoleName(roleId) {
     const requestBody = `{ "roleId": "${roleId}" }`
-    const endpoint = "/api/lookup"
+    const endpoint = "/api/lookup/role"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
     return (response !== false) ? response : null
