@@ -168,3 +168,19 @@ async function getRoleName(roleId) {
     return (response !== false) ? response : null
 }
 // TODO: getAppointment and getChat/getMessages -Kyle
+
+async function getAvailableStaff(timestamp) {
+    const requestBody = `{ "startTime": "${timestamp}" }`
+    const endpoint = "/api/lookup/availability"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}
+
+async function getFullName(userID) {
+    const requestBody = `{ "query": "SELECT firstName, lastName FROM users WHERE userID=UNHEX('${userID}')" }`
+    const endpoint = "/api/database/get"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}

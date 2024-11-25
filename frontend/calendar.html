@@ -92,23 +92,23 @@
                 <div class="appointment-container">
                     <h3>Enter Patient's Name or E-mail</h3>
                     <div class="input-row">
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="patient-name" placeholder="Name" spellcheck="false">
+                        <input id="patientName" pattern="[\x00-\x7F]+" maxlength="100" type="text" class="patient-name" placeholder="Name" spellcheck="false">
                         <p>or</p>
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="patient-email" placeholder="Email" spellcheck="false">   
+                        <input id="patientEmail" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="patient-email" placeholder="Email" spellcheck="false">   
                     </div>
                     <h3>Select Time</h3>
-                        <select class="select-time">
-                            <option value="7:00 AM">7:00 AM</option>
-                            <option value="8:00 AM">8:00 AM</option>
-                            <option value="9:00 AM">9:00 AM</option>
-                            <option value="10:00 AM">10:00 AM</option>
-                            <option value="11:00 AM">11:00 AM</option>
-                            <option value="12:00 PM">12:00 PM</option>
-                            <option value="1:00 PM">1:00 PM</option>
-                            <option value="2:00 PM">2:00 PM</option>
-                            <option value="3:00 PM">3:00 PM</option>
-                            <option value="4:00 PM">4:00 PM</option>
-                            <option value="5:00 PM">5:00 PM</option>
+                        <select id="hour" class="select-time">
+                            <option value="7">7:00 AM</option>
+                            <option value="8">8:00 AM</option>
+                            <option value="9">9:00 AM</option>
+                            <option value="10">10:00 AM</option>
+                            <option value="11">11:00 AM</option>
+                            <option value="12">12:00 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">2:00 PM</option>
+                            <option value="15">3:00 PM</option>
+                            <option value="16">4:00 PM</option>
+                            <option value="17">5:00 PM</option>
                         </select>
                         <br>
                         <h3>Additional Staff</h3>

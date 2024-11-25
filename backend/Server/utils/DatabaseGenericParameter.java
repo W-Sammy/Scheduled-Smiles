@@ -98,37 +98,37 @@ public class DatabaseGenericParameter implements Serializable {
         if (this.isBoolean()) {
             return Boolean.parseBoolean(stringValue);
         }
-        throw new UnsupportedOperationException("Value is not of type boolean");
+        throw new UnsupportedOperationException(String.format("Value is not of type boolean (%s, %s)", getType(), toString()));
     }
     public String getAsString() throws UnsupportedOperationException {
         if (this.isString()) {
             return stringValue;
         }
-        throw new UnsupportedOperationException("Value is not of type int");
+        throw new UnsupportedOperationException(String.format("Value is not of type string (%s, %s)", getType(), toString()));
     }
     public byte[] getAsBytes() throws UnsupportedOperationException {
         if (this.isBytes()) {
             return HexFormat.of().parseHex(stringValue);
         }
-        throw new UnsupportedOperationException("Value is not of type byte[]");
+        throw new UnsupportedOperationException(String.format("Value is not of type byte[] (%s, %s)", getType(), toString()));
     }
     public int getAsInteger() throws UnsupportedOperationException {
         if (this.isInteger()) {
             return Integer.parseInt(stringValue);
         }
-        throw new UnsupportedOperationException("Value is not of type int");
+        throw new UnsupportedOperationException(String.format("Value is not of type int (%s, %s)", getType(), toString()));
     }
     public double getAsDouble() throws UnsupportedOperationException {
         if (this.isDouble()) {
             return Double.parseDouble(stringValue);
         }
-        throw new UnsupportedOperationException("Value is not of type double");
+        throw new UnsupportedOperationException(String.format("Value is not of type double (%s, %s)", getType(), toString()));
     }
     public char getAsChar() throws UnsupportedOperationException {
         if (this.isChar()) {
             return stringValue.charAt(0);
         }
-        throw new UnsupportedOperationException("Value is not of type char");
+        throw new UnsupportedOperationException(String.format("Value is not of type char (%s, %s)", getType(), toString()));
     }
     @Override
     public String toString() {

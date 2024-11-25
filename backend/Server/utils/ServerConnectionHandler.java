@@ -336,19 +336,19 @@ public class ServerConnectionHandler implements HttpHandler {
         final int timestamp = requestJsonObject.get("startTime").getAsInt();
         final int before = timestamp - oneHour;
         final int after = timestamp + oneHour;
-        final String queryString = String.join(" UNION ",
-            String.format("SELECT staff1ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before),
-            String.format("SELECT staff2ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before),
-            String.format("SELECT staff3ID FROM appointments WHERE startTime > %s OR startTime < %s", after, before)
-        );
-        JsonElement result = convertToJsonElement("");
+        final String queryString = "SELECT staffID FROM staff WHERE staffID NOT IN ( " + String.join(" UNION ",
+            String.format("SELECT staff1ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before),
+            String.format("SELECT staff2ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before),
+            String.format("SELECT staff3ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before)
+        ) + " )";
+        JsonElement result = convertToJsonElement("[]");
         try (DatabaseConnection db = new DatabaseConnection()) {
             if (db.isConnected()) {
                 final ArrayList<String> resultArray = new ArrayList<String>();
                 final List<List<DatabaseGenericParameter>> rawResult = db.query(queryString);
                 for (List<DatabaseGenericParameter> l : rawResult) {
                     resultArray.add(
-                        l.get(0).getAsString()
+                        l.get(0).toString()
                     );
                 }
                 result = convertToJsonElement(resultArray);

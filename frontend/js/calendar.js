@@ -73,6 +73,7 @@ function loadCalendarDays(calendarElement) {
         e.value = i
         var l = document.createElement("label")
         l.innerHTML = i
+        li.onclick = populateStaffLists
         dayElementsContainer.append(li)
         li.append(e)
         li.append(l)
@@ -138,21 +139,31 @@ function _isLeapYear(year)
 
 // TYSM DANN THE GOAT -Kyle
 // populates dummy data
-function populateDummyData() {
-    const staffList = ["Brandon", "Dann", "Erds", "John", "Kaylina", "Keav'n", "Kyle", "Sammy"];
-
-    // selects all dropdown elements with class "staff-select"
-    const staffDropdowns = document.querySelectorAll(".staff-select");
-
-    staffDropdowns.forEach((dropdown) => {
-
-
-        staffList.forEach((staff, i) => {
-            const option = document.createElement("option");
-            option.value = `staff${i+1}`;
-            option.textContent = staff;
-            dropdown.appendChild(option);
+function populateStaffLists() {
+    // convert calendar time to utc timestamps
+    const {month, days, year} = getCalendarData(document.getElementById("cal1")) // only one calendar on the page
+    if (!days.length) // set available staff to none / blank if no day is selected
+        return
+    const hour = parseInt(document.getElementById("hour").value)
+    const timezoneOffset = (new Date()).getTimezoneOffset() * 60
+    const timestamp = (Date.UTC(year, month - 1, days[0], hour - 1) / 1000) + timezoneOffset
+    getAvailableStaff(timestamp).then(response => {
+        const staffIDs = JSON.parse(response)
+        return Promise.all(Array.from(staffIDs, id => getFullName(id)))
+    }).then(response => {
+        console.log(response)
+        const staffList = Array.from(response, (arrStr) => JSON.parse(arrStr)[0].join(" "))
+        console.log(staffList   )
+        // selects all dropdown elements with class "staff-select"
+        const staffDropdowns = document.querySelectorAll(".staff-select");
+        staffDropdowns.forEach((dropdown) => {
+            dropdown.innerHTML = "<option value=\"\">None</option>" // quick and dirty
+            staffList.forEach((staff, i) => {
+                const option = document.createElement("option");
+                option.value = `staff${i+1}`;
+                option.textContent = staff;
+                dropdown.appendChild(option);
+            })
         })
     })
-
 }
