@@ -32,7 +32,7 @@ CREATE TABLE staff (
 
 CREATE TABLE appointments (
     appointmentID BINARY(32),
-    stationNumber SMALLINT,
+    stationNumber INT,
     treatment VARCHAR(20),
     patientID BINARY(32),
     startTime INT,

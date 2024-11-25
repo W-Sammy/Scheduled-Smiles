@@ -204,7 +204,7 @@ VALUES(1,
        userID_of('StephFu@scheduledsmiles.com'),
        userID_of('EliseFlossmore@scheduledsmiles.com'),
        userID_of('StewartFerris@scheduledsmiles.com'));
-/* Date hasn't passed yet -- 11/21
+
 # change completion for email on date
 UPDATE appointments
 SET isComplete = 1, notes = 'Operation Successful, Patient must...'
@@ -214,7 +214,7 @@ WHERE patientID = userID_of('JaySohn@email.com')
     AND startTime < UNIX_TIMESTAMP('2024-11-23 00:00:00')
 ORDER BY startTime ASC
 LIMIT 1;
-*/
+
 INSERT INTO messagePairTypes(senderID, receiverID)
 VALUES((SELECT userID FROM users WHERE email = 'JohnDoe@email.com'),
        (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
