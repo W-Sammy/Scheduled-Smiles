@@ -46,7 +46,7 @@ div > * a:hover{
 
 .welcomeMessage{
     z-index: 0;
-    background-color: #48715617;
+    background-color: #41835736;
     display: flex;
     font-size: 21px;
     margin:40px;
@@ -115,7 +115,7 @@ div > * a:hover{
     color: rgb(0, 99, 99);
     display: flex;
     flex-direction: row;
-    border: 12px solid #7bc6c9;
+    border: 12px solid #86b9bb;
     background: #e0f1ed;
     padding: 5px;
     margin: 20px;
@@ -156,7 +156,7 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e3ecc8;
+    background-color: #e7eccd;
     border: 4px solid #d2dabb;
     flex: 1;
     border-radius: 20px;
@@ -184,6 +184,8 @@ li{
     width: 80%;
     height: 10em;
     padding-bottom: 0px;
+    background-color: #eff3eb;
+    color: #000;
 }
 
 .viewBox > ul{
