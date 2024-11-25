@@ -156,3 +156,5 @@ function populateDummyData() {
     })
 
 }
+
+// Determine which staff are available for what appointment
