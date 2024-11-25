@@ -1,37 +1,6 @@
-@property --calendar-main-bg-color { /* bg for header and submit button */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #116d71;
-}
-  @property --calendar-main-text-color { /* fg for header and submit button */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: white;
-}
-  @property --calendar-secondary-bg-color { /* bg for day buttons */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #eee;
-}
-  @property --calendar-secondary-text-color { /* fg for day buttons */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #777;
-}
-  @property --calendar-tertiary-bg-color { /* bg for day names */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #ddd;
-}
-  @property --calendar-tertiary-text-color { /* fg for day names */
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #666;
-}
-
 .contacts-section {
     width: 15%;
-    min-height: 100%;
+    min-height: 100vh;
     padding: 20px;
     background-color: #64a1a3;
     border: none;
@@ -121,6 +90,6 @@
 }
 
 .send-btn:active {
-    background-color: var(--calendar-main-bg-color);
+    background-color:  #116d71;
     transform: scale(0.95); /* Slightly shrink the button */
 }
