@@ -47,8 +47,8 @@
                             <label class='labels'>Password:</label>
                         </div>
                         <div class="leftJustifyBlock">
-                            <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" required/>
-                            <input name="password" pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                            <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" spellcheck="false" required/>
+                            <input name="password" pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" spellcheck="false" required/>
                         </div>
                     </div>
 
@@ -83,9 +83,9 @@
                                 <label class='labels'>Email:</label>
                             </div>
                             <div class="leftJustifyBlock">
-                                <input name="firstName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="John" required/>
-                                <input name="lastName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Doe" required/>
-                                <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" required/>
+                                <input name="firstName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="John" spellcheck="false" required/>
+                                <input name="lastName" pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Doe" spellcheck="false" required/>
+                                <input name="email" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="test@example.us" spellcheck="false" required/>
                             </div>
                         </div>
                         <div style="color: #7c7c7cc2; font-weight: bold; margin: 0px;">Minimal 8 characters:</div>
@@ -97,9 +97,9 @@
                                 <label class='labels'>Date of Birth:</label>
                             </div>
                             <div class="leftJustifyBlock">
-                                <input name="password" pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="*********" required/>
-                                <input name="phoneNumber" pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="###-###-####" required/>
-                                <input name="address" pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="999 Anywhere St." required/>
+                                <input name="password" pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="*********" spellcheck="false" required/>
+                                <input name="phoneNumber" pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="###-###-####" spellcheck="false" required/>
+                                <input name="address" pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="999 Anywhere St." spellcheck="false" required/>
                                 <input name="birthDate" pattern="[\x00-\x7F]+" type="date" class="input2" required/>
                             </div>
                             <div>
@@ -128,7 +128,7 @@
                         <div style="color: #3f6154; font-weight: bold; margin:10px;">Enter Email for a password reset request</div>
                         <div style="align-items: center; justify-content: center;">
                             <label class='labels' style="margin-left: 20px; margin-right: 20px;">Email:</label>
-                            <input name="email" pattern="[\x00-\x7F]+" type="email" class="input" placeholder="test@example.us" />
+                            <input name="email" pattern="[\x00-\x7F]+" type="email" class="input" placeholder="test@example.us" spellcheck="false" required/>
                         </div>
                     </div>
                     <div class="buttonForgotPassword">
