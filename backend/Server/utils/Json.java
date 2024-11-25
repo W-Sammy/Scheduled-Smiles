@@ -30,7 +30,10 @@ public class Json {
         final InputStreamReader isr = new InputStreamReader(jsonStream, CHARSET.name());
         return gson.fromJson(isr, JsonElement.class);
     }
-    
+    // might be redundant
+    public static JsonElement convertToJsonElement(final Object obj) {
+        return convertToJsonElement(convertFromJson(obj));
+    }
     public static String convertFromJson(List<List<DatabaseGenericParameter>> obj) {
         final List<List<String>> newObj = new ArrayList<>();
         int i = 0, j = 0;
