@@ -3,8 +3,10 @@
     <head>
         <link rel="stylesheet" href="./css/calendar.css">
         <link rel="stylesheet" href="./css/Header.css">
+        <title>Scheduled Smiles</title>
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src="./js/calendar.js"></script>
     </head>
     <body>
         <header class="header">
@@ -87,9 +89,9 @@
                 <div class="appointment-container">
                     <h3>Enter Patient's Name or E-mail</h3>
                     <div class="input-row">
-                        <input type="text" class="patient-name" placeholder="Name" spellcheck="false">
+                        <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="patient-name" placeholder="Name" spellcheck="false">
                         <p>or</p>
-                        <input type="email" class="patient-email" placeholder="Email" spellcheck="false">   
+                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="patient-email" placeholder="Email" spellcheck="false">   
                     </div>
                     <h3>Select Time</h3>
                         <select class="select-time">
@@ -110,21 +112,13 @@
                         <div class="staff-select-row">
                             <select class="staff-select">
                                 <option value="">None</option>                                
-                                <option value="staff1">Staff 1</option>
-                                <option value="staff2">Staff 2</option>
-                                <option value="staff3">Staff 3</option>
-                                <option value="staff4">Staff 4</option>
                             </select>
                             <br>
                             <select class="staff-select">
                                 <option value="">None</option>
-                                <option value="staff1">Staff 1</option>
-                                <option value="staff2">Staff 2</option>
-                                <option value="staff3">Staff 3</option>
-                                <option value="staff4">Staff 4</option>
                             </select>
                         </div>
-                        <button id="request-appt-btn">Schedule</button>
+                        <button id="request-appt-btn" onclick="scheduleAppt">Schedule</button>
                     </div>
                 </div>
                 <!-- Appointment schedule end -->

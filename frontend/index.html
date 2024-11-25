@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Schedules smiles</title>
+        <title>Scheduled smiles</title>
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/landing.css">
         <link rel="stylesheet" href="./css/navbar.css">   
@@ -24,7 +24,7 @@
         <div class="landingPage">
             <div class="betterTeethContainer">
                 <img
-                    src="./assets/betterTeeth.png"
+                    src="./assets/betterTeeth.png" 
                     class="betterTeethImg"
                     alt="better teeth, better smiles"
                 />
@@ -33,22 +33,23 @@
             <img class="logoLandingPage" src="./assets/logo.png"/>
         </div>
 
-
-
         <div class="signInBox" id="signInOverlay">
             <form id="signIn">
                 <div class="wrapSignIn">
                     <a onclick="closeSignIn()" class="hyperlinkBack">Close</a>
                     <br>
-                    <img class='logo' src="./assets/Logo.png" height="192" width="230"/>
+                    <img class='logo' src="./assets/Logo.png"/>
                     <h2 class='title'>Scheduled Smiles</h2>
 
                     <div class='inputField'>
-                        <label class='labels' style="padding-right: 42px;"> Email :</label>
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Sophie@example.com" required/>
-                        <br/>
-                        <label class='labels'> Password : </label>
-                        <input pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                        <div class="leftJustifyBlock">
+                            <label class='labels' style="padding-right: 42px;"> Email :</label>
+                            <label class='labels'> Password : </label>
+                        </div>
+                        <div class="leftJustifyBlock">
+                            <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Sophie@example.com" required/>
+                            <input pattern="[\x00-\x7F]+" type="password" class="input" placeholder="Password" required/>
+                        </div>
                     </div>
 
                     <div class='hyperlinkPassword'>
@@ -75,20 +76,40 @@
                     <h2 class='titleRegister'>Scheduled Smiles </h2>
                     <h2 class='titleRegister'>Create your new Account!</h2>
                     <div class='inputFieldRegister'>
-                        <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
-                        <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
-                        <span style="color: #7c7c7cc2; font-weight: bold;">Minimal 8 characters: (a-z)(0-9)</span>
-                        <br>
-                        <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
-                        <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="Phone Number: (123-4567)" />
-                        <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
-                        <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
-                        <label class='labels'>Sex:</label>
-                        <select name="sex">
-                          <option value="M">Male</option>
-                          <option value="F">Female</option>
-                        </select>
+                        <div>
+                            <div class="leftJustifyBlock">
+                                <label class='labels'>First Name:</label>
+                                <label class='labels'>Last Name:</label>
+                                <label class='labels'>Email:</label>
+                            </div>
+                            <div class="leftJustifyBlock">
+                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="First Name" />
+                                <input pattern="[\x00-\x7F]+" maxlength="35" type="text" class="input" placeholder="Last Name" />
+                                <input pattern="[\x00-\x7F]+" maxlength="100" type="email" class="input" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div style="color: #7c7c7cc2; font-weight: bold; margin: 0px;">Minimal 8 characters: (A-Z)(a-z)(0-9)</div>
+                        <div>
+                            <div class="leftJustifyBlock">
+                                <label class='labels'>Password:</label>
+                                <label class='labels'>Phone Number:</label>
+                                <label class='labels'>Address:</label>
+                                <label class='labels'>Date of Birth:</label>
+                            </div>
+                            <div class="leftJustifyBlock">
+                                <input pattern="[\x00-\x7F]+" type="password" class="input2" placeholder="Password" />
+                                <input pattern="([0-9]{3}( |-)[0-9]{3}( |-)[0-9]{4}|[0-9]{10})" type="text" class="input2" placeholder="(123-4567)" />
+                                <input pattern="[\x00-\x7F]+" maxlength="100" type="text" class="input2" placeholder="Address" />
+                                <input pattern="[\x00-\x7F]+" type="date" class="input2" placeholder="Date of Birth" />
+                            </div>
+                            <div>
+                                <label class='labels'>Sex:</label>
+                                <select name="sex">
+                                  <option value="M">Male</option>
+                                  <option value="F">Female</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="buttonRegister">
                         <Button type="submit" class="genericButton">Submit</Button>
@@ -99,13 +120,16 @@
 
         <div class="signInBox" id="passwordOverlay">
             <form id="forgotPassword">
-                <div class="wrapSignIn">
-                    <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
-                    <div class='inputField'>
-                        <span style="color: #7c7c7cc2; font-weight: bold;">Enter Email for a password reset request</span>
-                        <br>
-                        <label class='labels' style="padding-right: 42px;"> Email :</label>
-                        <input pattern="[\x00-\x7F]+" type="email" class="input" placeholder="Sophie@example.com" />
+                <div class="wrapSignIn"> 
+                    <div class="inputFieldRegister">
+                        <p>
+                            <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
+                        </p>
+                        <div style="color: #3f6154; font-weight: bold; margin:10px;">Enter Email for a password reset request</div>
+                        <div style="align-items: center; justify-content: center;">
+                            <label class='labels' style="margin-left: 20px; margin-right: 20px;"> Email :</label>
+                            <input pattern="[\x00-\x7F]+" type="email" class="input" placeholder="Sophie@example.com" />
+                        </div>
                     </div>
                     <div class="buttonForgotPassword">
                         <Button type="submit" class="genericButton"> Request Password Reset </Button>
@@ -113,6 +137,5 @@
                 </div>
             </form>
         </div>
-
     </body>
 </html>

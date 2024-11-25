@@ -58,25 +58,29 @@ div > * a:hover{
     border-radius: 20px;
 }
 
-/*
+
 .contentBoard{
     z-index: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
-*/
+
 
 .userInfoBox{
     background-color: #2e9da14d;
-    height: 720px;
-    width: 300px;
+    flex: 1;
     align-content: center;
-    padding: 80px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
     border-radius: 20px;
     margin-left: 20px;
     float: left;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 330px;
 }
 
 .infoField{
@@ -91,64 +95,140 @@ div > * a:hover{
     height: 90%;
     border-radius: 20px;
     line-height: 3;
-
+    margin-bottom: 20px;
 }
 
 .overviewBox{
     display: flex;
     flex-direction: column;
     float: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin:20px;
+    margin-top: 0px;
     /*background-color: #00fff2;*/
     border-radius: 20px;
     align-items: center;
-
+    flex: 1;
 }
 
 .viewBox{
     border-radius: 20px;
     color: rgb(0, 99, 99);
-    text-align: left;
-    background: #2e9da1;
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    border: 12px solid #7bc6c9;
+    background: #e0f1ed;
+    padding: 5px;
     margin: 20px;
+    margin-top: 4px;
+    width: 96%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content:left;
 }
 
-.notifcationsBox{
-    float: right;
+.viewBox > *{
+    padding-left: 20px;
+}
+
+
+.webInfo{
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #ff989800;
+}
+
+h2{
+    margin: 0px;
+    margin-top: .2em;
+    padding: 0px;
+    font-size: 1.5em;
+    background-color: #ff000000;
+}
+li{
+    font-size: 1.2em;
+}
+
+.notificationsBox{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;    
-    text-align: left;
-    background-color: #48715617;
-    height: 780px;
-    width: 400px;
+    background-color: #e3ecc8;
+    border: 4px solid #d2dabb;
+    flex: 1;
     border-radius: 20px;
     margin-right: 20px;
-    padding: 20px 20px 0px 20px;
+    max-width: 500px;
 }
 
-.notifcationTitle{
+.notificationTitle{
+    margin-top: 20px;
+    margin-bottom: 10px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: #ff9898;
+    background-color: #bec463;
+    color: #524900;
     height: 2em;
     width: 25em;
     border-radius: 10px;
     font-weight: bolder;
+}
+
+.notificationsBox > .viewBox{
+    display: flex;
+    border: 4px solid #d2dabb;
+    width: 80%;
+    height: 10em;
+    padding-bottom: 0px;
+}
+
+.viewBox > ul{
+    margin: 0px;
+    height: fit-content;
+    width: fit-content;
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.buttonLine{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+
+div > .genericButton{
+    height: fit-content;
+    width: fit-content;
+    padding: .2em .5em .2em;
+    margin-right: 10px;
+    font-size: .95em;
+}
+
+h3{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.note{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    background-color: #ff0000;
 
 }
 
-
-.note{
-    color: aqua;
+img {
+    margin: 30px;
+    margin-bottom: 20px;
     height: 100px;
     width: 100px;
-    background-color: #ff0000;
-
 }

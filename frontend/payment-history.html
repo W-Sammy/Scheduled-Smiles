@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/payment-history.css">
+        <link rel="stylesheet" href="./css/Header.css">
+        <title>Scheduled Smiles</title>
+        <script src="./js/calendar.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a class="link" id="back">←</a>
+            <a class="link">Logout</a>
+        </header>
+        <div class="logo-container">
+            <img src="./assets/logo.png" class="logo" alt="Scheduled Smiles Logo">
+            <div class="logo-text">
+                <h4 class="logo-text">Scheduled</h4>
+                <h4 class="logo-text">Smiles</h4>    
+            </div>
+        </div>
+        <div class="content">
+            <div class="payment-history-section">
+                <div id="payment-history-title">
+                    <h2>Payment History</h2>
+                </div>
+                <div class="payment-history-container">
+                    <table id="payment-history">
+                        <thead> 
+                            <!-- Table Head Start -->
+                            <tr>
+                                <th>Date</th>
+                                <th>Treatment</th>
+                                <th>Primary Staff</th>
+                                <th>Total</th>
+                            </tr>
+                            <!-- Table Head End -->
+                        </thead>
+                        <tbody>
+                            <!-- JS here -->
+                            <tr>
+                                <td>01/01/2001</td>
+                                <td>Just</td>
+                                <td>a</td>
+                                <td>test</td>
+                            </tr>
+                            <tr>
+                                <td>02/02/2002</td>
+                                <td>Just</td>
+                                <td>another</td>
+                                <td>test</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <!-- Current Bill Start -->
+                <div class="payment-container">
+                    <div id="payment-title">
+                        <h2>Current Billed Amount</h2>
+                    </div>
+                    <div class="payment-info">
+                        <!-- JS needs to be added -->
+                        <div class="info-row">
+                            <p>Treatment: </p><span id="treatment">Root Canal</span>
+                        </div>
+                        <div class="info-row">
+                            <p>Date: </p><span id="treatment-date">01/01/2001</span>
+                        </div>
+                        <div class="info-row">
+                            <p>Amount Due: </p><span id="amount-due">$1.00</span>
+                        </div>
+                        <div id="btn-container">
+                            <button id="pay-now-btn" onclick="openPayment()">Pay now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>
