@@ -153,44 +153,82 @@ li{
 }
 
 .notificationsBox{
-    float: right;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;    
-    text-align: left;
-    background-color: #48715617;
-    height: 780px;
-    width: 400px;
+    background-color: #e3ecc8;
+    border: 4px solid #d2dabb;
+    flex: 1;
     border-radius: 20px;
     margin-right: 20px;
-    padding: 20px 20px 0px 20px;
+    max-width: 500px;
 }
 
 .notificationTitle{
+    margin-top: 20px;
+    margin-bottom: 10px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: #ff9898;
+    background-color: #bec463;
+    color: #524900;
     height: 2em;
     width: 25em;
     border-radius: 10px;
     font-weight: bolder;
-
 }
 
+.notificationsBox > .viewBox{
+    display: flex;
+    border: 4px solid #d2dabb;
+    width: 80%;
+    height: 10em;
+    padding-bottom: 0px;
+}
+
+.viewBox > ul{
+    margin: 0px;
+    height: fit-content;
+    width: fit-content;
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.buttonLine{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+
+div > .genericButton{
+    height: fit-content;
+    width: fit-content;
+    padding: .2em .5em .2em;
+    margin-right: 10px;
+    font-size: .95em;
+}
+
+h3{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    height: fit-content;
+    width: fit-content;
+}
 
 .note{
-    color: aqua;
-    height: 100px;
-    width: 100px;
+    display: flex;
+    height: fit-content;
+    width: fit-content;
     background-color: #ff0000;
 
 }
+
 img {
     margin: 30px;
     margin-bottom: 20px;
-    height: 60px;
-    width: 60px;
+    height: 100px;
+    width: 100px;
 }
