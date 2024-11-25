@@ -99,7 +99,6 @@ div > * a:hover{
 }
 
 .overviewBox{
-    background-color: #ff0000;
     display: flex;
     flex-direction: column;
     float: left;
@@ -115,17 +114,42 @@ div > * a:hover{
     border-radius: 20px;
     color: rgb(0, 99, 99);
     display: flex;
-    text-align: left;
+    flex-direction: row;
     border: 12px solid #7bc6c9;
     background: #e0f1ed;
-    padding: 20px;
+    padding: 5px;
     margin: 20px;
     margin-top: 4px;
-    width: 90%;
+    width: 96%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content:left;
 }
 
-.viewBox > .title{
+.viewBox > *{
+    padding-left: 20px;
+}
+
+
+.webInfo{
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #ff989800;
+}
+
+h2{
     margin: 0px;
+    margin-top: .2em;
+    padding: 0px;
+    font-size: 1.5em;
+    background-color: #ff000000;
+}
+li{
+    font-size: 1.2em;
 }
 
 .notificationsBox{
