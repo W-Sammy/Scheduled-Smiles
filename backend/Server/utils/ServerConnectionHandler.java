@@ -112,7 +112,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (IOException e) {
             // Specifically happens when requesting wrong type from the database (confirmed trigger by requesting for hashes as string type, instead of hex) -Kyle
-            System.out.println("ServerHandler Error: Too many bytes to write to stream. Has responseBodyLength been defined correctly?");
+            System.out.println("ServerHandler Error: Too many bytes to write to stream. Has responseBodyLength (" + responseBodyLength + ") been defined correctly?");
         }
     }
     
