@@ -1,8 +1,6 @@
 //
 window.onload = () => {
-    getChats(getCookieValue("userID")).then(response => {
-        JSON.parse(response)
-    })
+    loadData()
 }
 
 function loadData() {
