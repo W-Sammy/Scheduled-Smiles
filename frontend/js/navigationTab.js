@@ -20,7 +20,7 @@ function loadTabs() {
                 addTabToNav("Chat", "chat", "chat")
                 addTabToNav("History", "history", "history")
             }
-            if (res.includes("patient") || res.includes("staff")) {
+            if (res.includes("staff")) {
                 addTabToNav("Chat", "chat", "chat")
                 addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("Appointment", "session", "session")
