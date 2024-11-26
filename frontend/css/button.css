@@ -15,3 +15,9 @@
 .genericButton:hover{
     background-color: #509294;
 }
+
+.genericButton:active {
+    scale:.99;
+    background-color: #2e4849;
+    
+}

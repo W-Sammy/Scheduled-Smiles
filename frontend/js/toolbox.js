@@ -2,7 +2,6 @@
 const NOTIF_CLASS = "2w3rbanemtnqwERB434WnjewrwBV"
 const WARN_CLASS = "ybuigoklnbuhioo8higbouhbnr9h"
 
-
 function fadeOut(element, seconds = 0.75) {
     element.style.transition = "opacity " + seconds + "s ease"
     element.style.opacity = 0
