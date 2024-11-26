@@ -10,7 +10,5 @@ function addBox(){
     const node = document.createTextNode("Test from another world");
     para.appendChild(node);
     
-
     box.appendChild(para);
-
 }
