@@ -93,6 +93,30 @@ function showNotification(text, duration = 0, position = "top", margin = "10%", 
         }, (duration - (duration / 5)) * 1000)
 }
 
+function showBigNotification(text, duration = 0, position = "top", margin = "10%", parentElement = document.body) {
+    duration = (duration != null) ? duration : 0
+    position = (position != null) ? position : "top"
+    margin = (margin != null) ? margin : "10%"
+    const box = createBasicBox(position, margin)
+    box.classList.add(NOTIF_CLASS)
+    box.innerHTML = text
+    // apply styling
+    box.style.backgroundColor = "#A6B9AD"
+    box.style.color ="#FFFCEE"
+    box.style.borderColor = "#2D6B6D"
+    box.style.fontSize = '1.7em'
+    // remove dupes
+    const boxes = document.getElementsByClassName(NOTIF_CLASS)
+    for (i = 0; i < boxes.length; i++)
+        if (boxes[i].outerHTML == box.outerHTML)
+            return
+    parentElement.appendChild(box)
+    if (duration > 0)
+        setTimeout(function() {
+            fadeOut(box, duration / 5)
+        }, (duration - (duration / 5)) * 1000)
+}
+
 function showWarning(text, duration = 0, position = "top", margin = "10%", parentElement = document.body) {
     duration = (duration != null) ? duration : 0
     position = (position != null) ? position : "top"

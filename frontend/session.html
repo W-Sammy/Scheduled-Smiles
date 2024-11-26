@@ -12,6 +12,7 @@
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
         <script src="./js/session.js"></script>
+        <script src="./js/toolbox.js"></script>
     </head>
     <body>
         <header class="header">
@@ -221,14 +222,11 @@
                         <textarea id="recordInput">
                             test the biggest testdsadasda
                         </textarea>
+                        <input type="submit" value="Add Note" onclick="addNote()">
                     </div>
-                    <div class="recordSection" id="recordList">
+                    <div class="recordSection">
                         <h3 class="title">Previous Notes</h3>
-                        <div>
-                            <div class="appointment"> Test</div>
-                            <div class="appointment"> Test</div>
-                            <div class="appointment"> Test</div>
-                        </div>
+                        <div id="recordList"></div>
                     </div>
                 </div>
                 <div class="titleSection">
