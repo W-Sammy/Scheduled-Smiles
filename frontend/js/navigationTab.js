@@ -21,10 +21,10 @@ function loadTabs() {
             // Equality operators don't work normal, probably a dumb effing encoding issue -Kyle
             if (res.includes( "patient")) {
                 addTabToNav("Billing", "billing", "billing")
+                addTabToNav("Schedule", "scheduler", "calendar")
             }
             if (res.includes("patient") || res.includes("staff")) {
                 addTabToNav("Appointment", "session", "session")
-                addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("History", "history", "history")
             } else if (res.includes("admin")) {
                 addTabToNav("Payroll", "payroll", "payroll")

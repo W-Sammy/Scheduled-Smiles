@@ -8,26 +8,27 @@
         <link rel="stylesheet" href="./css/Header.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
         <script src="./js/chat.js"></script>
+        <script src ="./js/signIn.js"></script>
+        <script src ="./js/utils.js"></script>
     </head>
     <body>
         <header class="header">
-            <a class="link" id="back">&#8592</a>
-            <a class="link">Logout</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
         <div class="contacts-section">
             <!-- Contacts -->
-            <div class="contacts-list">
-                <div class="contacts">
-                    <!-- Needs to be added with js -->
-                    <a class="contact">hihi</a>
-                    <a class="contact">hihi</a>
-                    <a class="contact">dwedwe</a>
-                </div>
+            <div id="contacts-list">
+                <!-- Needs to be added with js -->
+                <a class="contact">hihi</a>
+                <a class="contact">hihi</a>
+                <a class="contact">dwedwe</a>
             </div>
         </div>
         <div class="chat-section">
-            <div class="current-contact">
+            <div id="current-contact">
                 <div class="contact-name"></div>
             </div>
             <div class="chat-window">
@@ -35,7 +36,7 @@
             </div>
             <div class="send-message-section">
                 <!-- Send Message start -->
-                <div class="input-row">
+                <div id="input-row">
                     <textarea class="message-input" placeholder="Send A Message..." spellcheck="true"></textarea>
                     <button class="send-btn">Send</button>
                 </div>

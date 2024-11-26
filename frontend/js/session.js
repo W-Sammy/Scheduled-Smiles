@@ -17,12 +17,22 @@ function hideDisplay(id){
     id.style.display = "none"
 }
 
+function addNote(){
+    let record = document.getElementById("recordList")
+    let count = record.childNodes.length
+    let div = document.createElement("div")
+    div.innerHTML = "note " + count
+    div.classList = "appointment"
+    record.appendChild(div)
+    showNotification("Noted has been Added", 2)
+}
 
 //generic Remove element 
 // - used to remove appointment elements
 // Need to connect to server to remove data as well
 function deleteAppointment(e){
     e.parentElement.remove();
+    showWarning("Appointment Deleted", 2.5, "top","11.5%")
 }
 
 

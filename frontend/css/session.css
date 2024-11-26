@@ -351,7 +351,6 @@ input[type='submit']:active{
     margin-top: 0;
     margin-bottom: 0px;
     border-radius: 12px;
-    
 }
 
 .displayRecord{
@@ -391,6 +390,11 @@ input[type='submit']:active{
     padding-top: 5px;
     padding-bottom: 5px;
     margin: 10px;
+    max-height: 413px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
     flex: 1;
     border-radius: 5px;
     background-color: #b7e2d0;
@@ -402,11 +406,12 @@ input[type='submit']:active{
     width: auto;
     height: 20px;
     border-radius: 10px;
+    box-sizing: border-box;    
     justify-content: center;
     background-color: #fcfdf7;
     border: 2px solid #b7e2d0;
     padding: 0px;
-    padding-left: 15px;
+    padding-left: 10px;
     margin: 5px;
 }
 
