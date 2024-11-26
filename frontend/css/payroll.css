@@ -102,6 +102,14 @@ div > .appointment > * {
     text-decoration: underline;
 }
 
+.infoBox > ul{
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
 .titleSelector > .title{
     font-size: large;
     color: #94c7b2;
