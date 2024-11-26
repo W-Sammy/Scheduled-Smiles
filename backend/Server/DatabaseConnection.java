@@ -104,7 +104,6 @@ public class DatabaseConnection implements AutoCloseable {
             System.out.println("DatabaseConnection Error: Failed to connect to database, invalid url or login credentials.");
         }
     }
-    
     @Override
     public void close() {
         try {
