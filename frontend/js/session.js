@@ -3,8 +3,9 @@
 
 //Start with opening Appointment Component
 window.onload = () => {
-    let appointment =  document.getElementById("appointmentList")
-    showDisplay(appointment) 
+    showDisplay(document.getElementById("appointmentList"))
+    hideDisplay(document.getElementById("sessionForm"))
+    hideDisplay(document.getElementById("sessionList"))
 };
 
 //Generic Show and Hide component functions
