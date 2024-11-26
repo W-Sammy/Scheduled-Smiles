@@ -1,3 +1,7 @@
+body > .appointmentBox{
+    display: none;
+}
+
 .appointmentBox{
     display: flex;
     flex-flow: row wrap; 
