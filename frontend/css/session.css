@@ -65,10 +65,15 @@
     margin-right: 10px;
     border-radius: 13px;
 }
+
 .confirm:hover{
     background-color: #5aaeb1;
 }
 
+.confirm:active{
+    background-color: #466a6b;
+    scale:.99;
+}
 
 .delete{
     color: #f8faee;
@@ -85,8 +90,14 @@
     margin-right: 10px;
     border-radius: 13px;
 }
+
 .delete:hover{
     background-color: #e05555;
+}
+
+.delete:active{
+    background-color: #963535;
+    scale:.99;
 }
 
 .titleSection{
@@ -117,6 +128,11 @@
 
 .returnButton:hover{
     background-color: #5aaeb1;
+}
+
+.returnButton:active{
+    background-color: #466a6b;
+    scale:.99;
 }
 
 .infoBox{
@@ -256,6 +272,11 @@ input[type='submit']{
 
 input[type='submit']:hover{
     background-color: #5aaeb1;
+}
+
+input[type='submit']:active{
+    background-color: #466a6b;
+    scale:.99;
 }
 
 /*
