@@ -1,15 +1,79 @@
+let isStaff = true
+
 window.onload = () => {
+    loadMenu()
     loadCalendars()
 }
 
+function loadMenu() {
+    if (!checkCookieExists("roleID")) {
+        showBigWarning("Login to schedule an appointment!", 5)
+        document.getElementById("staffMenu").remove()
+        document.getElementById("patientMenu").remove()
+        return
+    }
+    getRoleName(getCookieValue("roleID")).then(response => {
+        const roleName = JSON.parse(response)
+        if (response != null) {
+            if (roleName == "Patient") {
+                isStaff = false
+                document.getElementById("staffMenu").remove()
+                return
+            } else if (roleName == "Staff") {
+                document.getElementById("patientMenu").remove()
+                return
+            }
+        }
+        console.log("Error: could not determine valid roleID: " + roleName)
+        document.getElementById("staffMenu").remove()
+        document.getElementById("patientMenu").remove()
+    })
+}
+
 function scheduleAppointment() {
+    if (!checkCookieExists("userID")) {
+        showBigWarning("Login to schedule an appointment!", 5)
+        return
+    }
     submitCalendar(document.getElementById("cal1")) // only one calendar on the page
 }
 
 function submitCalendar(calendarElement) {
     const timestamp = getCalendarData(calendarElement)
     if (timestamp) {
-        
+        if (!isStaff) {
+            const patientID = getCookieValue("userID")
+            bookAppointment(patientID, (document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value == "") ? null : document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value, null, null, timestamp).then(success => {
+                if (success) {
+                    showNotification("Appointment booked!", 10)
+                } else if (success != null) {
+                    showWarning("Error: appointment could not be booked. Please try again later.", 10)
+                }
+            })
+        } else {
+            // get ID for patient
+            const patientEmail = document.getElementById("patientEmail").value
+            accountEmailExists(patientEmail).then(emailExists => {
+                if (emailExists) {
+                    return getUserId(patientEmail)
+                } else {
+                    showWarning("Patient email does not exist!", 5)
+                    return null
+                }
+            }).then(patientID => {
+                if (!patientID)
+                    return null
+                const staff1ID = getCookieValue("userID")
+                const [staff2ID, staff3ID] = Array.from(document.querySelectorAll(".staff-select-row > .staff-select > option:checked"), e => (e.value == "") ? null : e.value)
+                return bookAppointment(patientID, staff1ID, staff2ID, staff3ID, timestamp)
+            }).then(success => {
+                if (success) {
+                    showNotification("Appointment booked!", 10)
+                } else if (success != null) {
+                    showWarning("Error: appointment could not be booked. Please try again later.", 10)
+                }
+            })
+        }
     } else {
         showWarning("Please select a time!", 5)
     }
@@ -21,7 +85,7 @@ function getCalendarData(calendarElement) {
         const day = days[0]
         const month = parseInt(calendarElement.querySelector(":scope .month .active").dataset.month)
         const year = parseInt(calendarElement.querySelector(":scope .year").innerHTML)
-        const hour = parseInt(document.getElementById("hour").value)
+        const hour = parseInt(document.getElementsByClassName("hour")[0].value) // there should only be one
         const timezoneOffset = (new Date()).getTimezoneOffset() * 60
         const timestamp = (Date.UTC(year, month - 1, days[0], hour - 1) / 1000) + timezoneOffset
         return timestamp
@@ -161,17 +225,17 @@ function populateStaffLists() {
         return
     getAvailableStaff(timestamp).then(response => {
         const staffIDs = JSON.parse(response)
-        return Promise.all(Array.from(staffIDs, id => getFullName(id)))
+        return Promise.all(Array.from(staffIDs, id => Promise.all([id, getFullName(id)])))
     }).then(response => {
-        const staffList = Array.from(response, (arrStr) => JSON.parse(arrStr)[0].join(" "))
+        const staffList = Array.from(response, (arrStr) => [arrStr[0], JSON.parse(arrStr[1])[0].join(" ")])
         // selects all dropdown elements with class "staff-select"
         const staffDropdowns = document.querySelectorAll(".staff-select");
         staffDropdowns.forEach((dropdown) => {
             dropdown.innerHTML = "<option value=\"\">None</option>" // quick and dirty
-            staffList.forEach((staff, i) => {
+            staffList.forEach((staff) => {
                 const option = document.createElement("option");
-                option.value = `staff${i+1}`;
-                option.textContent = staff;
+                option.value = staff[0];
+                option.textContent = staff[1];
                 dropdown.appendChild(option);
             })
         })

@@ -78,7 +78,7 @@ public class Populate {
         int idx = 0;
         for (DatabaseGenericParameter pid : pids) {
             final List<DatabaseGenericParameter> idPair = db.query(String.format("SELECT senderID, receiverID FROM messagePairTypes WHERE %s", pid.equalsTo("pairID"))).get(0);
-            chats.add(new Chat(pid.getAsBytes(), idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes()));
+            chats.add(new Chat(idPair.get(0).getAsBytes(), idPair.get(1).getAsBytes(), pid.getAsBytes()));
             idx = chats.size() - 1;
             final String queryString = String.format("SELECT %s FROM messages WHERE %s ORDER BY createdAt DESC", String.join(", ", columns), pid.equalsTo("pairID"));
             final List<List<DatabaseGenericParameter>> result = db.query(queryString);
@@ -99,7 +99,7 @@ public class Populate {
         }
         // Get stupid pair id
         final DatabaseGenericParameter pid = db.query(String.format("SELECT pairID WHERE %s AND %s",  sid.equalsTo("senderID"), rid.equalsTo("receiverID"))).get(0).get(0);
-        final Chat chat  = new Chat(pid.getAsBytes(), senderID, receiverID);
+        final Chat chat  = new Chat(senderID, receiverID, pid.getAsBytes());
         // Aggregate columns
         final String[] columns = {
             "textContent", "createdAt"

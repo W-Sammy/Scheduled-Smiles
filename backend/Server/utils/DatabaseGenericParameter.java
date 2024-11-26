@@ -1,5 +1,6 @@
 package Server.utils;
 import java.lang.UnsupportedOperationException;
+import com.google.gson.JsonElement;
 import java.io.Serializable;
 import java.util.HexFormat;
 
@@ -47,6 +48,8 @@ public class DatabaseGenericParameter implements Serializable {
             return String.format("UNHEX(\'%s\')", stringValue);
         } else if(isInteger()) {
             return stringValue;
+        } else if (isNull()) {
+            return "NULL";
         } else { // must be string, or we don't care.
             return String.format("\'%s\'", stringValue);
         }

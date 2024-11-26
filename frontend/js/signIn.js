@@ -120,10 +120,6 @@ function closeSignIn() {
 function redirectToDashboard() {
     window.location.href = DASHBOARD_URL;
 }
-// 
-function isUserSignedIn() {
-    return checkCookieExists("userID") && getCookieValue("userID") != undefined && getCookieValue("userID") != null && getCookieValue("userID").length == 256
-}
 
 // We don't need all of the user's info for every page, so only store info that we can use to lookup the rest -Kyle
 /**

@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="./css/Header.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
-        <script src ="./js/navigationTab.js"></script>
-        <script src="./js/chat.js"></script>
+        <script src ="./js/toolbox.js"></script>
         <script src ="./js/utils.js"></script>
+        <script src="./js/chat.js"></script>
     </head>
     <body>
         <header class="header">
@@ -26,28 +26,76 @@
                 <!-- Needs to be added with js -->
                 <div class="contact">
                     <div class="contact-icon">
-                        <img src="./assets/contact.svg" alt="contact-icon">
+                        <img src="./assets/contact.png" alt="Contact Image">
                         <span class="contact-name">Erds</span>
                     </div>
                 </div>
-
-                
-                
             </div>
         </div>
         <div class="chat-section">
             <div id="current-contact">
                 <div class="contact-icon" id="current-contact-icon">
-                    <img src="./assets/contact.svg" alt="contact-icon">
+                    <img src="./assets/contact.png" alt="contact-icon"/>
                     <span class="contact-name">Erds</span>
                 </div>
             </div>
+            <div id="message-container">
+                <div class="message left">Hi Erds</div>
+                <div class="message right">Hey</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+                <div class="message">test</div>
+            </div>
             <div class="chat-window">
-                <div class="message">Hi Erds</div>
                 <!-- Send Message start -->
                 <div id="input-row">
                     <textarea class="message-input" placeholder="Send A Message..." spellcheck="true"></textarea>
-                    <button class="send-btn">Send</button>
+                    <button id="send">Send</button>
                 </div>
             </div>
         </div>

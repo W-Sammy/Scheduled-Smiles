@@ -181,6 +181,7 @@ async function getFullName(userID) {
     const endpoint = "/api/database/get"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
+    response = (response == "[]") ? null : response
     return response
 }
 
@@ -236,10 +237,20 @@ async function getAppointment(appointmentID) {
 }
 
 // startTime is an integer
-async function bookApppointment(patientID, staff1ID, staff2ID, staff3ID, startTime) {
-    const requestBody = `{ "patientID": "${patientID}", "staff1ID": ${staff1ID}, "staff2ID": "${staff2ID}", "staff3ID": "${staff3ID}", "startTime": ${startTime} }`
+async function bookAppointment(patientID, staff1ID, staff2ID, staff3ID, startTime) {
+    const requestBody = `{ "patientID": "${patientID}", "staff1ID": "${staff1ID}", "staff2ID": "${staff2ID}", "staff3ID": "${staff3ID}", "startTime": ${startTime} }`
     const endpoint = "/api/book-appointment"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
+    console.log(response)
     return response === "true"
+}
+
+async function getUserId(email) {
+    const requestBody = `{ "query": "SELECT userID FROM users WHERE email='${email}'" }`
+    const endpoint = "/api/database/get"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    response = (response == "[]") ? null : JSON.parse(response)[0][0]
+    return response
 }

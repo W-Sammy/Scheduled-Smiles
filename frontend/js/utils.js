@@ -1,5 +1,5 @@
 // Navigation
-function redirectTo(location) {
+function redirectTo(location = "") {
     window.location.href = window.location.origin + "/" + location
 }
 
@@ -11,6 +11,11 @@ function back() {
     if(isUserSignedIn()) {
         redirectTo("dashboard")
     } else {
-        redirectTo("")
+        redirectTo()
     }
+}
+
+function logout() {
+    deleteAllCookies()
+    redirectTo()
 }
