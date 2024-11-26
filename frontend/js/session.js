@@ -1,10 +1,13 @@
+//Intialize the Session page
+//Open available appointments on load
+
+//Start with opening Appointment Component
 window.onload = () => {
     let appointment =  document.getElementById("appointmentList")
     showDisplay(appointment) 
 };
 
-//window.onload = function(){ showDisplay(document.getElementById("appointmentList")) };
-
+//Generic Show and Hide component functions
 function showDisplay(id){
     id.style.display = "flex"
 }
@@ -13,10 +16,16 @@ function hideDisplay(id){
     id.style.display = "none"
 }
 
+
+//generic Remove element 
+// - used to remove appointment elements
+// Need to connect to server to remove data as well
 function deleteAppointment(e){
     e.parentElement.remove();
 }
 
+
+//Generic Dom manipulation to control visual of Components
 function openSession(){
     hideDisplay(document.getElementById("sessionForm"))
     showDisplay(document.getElementById("sessionList"))
