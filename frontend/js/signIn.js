@@ -6,8 +6,8 @@ window.onload = () => {
     document.getElementById("signIn").onsubmit = signInSubmitted
     document.getElementById("register").onsubmit = registerSubmitted
     document.getElementById("forgotPassword").onsubmit = forgotPasswordSubmitted
-    document.getElementById("schedule-btn").onclick = () => { redirectTo("calendar") }
-    document.getElementById("make-payment-btn").onclick = () => { redirectTo("billing") }
+    // document.getElementById("schedule-btn").onclick = () => { redirectTo("calendar") }
+    // document.getElementById("make-payment-btn").onclick = () => { redirectTo("billing") }
 }
 
 // Form submissions
