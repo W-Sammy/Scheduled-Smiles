@@ -222,13 +222,13 @@ VALUES((SELECT userID FROM users WHERE email = 'JohnDoe@email.com'),
        (SELECT userID FROM users WHERE email = 'JohnDoe@email.com'));
 INSERT INTO messagePairTypes(senderID, receiverID)
 VALUES((SELECT userID FROM users WHERE email = 'JaneDoe@email.com'),
-       (SELECT userID FROM users WHERE email = 'EliseFlossmore@scheduledsmiles.com')),
-      ((SELECT userID FROM users WHERE email = 'EliseFlossmore@scheduledsmiles.com'),
+       (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
+      ((SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com'),
        (SELECT userID FROM users WHERE email = 'JaneDoe@email.com'));
 INSERT INTO messagePairTypes(senderID, receiverID)
 VALUES((SELECT userID FROM users WHERE email = 'JaySohn@email.com'),
-       (SELECT userID FROM users WHERE email = 'StewartFerris@scheduledsmiles.com')),
-      ((SELECT userID FROM users WHERE email = 'StewartFerris@scheduledsmiles.com'),
+       (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
+      ((SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com'),
        (SELECT userID FROM users WHERE email = 'JaySohn@email.com'));
 
 INSERT INTO messages
@@ -244,16 +244,16 @@ VALUES(pairID_of('JohnDoe@email.com', 'StephFu@scheduledsmiles.com'),
        (pairID_of('StephFu@scheduledsmiles.com', 'JohnDoe@email.com'),
        UNIX_TIMESTAMP()-54632,
        'RESPONSE1-2'),
-       (pairID_of('JaneDoe@email.com', 'EliseFlossmore@scheduledsmiles.com'),
+       (pairID_of('JaneDoe@email.com', 'StephFu@scheduledsmiles.com'),
        UNIX_TIMESTAMP()-83286,
        'MESSAGE2-1'),
-       (pairID_of('EliseFlossmore@scheduledsmiles.com', 'JaneDoe@email.com'),
+       (pairID_of('StephFu@scheduledsmiles.com', 'JaneDoe@email.com'),
        UNIX_TIMESTAMP()-23872,
        'RESPONSE2-1'),
-       (pairID_of('JaySohn@email.com', 'StewartFerris@scheduledsmiles.com'),
+       (pairID_of('JaySohn@email.com', 'StephFu@scheduledsmiles.com'),
        UNIX_TIMESTAMP()-468352,
        'MESSAGE3-1'),
-       (pairID_of('StewartFerris@scheduledsmiles.com', 'JaySohn@email.com'),
+       (pairID_of('StephFu@scheduledsmiles.com', 'JaySohn@email.com'),
        UNIX_TIMESTAMP()-1777,
        'RESPONSE3-1');
        
