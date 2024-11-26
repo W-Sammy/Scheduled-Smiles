@@ -70,6 +70,10 @@ public class Json {
         keySet.addAll(Arrays.asList(keys));
         return members.equals(keySet);
     }
+    
+    public static boolean membersMatch(final Set<String> members, final Set<String> keys) {
+        return members.equals(keys);
+    }
 
     public static class ByteArrayToHexStringAdapter implements JsonSerializer<byte[]>, JsonDeserializer<byte[]> {
         public byte[] deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

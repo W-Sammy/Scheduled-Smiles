@@ -54,8 +54,6 @@ public class Populate {
             staffList.add(result.get(3).getAsBytes());
         }
         
-        
-        
         //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
         return new Appointment(appointmentId, patientID, staffList, station, treatment, notes, timestamp, completed, canceled, paid);
     }
