@@ -110,10 +110,10 @@ function getCookieAsObject() {
  * Updates the cookies for the current hostname root and all subdomains with the key/value pairs found in the given Object entries.
  * If a cookie exists in the Object but not in the cookie, a new cookie is created.
  * @param {Object} cookieObj An object with attribute values matching cookie key/value pairs.
- * @param {Number} [maxAge=120] The maximum lifetime of the cookies created from the object, in seconds.
+ * @param {Number} [maxAge=600] The maximum lifetime of the cookies created from the object, in seconds.
  * @returns {void}
  */
-function setCookieFromObject(cookieObj, maxAge = 120) {
+function setCookieFromObject(cookieObj, maxAge = 600) {
     for(const [key, value] of Object.entries(cookieObj)) {
         setCookie(key, value, maxAge)
     }
