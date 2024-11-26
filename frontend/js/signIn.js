@@ -8,10 +8,7 @@ window.onload = () => {
     document.getElementById("forgotPassword").onsubmit = forgotPasswordSubmitted
     // document.getElementById("schedule-btn").onclick = () => { redirectTo("calendar") }
     // document.getElementById("make-payment-btn").onclick = () => { redirectTo("billing") }
-<<<<<<< HEAD
-=======
-    document.getElementById("genericButton").onclick = () => { redirectTo("chat") }
->>>>>>> 8a38befc99bddf6a6ad4cd07ee54ecbf1b3673bb
+
 }
 
 // Form submissions
