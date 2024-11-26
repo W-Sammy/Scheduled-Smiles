@@ -18,7 +18,7 @@ CREATE TABLE users (
     address VARCHAR(100),
     phoneNumber VARCHAR(10),
     roleID BINARY(32),
-    detail TEXT NULL,
+    detail VARCHAR(250) NULL,
     PRIMARY KEY (userID)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE appointments (
     isCanceled TINYINT DEFAULT 0,
     isComplete TINYINT DEFAULT 0,
     isPaid TINYINT DEFAULT 0,
-    notes TEXT NULL,
+    notes VARCHAR(250) NULL,
     PRIMARY KEY (appointmentID),
     CONSTRAINT FK_patient FOREIGN KEY (patientID)
     REFERENCES users(userID),
@@ -68,7 +68,7 @@ CREATE TABLE messagePairTypes (
 CREATE TABLE messages (
     pairID BINARY(32),
     createdAt INT,
-    textContent TEXT NOT NULL,
+    textContent VARCHAR(160) NULL,
     PRIMARY KEY (pairID, createdAt),
     CONSTRAINT FK_messagePair FOREIGN KEY (pairID)
     REFERENCES messagePairTypes(pairID)

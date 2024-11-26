@@ -1,3 +1,5 @@
+USE scheduledSmiles;
+
 DROP TRIGGER IF EXISTS beforeInsertUsers;
 
 DELIMITER $$
@@ -6,6 +8,24 @@ BEFORE INSERT ON users
 FOR EACH ROW
 BEGIN
     SET NEW.userID = SHA256(NEW.email);
+END$$
+
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS afterInsertUsers;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`%` TRIGGER `afterInsertUsers`
+AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    IF NEW.roleID = SHA256('Staff') THEN
+        INSERT INTO staff(staffID, hrlyWage)
+        VALUES(NEW.userID, 80.00);
+    ELSEIF NEW.roleID = SHA256('Admin') THEN
+        INSERT INTO staff(staffID, hrlyWage)
+        VALUES(NEW.userID, 35.00);
+    END IF;
 END$$
 
 DELIMITER ;
