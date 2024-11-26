@@ -7,16 +7,20 @@
         <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/session.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
         <script src="./js/session.js"></script>
+        <script src ="./js/utils.js"></script>
+        <script src="./js/toolbox.js"></script>
     </head>
     <body>
         <header class="header">
-            <a class="link" id="back">&#8592;</a>
-            <a class="link">Logout</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
         <div class="appointmentBox" id="appointmentList" style="min-width: 400px;">
             <h1 class="title">Current Appointments: Select an appointment</h1>
@@ -221,14 +225,11 @@
                         <textarea id="recordInput">
                             test the biggest testdsadasda
                         </textarea>
+                        <input type="submit" value="Add Note" onclick="addNote()">
                     </div>
-                    <div class="recordSection" id="recordList">
+                    <div class="recordSection">
                         <h3 class="title">Previous Notes</h3>
-                        <div>
-                            <div class="appointment"> Test</div>
-                            <div class="appointment"> Test</div>
-                            <div class="appointment"> Test</div>
-                        </div>
+                        <div id="recordList"></div>
                     </div>
                 </div>
                 <div class="titleSection">

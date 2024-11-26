@@ -20,7 +20,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
-import Users.User;
+import Users.*;
 import static Users.Enum.RoleConstant.*;
 import static Users.Enum.AppointmentType.*;
 
@@ -121,7 +121,6 @@ public class ServerConnectionHandler implements HttpHandler {
         final InputStream is = new ByteArrayInputStream(responseBody.getBytes(CHARSET));
         sendResponse(statusCode, HEADER_TYPES.get("TEXT"), responseBody.length(), is);
     }
-    
     private static void sendResponse(final int statusCode, final JsonElement responseBody) throws IOException {
         final String responseBodyJson = convertFromJson(responseBody);
         final InputStream is = new ByteArrayInputStream(responseBodyJson.getBytes(CHARSET));
@@ -357,7 +356,7 @@ public class ServerConnectionHandler implements HttpHandler {
             // Errors handled in DatabaseConnection, pass
             e.printStackTrace();
         }
-        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(result));
+        sendResponse(STATUS_CODES.get("OK"), result);
         return true;
     }
     
@@ -371,6 +370,166 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         }
         return false;
+    }
+    private static boolean bookAppointment() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final Set<String> requestKeys = requestJsonObject.keySet();
+        final Set<String> columns = Set.of("patientID", "staff1ID", "staff2ID", "staff3ID", "startTime");
+        if (!membersMatch(requestKeys, columns))
+            return false;
+        final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff1ID = new DatabaseGenericParameter(requestJsonObject.get("staff1ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff2ID = new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff3ID = new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "bytes");
+        final DatabaseGenericParameter startTime = new DatabaseGenericParameter(requestJsonObject.get("startTime").getAsInt());
+        
+        // ORDER MUST MATCH columns VARIABLE!!
+        final String[] values = {
+            patientID.getAsParameter(),
+            staff1ID.getAsParameter(),
+            staff2ID.getAsParameter(),
+            staff3ID.getAsParameter(),
+            startTime.getAsParameter()
+        };
+        int result = 0;
+        final String queryString = String.format("INSERT INTO appointments (%s, isPaid, isCanceled, isComplete) VALUES (%s, 0, 0, 0)", String.join(", ", columns), String.join(", ", values));
+        try (DatabaseConnection db = new DatabaseConnection()) {
+            if (db.isConnected()) {
+                result = db.update(queryString);
+            }
+        } catch (Exception e) {
+            // Errors handled in DatabaseConnection, pass
+            e.printStackTrace();
+        }
+        final String resultStr = (result > 0) ? "true" : "false";
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(resultStr));
+        return true;
+    }
+    private static boolean updateAppointment() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final Set<String> requestKeys = requestJsonObject.keySet();
+        int result = 0;
+        String queryString = "";
+        if (membersMatch(requestKeys, "appointmentID", "stationNumber", "treatment", "notes")) {
+            final DatabaseGenericParameter appointmentID = new DatabaseGenericParameter(requestJsonObject.get("appointmentID").getAsString(), "bytes");
+            final DatabaseGenericParameter stationNumber = new DatabaseGenericParameter(requestJsonObject.get("stationNumber").getAsInt());
+            final DatabaseGenericParameter treatment = new DatabaseGenericParameter(requestJsonObject.get("treatment").getAsString());
+            final DatabaseGenericParameter notes = new DatabaseGenericParameter(requestJsonObject.get("notes").getAsString());
+            queryString = String.format("UPDATE appointments SET %s, %s, %s WHERE %s", stationNumber.equalsTo("stationNumber"), treatment.equalsTo("treatment"), notes.equalsTo("notes"), appointmentID.equalsTo("appointmentID"));
+        } else if (membersMatch(requestKeys, "appointmentID", "isCanceled")) {
+            final DatabaseGenericParameter appointmentID = new DatabaseGenericParameter(requestJsonObject.get("appointmentID").getAsString(), "bytes");
+            final DatabaseGenericParameter value = new DatabaseGenericParameter(requestJsonObject.get("isCanceled").getAsBoolean());
+            queryString = String.format("UPDATE appointments SET %s WHERE %s", value.equalsTo("isCanceled"), appointmentID.equalsTo("appointmentID"));
+        } else if (membersMatch(requestKeys, "appointmentID", "isComplete")) {
+            final DatabaseGenericParameter appointmentID = new DatabaseGenericParameter(requestJsonObject.get("appointmentID").getAsString(), "bytes");
+            final DatabaseGenericParameter value = new DatabaseGenericParameter(requestJsonObject.get("isComplete").getAsBoolean());
+            queryString = String.format("UPDATE appointments SET %s WHERE %s", value.equalsTo("isComplete"), appointmentID.equalsTo("appointmentID"));
+        } else if (membersMatch(requestKeys, "appointmentID", "isPaid")) {
+            final DatabaseGenericParameter appointmentID = new DatabaseGenericParameter(requestJsonObject.get("appointmentID").getAsString(), "bytes");
+            final DatabaseGenericParameter value = new DatabaseGenericParameter(requestJsonObject.get("isPaid").getAsBoolean());
+            queryString = String.format("UPDATE appointments SET %s WHERE %s", value.equalsTo("isPaid"), appointmentID.equalsTo("appointmentID"));
+        } else {
+            return false;
+        }
+        try (DatabaseConnection db = new DatabaseConnection()) {
+            if (db.isConnected()) {
+                result = db.update(queryString);
+            }
+        } catch (Exception e) {
+            // Errors handled in DatabaseConnection, pass
+            e.printStackTrace();
+        }
+        final String resultStr = (result > 0) ? "true" : "false";
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(resultStr));
+        return true;
+    }
+    private static boolean getAppointment() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        if (membersMatch(requestJsonObject.keySet(), "appointmentID")) {
+            try (DatabaseConnection db = new DatabaseConnection()) {
+                if (db.isConnected()) {
+                    final Appointment appt = populateAppointment(unhex(requestJsonObject.get("appointmentID").getAsString()), db);
+                    sendResponse(STATUS_CODES.get("OK"), appt);
+                    return true;
+                }
+            } catch (Exception e) {
+                // Errors handled in DatabaseConnection, pass
+                e.printStackTrace();
+            }
+        } else {
+            return false;
+        }
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
+        return true;
+    }
+    // unused
+    private static boolean bookFullAppointment() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final Set<String> requestKeys = requestJsonObject.keySet();
+        final Set<String> columns = Set.of("patientID", "staff1ID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid");
+        if (!membersMatch(requestKeys, columns))
+            return false;
+        final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff1ID = new DatabaseGenericParameter(requestJsonObject.get("staff1ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff2ID = new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff3ID = new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "bytes");
+        final DatabaseGenericParameter stationNumber = new DatabaseGenericParameter(requestJsonObject.get("stationNumber").getAsInt());
+        final DatabaseGenericParameter treatment = new DatabaseGenericParameter(requestJsonObject.get("treatment").getAsString());
+        final DatabaseGenericParameter notes = new DatabaseGenericParameter(requestJsonObject.get("notes").getAsString());
+        final DatabaseGenericParameter startTime = new DatabaseGenericParameter(requestJsonObject.get("startTime").getAsInt());
+        final DatabaseGenericParameter isComplete = new DatabaseGenericParameter(requestJsonObject.get("isComplete").getAsBoolean());
+        final DatabaseGenericParameter isCanceled = new DatabaseGenericParameter(requestJsonObject.get("isCanceled").getAsBoolean());
+        final DatabaseGenericParameter isPaid = new DatabaseGenericParameter(requestJsonObject.get("isPaid").getAsBoolean());
+        
+        // ORDER MUST MATCH columns VARIABLE!!
+        final String[] values = {
+            patientID.getAsParameter(),
+            staff1ID.getAsParameter(),
+            staff2ID.getAsParameter(),
+            staff3ID.getAsParameter(),
+            stationNumber.getAsParameter(),
+            treatment.getAsParameter(),
+            notes.getAsParameter(),
+            startTime.getAsParameter(),
+            isComplete.getAsParameter(),
+            isCanceled.getAsParameter(),
+            isPaid.getAsParameter()
+        };
+        int result = 0;
+        final String queryString = String.format("INSERT INTO appointments (%s) VALUES (%s)", String.join(", ", columns), String.join(", ", values));
+        try (DatabaseConnection db = new DatabaseConnection()) {
+            if (db.isConnected()) {
+                result = db.update(queryString);
+            }
+        } catch (Exception e) {
+            // Errors handled in DatabaseConnection, pass
+            e.printStackTrace();
+        }
+        final String resultStr = (result > 0) ? "true" : "false";
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(resultStr));
+        return true;
+    }
+
+    // This method will Volkswagen you!
+    // This returns ALL messages to ALL contacts in a single response body. This function will likely NOT WORK or take EXTREMELY LONG TO LOAD if the server device and client devices are seperate! (i.e. outside of demo) -Kyle
+    private static boolean getChats() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final Set<String> requestKeys = requestJsonObject.keySet();
+        if (!membersMatch(requestKeys, "userID"))
+            return false;
+        final DatabaseGenericParameter receiverID = new DatabaseGenericParameter(requestJsonObject.get("userID").getAsString(), "bytes");
+        JsonElement result = convertToJsonElement("[]");
+        try (DatabaseConnection db = new DatabaseConnection()) {
+            if (db.isConnected()) {
+                final List<Chat> all = populateChat(receiverID.getAsBytes(), db);
+                result = convertToJsonElement(all);
+            }
+        } catch (Exception e) {
+            // Errors handled in DatabaseConnection, pass
+            e.printStackTrace();
+        }
+        sendResponse(STATUS_CODES.get("OK"), result);
+        return true;
     }
     
     private static void handleApiRequest() throws IOException {
@@ -397,6 +556,18 @@ public class ServerConnectionHandler implements HttpHandler {
                         case "lookup":
                             isValidRequest = handleLookupRequest();
                         break;
+                        case "book-appointment":
+                            isValidRequest = bookAppointment();
+                        break;
+                        case "messages":
+                            isValidRequest = getChats();
+                        break;
+                        case "update-appointment":
+                            isValidRequest = updateAppointment();
+                        break;
+                        case "get-appointment":
+                            isValidRequest = getAppointment();
+                        break;
                         default:
                             isValidRequest = false;
                     }
@@ -408,7 +579,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         }
         if (isValidRequest) {
-            System.out.println("API request returned without error");
+            System.out.println("API request finished with response");
         } else {
             System.out.println("API request was found to be invalid");
             // Malformed/Invalid request body

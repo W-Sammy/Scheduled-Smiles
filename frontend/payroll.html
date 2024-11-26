@@ -12,12 +12,16 @@
         <link rel="stylesheet" href="./css/session.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
+        <script src ="./js/signIn.js"></script>
+        <script src ="./js/utils.js"></script>
+        <script src="./js/toolbox.js"></script>
     </head>
 
     <body>
         <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
 
         <!--Staff Selector: Usable by Admin's only-->
@@ -30,7 +34,7 @@
                     <option value="Temp">BESTTTTTTTTY PERSON</option>
                     <option value="Temp">WORKINGGGGGGGGG PERSON</option>
                 </select>
-                <input type="submit" class="confirm" value="Pay Staff"> 
+                <input type="submit" class="confirm" value="Pay Staff" onclick="showBigNotification('Staff\'s payment distributed',2.4)"> 
             </div>
         </div>
 

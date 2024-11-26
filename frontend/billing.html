@@ -7,11 +7,16 @@
         <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <script src="./js/api.js"></script>
+        <script src="./js/cookie.js"></script>
         <script src="./js/calendar.js"></script>
+        <script src ="./js/navigationTab.js"></script>
+        <script src ="./js/utils.js"></script>
     </head>
     <body>
         <header class="header">
-            <a class="link" id="back">←</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
             <a onclick="logout()" class="logout link"> Log out</a>
         </header>
         <div class="logo-container">
@@ -28,7 +33,7 @@
                 </div>
                 <div class="payment-history-container">
                     <table id="payment-history">
-                        <thead> 
+                        <thead>
                             <!-- Table Head Start -->
                             <tr>
                                 <th>Date</th>

@@ -14,6 +14,10 @@ public class DatabaseGenericParameter implements Serializable {
         stringValue = value;
         stringType = "str";
     }
+    public DatabaseGenericParameter(String value, String type) {
+        stringValue = value;
+        stringType = type;
+    }
     public DatabaseGenericParameter(int value) {
         stringValue = String.valueOf(value);
         stringType = "int";

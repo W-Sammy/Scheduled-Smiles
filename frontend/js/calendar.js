@@ -2,17 +2,32 @@ window.onload = () => {
     loadCalendars()
 }
 
-// Plceholder function
+function scheduleAppointment() {
+    submitCalendar(document.getElementById("cal1")) // only one calendar on the page
+}
+
 function submitCalendar(calendarElement) {
-    alert("Test output from calendar:\n" + JSON.stringify(getCalendarData(calendarElement), null, " "))
-    console.log(getCalendarData(calendarElement))
+    const timestamp = getCalendarData(calendarElement)
+    if (timestamp) {
+        
+    } else {
+        showWarning("Please select a time!", 5)
+    }
 }
 
 function getCalendarData(calendarElement) {
-    const month = parseInt(calendarElement.querySelector(":scope .month .active").dataset.month)
     const days = Array.from(calendarElement.querySelectorAll(':scope .day-numbers input:checked'), (e) => parseInt(e.value) ) // returns an array (if using checkboxes, will return all selected options)
-    const year = parseInt(calendarElement.querySelector(":scope .year").innerHTML)
-    return {month: month, days: days, year: year}
+    if (days.length) {
+        const day = days[0]
+        const month = parseInt(calendarElement.querySelector(":scope .month .active").dataset.month)
+        const year = parseInt(calendarElement.querySelector(":scope .year").innerHTML)
+        const hour = parseInt(document.getElementById("hour").value)
+        const timezoneOffset = (new Date()).getTimezoneOffset() * 60
+        const timestamp = (Date.UTC(year, month - 1, days[0], hour - 1) / 1000) + timezoneOffset
+        return timestamp
+    } else {
+        return null
+    }
 }
 
 function loadCalendars() {
@@ -141,12 +156,9 @@ function _isLeapYear(year)
 // populates dummy data
 function populateStaffLists() {
     // convert calendar time to utc timestamps
-    const {month, days, year} = getCalendarData(document.getElementById("cal1")) // only one calendar on the page
-    if (!days.length) // set available staff to none / blank if no day is selected
+    const timestamp = getCalendarData(document.getElementById("cal1")) // only one calendar on the page
+    if (!timestamp) // set available staff to none / blank if no day is selected
         return
-    const hour = parseInt(document.getElementById("hour").value)
-    const timezoneOffset = (new Date()).getTimezoneOffset() * 60
-    const timestamp = (Date.UTC(year, month - 1, days[0], hour - 1) / 1000) + timezoneOffset
     getAvailableStaff(timestamp).then(response => {
         const staffIDs = JSON.parse(response)
         return Promise.all(Array.from(staffIDs, id => getFullName(id)))

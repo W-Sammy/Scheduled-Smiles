@@ -168,7 +168,6 @@ async function getRoleName(roleId) {
     return (response !== false) ? response : null
 }
 // TODO: getAppointment and getChat/getMessages -Kyle
-
 async function getAvailableStaff(timestamp) {
     const requestBody = `{ "startTime": "${timestamp}" }`
     const endpoint = "/api/lookup/availability"
@@ -185,7 +184,62 @@ async function getFullName(userID) {
     return response
 }
 
-// unfinished
-function getContacts(userID) {
-    const requestBody = `{ "query": "SELECT users.userID FROM users JOIN messages, messagePair ON users.userID = messages.pairID"}`
+// idkf sorry
+async function getChats(userID) {
+    const requestBody = `{ "userID": "${userID}" }`
+    const endpoint = "/api/messages"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}
+
+// expects boolean, NOT string
+async function markAppointmentPaid(appointmentID, isPaid) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isPaid": ${isPaid} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+// expects boolean, NOT string
+async function markAppointmentDone(appointmentID, isDone) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isComplete": ${isDone} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+// expects boolean, NOT string
+async function markAppointmentCanceled(appointmentID, isCanceled) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isCanceled": ${isCanceled} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+
+// stationNumber is an integer
+async function updateAppointment(appointmentID, stationNumber, treatment, notes) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "stationNumber": ${stationNumber}, "treatment": "${treatment}", "notes": "${notes}" }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+
+async function getAppointment(appointmentID) {
+    const requestBody = `{ "appointmentID": "${appointmentID}" }`
+    const endpoint = "/api/get-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}
+
+// startTime is an integer
+async function bookApppointment(patientID, staff1ID, staff2ID, staff3ID, startTime) {
+    const requestBody = `{ "patientID": "${patientID}", "staff1ID": ${staff1ID}, "staff2ID": "${staff2ID}", "staff3ID": "${staff3ID}", "startTime": ${startTime} }`
+    const endpoint = "/api/book-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
 }
