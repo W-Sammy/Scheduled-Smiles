@@ -448,7 +448,7 @@ public class ServerConnectionHandler implements HttpHandler {
         if (membersMatch(requestJsonObject.keySet(), "appointmentID")) {
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
-                    final Appointment appt = populateAppointment(unhex(requestJsonObject.get("appointmentID").getAsString()), db);
+                    final Appointment appt = populateAppt(unhex(requestJsonObject.get("appointmentID").getAsString()), db);
                     sendResponse(STATUS_CODES.get("OK"), appt);
                     return true;
                 }
