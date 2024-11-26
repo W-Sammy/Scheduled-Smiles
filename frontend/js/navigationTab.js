@@ -17,12 +17,21 @@ function loadTabs() {
             if (res.includes( "patient")) {
                 addTabToNav("Billing", "billing", "billing")
                 addTabToNav("Schedule", "scheduler", "calendar")
+                addTabToNav("Chat", "chat", "chat")
+                addTabToNav("History", "history", "history")
             }
             if (res.includes("patient") || res.includes("staff")) {
+                addTabToNav("Chat", "chat", "chat")
+                addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("Appointment", "session", "session")
-                addTabToNav("History", "history", "history")
+                addTabToNav("Payroll", "payroll", "payroll")
             } else if (res.includes("admin")) {
                 addTabToNav("Payroll", "payroll", "payroll")
+                //Commented out for now ~ Keav'n
+                //debugging and presentation purpose for displaying
+                //Still need role exclusive behavior for displaying 
+                //Admin: pay staff/view all staff working hours
+                //addTabToNav("Payroll", "payroll", "payroll")
             } else {
                 showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
             }
