@@ -1,3 +1,136 @@
-body{
-    background-color: #e2e1da;
+body {
+    font-family: Verdana, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Makes the body fill the viewport height */
+    background-color: #f5f5f5; /* Optional background color */
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    background-color: #a6d2cb;
+    padding: 20px;
+    width: 85%;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 2em;
+}
+
+/* Payment History */
+
+.payment-history-section {
+    width: 70%;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.payment-history-container {
+    display: flex;
+    width: 98%;
+}
+
+#payment-history-title h2 {
+    margin-left: 20px;
+}
+
+#payment-history-title h2 {
+    margin-top: 30px;
+    font-weight: lighter;
+    color: black;
+}
+
+#payment-history {
+    height: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 20px;
+}
+
+#payment-history th, #payment-history td {
+    border: 0.5px solid rgb(212, 212, 212);
+}
+
+#payment-history th {
+    background-color: #116d71;
+    color: white;
+    font-weight: 550;
+    padding: 10px;
+}
+
+#payment-history td {
+    background-color: #ecebeb;
+    color: #ddd;
+    padding: 15px;
+}
+
+/* Changes the width of date */
+#payment-history th:first-child, #payment-history td:first-child {
+    width: 12%;
+}
+
+/* Current Bill */
+
+.payment-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    min-height: 210px;
+    height: 322px;
+}
+
+.payment-container {
+    width: auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    margin-left: 20px;
+    height: 100%;
+    position: relative;    
+}
+
+#payment-title {
+    text-align: center;
+}
+
+#payment-title h2 {
+    font-weight: lighter;
+}
+
+/* Align Rows in current bill details */
+
+.info-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-row p {
+    margin-right: 30px;
+}
+
+#btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pay-now-btn {
+    background-color: #64a1a3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#pay-now-btn:active {
+    background-color: #116d71;
+    transform: scale(0.95); /* Slightly shrink the button */
 }
