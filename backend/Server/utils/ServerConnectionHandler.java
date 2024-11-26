@@ -378,10 +378,10 @@ public class ServerConnectionHandler implements HttpHandler {
         final Set<String> columns = Set.of("patientID", "staff1ID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid");
         if (!membersMatch(requestKeys, columns))
             return false;
-        final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "byte");
-        final DatabaseGenericParameter staff1ID = new DatabaseGenericParameter(requestJsonObject.get("staff1ID").getAsString(), "byte");
-        final DatabaseGenericParameter staff2ID = new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "byte");
-        final DatabaseGenericParameter staff3ID = new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "byte");
+        final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff1ID = new DatabaseGenericParameter(requestJsonObject.get("staff1ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff2ID = new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff3ID = new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "bytes");
         final DatabaseGenericParameter stationNumber = new DatabaseGenericParameter(requestJsonObject.get("stationNumber").getAsInt());
         final DatabaseGenericParameter treatment = new DatabaseGenericParameter(requestJsonObject.get("treatment").getAsString());
         final DatabaseGenericParameter notes = new DatabaseGenericParameter(requestJsonObject.get("treatment").getAsString());
@@ -426,7 +426,7 @@ public class ServerConnectionHandler implements HttpHandler {
         final Set<String> requestKeys = requestJsonObject.keySet();
         if (!membersMatch(requestKeys, "userID"))
             return false;
-        final DatabaseGenericParameter receiverID = new DatabaseGenericParameter(requestJsonObject.get("userID").getAsString(), "byte");
+        final DatabaseGenericParameter receiverID = new DatabaseGenericParameter(requestJsonObject.get("userID").getAsString(), "bytes");
         JsonElement result = convertToJsonElement("[]");
         try (DatabaseConnection db = new DatabaseConnection()) {
             if (db.isConnected()) {

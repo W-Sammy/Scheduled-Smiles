@@ -168,7 +168,6 @@ async function getRoleName(roleId) {
     return (response !== false) ? response : null
 }
 // TODO: getAppointment and getChat/getMessages -Kyle
-
 async function getAvailableStaff(timestamp) {
     const requestBody = `{ "startTime": "${timestamp}" }`
     const endpoint = "/api/lookup/availability"
@@ -185,7 +184,11 @@ async function getFullName(userID) {
     return response
 }
 
-// unfinished
-function getContacts(userID) {
-    const requestBody = `{ "query": "SELECT users.userID FROM users JOIN messages, messagePair ON users.userID = messages.pairID"}`
+// idkf sorry
+async function getChats(userID) {
+    const requestBody = `{ "userID": "${userID}" }`
+    const endpoint = "/api/messages"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
 }
