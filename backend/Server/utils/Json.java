@@ -19,7 +19,7 @@ import Server.utils.DatabaseGenericParameter;
 import static Server.Enum.HttpConstants.*; // only need the CHARSET attribute, is there a better way to import this? -Kyle
 
 public class Json {
-    private static final Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(byte[].class, new ByteArrayToHexStringAdapter()).create();
+    private static final Gson gson = new GsonBuilder().serializeNulls().registerTypeHierarchyAdapter(byte[].class, new ByteArrayToHexStringAdapter()).create();
     private Json() {
         // restrict instantiation -Kyle
     }    

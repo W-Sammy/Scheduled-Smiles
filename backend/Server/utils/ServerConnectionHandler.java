@@ -379,8 +379,8 @@ public class ServerConnectionHandler implements HttpHandler {
             return false;
         final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "bytes");
         final DatabaseGenericParameter staff1ID = new DatabaseGenericParameter(requestJsonObject.get("staff1ID").getAsString(), "bytes");
-        final DatabaseGenericParameter staff2ID = new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "bytes");
-        final DatabaseGenericParameter staff3ID = new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff2ID = (requestJsonObject.get("staff2ID").getAsString().equals("null")) ? new DatabaseGenericParameter() : new DatabaseGenericParameter(requestJsonObject.get("staff2ID").getAsString(), "bytes");
+        final DatabaseGenericParameter staff3ID = (requestJsonObject.get("staff3ID").getAsString().equals("null")) ? new DatabaseGenericParameter() : new DatabaseGenericParameter(requestJsonObject.get("staff3ID").getAsString(), "bytes");
         final DatabaseGenericParameter startTime = new DatabaseGenericParameter(requestJsonObject.get("startTime").getAsInt());
         
         // ORDER MUST MATCH columns VARIABLE!!
@@ -448,7 +448,7 @@ public class ServerConnectionHandler implements HttpHandler {
         if (membersMatch(requestJsonObject.keySet(), "appointmentID")) {
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
-                    final Appointment appt = populateAppointment(unhex(requestJsonObject.get("appointmentID").getAsString()), db);
+                    final Appointment appt = populateAppt(unhex(requestJsonObject.get("appointmentID").getAsString()), db);
                     sendResponse(STATUS_CODES.get("OK"), appt);
                     return true;
                 }

@@ -3,11 +3,6 @@ window.onload = () => {
     loadFields()
 }
 
-function logout() {
-    deleteAllCookies()
-    window.location.href = window.location.origin;
-}
-
 function loadTabs() {
     if (!checkCookieExists("roleID")) {
         showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
