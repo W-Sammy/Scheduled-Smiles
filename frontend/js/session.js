@@ -21,7 +21,7 @@ function addNote(){
     let record = document.getElementById("recordList")
     let count = record.childNodes.length
     let div = document.createElement("div")
-    div.innerHTML = "note " + count
+    div.innerHTML = "note " + (count + 1)
     div.classList = "appointment"
     record.appendChild(div)
     showNotification("Noted has been Added", 2)
