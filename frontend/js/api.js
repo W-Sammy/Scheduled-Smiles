@@ -184,3 +184,8 @@ async function getFullName(userID) {
     let response = await request(requestBody, endpoint, method)
     return response
 }
+
+// unfinished
+function getContacts(userID) {
+    const requestBody = `{ "query": "SELECT users.userID FROM users JOIN messages, messagePair ON users.userID = messages.pairID"}`
+}
