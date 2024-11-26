@@ -25,10 +25,10 @@ function cookieStringToObject(cookieString) { // sorry dann and keav, this dont 
  * Creates a cookie for the hostname root and all subdomains.
  * @param {String} key The key of the cookie to create.
  * @param {String} value The value of the cookie to create.
- * @param {Number} [maxAge=120] The maximum lifetime of the cookie, in seconds.
+ * @param {Number} [maxAge=600] The maximum lifetime of the cookie, in seconds.
  * @returns {void}
  */
-function setCookie(key, value, maxAge = 120) {
+function setCookie(key, value, maxAge = 600) {
     const cookieArray = [
         `${key}=${encodeURIComponent(value)}`,
         "path=/",
