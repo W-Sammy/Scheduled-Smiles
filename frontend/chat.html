@@ -4,6 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
         <link rel="stylesheet" href="./css/chat.css">
         <link rel="stylesheet" href="./css/Header.css">
         <script src="./js/api.js"></script>
@@ -19,25 +22,32 @@
             <!-- Contacts -->
             <div id="contacts-list">
                 <!-- Needs to be added with js -->
-                <a class="contact">hihi</a>
-                <a class="contact">hihi</a>
-                <a class="contact">dwedwe</a>
+                <div class="contact">
+                    <div class="contact-icon">
+                        <img src="./assets/contact.svg" alt="contact-icon">
+                        <span class="contact-name">Erds</span>
+                    </div>
+                </div>
+
+                
+                
             </div>
         </div>
         <div class="chat-section">
             <div id="current-contact">
-                <div class="contact-name"></div>
+                <div class="contact-icon" id="current-contact-icon">
+                    <img src="./assets/contact.svg" alt="contact-icon">
+                    <span class="contact-name">Erds</span>
+                </div>
             </div>
             <div class="chat-window">
                 <div class="message">Hi Erds</div>
-            </div>
-            <div class="send-message-section">
                 <!-- Send Message start -->
                 <div id="input-row">
                     <textarea class="message-input" placeholder="Send A Message..." spellcheck="true"></textarea>
                     <button class="send-btn">Send</button>
                 </div>
-            </div> 
+            </div>
         </div>
     </body>
 </html>
