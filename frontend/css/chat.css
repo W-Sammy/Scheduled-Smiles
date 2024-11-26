@@ -10,7 +10,7 @@
     justify-content: space-between;
 }
 
-.contacts-list {
+#contacts-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -42,7 +42,7 @@
     right: 10px;
 }
 
-.input-row {
+#input-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
