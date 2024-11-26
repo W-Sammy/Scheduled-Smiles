@@ -556,7 +556,7 @@ public class ServerConnectionHandler implements HttpHandler {
                         case "lookup":
                             isValidRequest = handleLookupRequest();
                         break;
-                        case "book":
+                        case "book-appointment":
                             isValidRequest = bookAppointment();
                         break;
                         case "messages":

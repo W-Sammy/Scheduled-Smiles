@@ -218,10 +218,28 @@ async function markAppointmentCanceled(appointmentID, isCanceled) {
     return response === "true"
 }
 
+// stationNumber is an integer
+async function updateAppointment(appointmentID, stationNumber, treatment, notes) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "stationNumber": ${stationNumber}, "treatment": "${treatment}", "notes": "${notes}" }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+
 async function getAppointment(appointmentID) {
     const requestBody = `{ "appointmentID": "${appointmentID}" }`
     const endpoint = "/api/get-appointment"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
     return response
+}
+
+// startTime is an integer
+async function bookApppointment(patientID, staff1ID, staff2ID, staff3ID, startTime) {
+    const requestBody = `{ "patientID": "${patientID}", "staff1ID": ${staff1ID}, "staff2ID": "${staff2ID}", "staff3ID": "${staff3ID}", "startTime": ${startTime} }`
+    const endpoint = "/api/book-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
 }
