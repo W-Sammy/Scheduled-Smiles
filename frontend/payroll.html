@@ -12,12 +12,15 @@
         <link rel="stylesheet" href="./css/session.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
+        <script src ="./js/signIn.js"></script>
+        <script src ="./js/utils.js"></script>
     </head>
 
     <body>
         <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
 
         <!--Staff Selector: Usable by Admin's only-->

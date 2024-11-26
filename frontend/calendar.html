@@ -9,12 +9,15 @@
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src ="./js/navigationTab.js"></script>
         <script src="./js/calendar.js"></script>
+        <script src ="./js/signIn.js"></script>
+        <script src ="./js/utils.js"></script>
     </head>
     <body>
         <header class="header">
-            <a class="link" id="back">←</a>
-            <a class="link">Logout</a>
+            <a onclick="back()"class="link" id="back">&#8592</a>
+            <a onclick="logout()" class="logout link"> Log out</a>
         </header>
         <div class="logo-container">
             <img src="./assets/logo.png" class="logo" alt="Scheduled Smiles Logo">
