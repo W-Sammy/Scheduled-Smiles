@@ -68,7 +68,7 @@ CREATE TABLE messagePairTypes (
 CREATE TABLE messages (
     pairID BINARY(32),
     createdAt INT,
-    textContent VARCHAR(160) NULL,
+    textContent VARCHAR(160) NOT NULL,
     PRIMARY KEY (pairID, createdAt),
     CONSTRAINT FK_messagePair FOREIGN KEY (pairID)
     REFERENCES messagePairTypes(pairID)
