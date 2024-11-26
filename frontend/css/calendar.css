@@ -212,9 +212,8 @@ body {
     width: calc(100% / 7 - 10px); /* exact amount for wrapping */
     height: calc(100% / 5); /* ensure consistent sizing between different months (fucking febuary man */
     text-align: center;
-    font-size:12px;
     color: var(--calendar-secondary-text-color);
-    padding: 5px;
+    padding: 0.3em;
     height: 55px;
 }
 
@@ -255,7 +254,6 @@ body {
 }
 
 /* Legend styles */
-
 .legend-container {
   width: 20%;
   display: flex;

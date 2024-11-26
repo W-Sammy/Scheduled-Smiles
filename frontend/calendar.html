@@ -7,6 +7,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
         <script src ="./js/navigationTab.js"></script>
@@ -92,10 +93,8 @@
             <div class="appointment-section">   
                 <!-- Appointment schedule start -->
                 <div class="appointment-container">
-                    <h3>Enter Patient's Name or E-mail</h3>
+                    <h3>Enter Patient's E-mail</h3>
                     <div class="input-row">
-                        <input id="patientName" pattern="[\x00-\x7F]+" maxlength="100" type="text" class="patient-name" placeholder="Name" spellcheck="false">
-                        <p>or</p>
                         <input id="patientEmail" pattern="[\x00-\x7F]+" maxlength="100" type="email" class="patient-email" placeholder="Email" spellcheck="false">   
                     </div>
                     <h3>Select Time</h3>
@@ -123,7 +122,7 @@
                                 <option value="">None</option>
                             </select>
                         </div>
-                        <button id="request-appt-btn" onclick="scheduleAppt">Schedule</button>
+                        <button id="request-appt-btn" onclick="scheduleAppointment()">Schedule</button>
                     </div>
                 </div>
                 <!-- Appointment schedule end -->

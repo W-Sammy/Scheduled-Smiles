@@ -192,3 +192,36 @@ async function getChats(userID) {
     let response = await request(requestBody, endpoint, method)
     return response
 }
+
+// expects boolean, NOT string
+async function markAppointmentPaid(appointmentID, isPaid) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isPaid": ${isPaid} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+// expects boolean, NOT string
+async function markAppointmentDone(appointmentID, isDone) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isComplete": ${isDone} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+// expects boolean, NOT string
+async function markAppointmentCanceled(appointmentID, isCanceled) {
+    const requestBody = `{ "appointmentID": "${appointmentID}", "isCanceled": ${isCanceled} }`
+    const endpoint = "/api/update-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
+}
+
+async function getAppointment(appointmentID) {
+    const requestBody = `{ "appointmentID": "${appointmentID}" }`
+    const endpoint = "/api/get-appointment"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}
