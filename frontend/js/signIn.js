@@ -117,8 +117,6 @@ function closeSignIn() {
 function redirectToDashboard() {
     window.location.href = DASHBOARD_URL;
 }
-
-
 // 
 function isUserSignedIn() {
     return checkCookieExists("userID") && getCookieValue("userID") != undefined && getCookieValue("userID") != null && getCookieValue("userID").length == 256

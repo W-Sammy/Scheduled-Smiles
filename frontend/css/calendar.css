@@ -239,6 +239,7 @@ body {
   width: 85%;
   height: auto;
   border-radius: 20px;
+  box-sizing: border-box;
   margin-top: 2em;
 }
 
@@ -300,6 +301,7 @@ body {
   width: auto;
   padding: 15px;
   border-radius: 10px;
+  box-sizing: border-box;
   background-color: #f8f9fa;
   margin-left: 20px;
   height: 100%;
@@ -331,6 +333,7 @@ body {
 /* Input field */
 .appointment-container select {
   padding: 10px;
+  box-sizing: border-box;
   border-radius: 10px;
 }
 
@@ -345,6 +348,7 @@ body {
   display: block;
   padding: 10px;
   border-radius: 10px;
+  box-sizing: border-box;
   position: absolute;
   bottom: 15px;
   right: 15px;

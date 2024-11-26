@@ -15,7 +15,7 @@ public class Pages {
         "session", "session.html",
         "dashboard", "dashboard.html",
         "calendar", "calendar.html",
-        "history", "payment-history.html",
+        "billing", "billing.html",
         "chat", "chat.html"
     );
 }

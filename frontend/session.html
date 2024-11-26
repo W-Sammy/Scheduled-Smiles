@@ -4,26 +4,20 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/session.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
+        <script src="./js/session.js"></script>
     </head>
-
     <body>
-
-        <header class="header" style="margin-bottom: 50px;">
-            <!--Need JS script to complete Log out feature-->       
-            <a class="link"> Log out</a>
-            
+        <header class="header">
+            <a class="link" id="back">&#8592;</a>
+            <a class="link">Logout</a>
         </header>
-
         <div class="appointmentBox" id="appointmentList" style="min-width: 400px;">
             <h1 class="title">Current Appointments: Select an appointment</h1>
-            <div class="appointment">
+            <div class="appointment" id="appointment1">
                 <div class="infoField">
                     <span class="info" id="order">Box of the Points made# </span>
                     <span class="info" id="date">DD/DD/DD/DD</span>
@@ -31,10 +25,10 @@
                     <span class="info" id="time">86:34</span>
                     <span class="info" id="staff">The special hat</span>
                 </div>
-                <a class="confirm">Approve</a>
-                <a class="delete">Deny</a>
+                <a class="confirm" onclick="openForm()" id="goodbutton">Approve</a>
+                <a class="delete" onclick="deleteAppointment(this)" id="badbutton">Deny</a>
             </div>
-            <div class="appointment">
+            <div class="appointment" id="appointment1">
                 <div class="infoField">
                     <span class="info" id="order">Box of the Points made# </span>
                     <span class="info" id="date">DD/DD/DD/DD</span>
@@ -42,67 +36,10 @@
                     <span class="info" id="time">86:34</span>
                     <span class="info" id="staff">The special hat</span>
                 </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>            
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>            
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
+                <a class="confirm" onclick="openForm()" id="goodbutton">Approve</a>
+                <a class="delete" onclick="deleteAppointment(this)" id="badbutton">Deny</a>
             </div>
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>
-            <div class="appointment">
-                <div class="infoField">
-                    <span class="info" id="order">Box of the Points made# </span>
-                    <span class="info" id="date">DD/DD/DD/DD</span>
-                    <span class="info" id="patient">No one but pit here</span>
-                    <span class="info" id="time">86:34</span>
-                    <span class="info" id="staff">The special hat</span>
-                </div>
-                <div class="confirm">Approve</div>
-                <div class="delete">Deny</div>
-            </div>
-
         </div>
-
         <div class="appointmentBox" id="sessionForm" 
             style="
             flex-wrap: wrap;
@@ -111,21 +48,19 @@
                 <h1 class="title" >
                     Starting a new Session:
                 </h1>                
-                <span class="returnButton">Appointment List</span>
+                <span class="returnButton" onclick="openAppointmentList()" >Appointment List</span>
             </div>
-            
-
             <div class="infoBox">
                 <form id="infoForm"> 
                         <div class="inputBox">
                             <label for="patient">Patient's ID:</label>
-                            <input type="text" class="info" id="patient" placeholder="ID #">                 
+                            <input type="text" class="info" id="patient" placeholder="ID #" required>                 
                             <label for="date">Date:</label>
-                            <input type="text" class="info" id="date" placeholder="MM/DD/YYYY">
+                            <input type="text" class="info" id="date" placeholder="MM/DD/YYYY" required>
                             <label for="time">Time Start:</label>
-                            <input type="time" class="info" id="time">
+                            <input type="time" class="info" id="time" required>
                             <label for="staff">Leading Staff 1:</label>
-                            <input type="text" class="info" id="staff" placeholder="The special hat">
+                            <input type="text" class="info" id="staff" placeholder="The special hat" required>
                             <label for="staff2">Staff 2</label>
                             <input type="text" class="info" id="staff2" placeholder="The special tail">
                             <label for="staff3">Staff 3</label>
@@ -162,7 +97,7 @@
                         </div>
                         <div>
                             <label for="treatmentList">Undergoing Treatment:</label><br>
-                            <select name="treatments" id="treatmentList" class="treatmentBox">
+                            <select name="treatments" id="treatmentList" class="treatmentBox" required>
                                 <option value="" disabled selected>Pick a Treatment</option>
                                 <option value="cleaning">Cleaning</option>
                                 <option value="filling">Fillings</option>
@@ -212,7 +147,7 @@
                     </div>
                 </form>            
                 <div class="titleSection">
-                    <input type="submit" value="Create Session">
+                    <input type="submit" value="Create Session"  onclick="openSession()">
                 </div>   
             </div>
             
@@ -225,16 +160,13 @@
                         <span class="info" id="time">86:34</span>
                     </div>
                     <a class="confirm">Review</a>
-                    <a class="delete">Delete</a>
+                    <a class="delete" onclick="deleteAppointment(this)">Delete</a>
                 </div>
             </div>               
 
         </div>
-
         <div class="appointmentBox" id="sessionList">
-
-
-            <!-- Image Board Prototype --> 
+            <!-- Image Board Prototype -->
             <!--
             <div class="uploadBox" id="upload">
                 <label style="margin-left: 20px; margin-top: 20px;"> Upload to Board: </label>
@@ -257,12 +189,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="imageBox" id="image">
             </div>
             -->
-
-
             <div class="trackingBox" id="tracking">
                 <div class="displayBox">
                     <!-- Need Js to handle Input of User and Staff based on previous -->
@@ -299,13 +228,10 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="titleSection">
-                        <input type="submit" value="End Session" >
+                        <input type="submit" value="End Session" onclick="closeSession()">
                 </div>
-
             </div>
-
         </div>
     </body>
 </html>
