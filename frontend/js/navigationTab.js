@@ -22,10 +22,15 @@ function loadTabs() {
             } else if (res.includes("staff")) {
                 addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("Chat", "chat", "chat")
-                addTabToNav("Payroll", "payroll", "payroll")
                 addTabToNav("Appointment", "session", "session")
+                // TODO: Payroll needs to be different from admin
+                addTabToNav("Payroll", "payroll", "staffpayroll")
             } else if (res.includes("admin")) {
-                addTabToNav("Payroll", "payroll", "payroll")
+                addTabToNav("Schedule", "scheduler", "calendar")
+                addTabToNav("Chat", "chat", "chat")
+                addTabToNav("Appointment", "session", "session")
+                // TODO: Payroll needs to be different from staff
+                addTabToNav("Payroll", "payroll", "adminpayroll")
                 //Commented out for now ~ Keav'n
                 //debugging and presentation purpose for displaying
                 //Still need role exclusive behavior for displaying 
