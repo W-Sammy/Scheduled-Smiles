@@ -9,7 +9,7 @@
 .tab{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #31999e;
@@ -32,6 +32,7 @@ div > * a {
     display: inline-block;
     flex-direction: column;
     align-content: center;
+    align-items: center;
     color: #e2e7e4;
     width: 8em;
     height: 2em;
