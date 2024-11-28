@@ -531,6 +531,29 @@ public class ServerConnectionHandler implements HttpHandler {
         sendResponse(STATUS_CODES.get("OK"), result);
         return true;
     }
+
+    private static boolean sendMessage() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        final Set<String> requestKeys = requestJsonObject.keySet();
+        int result = 0;
+        if (!membersMatch(requestKeys, "senderID", "receiverID", "content"))
+            return false;
+        final DatabaseGenericParameter senderID = new DatabaseGenericParameter(requestJsonObject.get("senderID").getAsString(), "bytes");
+        final DatabaseGenericParameter receiverID = new DatabaseGenericParameter(requestJsonObject.get("receiverID").getAsString(), "bytes");
+        final DatabaseGenericParameter content = new DatabaseGenericParameter(requestJsonObject.get("content").getAsString());
+        final String queryString = String.format("CALL insertMessage(%s, %s, %s)", senderID.getAsParameter(), receiverID.getAsParameter(), content.getAsParameter());
+        try (DatabaseConnection db = new DatabaseConnection()) {
+            if (db.isConnected()) {
+                result = db.update(queryString);
+            }
+        } catch (Exception e) {
+            // Errors handled in DatabaseConnection, pass
+            e.printStackTrace();
+        }
+        final String resultStr = (result > 0) ? "true" : "false";
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(resultStr));
+        return true;
+    }
     
     private static void handleApiRequest() throws IOException {
         boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
@@ -561,6 +584,9 @@ public class ServerConnectionHandler implements HttpHandler {
                         break;
                         case "messages":
                             isValidRequest = getChats();
+                        break;
+                        case "message":
+                            isValidRequest = sendMessage();
                         break;
                         case "update-appointment":
                             isValidRequest = updateAppointment();
