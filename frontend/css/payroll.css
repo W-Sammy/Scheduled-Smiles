@@ -1,6 +1,5 @@
 body > .appointmentBox{
-    margin: 30px;
-    height: 700px;
+    height: 800px;
     min-width: 1440px;
 }
 
@@ -11,6 +10,16 @@ body > .appointmentBox{
     margin: 30px;
     margin-top: 80px;
     margin-bottom: 0px;
+}
+
+
+body > #adminViewPayroll{
+    margin: 30px;
+}
+
+body > #staffViewPayroll{
+    margin: 30px;
+    margin-top: 80px;
 }
 
 .staffSelector > div{
@@ -66,7 +75,7 @@ div > .appointment > * {
 
 .appointmentBox > .infoBox{
     overflow-y: auto;
-    max-height: 650px;
+    max-height: 750px;
     margin: 20px;
 }
 

@@ -14,7 +14,10 @@ public class Pages {
             "/", "index.html",
             "404", "404.html",
             "staffpayroll", "staffpayroll.html",
+            //Delete adminpayroll is we direly need another map
+            // Could just do what it does via user Permission + JS
             "adminpayroll", "adminpayroll.html",
+            //
             "session", "session.html",
             "dashboard", "dashboard.html",
             "calendar", "calendar.html",
