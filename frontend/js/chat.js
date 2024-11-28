@@ -33,16 +33,23 @@ function loadData() {
         })
 
         document.getElementById("contacts-list").addEventListener("messagesLoaded", (e) => {
+            // All data loaded- start adding event listeners here
+
+            // Send button doesn't work until everything is loaded
+            document.getElementById("send").onclick = (e) => {
+                e.preventDefault()
+                sendNewMessage()
+            }
+
             // Display values
             Object.keys(chats).forEach(id => {
-                console.log(id)
-                console.log(document.getElementById(id))
-                document.getElementById(id).onclick = () => {
+                const e = document.getElementById(id)
+                e.onclick = () => {
                     // Load chat function
                     document.getElementById("message-container").innerHTML = ""
-                    document.querySelector("#current-contact .contact-name").innerHTML = document.getElementById(id).dataset.fullName
-                    const sent = chats[id].sent
-                    const recieved = chats[id].recieved
+                    document.getElementById("current-contact").innerHTML = e.innerHTML
+                    const sent = [...chats[id].sent]
+                    const recieved = [...chats[id].recieved]
                     while (sent.length > 0 || recieved.length > 0) {
                         if (!sent.length)
                             appendMessage(recieved.pop().textContent, "left")
@@ -98,6 +105,8 @@ function clearData() {
     document.getElementById("contacts-list").innerHTML = ""
     document.getElementById("message-container").innerHTML = ""
     document.querySelector("#current-contact .contact-name").innerHTML = ""
+    document.querySelector("#current-contact .contact-icon img").src = ""
+    document.querySelector("#current-contact .contact-icon img").alt = ""
 }
 
 function appendMessage(messageContent, type) {
@@ -113,11 +122,19 @@ function appendMessage(messageContent, type) {
     messageContainer.appendChild(newMessageDiv)
 }
 
-function appendNewMessage() {
-    // gets the input value from .message-input
+function sendNewMessage() {
+    // gets the input value from #message-input
+    const messageInput = document.getElementById("message-input")
+    const receiverID = document.querySelector("#current-contact .contact-name").dataset.id
+    const senderID = getCookieValue("userID")
     const message = messageInput.value
-
-    appendMessage(message, "right")
-
+    if (message.length <= 0 || !receiverID)
+        return
     messageInput.value = ''
+    sendMessage(senderID, receiverID, message).then(success => {
+        if (success)
+            appendMessage(message, "right")
+        else
+            showWarning("Error: Failed to send message.", 3, "bottom")
+    })
 }

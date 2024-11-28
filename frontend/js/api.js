@@ -167,7 +167,7 @@ async function getRoleName(roleId) {
     let response = await request(requestBody, endpoint, method)
     return (response !== false) ? response : null
 }
-// TODO: getAppointment and getChat/getMessages -Kyle
+
 async function getAvailableStaff(timestamp) {
     const requestBody = `{ "startTime": "${timestamp}" }`
     const endpoint = "/api/lookup/availability"
@@ -253,4 +253,12 @@ async function getUserId(email) {
     let response = await request(requestBody, endpoint, method)
     response = (response == "[]") ? null : JSON.parse(response)[0][0]
     return response
+}
+
+async function sendMessage(senderID, recieverID, message) {
+    const requestBody = `{ "senderID": "${senderID}", "receiverID": "${recieverID}", "content": "${message}" }`
+    const endpoint = "/api/message"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response === "true"
 }

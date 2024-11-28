@@ -60,14 +60,14 @@ body {
     padding-left: 25px;
 }
 
-#current-contact-icon {
+#current-contact > .contact-icon {
     width: 85px;
     padding: 10px;
     margin-left: 2.5em;
     gap: 2em;
 }
 
-#current-contact-icon > img {
+#current-contact > .contact-icon > img {
     width: 70px;
     height: auto;
 }
@@ -175,7 +175,7 @@ body {
     box-sizing: border-box;
 }
 
-.message-input {
+#message-input {
     flex-grow: 1;
     padding: 0 10px;
     background-color: #D4DDD3;
@@ -191,7 +191,7 @@ body {
 
 }
 
-.message-input::placeholder {
+#message-input::placeholder {
     color: #008080;
 }
 
