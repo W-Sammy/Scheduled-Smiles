@@ -102,7 +102,7 @@ function openSignIn() {
         redirectToDashboard()
     } else {
         showBlockElement("signInOverlay")
-        hideElement("registerOverlay", "passwordOverlay")
+        hideElement("registerOverlay", "passwordOverlay","aboutUsOverlay")
     }
 }
 function openRegister() {
@@ -132,6 +132,16 @@ function setUserSession(roleID, userID) {
     setCookie("roleID", roleID)
     setCookie("userID", userID)
 }
+
+function openAboutUs(){
+    showBlockElement("aboutUsOverlay");
+    hideElement("signInOverlay","registerOverlay","passwordOverlay")
+}
+
+function closeAboutUs(){
+    hideElement("aboutUsOverlay")
+}
+
 
 /*
   “roleId”: …,

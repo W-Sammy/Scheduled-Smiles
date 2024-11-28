@@ -55,3 +55,45 @@ body {
   margin-right: 3em;
   margin-top: 1em;
 }
+
+#aboutUsOverlay{
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#aboutUsOverlay > .wrapSignIn{
+  display: flex;
+  flex:1;
+  flex-flow: column;
+  height: fit-content;
+  width: fit-content;
+  background-color: rgba(1, 158, 137, 0.418);
+  padding: 30px;
+}
+
+#aboutUsBox{
+  background-color: rgba(230, 241, 231, 0.932);
+}
+
+#aboutUsBox > P > .hyperlinkBack{
+  margin: 10px;
+}
+
+#aboutUsBox > div > .titleRegister{
+  text-align: center;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: rgb(28, 122, 110);
+}
+
+#staffCensus{
+  display: flex;
+  flex-flow: wrap row;
+  height: 62vh;
+  width: 80vw;
+}

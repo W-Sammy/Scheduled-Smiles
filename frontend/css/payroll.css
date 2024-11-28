@@ -16,6 +16,7 @@ body > .appointmentBox{
 .staffSelector > div{
     border: 4px solid #94c7b2;
     border-radius: 30px;
+    box-sizing: border-box;
     background-color: #bde2d8;
     font-size: 20px;
     display: flex;
@@ -23,7 +24,6 @@ body > .appointmentBox{
     justify-content: flex-end;
     align-items: center;
     min-width: 680px;
-
     padding: 28px;
     padding-right: 32px;
     padding-left: 36px;
@@ -42,6 +42,7 @@ body > .appointmentBox{
     padding-left: 8px;
     padding-right: 12px;
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .staffSelector > div > input[type="submit"]{
@@ -62,6 +63,7 @@ div > .appointment > * {
     display: flex;
     background-color: #fffff5;
     border-radius: 20px;
+    box-sizing: border-box;
     overflow-y: auto;
 }
 
@@ -126,11 +128,11 @@ div > .appointment > * {
 
 .workBox > div{
     border-radius: 16px;
+    box-sizing: border-box;
     width: 90%;
     height: 40%;
     margin: 15px;
     margin-top: 0px;
-
     width: auto;
     margin-bottom: 20px;
     background-color: #F0FFF2;

@@ -9,18 +9,17 @@
 }
 
 .wrapSignIn {
-    background-color: #a6b9ad;
+    background-color: #a1b8b2;
     /*
     height: 600px;
     width: 600px;
     */
-
     text-align: center;
     padding: 40px;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;    
-
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .logo{
@@ -31,12 +30,12 @@
 .title{
     justify-content: center;
     font-size: 2.25em;
-    color: #3f6154;
+    color: rgb(59, 116, 109);
     margin: 0px;
 }
 
 .titleRegister{
-    color: #3f6154;
+    color: rgb(59, 116, 109);
     text-align: left;
     padding-left: 50px;
     font-size: xx-large;
@@ -85,7 +84,7 @@
     margin: 10px;
     font-weight: 600;
     text-align: left;
-    color: #3f6154;
+    color: rgb(59, 116, 109);
 }
 
 .input{
@@ -97,6 +96,7 @@
     color:#666060;
     border-color:rgba(41, 124, 113, 0.158);
     border-radius: 6px;
+    box-sizing: border-box;
 }
 
 .input2{
@@ -109,11 +109,12 @@
     color:#666060;
     border-color:rgba(41, 124, 113, 0.158);
     border-radius: 6px;
+    box-sizing: border-box;
 }
 
 .hyperlinkPassword{
     text-align: center;
-    color: #3f6154;
+    color: rgb(59, 116, 109);
     font-weight: bold;
 }
 .hyperlinkPassword:hover{
@@ -128,14 +129,14 @@
 }
 
 .textRegister{
-    color: #3f6154;
+    color: rgb(59, 116, 109);
     font-weight: 550;
     font-size: 88%;
 
 }
 
 .hyperlinkRegister{
-    color: #3f6154;
+    color: rgb(42, 107, 99);
     font-weight: bolder;
     font-size: 100%;
     text-align: left;
@@ -155,8 +156,8 @@
     top: 1px;
     right: 1px;
     float: right;
-    color: #3f6154;
-    font-weight: 520;
+    color:rgb(59, 116, 109);
+    font-weight: bolder;
 }
 
 .hyperlinkBack:hover{
@@ -170,6 +171,7 @@ select{
     margin-bottom: 20px;
     border-color: rgba(39, 117, 74, 0.349);
     border-radius: 6px;
+    box-sizing: border-box;
     background-color: #e4d9d9;
 }
 div > p {
