@@ -85,7 +85,7 @@ function createContact(fullName, id) {
     const divContact = document.createElement("div")
     const imgIcon = document.createElement("img")
     const spanName = document.createElement("span")
-    
+
     divContactContainer.classList.add("contact")
     divContactContainer.id = id
     divContactContainer.dataset.fullName = fullName
@@ -94,7 +94,7 @@ function createContact(fullName, id) {
     imgIcon.alt = "Contact Image"
     spanName.classList.add("contact-name")
     spanName.innerHTML = fullName
-    
+
     contactList.appendChild(divContactContainer)
     divContactContainer.appendChild(divContact)
     divContact.appendChild(imgIcon)
