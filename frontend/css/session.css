@@ -8,7 +8,6 @@
     width: auto;  
     min-width: 900px; 
     border-radius: 20px;
-    box-sizing: border-box;
     border: 35px solid #b7e2d0;
 }
 
@@ -25,7 +24,6 @@
     flex-direction: column;
     flex-wrap: wrap;
     border-radius: 26px;
-    box-sizing: border-box;
     justify-content: space-between;
     height: 140px;
     width: 490px;
@@ -66,7 +64,6 @@
     margin: 5px;
     margin-right: 10px;
     border-radius: 13px;
-    box-sizing: border-box;
 }
 
 .confirm:hover{
@@ -92,7 +89,6 @@
     margin: 5px;
     margin-right: 10px;
     border-radius: 13px;
-    box-sizing: border-box;
 }
 
 .delete:hover{
@@ -124,7 +120,6 @@
     margin-left: 0px;
     margin-right: 20px;
     border-radius: 13px;
-    box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: .5em;
@@ -145,7 +140,6 @@
     padding-bottom: 10px;
     width: 70%;
     border-radius: 20px;
-    box-sizing: border-box;
     background-color: #fffff5;
 }
 
@@ -155,7 +149,6 @@
     flex-direction: row;
     margin: 20px;
     border-radius: 20px;
-    box-sizing: border-box;
     background-color: #d4e4da;
 }
 
@@ -191,7 +184,6 @@ input{
     max-height: 20px;
     margin: 5px;
     border-radius: 2px;
-    box-sizing: border-box;
 }
 
 input[type='text']{
@@ -208,7 +200,6 @@ select{
     margin-bottom: 20px;
     border-color: rgba(39, 117, 74, 0.349);
     border-radius: 2px;
-    box-sizing: border-box;
     background-color: #e9f0ed;
 }
 
@@ -246,7 +237,6 @@ label{
     min-width: 400px;
     max-width: 600px;
     border-radius: 20px;
-    box-sizing: border-box;
     background-color: #fffff5;
     margin: 10px;
     margin-left: 3px;
@@ -272,7 +262,6 @@ input[type='submit']{
     height: 50px;
     max-width: none;
     border-radius: 13px;
-    box-sizing: border-box;
     margin-top: 0px;
     margin-left: 0px;
     justify-items: flex-end;
@@ -326,7 +315,6 @@ input[type='submit']:active{
     margin-top: 4px;
     margin-bottom: 4px;
     border-radius: 12px;
-    box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
     display: flex;
@@ -363,7 +351,6 @@ input[type='submit']:active{
     margin-top: 0;
     margin-bottom: 0px;
     border-radius: 12px;
-    box-sizing: border-box;
 }
 
 .displayRecord{
@@ -411,7 +398,6 @@ input[type='submit']:active{
     scrollbar-width: thin;
     flex: 1;
     border-radius: 5px;
-    box-sizing: border-box;
     background-color: #b7e2d0;
     justify-content: space-around;
 }
@@ -420,8 +406,7 @@ input[type='submit']:active{
     display: flex;
     width: auto;
     height: 20px;
-    border-radius: 10px;
-    box-sizing: border-box;    
+    border-radius: 10px;    
     justify-content: center;
     background-color: #fcfdf7;
     border: 2px solid #b7e2d0;
