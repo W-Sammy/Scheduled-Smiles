@@ -57,12 +57,14 @@ body {
 }
 
 #aboutUsOverlay{
-  display: block;
+  display: hide;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 53%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  height: fit-content;
+  width: fit-content;
 }
 
 #aboutUsOverlay > .wrapSignIn{
@@ -94,6 +96,30 @@ body {
 #staffCensus{
   display: flex;
   flex-flow: wrap row;
+  justify-content: space-around;
+  align-items: center;
   height: 62vh;
   width: 80vw;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.staff{
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  background-color: rgba(153, 206, 180, 0.493);
+  height: 30%;
+  width: 30%;
+}
+
+.staff > .labels{
+  text-align: center;
+}
+
+#aboutMessage{
+  color: rgba(24, 112, 83, 0.911);
+  margin: .5em;
+  font-size: 2em;
+  font-weight: bolder;
 }
