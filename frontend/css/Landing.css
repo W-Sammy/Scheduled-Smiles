@@ -112,6 +112,9 @@ body {
   height: 30%;
   width: 30%;
 }
+.staff > p{
+  text-wrap: wrap;
+}
 
 .staff > .labels{
   text-align: center;
