@@ -1,3 +1,4 @@
+USE scheduledSmiles;
 
 DROP FUNCTION IF EXISTS SHA256;
 
@@ -28,8 +29,15 @@ BEGIN
     SELECT userID 
     INTO ID
     FROM users 
-    WHERE userID = SHA256(email)
+    WHERE users.email = email
     LIMIT 1;
+
+    IF 
+        ID IS NULL 
+    THEN
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Email not found';
+    END IF;
     
     RETURN ID;
 END$$

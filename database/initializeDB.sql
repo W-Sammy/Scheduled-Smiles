@@ -68,6 +68,20 @@ VALUES('StephFu@scheduledsmiles.com',
        '9165592063',
        SHA256('Staff'));
 
+# insert special 'N/A' staff into database
+INSERT INTO users(userID, email, hashedPass, firstName, lastName, sex, birthDate, address, phoneNumber, roleID)
+VALUES(b'00000000000000000000000000000000',
+       '',
+       SHA256('00000000000000000000000000000000'),
+       '',
+       '',
+       '',
+       0,
+       '',
+       '',
+       SHA256('Staff'));
+
+
 # insert sample admin into database
 INSERT INTO users(email, hashedPass, firstName, lastName, sex, birthDate, address, phoneNumber, roleID)
 VALUES('AdamMinh@scheduledsmiles.adm.com',
@@ -95,26 +109,26 @@ INSERT INTO appointments(stationNumber, treatment, patientID, startTime, staff1I
 VALUES(1,
        'Checkup',
        userID_of('JohnDoe@email.com'),
-       1731087000,
+       1731085200,
        userID_of('StewartFerris@scheduledsmiles.com'),
-       NULL,
-       NULL),
+       userID_of(''),
+       userID_of('')),
 
+      (1,
+       'Checkup',
+       userID_of('JaneDoe@email.com'),
+       1731088800,
+       userID_of('StewartFerris@scheduledsmiles.com'),
+       userID_of(''),
+       userID_of('')),
+       
       (2,
        'Checkup',
        userID_of('JaySohn@email.com'),
        1731092400,
        userID_of('StewartFerris@scheduledsmiles.com'),
-       NULL,
-       NULL),
-
-      (1,
-       'Checkup',
-       userID_of('JaneDoe@email.com'),
-       1731090600,
-       userID_of('StewartFerris@scheduledsmiles.com'),
-       NULL,
-       NULL);
+       userID_of(''),
+       userID_of(''));
        
 # change completion for email on date
 UPDATE appointments
@@ -154,15 +168,15 @@ VALUES(1,
        1731690000,
        userID_of('EliseFlossmore@scheduledsmiles.com'),
        userID_of('StewartFerris@scheduledsmiles.com'),
-       NULL),
+       userID_of('')),
        
       (1,
        'Checkup',
        userID_of('JaySohn@email.com'),
        1731693600,
        userID_of('StewartFerris@scheduledsmiles.com'),
-       NULL,
-       NULL);
+       userID_of(''),
+       userID_of(''));
        
 # change completion for email on date
 UPDATE appointments
@@ -204,45 +218,12 @@ WHERE patientID = userID_of('JaySohn@email.com')
 ORDER BY startTime ASC
 LIMIT 1;
 
-INSERT INTO messagePairTypes(senderID, receiverID)
-VALUES((SELECT userID FROM users WHERE email = 'JohnDoe@email.com'),
-       (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
-      ((SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com'),
-       (SELECT userID FROM users WHERE email = 'JohnDoe@email.com'));
-INSERT INTO messagePairTypes(senderID, receiverID)
-VALUES((SELECT userID FROM users WHERE email = 'JaneDoe@email.com'),
-       (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
-      ((SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com'),
-       (SELECT userID FROM users WHERE email = 'JaneDoe@email.com'));
-INSERT INTO messagePairTypes(senderID, receiverID)
-VALUES((SELECT userID FROM users WHERE email = 'JaySohn@email.com'),
-       (SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com')),
-      ((SELECT userID FROM users WHERE email = 'StephFu@scheduledsmiles.com'),
-       (SELECT userID FROM users WHERE email = 'JaySohn@email.com'));
-
-INSERT INTO messages
-VALUES(pairID_of('JohnDoe@email.com', 'StephFu@scheduledsmiles.com'),
-       UNIX_TIMESTAMP()-481767,
-       'MESSAGE1-1'),
-       (pairID_of('StephFu@scheduledsmiles.com', 'JohnDoe@email.com'),
-       UNIX_TIMESTAMP()-400631,
-       'RESPONSE1-1'),
-       (pairID_of('JohnDoe@email.com', 'StephFu@scheduledsmiles.com'),
-       UNIX_TIMESTAMP()-390168,
-       'MESSAGE1-2'),
-       (pairID_of('StephFu@scheduledsmiles.com', 'JohnDoe@email.com'),
-       UNIX_TIMESTAMP()-54632,
-       'RESPONSE1-2'),
-       (pairID_of('JaneDoe@email.com', 'StephFu@scheduledsmiles.com'),
-       UNIX_TIMESTAMP()-83286,
-       'MESSAGE2-1'),
-       (pairID_of('StephFu@scheduledsmiles.com', 'JaneDoe@email.com'),
-       UNIX_TIMESTAMP()-23872,
-       'RESPONSE2-1'),
-       (pairID_of('JaySohn@email.com', 'StephFu@scheduledsmiles.com'),
-       UNIX_TIMESTAMP()-468352,
-       'MESSAGE3-1'),
-       (pairID_of('StephFu@scheduledsmiles.com', 'JaySohn@email.com'),
-       UNIX_TIMESTAMP()-1777,
-       'RESPONSE3-1');
-       
+# insert sample messages (and messagePairTypes / pairID's)
+call insertMessage(userID_of('JohnDoe@email.com'), userID_of('StephFu@scheduledsmiles.com'), 'MESSAGE1-1');
+call insertMessage(userID_of('JaneDoe@email.com'), userID_of('StephFu@scheduledsmiles.com'), 'MESSAGE2-1');
+call insertMessage(userID_of('JaySohn@email.com'), userID_of('StephFu@scheduledsmiles.com'), 'MESSAGE3-1');
+call insertMessage(userID_of('StephFu@scheduledsmiles.com'), userID_of('JohnDoe@email.com'), 'RESPONSE1-1');
+call insertMessage(userID_of('JohnDoe@email.com'), userID_of('StephFu@scheduledsmiles.com'), 'MESSAGE1-2');
+call insertMessage(userID_of('StephFu@scheduledsmiles.com'), userID_of('JohnDoe@email.com'), 'RESPONSE1-2');
+call insertMessage(userID_of('StephFu@scheduledsmiles.com'), userID_of('JaneDoe@email.com'), 'RESPONSE2-1');
+call insertMessage(userID_of('StephFu@scheduledsmiles.com'), userID_of('JaySohn@email.com'), 'RESPONSE3-1');

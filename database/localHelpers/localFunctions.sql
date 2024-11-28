@@ -20,13 +20,20 @@ RETURNS BINARY(32)
 DETERMINISTIC
 BEGIN
     DECLARE ID BINARY(32);
-    
-    SELECT userID 
+
+    SELECT userID
     INTO ID
-    FROM users 
-    WHERE userID = SHA256(email)
+    FROM users
+    WHERE users.email = email
     LIMIT 1;
-    
+
+    IF 
+        ID IS NULL 
+    THEN
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Email not found';
+    END IF;
+
     RETURN ID;
 END;
 
