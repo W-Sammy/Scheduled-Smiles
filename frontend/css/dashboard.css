@@ -144,6 +144,8 @@ div > * a:hover{
 
 .viewBox > *{
     padding-left: 20px;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 
