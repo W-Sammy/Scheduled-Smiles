@@ -1,11 +1,8 @@
 package Server;
 
+import Server.utils.DatabaseGenericParameter;
 import java.sql.*;
 import java.util.*;
-import java.lang.StringBuilder;
-import java.lang.IllegalArgumentException;
-
-import Server.utils.DatabaseGenericParameter;   
 
 public class DatabaseConnection implements AutoCloseable {
     final static private String hostname = "scheduledsmiles.cdmwceky6go6.us-west-1.rds.amazonaws.com";
@@ -75,8 +72,16 @@ public class DatabaseConnection implements AutoCloseable {
                                 resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getInt(i)));
                             break;
                             case Types.BINARY:
-                            default: // when in doubt get as bytes
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBytes(i)));
+                            default:
+                                final byte[] unknown = results.getBytes(i);
+                                //System.out.println(results.wasNull());
+                                // scuffed way to check for null, since not properly implemented by JDBC for some fucking reason -Kyle
+                                if (results.wasNull()) {
+                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter());
+                                } else {
+                                    // when in doubt get as bytes
+                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(unknown));
+                                }
                         }
                         i++;
                     }

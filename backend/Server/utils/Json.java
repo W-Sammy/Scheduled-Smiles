@@ -37,6 +37,8 @@ public class Json {
     public static String convertFromJson(List<List<DatabaseGenericParameter>> obj) {
         final List<List<String>> newObj = new ArrayList<>();
         int i = 0, j = 0;
+        if (obj == null)
+            return "null";
         while (i < obj.size()) {
             newObj.add(new ArrayList<String>());
             j = 0;
