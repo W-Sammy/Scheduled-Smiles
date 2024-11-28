@@ -184,6 +184,8 @@ li{
 .notificationTitle{
     margin-top: 20px;
     margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -206,10 +208,11 @@ li{
 
 .viewBox > ul{
     margin: 0px;
-    height: fit-content;
-    width: fit-content;
-    justify-self: flex-start;
-    align-self: flex-start;
+    margin-right: 1em;
+    max-height: 2.3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-wrap: wrap;
 }
 
 .buttonLine{
@@ -225,6 +228,7 @@ div > .genericButton{
     width: fit-content;
     padding: .2em .5em .2em;
     margin-right: 10px;
+    margin-bottom: 0px;
     font-size: .95em;
 }
 
