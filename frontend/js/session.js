@@ -6,7 +6,6 @@ const loaded = {
     treatments: false,
     appointments: false
 }
-const appointments = []
 
 
 window.onload = () => {
@@ -23,7 +22,7 @@ window.onload = () => {
 };
 
 //Generic Show and Hide component functions
-function showDisplay(id){
+function showDisplay(id) {
     id.style.display = "flex"
 }
 
@@ -83,13 +82,50 @@ function loadTreatments() {
         Object.keys(treatmentTypes).forEach(type => {
             e.appendChild(createTreatment(type))
         })
-        dispatchLoadedEvent(loaded.treatments)
+        dispatchLoadedEvent(treatmentTypes, loaded.treatments)
     })
 }
 
 function loadAppointments() {
     getAppointments(getCookieValue("userID")).then(response => {
-        console.log(response)
+        Promise.all(Array.from(JSON.parse(response), appointment => {
+            const {appointmentID, patientID, staffList, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
+            const trimmedStaffList = staffList.filter(id => id && id.length && id.replace(/0/g, "").length)
+            return Promise.all([
+                Promise.resolve(appointment),
+                Promise.resolve(trimmedStaffList),
+                Promise.all([
+                    Promise.resolve(getFullName(patientID)),
+                    ...Array.from(trimmedStaffList, id => getFullName(id))
+                ])
+            ])
+        })).then(infos => {
+            const appts = []
+            infos.forEach(info => {
+                const [appointment, trimmedStaffList, names] = info
+                const {appointmentID, patientID, staffList, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
+                const [rawPatientName, ...rawStaffNames] = names
+                const patientName = rawPatientName.join(" ")
+                const staffNames = Array.from(rawStaffNames, n => n.join(" "))
+                createAppointmentElement(staffNames, startTime, patientName)
+                appts.push({
+                    appointmentID: appointmentID,
+                    patientID: patientID,
+                    patientName: patientName,
+                    staffList: trimmedStaffList,
+                    staffNames: staffNames,
+                    stationNumber: stationNumber,
+                    treatment: treatment,
+                    notes: notes,
+                    startTime: startTime,
+                    isComplete: isComplete,
+                    isCanceled: isCanceled,
+                    isPaid: isPaid
+                })
+                // console.log(appts[appts.length - 1])
+            })
+            dispatchLoadedEvent(appts, loaded.appointments)
+        })
     })
 }
 
@@ -100,7 +136,43 @@ function createTreatment(treatmentName) {
     return e
 }
 
-function dispatchLoadedEvent(value) {
-    value = true
+function dispatchLoadedEvent(value, key) {
+    key = value
     document.body.dispatchEvent(new Event(DATA_LOADED_EVENT_NAME))
+}
+
+function createAppointmentElement(staffNames, timestamp, patientName) {
+    const dateObj = new Date(timestamp)
+    const apptList = document.getElementById("appointmentList")
+    const apptEl = document.createElement("div")
+    const infoEl = document.createElement("div")
+    const dateEl = document.createElement("span")
+    const patientEl = document.createElement("span")
+    const timeEl = document.createElement("span")
+    const staffEl = document.createElement("span")
+    const confirmEl = document.createElement("a")
+    const denyEl = document.createElement("a")
+    apptEl.classList.add("appointment")
+    infoEl.classList.add("infoField")
+    dateEl.classList.add("info-date")
+    patientEl.classList.add("info-patient")
+    timeEl.classList.add("info-time")
+    staffEl.classList.add("info-staff")
+    confirmEl.classList.add("confirm")
+    denyEl.classList.add("deny")
+    dateEl.innerHTML = dateObj.toDateString()
+    patientEl.innerHTML = patientName
+    timeEl.innerHTML = dateObj.toLocaleTimeString('en-US')
+    staffEl.innerHTML = staffNames.join(", ")
+    confirmEl.innerHTML = "Approve"
+    denyEl.innerHTML = "Deny"
+    
+    apptList.appendChild(apptEl)
+    apptEl.appendChild(infoEl)
+    infoEl.appendChild(dateEl)
+    infoEl.appendChild(patientEl)
+    infoEl.appendChild(timeEl)
+    infoEl.appendChild(staffEl)
+    apptEl.appendChild(confirmEl)
+    apptEl.appendChild(denyEl)
 }

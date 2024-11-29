@@ -227,7 +227,7 @@ function populateStaffLists() {
         const staffIDs = JSON.parse(response)
         return Promise.all(Array.from(staffIDs, id => Promise.all([id, getFullName(id)])))
     }).then(response => {
-        const staffList = Array.from(response, (arrStr) => [arrStr[0], JSON.parse(arrStr[1])[0].join(" ")])
+        const staffList = Array.from(response, (arrStr) => [arrStr[0], arrStr[1].join(" ")])
         // selects all dropdown elements with class "staff-select"
         const staffDropdowns = document.querySelectorAll(".staff-select");
         staffDropdowns.forEach((dropdown) => {

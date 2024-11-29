@@ -45,7 +45,7 @@
     height: 100%;
 }
 
-.info{
+.infoField > span {
     margin: 3px;
     font-size: 1.1em;
 }
@@ -75,7 +75,7 @@
     scale:.99;
 }
 
-.delete{
+.deny{
     color: #f8faee;
     background-color: #b85b5b;
     font-size: 1em;
@@ -91,11 +91,11 @@
     border-radius: 13px;
 }
 
-.delete:hover{
+.deny:hover{
     background-color: #e05555;
 }
 
-.delete:active{
+.deny:active{
     background-color: #963535;
     scale:.99;
 }

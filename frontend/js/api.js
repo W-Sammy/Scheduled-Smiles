@@ -181,7 +181,7 @@ async function getFullName(userID) {
     const endpoint = "/api/database/get"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
-    response = (response == "[]") ? null : response
+    response = (response == "[]") ? null : JSON.parse(response)[0]
     return response
 }
 

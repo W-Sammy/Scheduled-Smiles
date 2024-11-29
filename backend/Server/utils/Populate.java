@@ -47,10 +47,10 @@ public class Populate {
         final boolean paid = result.get(10).getAsBoolean();
         
         staffList.add(result.get(1).getAsBytes()); // first staff ID should never be null -Kyle
-        if (result.get(2).isNull()) {
+        if (!result.get(2).isNull()) {
             staffList.add(result.get(2).getAsBytes());
         }
-        if (result.get(3).isNull()) {
+        if (!result.get(3).isNull()) {
             staffList.add(result.get(3).getAsBytes());
         }
         
@@ -86,10 +86,11 @@ public class Populate {
             final boolean canceled = result.get(9).getAsBoolean();
             final boolean paid = result.get(10).getAsBoolean();
             
-            if (result.get(2).isNull()) {
+            staffList.add(userID);
+            if (!result.get(2).isNull()) {
                 staffList.add(result.get(2).getAsBytes());
             }
-            if (result.get(3).isNull()) {
+            if (!result.get(3).isNull()) {
                 staffList.add(result.get(3).getAsBytes());
             }
             

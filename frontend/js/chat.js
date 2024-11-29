@@ -87,7 +87,7 @@ function getOtherUser(user1ID, user2ID) {
 // current user always returned as reciever
 async function loadContact(userID) {
     return await getFullName(userID).then(response => {
-        const fullName = JSON.parse(response)[0].join(" ")
+        const fullName = response.join(" ")
         createContact(fullName, userID)
         return true
     })
