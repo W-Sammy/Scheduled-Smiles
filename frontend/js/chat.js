@@ -16,7 +16,7 @@ function loadData() {
         // Merge chats
         Promise.all(Array.from(JSON.parse(response), values => {
             const {messages, pairID, receiverID, senderID} = values
-            const sortedMessages = messages.sort((a, b) => a.createdAt - b.createdAt)
+            const sortedMessages = messages.filter(a => a.createdAt != 0).sort((a, b) => a.createdAt - b.createdAt)
             const otherContact = getOtherUser(senderID, receiverID)
             let loaded = true
             if (!chats.hasOwnProperty(otherContact)) {
@@ -45,25 +45,39 @@ function loadData() {
             Object.keys(chats).forEach(id => {
                 const e = document.getElementById(id)
                 e.onclick = () => {
-                    // Load chat function
-                    document.getElementById("message-container").innerHTML = ""
-                    document.getElementById("current-contact").innerHTML = e.innerHTML
-                    const sent = [...chats[id].sent]
-                    const recieved = [...chats[id].recieved]
-                    while (sent.length > 0 || recieved.length > 0) {
-                        if (!sent.length)
-                            appendMessage(recieved.pop().textContent, "left")
-                        else if (!recieved.length)
-                            appendMessage(sent.pop().textContent, "right")
-                        else if (sent[sent.length - 1].createdAt > recieved[recieved.length - 1].createdAt)
-                            appendMessage(sent.pop().textContent, "right")
-                        else
-                            appendMessage(recieved.pop().textContent, "left")
-                    }
+                    unsetActiveContact()
+                    setActiveContact(e)
+                    populateMessages(chats[id])
                 }
+                
             })
         })
     })
+}
+
+function unsetActiveContact() {
+    document.querySelectorAll("#contacts-list > .contact.active").forEach(e => e.classList.remove("active"))
+    document.getElementById("message-container").innerHTML = ""
+}
+
+function setActiveContact(el) {
+    document.getElementById("current-contact").innerHTML = el.innerHTML
+    el.classList.add("active")
+}
+
+function populateMessages(chat) {
+    const sent = [...chat.sent]
+    const recieved = [...chat.recieved]
+    while (sent.length > 0 || recieved.length > 0) {
+        if (!sent.length)
+            appendMessage(decodeURIComponent(recieved.pop().textContent), "left")
+        else if (!recieved.length)
+            appendMessage(decodeURIComponent(sent.pop().textContent), "right")
+        else if (sent[sent.length - 1].createdAt > recieved[recieved.length - 1].createdAt)
+            appendMessage(decodeURIComponent(sent.pop().textContent), "right")
+        else
+            appendMessage(decodeURIComponent(recieved.pop().textContent), "left")
+    }
 }
 
 function getOtherUser(user1ID, user2ID) {
@@ -90,6 +104,7 @@ function createContact(fullName, id) {
     divContactContainer.id = id
     divContactContainer.dataset.fullName = fullName
     divContact.classList.add("contact-icon")
+    divContact.dataset.id = id // messy...
     imgIcon.src = "./assets/contact.png"
     imgIcon.alt = "Contact Image"
     spanName.classList.add("contact-name")
@@ -116,24 +131,40 @@ function appendMessage(messageContent, type) {
     const newMessageDiv = document.createElement('div')
     newMessageDiv.classList.add('message') // adds classname 'message' for styling
     newMessageDiv.classList.add(type)
-    newMessageDiv.textContent = messageContent;
+    newMessageDiv.innerText = messageContent;
 
     // Appends the new message div in .chat-window
     messageContainer.appendChild(newMessageDiv)
 }
 
+// literally the same as appendMessage except it inserts the message element at the top of the column instead of the bottom
+function appendNewMessage(messageContent, type) {
+    const messageContainer = document.getElementById("message-container")
+
+    // Creates a new message as a div
+    const newMessageDiv = document.createElement('div')
+    newMessageDiv.classList.add('message') // adds classname 'message' for styling
+    newMessageDiv.classList.add(type)
+    newMessageDiv.textContent = messageContent;
+
+    // Appends the new message div in .chat-window
+    messageContainer.insertBefore(newMessageDiv, messageContainer.firstChild)
+}
+
 function sendNewMessage() {
     // gets the input value from #message-input
     const messageInput = document.getElementById("message-input")
-    const receiverID = document.querySelector("#current-contact .contact-name").dataset.id
+    const receiverID = document.querySelector("#current-contact > div").dataset.id
     const senderID = getCookieValue("userID")
-    const message = messageInput.value
+    // escape all control chars before JSON parsing
+    const message = encodeURIComponent(messageInput.value)
+    console.log(`processing message:\n'${message}'\nReceipient:\n${receiverID}`)
     if (message.length <= 0 || !receiverID)
         return
     messageInput.value = ''
     sendMessage(senderID, receiverID, message).then(success => {
         if (success)
-            appendMessage(message, "right")
+            appendNewMessage(decodeURIComponent(message), "right")
         else
             showWarning("Error: Failed to send message.", 3, "bottom")
     })

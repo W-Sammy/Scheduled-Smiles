@@ -61,10 +61,10 @@ body {
 }
 
 #current-contact > .contact-icon {
-    width: 85px;
+    width: 50%;
     padding: 10px;
-    margin-left: 2.5em;
     gap: 2em;
+    justify-content: left;
 }
 
 #current-contact > .contact-icon > img {
@@ -81,7 +81,9 @@ body {
     display: none;
 }
 
-
+#contacts-list > .contact.active {
+    background-color: rgb(200, 200, 200);
+}
 
 /* chat section */
 #message-container {
@@ -119,7 +121,7 @@ body {
 #current-contact {
     background-color: #64a1a3;
     color: white;
-    padding: 50px 20px 20px 20px;
+    padding: 60px 20px 20px 20px;
     font-size: 20px;
     position: sticky;
     box-shadow: 0px 7px 9px -1px rgba(0,0,0,0.45);
@@ -135,7 +137,7 @@ body {
     color: black;
     font-size: 18px;
     max-width: 28ch;
-    text-align: center;
+    text-align: left;
 }
 
 .message.left {
