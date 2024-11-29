@@ -129,8 +129,8 @@ function redirectToDashboard() {
  * @returns {void}
  */
 function setUserSession(roleID, userID) {
-    setCookie("roleID", roleID)
-    setCookie("userID", userID)
+    setCookie("roleID", roleID, 31536000)
+    setCookie("userID", userID, 31536000)
 }
 
 function openAboutUs(){
