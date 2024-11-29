@@ -57,6 +57,47 @@ public class Populate {
         //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
         return new Appointment(appointmentId, patientID, staffList, station, treatment, notes, timestamp, completed, canceled, paid);
     }
+    
+    public static List<Appointment> populateAppts(final byte[] userID, DatabaseConnection db) {
+        final DatabaseGenericParameter id = new DatabaseGenericParameter(userID);
+        // Verify ID exists
+        final boolean idExists = verifyWhere(id.equalsTo("staff1ID"), "appointments", db);
+        if (!idExists) {
+            return null;
+        }
+        // Aggregate columns
+        final String[] columns = {
+            "appointmentID", "patientID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid"
+        };
+        // Get appointment types
+        final String queryString = String.format("SELECT %s FROM appointments WHERE %s", String.join(", ", columns), id.equalsTo("staff1ID"));
+        final List<List<DatabaseGenericParameter>> results = db.query(queryString);
+        final List<Appointment> appts = new ArrayList<Appointment>();
+        for (List<DatabaseGenericParameter> result : results) {
+            // Prepare parameters
+            final byte[] appointmentID = result.get(0).getAsBytes();
+            final byte[] patientID = result.get(1).getAsBytes();
+            final List<byte[]> staffList = new ArrayList<byte[]>();
+            final int station = result.get(4).getAsInteger();
+            final String treatment = result.get(5).getAsString();
+            final String notes = result.get(6).getAsString();
+            final int timestamp = result.get(7).getAsInteger();
+            final boolean completed = result.get(8).getAsBoolean();
+            final boolean canceled = result.get(9).getAsBoolean();
+            final boolean paid = result.get(10).getAsBoolean();
+            
+            if (result.get(2).isNull()) {
+                staffList.add(result.get(2).getAsBytes());
+            }
+            if (result.get(3).isNull()) {
+                staffList.add(result.get(3).getAsBytes());
+            }
+            
+            //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
+            appts.add(new Appointment(appointmentID, patientID, staffList, station, treatment, notes, timestamp, completed, canceled, paid));
+        }
+        return appts;
+    }
     public static List<Chat> populateChat(final byte[] receiverID, final DatabaseConnection db) {
         final DatabaseGenericParameter rid = new DatabaseGenericParameter(receiverID);
         // Verify ID exists 

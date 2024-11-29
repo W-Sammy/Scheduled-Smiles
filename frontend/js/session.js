@@ -1,8 +1,22 @@
 //Intialize the Session page
 //Open available appointments on load
 
-//Start with opening Appointment Component
+const DATA_LOADED_EVENT_NAME = "dataLoaded"
+const loaded = {
+    treatments: false,
+    appointments: false
+}
+const appointments = []
+
+
 window.onload = () => {
+    document.body.addEventListener(DATA_LOADED_EVENT_NAME, (e) => {
+        if (Object.values(loaded).every(el => el)) {
+            allDataLoaded()
+            document.body.removeEventListener(DATA_LOADED_EVENT_NAME)
+        }
+    })
+    loadAppointments()
     showDisplay(document.getElementById("appointmentList"))
     hideDisplay(document.getElementById("sessionForm"))
     hideDisplay(document.getElementById("sessionList"))
@@ -17,7 +31,7 @@ function hideDisplay(id){
     id.style.display = "none"
 }
 
-function addNote(){
+function addNote() {
     let record = document.getElementById("recordList")
     let count = record.childNodes.length
     let div = document.createElement("div")
@@ -55,4 +69,38 @@ function openAppointmentList(){
 function openForm(){
     hideDisplay(document.getElementById("appointmentList"))
     showDisplay(document.getElementById("sessionForm"))
+}
+
+// only runs when everything from DB is loaded
+function allDataLoaded() {
+    
+}
+
+function loadTreatments() {
+    document.querySelectorAll("#treatmentList > option:not([disabled])").forEach(el => el.remove())
+    const e = document.getElementById("treatmentList")
+    getTreatmentTypes().then(treatmentTypes => {
+        Object.keys(treatmentTypes).forEach(type => {
+            e.appendChild(createTreatment(type))
+        })
+        dispatchLoadedEvent(loaded.treatments)
+    })
+}
+
+function loadAppointments() {
+    getAppointments(getCookieValue("userID")).then(response => {
+        console.log(response)
+    })
+}
+
+function createTreatment(treatmentName) {
+    const e = document.createElement("option")
+    e.value = treatmentName
+    e.innerHTML = treatmentName
+    return e
+}
+
+function dispatchLoadedEvent(value) {
+    value = true
+    document.body.dispatchEvent(new Event(DATA_LOADED_EVENT_NAME))
 }

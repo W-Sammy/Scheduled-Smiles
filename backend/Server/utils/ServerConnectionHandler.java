@@ -462,6 +462,27 @@ public class ServerConnectionHandler implements HttpHandler {
         sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
         return true;
     }
+    
+    private static boolean getAppointments() throws IOException {
+        final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        if (membersMatch(requestJsonObject.keySet(), "userID")) {
+            try (DatabaseConnection db = new DatabaseConnection()) {
+                if (db.isConnected()) {
+                    final List<Appointment> appts = populateAppts(unhex(requestJsonObject.get("userID").getAsString()), db);
+                    sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(appts));
+                    return true;
+                }
+            } catch (Exception e) {
+                // Errors handled in DatabaseConnection, pass
+                e.printStackTrace();
+            }
+        } else {
+            return false;
+        }
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
+        return true;
+    }
+    
     // unused
     private static boolean bookFullAppointment() throws IOException {
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
@@ -555,6 +576,11 @@ public class ServerConnectionHandler implements HttpHandler {
         return true;
     }
     
+    private static boolean getAppointmentTypes() throws IOException {
+        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(APPOINTMENT_TYPE_FEE));
+        return true;
+    }
+    
     private static void handleApiRequest() throws IOException {
         boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
         if (isValidRequest) {
@@ -594,6 +620,11 @@ public class ServerConnectionHandler implements HttpHandler {
                         case "get-appointment":
                             isValidRequest = getAppointment();
                         break;
+                        case "get-appointments":
+                            isValidRequest = getAppointments();
+                        break;
+                        case "get-appointment-types":
+                            isValidRequest = getAppointmentTypes();
                         default:
                             isValidRequest = false;
                     }

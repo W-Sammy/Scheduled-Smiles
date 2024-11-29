@@ -262,3 +262,18 @@ async function sendMessage(senderID, recieverID, message) {
     let response = await request(requestBody, endpoint, method)
     return response === "true"
 }
+
+async function getTreatmentTypes() {
+    const endpoint = "/api/get-appointment-types"
+    const method = "POST"
+    let response = await request("{}", endpoint, method)
+    return response
+}
+
+async function getAppointments(userID) {
+    const requestBody = `{ "userID": "${userID}" }`
+    const endpoint = "/api/get-appointments"
+    const method = "POST"
+    let response = await request(requestBody, endpoint, method)
+    return response
+}

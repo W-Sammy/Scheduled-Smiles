@@ -143,13 +143,17 @@
     background-color: #fffff5;
 }
 
-.infoBox > form{
+.infoBox > form {
     overflow-x: auto;
     display: flex;
     flex-direction: row;
     margin: 20px;
     border-radius: 20px;
     background-color: #d4e4da;
+    padding: 0 25%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: 80%;
 }
 
 .infoBox > form > div{
@@ -174,8 +178,8 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 200px;
-    min-width: 500px;
+    height: 150px;
+    min-width: fit-content;
 
 }
 
