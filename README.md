@@ -41,36 +41,35 @@ The focus of the system is to streamline the management of  patient appointments
 
 ## <a id="instruct"></a>**Instructions For Use**
 
-> To operate the application, the following procedures will need to be performed: </br>
+To operate the application, the following procedures will need to be performed: </br>
+
+  1. **Clone or download the repository from GitHub onto local machine** </br>
+>  ![Clone](/frontend/assets/CloneRepo.png)
 >
->  1. **Clone or download the repository from GitHub onto local machine** </br>
->>  ![Clone](/frontend/assets/CloneRepo.png)
->>
->  2. **Add dependencies to your compiler**
+  2. **Add dependencies to your compiler**
+
+> In VSCode this can be done by navigating to the bottom of the "Explorer" tab  
+> Under `Java Project > Referenced Libraries > Add Jar libraries to Project Classpath`  
+> From File Explorer: `backend > Server > lib`  
+> Select both `gson` & `mysql-connector` and verified they have been added
+
+  3. **Run the Main method**
 >
->> In VSCode this can be done by navigating to the bottom of the "Explorer" tab  
->> Under `Java Project > Referenced Libraries > Add Jar libraries to Project Classpath`  
->> From File Explorer: `backend > Server > lib`  
->> Select both `gson` & `mysql-connector` and verified they have been added
+> Navigate to `backend > Main.java` </br>
+> Run `Main.java`
+
+  4. **Connect to Server**
 >
->  3. **Run the Main method**
->>
->> Navigate to `backend > Main.java` </br>
->> Run `Main.java`
+> On successful run of `Main.java`, connect to the server via link from terminal 
 >
->  4. **Connect to Server**
->>
->> On successful run of `Main.java`, connect to the server via link from terminal 
->>
->> ![Successful Terminal Connection](/frontend/assets/TerminalConnection.png)
+> ![Successful Terminal Connection](/frontend/assets/TerminalConnection.png)
 
 ## <a id="contributors"></a>**Contributors**
 
 Below is a list of all original contributors to the project with their respective roles and contacts
 
-
-| Contributor | Role  | GitHub |
-| :---------: | :---: | :----: |
+| Contributor | Role | GitHub |
+| :-----------: | :---: | :--: |
 | **Sammy Wong** | *Scrum Master/Product Owner* | [W-Sammy](https://github.com/W-Sammy)
 | **Kyle Tran** | *Full-Stack Developer* | [scritty1249](https://github.com/scritty1249)
 | **Keav'n Lor** | *Full-Stack Developer* | [Keavn-CSU](https://github.com/Keavn-CSU)
