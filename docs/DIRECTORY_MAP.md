@@ -87,7 +87,7 @@ This document provides a visual explaination of the organization of files and fo
    ├─ dashboard.html                              # User dashboard page
    ├─ history.html                                # User appointment history page
    ├─ index.html                                  # Site landing page
-   ├─ js                                         # Package directory for JavaScript
+   ├─ js                                          # Package directory for JavaScript
    │  ├─ Header.js                                #                
    │  ├─ Navbar.js                                #
    │  ├─ api.js                                   #
