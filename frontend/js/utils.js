@@ -19,3 +19,14 @@ function logout() {
     deleteAllCookies()
     redirectTo()
 }
+
+function submitOnEnter(targetEl, func) {
+    targetEl.addEventListener("keydown", (e) => {
+        const key = window.event.keyCode
+        // If the user has pressed enter
+        if (key === 13) {
+            e.preventDefault()
+            func()
+        }
+    })
+}

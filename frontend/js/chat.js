@@ -5,6 +5,7 @@ let activeID = null
 let messagesLoading = false
 
 window.onload = () => {
+    submitOnEnter(document.getElementById("message-input"), sendNewMessage)
     clearData()
     setLoadedListener()
     loadData()
@@ -17,7 +18,7 @@ function stopRefreshing() {
 function setRefreshInterval() {
     refreshID = setInterval(function() {
         loadData()
-    }, 0.5 * 1000)
+    }, 0.75 * 1000) // Databse can't handle messages more than one second
 }
 
 function setLoadedListener() {
