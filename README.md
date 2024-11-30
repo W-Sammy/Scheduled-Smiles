@@ -58,6 +58,12 @@ To operate the application, the following procedures will need to be performed: 
 > Navigate to `backend > Main.java` </br>
 > Run `Main.java`
 
+  3. **Cmd Prompt (Alternative)**
+> Open `cmd` prompt and verify you are running from the root classpath of Scheduled Smiles
+> Paste & enter 
+```
+java -cp ./backend/;./backend/Server/lib/gson-2.11.0.jar;./backend/Server/lib/mysql-connector-j-9.1.0.jar ./backend/Main.java
+```
   4. **Connect to Server**
 >
 > On successful run of `Main.java`, connect to the server via link from terminal 
