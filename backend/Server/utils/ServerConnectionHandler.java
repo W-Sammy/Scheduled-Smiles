@@ -284,6 +284,7 @@ public class ServerConnectionHandler implements HttpHandler {
             final DatabaseGenericParameter email = new DatabaseGenericParameter(requestJsonObject.get("email").getAsString());
             final DatabaseGenericParameter password = new DatabaseGenericParameter(passwordDigest);
             final String queryString = String.format("SELECT userID FROM users WHERE %s AND %s", email.equalsTo("email"), password.equalsTo("hashedPass"));
+            System.out.println(queryString);
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
