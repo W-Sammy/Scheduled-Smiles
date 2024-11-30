@@ -261,9 +261,10 @@ public class ServerConnectionHandler implements HttpHandler {
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
             e.printStackTrace();
+        } finally {
+            sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
+            return true;
         }
-        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
-        return true;
     }
     
     private static boolean getUser() throws IOException {
@@ -291,7 +292,7 @@ public class ServerConnectionHandler implements HttpHandler {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
                     if (results != null) {
                         if (!results.get(0).get(0).isNull()) { // second check might be redundant
-                            final User user = populateUser(unhex(results.get(0).get(0).getAsString()), db);
+                            final User user = populateUser(results.get(0).get(0).getAsBytes(), db);
                             sendResponse(STATUS_CODES.get("OK"), user);
                             return true;
                         }
@@ -610,7 +611,7 @@ public class ServerConnectionHandler implements HttpHandler {
                         case "get-appointments" -> getAppointments();
                         case "get-appointment-types" -> getAppointmentTypes();
                         default -> false;
-                    }
+                    };
                 break;
                 // This is where we'd have a PUT case for uploading images... if we were going to implement that. -Kyle
                 // we are not. -Kyle from 2 weeks later

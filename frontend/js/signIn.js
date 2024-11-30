@@ -16,6 +16,7 @@ function signInSubmitted(event) {
     event.preventDefault()
     let formE = event.target
     let [email, pass] = Array.from(formE.elements, e => e.value)
+    console.log(email, pass)
     // TODO: notify user,   evaulating info
     accountEmailExists(email).then(success => {
         if (success) {
@@ -38,10 +39,10 @@ function signInSubmitted(event) {
             redirectToDashboard()
         } else {
             // TODO: signin failed, failed to contact database?
-            showWarning("Error, couldn't contact server. Try again later", 5, "bottom", null, formE)
+            showWarning("Password incorrect!", 3)
         }
     }).catch(e => {
-        showWarning("Password incorrect!", 3)
+        showWarning("Error, couldn't contact server. Try again later", 5, "bottom", null, formE)
     })
 }
 function registerSubmitted(event) {
