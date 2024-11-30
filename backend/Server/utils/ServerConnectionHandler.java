@@ -286,11 +286,16 @@ public class ServerConnectionHandler implements HttpHandler {
             final String queryString = String.format("SELECT userID FROM users WHERE %s AND %s", email.equalsTo("email"), password.equalsTo("hashedPass"));
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
-                    final DatabaseGenericParameter result = db.query(queryString).get(0).get(0);
-                    if (!result.isNull()) {
-                        final User user = populateUser(result.getAsBytes(), db);
-                        sendResponse(STATUS_CODES.get("OK"), user);
-                        return true;
+                    final List<List<DatabaseGenericParameter>> results = db.query(queryString);
+                    if (results != null {
+                        final DatabaseGenericParameter result = results.get(0).get(0);
+                        if (!result.isNull()) {
+                            final User user = populateUser(result.getAsBytes(), db);
+                            sendResponse(STATUS_CODES.get("OK"), user);
+                            return true;
+                        }
+                    } else {
+                        sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
                     }
                 }
             } catch (Exception e) {
