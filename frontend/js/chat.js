@@ -195,7 +195,8 @@ function sendNewMessage() {
     messageInput.value = ''
     sendMessage(senderID, receiverID, message).then(success => {
         if (success)
-            appendNewMessage(decodeURIComponent(message), "right")
+            if (receiverID == document.querySelector("#current-contact > div").dataset.id)
+                appendNewMessage(decodeURIComponent(message), "right")
         else
             showWarning("Error: Failed to send message.", 3, "bottom")
     })

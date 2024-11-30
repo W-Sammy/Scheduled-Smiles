@@ -588,6 +588,7 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static void handleApiRequest() throws IOException {
+        //System.out.println("API endpoint called");
         boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
         if (isValidRequest) {
             switch (requestMethod) {
@@ -618,9 +619,9 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         }
         if (isValidRequest) {
-            System.out.println("API request finished with response");
+            //System.out.println("API request finished with response");
         } else {
-            System.out.println("API request was found to be invalid");
+            //System.out.println("API request was found to be invalid");
             // Malformed/Invalid request body
             sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body or invalid endpoint");
         }
@@ -663,7 +664,6 @@ public class ServerConnectionHandler implements HttpHandler {
                 // idk, redirect to home page i guess
                 handleRequest();
             } else if(requestPath[1].equals("api")) {
-                System.out.println("API endpoint called");
                 try {
                     handleApiRequest();
                 } catch (Exception e) {
