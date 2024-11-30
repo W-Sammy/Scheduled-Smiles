@@ -166,6 +166,9 @@ function createAppointmentElement(staffNames, timestamp, patientName) {
     staffEl.innerHTML = staffNames.join(", ")
     confirmEl.innerHTML = "Approve"
     denyEl.innerHTML = "Deny"
+
+    confirmEl.setAttribute("onclick","openForm();");
+    denyEl.setAttribute("onclick","deleteAppointment(this);");
     
     apptList.appendChild(apptEl)
     apptEl.appendChild(infoEl)
