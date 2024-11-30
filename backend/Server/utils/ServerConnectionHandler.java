@@ -252,9 +252,10 @@ public class ServerConnectionHandler implements HttpHandler {
         System.out.println("1");
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         System.out.println("2");
-        if (!membersMatch(requestJsonObject.keySet(), "query"))
+        if (!membersMatch(requestJsonObject.keySet(), "query")) {
             System.out.println("2.5");
             return false;
+        }
         String results = "";
         final String queryString = requestJsonObject.get("query").getAsString();
         System.out.println("3");
@@ -269,13 +270,13 @@ public class ServerConnectionHandler implements HttpHandler {
             // Errors handled in DatabaseConnection, pass
             e.printStackTrace();
         } finally {
+            System.out.println("6");
             sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
-            return true;
         }
+        return true;
     }
     
     private static boolean getUser() throws IOException {
-        System.out.println("Called getUser()");
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         if (membersMatch(requestJsonObject.keySet(), "userID")) {
             try (DatabaseConnection db = new DatabaseConnection()) {

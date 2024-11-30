@@ -5,16 +5,17 @@ import java.sql.*;
 import java.util.*;
 
 public class DatabaseConnection implements AutoCloseable {
-    final static private String hostname = "scheduledsmiles.cdmwceky6go6.us-west-1.rds.amazonaws.com";
-    final static private int port = 3306; // 3306 is default
-    final static private String databaseName = "scheduledSmiles"; // case sensitive, will refuse connection if the name doesn't match.
-    final static private String username = "root";
-    final static private String password = "password";
-    static private String databaseUrl;
-    private static volatile Connection con = null;
+    final private String hostname = "scheduledsmiles.cdmwceky6go6.us-west-1.rds.amazonaws.com";
+    final private int port = 3306; // 3306 is default
+    final private String databaseName = "scheduledSmiles"; // case sensitive, will refuse connection if the name doesn't match.
+    final private String username = "root";
+    final private String password = "password";
+    private String databaseUrl;
+    private volatile Connection con = null;
     public DatabaseConnection() {
+        System.out.println("DBConnection opened");
         databaseUrl = String.format("jdbc:mysql://%s:%s/%s", hostname, port, databaseName);
-        connect();
+        this.connect();
     }
     private byte toByte(boolean value) {
         return (byte) (value ? 1 : 0 );
@@ -37,6 +38,7 @@ public class DatabaseConnection implements AutoCloseable {
         }
         return result;
     }
+
     public List<List<DatabaseGenericParameter>> query(String query) {
         final List<List<DatabaseGenericParameter>> resultArray = new ArrayList<>();
         if (this.isConnected()) {
@@ -93,6 +95,7 @@ public class DatabaseConnection implements AutoCloseable {
         }
         return null;
     }
+
     public void connect() {
         try {
             this.con = DriverManager.getConnection(
