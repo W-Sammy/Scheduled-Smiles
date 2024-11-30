@@ -13,9 +13,8 @@ public class DatabaseConnection implements AutoCloseable {
     private String databaseUrl;
     private volatile Connection con = null;
     public DatabaseConnection() {
-        System.out.println("DBConnection opened");
         databaseUrl = String.format("jdbc:mysql://%s:%s/%s", hostname, port, databaseName);
-        this.connect();
+        connect();
     }
     private byte toByte(boolean value) {
         return (byte) (value ? 1 : 0 );
@@ -38,7 +37,6 @@ public class DatabaseConnection implements AutoCloseable {
         }
         return result;
     }
-
     public List<List<DatabaseGenericParameter>> query(String query) {
         final List<List<DatabaseGenericParameter>> resultArray = new ArrayList<>();
         if (this.isConnected()) {
@@ -51,34 +49,39 @@ public class DatabaseConnection implements AutoCloseable {
                     int i = 1;
                     while (i <= columnCount) {
                         int columnType = results.getMetaData().getColumnType(i); // inefficent to get column type for every row after the first one but I don't see a better way -Kyle
-                        // Check for nulls
-                        // *scuffed way to check for null, since not properly implemented by JDBC for some fucking reason -Kyle
-                        if (results.getBytes(i) == null || results.wasNull()) {
-                            resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter());
-                        } else {
-                            switch (columnType) {
-                                case Types.TINYINT: // Retrieve sql TINYINT as java boolean, instead of converting them to bulkier int in java
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBoolean(i)));
-                                break;
-                                case Types.CHAR:
-                                    resultArray.get(resultArray.size() - 1).add(getCharOrNull(results.getString(i)));
-                                break;
-                                case Types.VARCHAR:
-                                case Types.LONGVARCHAR:
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i)));
-                                break;
-                                case Types.DECIMAL:
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getDouble(i)));
-                                break;
-                                case Types.BIGINT:
-                                case Types.INTEGER:
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getInt(i)));
-                                break;
-                                case Types.BINARY:
-                                default:
+                        // Might need to stick this into it's own function -Kyle
+                        switch (columnType) {
+                            case Types.NULL:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter()); // empty constructor defaults the type to null
+                            break;
+                            case Types.TINYINT: // Retrieve sql TINYINT as java boolean, instead of converting them to bulkier int in java
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBoolean(i)));
+                            break;
+                            case Types.CHAR:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i).charAt(0)));
+                            break;
+                            case Types.VARCHAR:
+                            case Types.LONGVARCHAR:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i)));
+                            break;
+                            case Types.DECIMAL:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getDouble(i)));
+                            break;
+                            case Types.BIGINT:
+                            case Types.INTEGER:
+                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getInt(i)));
+                            break;
+                            case Types.BINARY:
+                            default:
+                                final byte[] unknown = results.getBytes(i);
+                                //System.out.println(results.wasNull());
+                                // scuffed way to check for null, since not properly implemented by JDBC for some fucking reason -Kyle
+                                if (results.wasNull()) {
+                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter());
+                                } else {
                                     // when in doubt get as bytes
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBytes(i)));
-                            }
+                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(unknown));
+                                }
                         }
                         i++;
                     }
@@ -95,7 +98,6 @@ public class DatabaseConnection implements AutoCloseable {
         }
         return null;
     }
-
     public void connect() {
         try {
             this.con = DriverManager.getConnection(
@@ -129,10 +131,5 @@ public class DatabaseConnection implements AutoCloseable {
     }
     public String getPassword() {
         return this.password;
-    }
-    
-    // Stupid, check char value for empty
-    private DatabaseGenericParameter getCharOrNull(final String resultSetString) {
-        return (resultSetString.length() == 0) ? new DatabaseGenericParameter() : new DatabaseGenericParameter(resultSetString.charAt(0));
     }
 }

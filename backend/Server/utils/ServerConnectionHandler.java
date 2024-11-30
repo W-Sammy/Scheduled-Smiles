@@ -249,28 +249,19 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static boolean verifyRowExists() throws IOException {
-        System.out.println("1");
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
-        System.out.println("2");
-        if (!membersMatch(requestJsonObject.keySet(), "query")) {
-            System.out.println("2.5");
+        if (!membersMatch(requestJsonObject.keySet(), "query"))
             return false;
-        }
         String results = "";
         final String queryString = requestJsonObject.get("query").getAsString();
-        System.out.println("3");
         try (DatabaseConnection db = new DatabaseConnection()) {
-            System.out.println("4");
             if (db.isConnected()) {
-                System.out.println(db.query(queryString));
                 results = (convertFromJson(db.query(queryString)).equals("[]")) ? "false" : "true";
             }
         } catch (Exception e) {
-            System.out.println("5");
             // Errors handled in DatabaseConnection, pass
             e.printStackTrace();
         } finally {
-            System.out.println("6");
             sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
         }
         return true;
@@ -294,7 +285,6 @@ public class ServerConnectionHandler implements HttpHandler {
             final DatabaseGenericParameter email = new DatabaseGenericParameter(requestJsonObject.get("email").getAsString());
             final DatabaseGenericParameter password = new DatabaseGenericParameter(passwordDigest);
             final String queryString = String.format("SELECT userID FROM users WHERE %s AND %s", email.equalsTo("email"), password.equalsTo("hashedPass"));
-            System.out.println(queryString);
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
