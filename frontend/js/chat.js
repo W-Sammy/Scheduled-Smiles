@@ -1,6 +1,7 @@
 const messagesLoadedEvent = new Event("messagesLoaded")
 const chats = {}
 let refreshID
+let activeID = null
 let messagesLoading = false
 
 window.onload = () => {
@@ -16,6 +17,8 @@ function stopRefreshing() {
 function setRefreshInterval() {
     refreshID = setInterval(function() {
         loadData()
+        if (activeID != null)
+            populateMessages()
     }, 0.5 * 1000)
 }
 
@@ -34,9 +37,10 @@ function setLoadedListener() {
         Object.keys(chats).forEach(id => {
             const e = document.getElementById(id)
             e.onclick = () => {
+                activeID = id
                 unsetActiveContact()
                 setActiveContact(e)
-                populateMessages(id)
+                populateMessages()
             }
         })
     }, { once: true })
@@ -85,8 +89,10 @@ function setActiveContact(el) {
     el.classList.add("active")
 }
 
-function populateMessages(id) {
-    const chat = chats[id]
+function populateMessages() {
+    if (activeID == null)
+        return
+    const chat = chats[activeID]
     const sent = [...chat.sent] 
     const recieved = [...chat.recieved]
     while (sent.length > 0 || recieved.length > 0) {
