@@ -1,30 +1,29 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Scheduled Smiles</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/landing.css">
-        <link rel="stylesheet" href="./css/navbar.css">   
+        <link rel="stylesheet" href="./css/navigationBar.css">   
         <link rel="stylesheet" href="./css/button.css">
-        <link rel="stylesheet" href="./css/signIn.css">  
+        <link rel="stylesheet" href="./css/signIn.css"> 
         <script src="./js/cookie.js"></script>
         <script src="./js/api.js"></script>
         <script src="./js/toolbox.js"></script>
         <script src="./js/utils.js"></script>
         <script src="./js/signIn.js"></script>
-
     </head>
     <body>  
         <header class="header">
             <a onclick="openSignIn()" class="link">Sign Up/Login</a>
         </header>
-        <nav class="navbar">
+        <nav id="navigationBar" class="navigationBar">
             <a onclick="openSignIn()" id="make-payment-btn">Make Payment</a>
             <a onclick="openAboutUs()" id="aboutUs">About Us</a>
         </nav>
@@ -69,7 +68,7 @@
                     </div>
 
                     <div class="textRegister">
-                        Don"t have an account yet? 
+                        Don't have an account yet? 
                         <a class="hyperlinkRegister" onclick="openRegister()">Register Now!</a>
                     </div>
                 </div>
@@ -80,7 +79,7 @@
         <div class="signInBox" id="registerOverlay">
             <form id="register">
                 <div class="wrapSignIn">
-                    <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
+                    <a class="hyperlinkBack" onclick="openSignIn()">Back</a>
                     <h2 class="titleRegister">Scheduled Smiles </h2>
                     <h2 class="titleRegister">Create your new Account!</h2>
                     <div class="inputFieldRegister">
@@ -131,7 +130,7 @@
                 <div class="wrapSignIn"> 
                     <div class="inputFieldRegister">
                         <p>
-                            <a onclick="openSignIn()" class="hyperlinkBack">Back</a>
+                            <a class="hyperlinkBack" onclick="openSignIn()" >Back</a>
                         </p>
                         <div style="color: rgb(41, 124, 113); font-weight: bold; margin:10px;">Enter Email for a password reset request</div>
                         <div style="align-items: center; justify-content: center;">
@@ -150,7 +149,7 @@
             <div class="wrapSignIn"> 
                 <div id="aboutUsBox">                
                     <p>
-                        <a onclick="closeAboutUs()" class="hyperlinkBack">Back</a>
+                        <a onclick="closeAboutUs()" class="hyperlinkBack">Close</a>
                     </p>
                     <div>
                         <h3 class="titleRegister">About Us</h3>

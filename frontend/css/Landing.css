@@ -56,7 +56,7 @@ body {
   margin-top: 1em;
 }
 
-#aboutUsOverlay{
+#aboutUsOverlay {
   display: hide;
   position: absolute;
   left: 50%;
@@ -67,7 +67,7 @@ body {
   width: fit-content;
 }
 
-#aboutUsOverlay > .wrapSignIn{
+#aboutUsOverlay > .wrapSignIn {
   display: flex;
   flex:1;
   flex-flow: column;
@@ -77,15 +77,15 @@ body {
   padding: 30px;
 }
 
-#aboutUsBox{
+#aboutUsBox {
   background-color: rgba(230, 241, 231, 0.932);
 }
 
-#aboutUsBox > P > .hyperlinkBack{
+#aboutUsBox > P > .hyperlinkBack {
   margin: 10px;
 }
 
-#aboutUsBox > div > .titleRegister{
+#aboutUsBox > div > .titleRegister {
   text-align: center;
   padding: 0px;
   overflow: hidden;
@@ -93,7 +93,7 @@ body {
   color: rgb(28, 122, 110);
 }
 
-#staffCensus{
+#staffCensus {
   display: flex;
   flex-flow: wrap row;
   justify-content: space-around;
@@ -104,7 +104,7 @@ body {
   scrollbar-width: thin;
 }
 
-.staff{
+.staff {
   overflow: hidden;
   white-space: nowrap;
   margin-bottom: 20px;
@@ -112,15 +112,15 @@ body {
   height: 30%;
   width: 30%;
 }
-.staff > p{
+.staff > p {
   text-wrap: wrap;
 }
 
-.staff > .labels{
+.staff > .labels {
   text-align: center;
 }
 
-#aboutMessage{
+#aboutMessage {
   color: rgba(24, 112, 83, 0.911);
   margin: .5em;
   font-size: 1.2em;

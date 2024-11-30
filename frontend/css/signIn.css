@@ -1,4 +1,4 @@
-.signInBox{
+.signInBox {
     display: none;
     position: absolute;
     left: 50%;
@@ -22,19 +22,19 @@
     box-sizing: border-box;
 }
 
-.logo{
+.logo {
     height: 10em;
     width: 12.8em;
 }
 
-.title{
+.title {
     justify-content: center;
     font-size: 2.25em;
     color: rgb(59, 116, 109);
     margin: 0px;
 }
 
-.titleRegister{
+.titleRegister {
     color: rgb(59, 116, 109);
     text-align: left;
     padding-left: 50px;
@@ -43,7 +43,7 @@
     white-space: nowrap;
 }
 
-.inputField{
+.inputField {
     display: flex;
     justify-content: center;
     margin: 30px;
@@ -51,7 +51,7 @@
     min-width: 300px;
 }
 
-.inputFieldRegister{
+.inputFieldRegister {
     max-width: 500px;
     display: flex;
     flex-wrap: wrap;
@@ -59,35 +59,35 @@
     text-align: left;
 }
 
-.inputFieldRegister>*{
+.inputFieldRegister>* {
     margin: 10px;
 }
 
-.inputFieldRegister > div{
+.inputFieldRegister > div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
 }
 
-.inputFieldRegister > div > *{
+.inputFieldRegister > div > * {
     margin: 2px;
 }
 
 
-.leftJustifyBlock{
+.leftJustifyBlock {
     display: flex;
     flex-direction: column;
 }
 
-.labels{
+.labels {
     margin: 10px;
     font-weight: 600;
     text-align: left;
     color: rgb(59, 116, 109);
 }
 
-.input{
+.input {
     width: fit-content;
     padding-left: 10px;
     line-height: 25px;
@@ -99,7 +99,7 @@
     box-sizing: border-box;
 }
 
-.input2{
+.input2 {
     width: fit-content;
     padding-left: 10px;
     padding-right: 50px;
@@ -112,43 +112,47 @@
     box-sizing: border-box;
 }
 
-.hyperlinkPassword{
+.hyperlinkPassword {
     text-align: center;
     color: rgb(59, 116, 109);
     font-weight: bold;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
-.hyperlinkPassword:hover{
+.hyperlinkPassword:hover {
     color: #7fa194;
 }
 
-.buttonSignIn{
+.buttonSignIn {
     text-align: center;
     margin: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.textRegister{
+.textRegister {
     color: rgb(59, 116, 109);
     font-weight: 550;
     font-size: 88%;
 }
 
-.hyperlinkRegister{
+.hyperlinkRegister {
     color: rgb(42, 107, 99);
     font-weight: bolder;
     font-size: 100%;
     text-align: left;
     padding-top: 25px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
-.hyperlinkRegister:hover{
+.hyperlinkRegister:hover {
     color: #7fa194;
 }
 
-
-.hyperlinkBack{
-    line-height: 0;
+.hyperlinkBack {
     text-align: right;
     margin-right: 2px;
     margin-bottom: 10PX;
@@ -157,13 +161,16 @@
     float: right;
     color:rgb(59, 116, 109);
     font-weight: bolder;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
-.hyperlinkBack:hover{
+.hyperlinkBack:hover {
     color: #7fa194;
 }
 
-select{
+select {
     font-size: 1em;
     max-width: 200px;
     margin: 5px; 
@@ -177,10 +184,10 @@ div > p {
     margin: 10px;
 }
 
-.genericButton{
+.genericButton {
     margin-top: 10px;
 }
 
-span{
+span {
     margin-bottom: 50px;
 }

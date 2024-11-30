@@ -1,4 +1,4 @@
-.navbar {
+.navigationBar {
     display: flex;
     justify-content: center; /* Centers horizontally */
     align-items: top; /* Centers vertically */
@@ -9,7 +9,7 @@
     text-align: center; 
 }
 
-.navbar a {
+.navigationBar a {
     text-decoration: none;
     color: #004c4c;
     font-size: 1.5em;

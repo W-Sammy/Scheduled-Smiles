@@ -13,11 +13,10 @@ public class Pages {
     public static final Map<String, String> MAPPED_FILES = Map.of(
             "/", "index.html",
             "404", "404.html",
-            "staffpayroll", "staffpayroll.html",
-            //Delete adminpayroll is we direly need another map
+            "staffPayroll", "staffPayroll.html",
+            // Delete adminpayroll if we direly need another map
             // Could just do what it does via user Permission + JS
-            "adminpayroll", "adminpayroll.html",
-            //
+            "adminPayroll", "adminPayroll.html",
             "session", "session.html",
             "dashboard", "dashboard.html",
             "calendar", "calendar.html",
