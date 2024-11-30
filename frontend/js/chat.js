@@ -133,6 +133,7 @@ function createContact(fullName, id) {
     divContactContainer.dataset.fullName = fullName
     divContact.classList.add("contact-icon")
     divContact.dataset.id = id // messy...
+    imgIcon.draggable = "false" 
     imgIcon.src = "./assets/contact.png"
     imgIcon.alt = "Contact Image"
     spanName.classList.add("contact-name")
@@ -147,6 +148,7 @@ function createContact(fullName, id) {
 function clearData() {
     document.getElementById("contacts-list").innerHTML = ""
     document.querySelector("#current-contact .contact-name").innerHTML = ""
+    document.querySelector("#current-contact .contact-icon img").draggable = ""
     document.querySelector("#current-contact .contact-icon img").src = ""
     document.querySelector("#current-contact .contact-icon img").alt = ""
     clearMessages()
