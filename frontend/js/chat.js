@@ -57,25 +57,26 @@ function loadData() {
     const userID = getCookieValue("userID")
     getChats(userID).then(response => {
         // Merge chats
-        Promise.all(Array.from(JSON.parse(response), values => {
-            const {messages, pairID, receiverID, senderID} = values
-            const sortedMessages = messages.filter(a => a.createdAt != 0).sort((a, b) => a.createdAt - b.createdAt)
-            const otherContact = getOtherUser(senderID, receiverID)
-            let loaded = true
-            if (!chats.hasOwnProperty(otherContact)) {
-                chats[otherContact] = {sent: [], recieved: []}
-                loaded = false
-            }
-            if (senderID == userID)
-                chats[otherContact].sent = sortedMessages
-            else
-                chats[otherContact].recieved = sortedMessages
-            return (loaded) ? Promise.resolve(true) : loadContact(otherContact)
-        })).then( _ => {
-            document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
-            messagesLoading = false
-            populateMessages()
-        })
+        if (JSON.parse(response) != null)
+            Promise.all(Array.from(JSON.parse(response), values => {
+                const {messages, pairID, receiverID, senderID} = values
+                const sortedMessages = messages.filter(a => a.createdAt != 0).sort((a, b) => a.createdAt - b.createdAt)
+                const otherContact = getOtherUser(senderID, receiverID)
+                let loaded = true
+                if (!chats.hasOwnProperty(otherContact)) {
+                    chats[otherContact] = {sent: [], recieved: []}
+                    loaded = false
+                }
+                if (senderID == userID)
+                    chats[otherContact].sent = sortedMessages
+                else
+                    chats[otherContact].recieved = sortedMessages
+                return (loaded) ? Promise.resolve(true) : loadContact(otherContact)
+            })).then( _ => {
+                document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
+                messagesLoading = false
+                populateMessages()
+            })
     })
 }
 
@@ -177,7 +178,7 @@ function appendNewMessage(messageContent, type) {
     const newMessageDiv = document.createElement('div')
     newMessageDiv.classList.add('message') // adds classname 'message' for styling
     newMessageDiv.classList.add(type)
-    newMessageDiv.textContent = messageContent;
+    newMessageDiv.textContent = messageContent
 
     // Appends the new message div in .chat-window
     messageContainer.insertBefore(newMessageDiv, messageContainer.firstChild)
