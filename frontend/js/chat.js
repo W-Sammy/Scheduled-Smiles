@@ -1,24 +1,58 @@
 const messagesLoadedEvent = new Event("messagesLoaded")
+const chats = {}
+let refreshID
+let messagesLoading = false
 
 window.onload = () => {
     clearData()
-    const interval = setInterval(function() {
-        loadData()
-    }, 5000)
-    
-    clearInterval(interval); 
+    setLoadedListener()
+    loadData()
+}
 
-    
+function stopRefreshing() {
+    clearInterval(refreshID);
+}
+
+function setRefreshInterval() {
+    refreshID = setInterval(function() {
+        loadData()
+    }, 0.5 * 1000)
+}
+
+function setLoadedListener() {
+    document.getElementById("contacts-list").addEventListener("messagesLoaded", (e) => {
+        // All data loaded- start adding things here
+        setRefreshInterval()
+
+        // Send button doesn't work until everything is loaded
+        document.getElementById("send").onclick = (e) => {
+            e.preventDefault()
+            sendNewMessage()
+        }
+
+        // Display values
+        Object.keys(chats).forEach(id => {
+            const e = document.getElementById(id)
+            e.onclick = () => {
+                unsetActiveContact()
+                setActiveContact(e)
+                populateMessages(id)
+            }
+        })
+    }, { once: true })
 }
 
 function loadData() {
+    if (messagesLoading) {
+        return
+    }
+    messagesLoading = true
     if (!checkCookieExists("userID")) {
         showWarning("Not logged in!", 3, "bottom")
         return
     }
     const userID = getCookieValue("userID")
     getChats(userID).then(response => {
-        const chats = {}
         // Merge chats
         Promise.all(Array.from(JSON.parse(response), values => {
             const {messages, pairID, receiverID, senderID} = values
@@ -36,27 +70,7 @@ function loadData() {
             return (loaded) ? Promise.resolve(true) : loadContact(otherContact)
         })).then( _ => {
             document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
-        })
-
-        document.getElementById("contacts-list").addEventListener("messagesLoaded", (e) => {
-            // All data loaded- start adding event listeners here
-
-            // Send button doesn't work until everything is loaded
-            document.getElementById("send").onclick = (e) => {
-                e.preventDefault()
-                sendNewMessage()
-            }
-
-            // Display values
-            Object.keys(chats).forEach(id => {
-                const e = document.getElementById(id)
-                e.onclick = () => {
-                    unsetActiveContact()
-                    setActiveContact(e)
-                    populateMessages(chats[id])
-                }
-                
-            })
+            messagesLoading = false
         })
     })
 }
@@ -71,8 +85,9 @@ function setActiveContact(el) {
     el.classList.add("active")
 }
 
-function populateMessages(chat) {
-    const sent = [...chat.sent]
+function populateMessages(id) {
+    const chat = chats[id]
+    const sent = [...chat.sent] 
     const recieved = [...chat.recieved]
     while (sent.length > 0 || recieved.length > 0) {
         if (!sent.length)
@@ -164,7 +179,6 @@ function sendNewMessage() {
     const senderID = getCookieValue("userID")
     // escape all control chars before JSON parsing
     const message = encodeURIComponent(messageInput.value)
-    console.log(`processing message:\n'${message}'\nReceipient:\n${receiverID}`)
     if (message.length <= 0 || !receiverID)
         return
     messageInput.value = ''
