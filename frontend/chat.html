@@ -21,9 +21,17 @@
             <a onclick="logout()" class="logout link">Logout</a>
         </header>
         <div class="contacts-section">
+            <div class="new-contact-row">
+                <select id="newContactDropdown">
+                    <option value="default" selected hidden disabled>New Contact</option>
+                    <!-- Needs to be added with js -->  
+                </select>
+                <a onclick="createNewContact()">&#43;</a>
+            </div>
+            
             <!-- Contacts -->
             <div id="contacts-list">
-                <!-- Needs to be added with js -->
+                <!-- Needs to be added with js -->  
                 <div class="contact">
                     <div class="contact-icon">
                         <img draggable="false" src="./assets/contact.png" alt="Contact Image">

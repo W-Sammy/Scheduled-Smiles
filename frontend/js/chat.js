@@ -11,6 +11,37 @@ window.onload = () => {
     loadData()
 }
 
+function loadContactOptions() {
+    const contactSelect = document.getElementById("newContactDropdown")
+    const currUserID = getCookieValue("userID")
+    const queryString = `SELECT userID, firstName, lastName FROM users WHERE NOT userID=UNHEX('${("0").repeat(64)}') AND NOT userID=UNHEX('${currUserID}') AND ` + Array.from(document.querySelectorAll("#contacts-list > .contact"), el => `NOT userID=UNHEX('${el.id}')`).join(" AND ")
+    request(`{"query": "${queryString}"}`, "/api/database/get", "POST").then(response => {
+        const ids = Array.from(JSON.parse(response), id => id[0])
+        const names = Array.from(JSON.parse(response), id => id[1] + " " + id[2])
+        JSON.parse(response).forEach(data => {
+            contactSelect.appendChild(createNewContactOption(data[1] + " " + data[2], data[0]))
+        })
+    })
+}
+
+function createNewContact() {
+    const contactE = document.querySelector("#newContactDropdown > option:checked")
+    if (!contactE || contactE.value == "default")
+        return
+    const contactID = contactE.value
+    loadContact(contactID).then(success => {
+        document.getElementById("newContactDropdown").value = "default"
+        contactE.remove()
+    })
+}
+
+function createNewContactOption(name, id) {
+    const e = document.createElement("option")
+    e.value = id
+    e.innerHTML = name
+    return e
+}
+
 function stopRefreshing() {
     clearInterval(refreshID);
 }
@@ -25,23 +56,13 @@ function setLoadedListener() {
     document.getElementById("contacts-list").addEventListener("messagesLoaded", (e) => {
         // All data loaded- start adding things here
         setRefreshInterval()
+        loadContactOptions()
 
         // Send button doesn't work until everything is loaded
         document.getElementById("send").onclick = (e) => {
             e.preventDefault()
             sendNewMessage()
         }
-
-        // Display values
-        Object.keys(chats).forEach(id => {
-            const e = document.getElementById(id)
-            e.onclick = () => {
-                activeID = id
-                unsetActiveContact()
-                setActiveContact(e)
-                populateMessages()
-            }
-        })
     }, { once: true })
 }
 
@@ -57,25 +78,16 @@ function loadData() {
     const userID = getCookieValue("userID")
     getChats(userID).then(response => {
         // Merge chats
-        Promise.all(Array.from(JSON.parse(response), values => {
-            const {messages, pairID, receiverID, senderID} = values
-            const sortedMessages = messages.filter(a => a.createdAt != 0).sort((a, b) => a.createdAt - b.createdAt)
-            const otherContact = getOtherUser(senderID, receiverID)
-            let loaded = true
-            if (!chats.hasOwnProperty(otherContact)) {
-                chats[otherContact] = {sent: [], recieved: []}
-                loaded = false
-            }
-            if (senderID == userID)
-                chats[otherContact].sent = sortedMessages
-            else
-                chats[otherContact].recieved = sortedMessages
-            return (loaded) ? Promise.resolve(true) : loadContact(otherContact)
-        })).then( _ => {
-            document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
-            messagesLoading = false
-            populateMessages()
-        })
+        if (JSON.parse(response) != null)
+            Promise.all(Array.from(JSON.parse(response), values => {
+                const {messages, pairID, receiverID, senderID} = values
+                const sortedMessages = messages.filter(a => a.createdAt != 0).sort((a, b) => a.createdAt - b.createdAt)
+                return loadContact(...((senderID == userID) ? [receiverID, sortedMessages, null] : [senderID, null, sortedMessages]))
+            })).then( _ => {
+                document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
+                messagesLoading = false
+                populateMessages()
+            })
     })
 }
 
@@ -93,7 +105,7 @@ function populateMessages() {
     if (activeID == null)
         return
     const chat = chats[activeID]
-    const sent = [...chat.sent] 
+    const sent = [...chat.sent]
     const recieved = [...chat.recieved]
     clearMessages()
     while (sent.length > 0 || recieved.length > 0) {
@@ -108,20 +120,27 @@ function populateMessages() {
     }
 }
 
-function getOtherUser(user1ID, user2ID) {
-    return (user1ID == getCookieValue("userID")) ? user2ID : user1ID
-}
-
 // current user always returned as reciever
-async function loadContact(userID) {
-    return await getFullName(userID).then(response => {
-        const fullName = response.join(" ")
-        createContact(fullName, userID)
-        return true
-    })
+async function loadContact(userID, sent = null, recieved = null) {
+    if (!chats.hasOwnProperty(userID))
+        chats[userID] = {sent: [], recieved: []}
+    if (sent)
+        chats[userID].sent = sent
+    if (recieved)
+        chats[userID].recieved = recieved
+    if (document.getElementById(userID) == null) {
+        return await getFullName(userID).then(response => {
+            const fullName = response.join(" ")
+            createContact(fullName, userID)
+        })
+    }
+    return true
 }
 
 function createContact(fullName, id) {
+    const existingE = document.getElementById(id)
+    if (existingE)
+        return existingE
     const contactList = document.getElementById("contacts-list")
     const divContactContainer = document.createElement("div")
     const divContact = document.createElement("div")
@@ -143,6 +162,14 @@ function createContact(fullName, id) {
     divContactContainer.appendChild(divContact)
     divContact.appendChild(imgIcon)
     divContact.appendChild(spanName)
+
+    divContactContainer.onclick = () => {
+        activeID = id
+        unsetActiveContact()
+        setActiveContact(divContactContainer)
+        populateMessages()
+    }
+    return divContactContainer
 }
 
 function clearData() {
@@ -179,7 +206,7 @@ function appendNewMessage(messageContent, type) {
     const newMessageDiv = document.createElement('div')
     newMessageDiv.classList.add('message') // adds classname 'message' for styling
     newMessageDiv.classList.add(type)
-    newMessageDiv.textContent = messageContent;
+    newMessageDiv.textContent = messageContent
 
     // Appends the new message div in .chat-window
     messageContainer.insertBefore(newMessageDiv, messageContainer.firstChild)
@@ -197,7 +224,8 @@ function sendNewMessage() {
     messageInput.value = ''
     sendMessage(senderID, receiverID, message).then(success => {
         if (success)
-            appendNewMessage(decodeURIComponent(message), "right")
+            if (receiverID == document.querySelector("#current-contact > div").dataset.id)
+                appendNewMessage(decodeURIComponent(message), "right")
         else
             showWarning("Error: Failed to send message.", 3, "bottom")
     })

@@ -18,7 +18,8 @@ public class Populate {
         // restrict instantiation -Kyle
     }
     private static boolean verifyWhere(final String where, final String tableName, final DatabaseConnection db) {
-        return !db.query(String.format("SELECT 1 FROM %s WHERE %s", tableName, where)).get(0).get(0).isNull();
+        final List<List<DatabaseGenericParameter>> r = db.query(String.format("SELECT 1 FROM %s WHERE %s", tableName, where));
+        return r != null && r.size() > 0 && !r.get(0).get(0).isNull();
     }
     public static Appointment populateAppt(final byte[] appointmentId, DatabaseConnection db) {
         final DatabaseGenericParameter id = new DatabaseGenericParameter(appointmentId);

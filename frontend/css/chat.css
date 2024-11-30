@@ -20,6 +20,7 @@ body {
 }
 
 .contacts-section {
+    padding-top: 50px;
     width: 15%;
     height: 100%;
     background-color: #64a1a3;
@@ -59,11 +60,8 @@ body {
     width: 40px;
     height: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 20px;
     gap: 10px;
-    padding-left: 25px;
 }
 
 #current-contact > .contact-icon {
@@ -229,4 +227,41 @@ body {
 #send:active {
     background-color:  #116d71;
     transform: scale(0.95); /* Slightly shrink the button */
+}
+
+.new-contact-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0 10px 5px;
+    padding: 10px 0 20px 0;
+    justify-content: space-evenly;
+}
+
+.new-contact-row > select {
+    background-color: #008080;
+    color: white;
+    border: none;
+    justify-self: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 50px;
+    width: 100%;
+    padding-left: 1em;
+}
+
+.new-contact-row > select > option {
+    color: white;   
+}
+
+.new-contact-row > a {
+    border-radius: 5px;
+    width: 20%;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
 }
