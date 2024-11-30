@@ -290,7 +290,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 if (db.isConnected()) {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
                     if (results != null) {
-                        if (!result.isNull()) { // second check might be redundant
+                        if (!results.get(0).get(0).isNull()) { // second check might be redundant
                             final User user = populateUser(unhex(results.get(0).get(0).getAsString()), db);
                             sendResponse(STATUS_CODES.get("OK"), user);
                             return true;
@@ -596,45 +596,20 @@ public class ServerConnectionHandler implements HttpHandler {
 
                 break;
                 case "POST":
-                    switch (requestPath[2]) {
-                        case "verify":
-                            isValidRequest = verifyRowExists();
-                        break;
-                        case "login":
-                            isValidRequest = getUser();
-                        break;
-                        case "database":
-                            isValidRequest = handleDatabaseRequest();
-                        break;
-                        case "register":
-                            isValidRequest = registerUser();
-                        break;
-                        case "lookup":
-                            isValidRequest = handleLookupRequest();
-                        break;
-                        case "book-appointment":
-                            isValidRequest = bookAppointment();
-                        break;
-                        case "messages":
-                            isValidRequest = getChats();
-                        break;
-                        case "message":
-                            isValidRequest = sendMessage();
-                        break;
-                        case "update-appointment":
-                            isValidRequest = updateAppointment();
-                        break;
-                        case "get-appointment":
-                            isValidRequest = getAppointment();
-                        break;
-                        case "get-appointments":
-                            isValidRequest = getAppointments();
-                        break;
-                        case "get-appointment-types":
-                            isValidRequest = getAppointmentTypes();
-                        break;
-                        default:
-                            isValidRequest = false;
+                    isValidRequest = switch (requestPath[2]) {
+                        case "verify" -> verifyRowExists();
+                        case "login" -> getUser();
+                        case "database" -> handleDatabaseRequest();
+                        case "register" -> registerUser();
+                        case "lookup" -> handleLookupRequest();
+                        case "book-appointment" -> bookAppointment();
+                        case "messages" -> getChats();
+                        case "message" -> sendMessage();
+                        case "update-appointment" -> updateAppointment();
+                        case "get-appointment" -> getAppointment();
+                        case "get-appointments" -> getAppointments();
+                        case "get-appointment-types" -> getAppointmentTypes();
+                        default -> false;
                     }
                 break;
                 // This is where we'd have a PUT case for uploading images... if we were going to implement that. -Kyle
