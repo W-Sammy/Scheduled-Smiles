@@ -2,7 +2,13 @@ const messagesLoadedEvent = new Event("messagesLoaded")
 
 window.onload = () => {
     clearData()
-    loadData()
+    const interval = setInterval(function() {
+        loadData()
+    }, 5000)
+    
+    clearInterval(interval); 
+
+    
 }
 
 function loadData() {
