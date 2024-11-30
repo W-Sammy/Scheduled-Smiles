@@ -296,6 +296,7 @@ public class ServerConnectionHandler implements HttpHandler {
                         }
                     } else {
                         sendResponse(STATUS_CODES.get("OK"), convertToJsonElement("false"));
+                        return true;
                     }
                 }
             } catch (Exception e) {
