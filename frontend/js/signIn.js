@@ -16,7 +16,7 @@ function signInSubmitted(event) {
     event.preventDefault()
     let formE = event.target
     let [email, pass] = Array.from(formE.elements, e => e.value)
-    // TODO: notify user, evaulating info
+    // TODO: notify user,   evaulating info
     accountEmailExists(email).then(success => {
         if (success) {
             return passwordCorrect(email, pass)
