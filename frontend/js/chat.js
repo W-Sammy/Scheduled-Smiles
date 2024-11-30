@@ -17,8 +17,6 @@ function stopRefreshing() {
 function setRefreshInterval() {
     refreshID = setInterval(function() {
         loadData()
-        if (activeID != null)
-            populateMessages()
     }, 0.5 * 1000)
 }
 
@@ -75,6 +73,7 @@ function loadData() {
         })).then( _ => {
             document.getElementById("contacts-list").dispatchEvent(messagesLoadedEvent)
             messagesLoading = false
+            populateMessages()
         })
     })
 }
@@ -95,6 +94,7 @@ function populateMessages() {
     const chat = chats[activeID]
     const sent = [...chat.sent] 
     const recieved = [...chat.recieved]
+    clearMessages()
     while (sent.length > 0 || recieved.length > 0) {
         if (!sent.length)
             appendMessage(decodeURIComponent(recieved.pop().textContent), "left")
@@ -145,10 +145,14 @@ function createContact(fullName, id) {
 
 function clearData() {
     document.getElementById("contacts-list").innerHTML = ""
-    document.getElementById("message-container").innerHTML = ""
     document.querySelector("#current-contact .contact-name").innerHTML = ""
     document.querySelector("#current-contact .contact-icon img").src = ""
     document.querySelector("#current-contact .contact-icon img").alt = ""
+    clearMessages()
+}
+
+function clearMessages() {
+    document.getElementById("message-container").innerHTML = ""
 }
 
 function appendMessage(messageContent, type) {
