@@ -267,6 +267,7 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static boolean getUser() throws IOException {
+        System.out.println("Called getUser()");
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         if (membersMatch(requestJsonObject.keySet(), "userID")) {
             try (DatabaseConnection db = new DatabaseConnection()) {
