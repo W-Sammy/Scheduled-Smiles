@@ -290,9 +290,8 @@ public class ServerConnectionHandler implements HttpHandler {
                 if (db.isConnected()) {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
                     if (results != null) {
-                        final DatabaseGenericParameter result = results.get(0).get(0);
-                        if (!result.isNull()) {
-                            final User user = populateUser(result.getAsBytes(), db);
+                        if (!result.isNull()) { // second check might be redundant
+                            final User user = populateUser(unhex(results.get(0).get(0).getAsString()), db);
                             sendResponse(STATUS_CODES.get("OK"), user);
                             return true;
                         }
