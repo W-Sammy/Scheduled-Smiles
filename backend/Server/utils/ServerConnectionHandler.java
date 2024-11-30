@@ -249,16 +249,23 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static boolean verifyRowExists() throws IOException {
+        System.out.println("1");
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
+        System.out.println("2");
         if (!membersMatch(requestJsonObject.keySet(), "query"))
+            System.out.println("2.5");
             return false;
         String results = "";
         final String queryString = requestJsonObject.get("query").getAsString();
+        System.out.println("3");
         try (DatabaseConnection db = new DatabaseConnection()) {
+            System.out.println("4");
             if (db.isConnected()) {
+                System.out.println(db.query(queryString));
                 results = (convertFromJson(db.query(queryString)).equals("[]")) ? "false" : "true";
             }
         } catch (Exception e) {
+            System.out.println("5");
             // Errors handled in DatabaseConnection, pass
             e.printStackTrace();
         } finally {

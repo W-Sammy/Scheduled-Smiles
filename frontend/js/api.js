@@ -115,6 +115,7 @@ async function getIdAccount(id) {
  */
 async function passwordCorrect(email, password) {
     const requestBody = `{ "email": "${email}", "password": "${password}" }`
+    console.log(requestBody)
     const endpoint = "/api/login"
     const method = "POST"
     const response = await request(requestBody, endpoint, method)
