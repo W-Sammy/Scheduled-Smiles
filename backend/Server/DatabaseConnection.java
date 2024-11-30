@@ -88,6 +88,8 @@ public class DatabaseConnection implements AutoCloseable {
                 System.out.println(String.format("DatabaseConnection Error: Failed to execute database update for query, \"%s\". Trace:", query));
                 e.printStackTrace();
             }
+        } else {
+            System.out.println("DatabaseConnection Error: Failed to start query operation, database is not connected!");
         }
         return null;
     }

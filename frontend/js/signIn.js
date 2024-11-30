@@ -41,8 +41,7 @@ function signInSubmitted(event) {
             showWarning("Error, couldn't contact server. Try again later", 5, "bottom", null, formE)
         }
     }).catch(e => {
-        // testing
-        console.log(e)
+        showWarning("Password incorrect!", 3)
     })
 }
 function registerSubmitted(event) {

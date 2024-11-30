@@ -625,6 +625,7 @@ public class ServerConnectionHandler implements HttpHandler {
                         break;
                         case "get-appointment-types":
                             isValidRequest = getAppointmentTypes();
+                        break;
                         default:
                             isValidRequest = false;
                     }

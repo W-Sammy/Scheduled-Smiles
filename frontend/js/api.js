@@ -18,6 +18,7 @@
  * @returns {Promise<String|null>} The response from the server, or null if something went wrong.
  */
 async function request(requestBody, endpoint, method) {
+    console.log(window.location.origin + endpoint)
     return await fetch(window.location.origin + endpoint, {
         method: method,
         mode: "no-cors",
