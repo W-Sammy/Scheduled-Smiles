@@ -287,7 +287,7 @@ public class ServerConnectionHandler implements HttpHandler {
             try (DatabaseConnection db = new DatabaseConnection()) {
                 if (db.isConnected()) {
                     final List<List<DatabaseGenericParameter>> results = db.query(queryString);
-                    if (results != null) {
+                    if (results != null {
                         final DatabaseGenericParameter result = results.get(0).get(0);
                         if (!result.isNull()) {
                             final User user = populateUser(result.getAsBytes(), db);
@@ -588,71 +588,66 @@ public class ServerConnectionHandler implements HttpHandler {
     }
     
     private static void handleApiRequest() throws IOException {
-        try {
-            boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
-            if (isValidRequest) {
-                switch (requestMethod) {
-                    case "GET":
+        boolean isValidRequest = (requestBodyJson != null && requestPath.length >= 3); // Used to determine if an error reponse needs to be sent after checking switch cases
+        if (isValidRequest) {
+            switch (requestMethod) {
+                case "GET":
 
-                    break;
-                    case "POST":
-                        switch (requestPath[2]) {
-                            case "verify":
-                                isValidRequest = verifyRowExists();
-                            break;
-                            case "login":
-                                isValidRequest = getUser();
-                            break;
-                            case "database":
-                                isValidRequest = handleDatabaseRequest();
-                            break;
-                            case "register":
-                                isValidRequest = registerUser();
-                            break;
-                            case "lookup":
-                                isValidRequest = handleLookupRequest();
-                            break;
-                            case "book-appointment":
-                                isValidRequest = bookAppointment();
-                            break;
-                            case "messages":
-                                isValidRequest = getChats();
-                            break;
-                            case "message":
-                                isValidRequest = sendMessage();
-                            break;
-                            case "update-appointment":
-                                isValidRequest = updateAppointment();
-                            break;
-                            case "get-appointment":
-                                isValidRequest = getAppointment();
-                            break;
-                            case "get-appointments":
-                                isValidRequest = getAppointments();
-                            break;
-                            case "get-appointment-types":
-                                isValidRequest = getAppointmentTypes();
-                            break;
-                            default:
-                                isValidRequest = false;
-                        }
-                    break;
-                    // This is where we'd have a PUT case for uploading images... if we were going to implement that. -Kyle
-                    // we are not. -Kyle from 2 weeks later
-                    default:
-                        isValidRequest = false;
-                }
+                break;
+                case "POST":
+                    switch (requestPath[2]) {
+                        case "verify":
+                            isValidRequest = verifyRowExists();
+                        break;
+                        case "login":
+                            isValidRequest = getUser();
+                        break;
+                        case "database":
+                            isValidRequest = handleDatabaseRequest();
+                        break;
+                        case "register":
+                            isValidRequest = registerUser();
+                        break;
+                        case "lookup":
+                            isValidRequest = handleLookupRequest();
+                        break;
+                        case "book-appointment":
+                            isValidRequest = bookAppointment();
+                        break;
+                        case "messages":
+                            isValidRequest = getChats();
+                        break;
+                        case "message":
+                            isValidRequest = sendMessage();
+                        break;
+                        case "update-appointment":
+                            isValidRequest = updateAppointment();
+                        break;
+                        case "get-appointment":
+                            isValidRequest = getAppointment();
+                        break;
+                        case "get-appointments":
+                            isValidRequest = getAppointments();
+                        break;
+                        case "get-appointment-types":
+                            isValidRequest = getAppointmentTypes();
+                        break;
+                        default:
+                            isValidRequest = false;
+                    }
+                break;
+                // This is where we'd have a PUT case for uploading images... if we were going to implement that. -Kyle
+                // we are not. -Kyle from 2 weeks later
+                default:
+                    isValidRequest = false;
             }
-            if (isValidRequest) {
-                System.out.println("API request finished with response");
-            } else {
-                System.out.println("API request was found to be invalid");
-                // Malformed/Invalid request body
-                sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body or invalid endpoint");
-            }
-        } catch (Exception e) {
-            System.out.println("Something went horribly wrong!");
-            e.printStackTrace();
+        }
+        if (isValidRequest) {
+            System.out.println("API request finished with response");
+        } else {
+            System.out.println("API request was found to be invalid");
+            // Malformed/Invalid request body
+            sendResponse(STATUS_CODES.get("BAD_REQUEST"), "Malformed request body or invalid endpoint");
         }
     }
     
@@ -694,7 +689,12 @@ public class ServerConnectionHandler implements HttpHandler {
                 handleRequest();
             } else if(requestPath[1].equals("api")) {
                 System.out.println("API endpoint called");
-                handleApiRequest();
+                try {
+                    handleApiRequest();
+                } catch (Exception e) {
+                    System.out.println("Something went horribly wrong!");
+                    e.printStackTrace();
+                }
             } else {
                 handleRequest();
             }
