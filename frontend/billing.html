@@ -8,11 +8,13 @@
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/paymentHistory.css">
+        <link rel="stylesheet" href="./css/makePayment.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
         <script src="./js/calendar.js"></script>
         <script src ="./js/navigationTab.js"></script>
         <script src ="./js/utils.js"></script>
+        <script src="./js/makePayment.js"></script>
     </head>
     <body>
         <header class="header">
@@ -80,11 +82,51 @@
                             <p>Amount Due: </p><span id="amount-due">$300.00</span>
                         </div>
                         <div id="btn-container">
-                            <button id="pay-now-btn" onclick="openPayment()">Pay now</button>
+                            <button id="pay-now-btn" onclick="openMakePayment()">Pay now</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Make Payment Overlay -->
+        <div class="make-payment-box" id="make-payment-box">
+            <form id="make-payment-form">
+                <div class="wrap-make-payment-form">
+                    <a onclick="closeMakePayment()" class="hyperlinkBack">Close</a>
+                    <h2 class="title">Enter your payment details</h2>
+                    <div class="inputField">
+                        <div>
+                            <label class="labels">Name on Card:</label>
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="card-name" type="text" class="input2" placeholder="John Doe" required />
+                        </div>
+                        <div>
+                            <label class="labels">Card Details:</label>
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="card-number" type="text" class="input2" placeholder="1234 1234 1234 1234" required />
+                        </div>
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="cvv" type="password" class="input2" placeholder="CVV" required />
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="expiry" type="text" class="input2" placeholder="MM / YY" required />
+                        </div>
+                        <div>
+                            <label class="labels">Billing Address:</label>
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="billing-address" type="text" class="input2" placeholder="100 Smith Street" required />
+                        </div>
+                        <div>
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="state" type="text" class="input2" placeholder="State / Province" style="width: 150px;" required />
+                            <input pattern="[\x00-\x7F]+" maxlength="100" pname="zipCode" type="text" class="input2" placeholder="ZIP Code" style="width: 100px;" required />
+                        </div>
+                        <div>
+                            <label class="labels">Country:</label>
+                            <select name="country" class="input2">
+                                <option value="United States">United States</option>
+                                <option value="Canada">Canada</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" id="complete-payment-btn">Complete Payment</button>
+                </div>
+            </form>
         </div>
 
 
