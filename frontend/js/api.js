@@ -243,7 +243,6 @@ async function bookAppointment(patientID, staff1ID, staff2ID, staff3ID, startTim
     const endpoint = "/api/book-appointment"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
-    console.log(response)
     return response === "true"
 }
 
@@ -268,7 +267,7 @@ async function getTreatmentTypes() {
     const endpoint = "/api/get-appointment-types"
     const method = "POST"
     let response = await request("{}", endpoint, method)
-    return response
+    return JSON.parse(response)
 }
 
 async function getAppointments(userID) {

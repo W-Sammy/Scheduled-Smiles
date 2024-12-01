@@ -339,12 +339,10 @@ public class ServerConnectionHandler implements HttpHandler {
             return false;
         final int oneHour = 60 * 60; // in seconds
         final int timestamp = requestJsonObject.get("startTime").getAsInt();
-        final int before = timestamp - oneHour;
-        final int after = timestamp + oneHour;
         final String queryString = "SELECT staffID FROM staff WHERE staffID NOT IN ( " + String.join(" UNION ",
-            String.format("SELECT staff1ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before),
-            String.format("SELECT staff2ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before),
-            String.format("SELECT staff3ID FROM appointments WHERE startTime < %s AND startTime > %s", after, before)
+            String.format("SELECT staff1ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp),
+            String.format("SELECT staff2ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp),
+            String.format("SELECT staff3ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp)
         ) + " )";
         JsonElement result = convertToJsonElement("[]");
         try (DatabaseConnection db = new DatabaseConnection()) {
@@ -380,7 +378,7 @@ public class ServerConnectionHandler implements HttpHandler {
     private static boolean bookAppointment() throws IOException {
         final JsonObject requestJsonObject = requestBodyJson.getAsJsonObject();
         final Set<String> requestKeys = requestJsonObject.keySet();
-        final Set<String> columns = Set.of("patientID", "staff1ID", "staff2ID", "staff3ID", "startTime");
+        final String[] columns = {"patientID", "staff1ID", "staff2ID", "staff3ID", "startTime"};
         if (!membersMatch(requestKeys, columns))
             return false;
         final DatabaseGenericParameter patientID = new DatabaseGenericParameter(requestJsonObject.get("patientID").getAsString(), "bytes");

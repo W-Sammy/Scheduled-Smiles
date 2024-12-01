@@ -4,18 +4,15 @@
 const DATA_LOADED_EVENT_NAME = "dataLoaded"
 const loaded = {
     treatments: false,
-    appointments: false
+    appointments: false 
 }
+let allLoaded = () => Object.values(loaded).every(e => e != false)
 
 
 window.onload = () => {
-    document.body.addEventListener(DATA_LOADED_EVENT_NAME, (e) => {
-        if (Object.values(loaded).every(el => el)) {
-            allDataLoaded()
-            document.body.removeEventListener(DATA_LOADED_EVENT_NAME)
-        }
-    })
+    document.body.addEventListener(DATA_LOADED_EVENT_NAME, dataLoadedListener)
     loadAppointments()
+    loadTreatments()
     showDisplay(document.getElementById("appointmentList"))
     hideDisplay(document.getElementById("sessionForm"))
     hideDisplay(document.getElementById("sessionList"))
@@ -40,15 +37,6 @@ function addNote() {
     showNotification("Noted has been Added", 2)
 }
 
-//generic Remove element 
-// - used to remove appointment elements
-// Need to connect to server to remove data as well
-function deleteAppointment(e){
-    e.parentElement.remove();
-    showWarning("Appointment Deleted", 2.5, "top","11.5%")
-}
-
-
 //Generic Dom manipulation to control visual of Components
 function openSession(){
     hideDisplay(document.getElementById("sessionForm"))
@@ -72,7 +60,14 @@ function openForm(){
 
 // only runs when everything from DB is loaded
 function allDataLoaded() {
-    
+    console.log(loaded)
+}
+
+function dataLoadedListener(e) {
+    if (allLoaded()) {
+        allDataLoaded()
+        e.target.removeEventListener(DATA_LOADED_EVENT_NAME, dataLoadedListener)
+    }
 }
 
 function loadTreatments() {
@@ -82,7 +77,7 @@ function loadTreatments() {
         Object.keys(treatmentTypes).forEach(type => {
             e.appendChild(createTreatment(type))
         })
-        dispatchLoadedEvent(treatmentTypes, loaded.treatments)
+        dispatchLoadedEvent(treatmentTypes, "treatments")
     })
 }
 
@@ -107,7 +102,8 @@ function loadAppointments() {
                 const [rawPatientName, ...rawStaffNames] = names
                 const patientName = rawPatientName.join(" ")
                 const staffNames = Array.from(rawStaffNames, n => n.join(" "))
-                createAppointmentElement(staffNames, startTime, patientName)
+                if (!isCanceled || (!isCanceled && !isComplete))
+                    createAppointmentElement(staffNames, startTime, patientName, appointmentID)
                 appts.push({
                     appointmentID: appointmentID,
                     patientID: patientID,
@@ -124,7 +120,7 @@ function loadAppointments() {
                 })
                 // console.log(appts[appts.length - 1])
             })
-            dispatchLoadedEvent(appts, loaded.appointments)
+            dispatchLoadedEvent(appts, "appointments")
         })
     })
 }
@@ -137,12 +133,13 @@ function createTreatment(treatmentName) {
 }
 
 function dispatchLoadedEvent(value, key) {
-    key = value
+    console.log("finished loading " + key)
+    loaded[key] = value
     document.body.dispatchEvent(new Event(DATA_LOADED_EVENT_NAME))
 }
 
-function createAppointmentElement(staffNames, timestamp, patientName) {
-    const dateObj = new Date(timestamp)
+function createAppointmentElement(staffNames, timestamp, patientName, appointmentID) {
+    const dateObj = new Date(timestamp * 1000)
     const apptList = document.getElementById("appointmentList")
     const apptEl = document.createElement("div")
     const infoEl = document.createElement("div")
@@ -160,15 +157,18 @@ function createAppointmentElement(staffNames, timestamp, patientName) {
     staffEl.classList.add("info-staff")
     confirmEl.classList.add("confirm")
     denyEl.classList.add("deny")
-    dateEl.innerHTML = dateObj.toDateString()
+    apptEl.dataset.id = appointmentID
+    dateEl.innerHTML = dateObj.toLocaleDateString()
+    // testing
+    console.log(dateObj.toUTCString())
     patientEl.innerHTML = patientName
     timeEl.innerHTML = dateObj.toLocaleTimeString('en-US')
     staffEl.innerHTML = staffNames.join(", ")
     confirmEl.innerHTML = "Approve"
     denyEl.innerHTML = "Deny"
 
-    confirmEl.setAttribute("onclick","openForm();");
-    denyEl.setAttribute("onclick","deleteAppointment(this);");
+    confirmEl.setAttribute("onclick",`openAppt('${appointmentID}')`)
+    denyEl.setAttribute("onclick",`denyAppt('${appointmentID}')`)
     
     apptList.appendChild(apptEl)
     apptEl.appendChild(infoEl)
@@ -178,4 +178,30 @@ function createAppointmentElement(staffNames, timestamp, patientName) {
     infoEl.appendChild(staffEl)
     apptEl.appendChild(confirmEl)
     apptEl.appendChild(denyEl)
+}
+
+function openAppt(id) {
+    if (!allLoaded())
+        return
+    openForm()
+
+}
+
+function denyAppt(id) {
+    if (!allLoaded())
+        return
+    const e = [...document.querySelectorAll("#appointmentList .appointment")].filter(el => el.dataset.id && el.dataset.id == id)[0]
+    const onclickStr = e.getAttribute("onclick")
+    e.setAttribute("onclick", "") // prevent spamming the button (idiot proofing)
+    // cancel appt in DB
+    markAppointmentCanceled(id, true).then(success => {
+        if (success) {
+            // remove appt in frontend
+            e.remove()
+            showNotification("Appointment cancelled.", 3)
+        } else {
+            e.setAttribute("onclick", onclickStr)
+            showWarning("Error: failed to cancel appointment. Please try again later.", 3)
+        }
+    })
 }

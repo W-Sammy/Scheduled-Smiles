@@ -12,6 +12,8 @@ function loadMenu() {
         document.getElementById("patientMenu").remove()
         return
     }
+    
+
     getRoleName(getCookieValue("roleID")).then(response => {
         const roleName = JSON.parse(response)
         if (response != null) {
@@ -35,7 +37,12 @@ function scheduleAppointment() {
         showBigWarning("Login to schedule an appointment!", 5)
         return
     }
+    if (document.querySelector(".staff-select-row > .staff-select > option:checked").value == "default") {
+        showWarning("Choose a staff member to schedule an appointment with!", 3)
+        return
+    }
     submitCalendar(document.getElementById("cal1")) // only one calendar on the page
+    populateStaffLists()
 }
 
 function submitCalendar(calendarElement) {
@@ -43,11 +50,11 @@ function submitCalendar(calendarElement) {
     if (timestamp) {
         if (!isStaff) {
             const patientID = getCookieValue("userID")
-            bookAppointment(patientID, (document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value == "") ? null : document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value, null, null, timestamp).then(success => {
+            bookAppointment(patientID, (document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value == "default") ? null : document.querySelectorAll(".staff-select-row > .staff-select > option:checked")[0].value, null, null, timestamp).then(success => {
                 if (success) {
-                    showNotification("Appointment booked!", 10)
+                    showNotification("Appointment booked!", 3)
                 } else if (success != null) {
-                    showWarning("Error: appointment could not be booked. Please try again later.", 10)
+                    showWarning("Error: appointment could not be booked. Please try again later.", 3)
                 }
             })
         } else {
@@ -64,13 +71,13 @@ function submitCalendar(calendarElement) {
                 if (!patientID)
                     return null
                 const staff1ID = getCookieValue("userID")
-                const [staff2ID, staff3ID] = Array.from(document.querySelectorAll(".staff-select-row > .staff-select > option:checked"), e => (e.value == "") ? null : e.value)
+                const [staff2ID, staff3ID] = Array.from(document.querySelectorAll(".staff-select-row > .staff-select > option:checked"), e => (e.value == "default") ? null : e.value)
                 return bookAppointment(patientID, staff1ID, staff2ID, staff3ID, timestamp)
             }).then(success => {
                 if (success) {
-                    showNotification("Appointment booked!", 10)
+                    showNotification("Appointment booked!", 3)
                 } else if (success != null) {
-                    showWarning("Error: appointment could not be booked. Please try again later.", 10)
+                    showWarning("Error: appointment could not be booked. Please try again later.", 3)
                 }
             })
         }
@@ -82,12 +89,12 @@ function submitCalendar(calendarElement) {
 function getCalendarData(calendarElement) {
     const days = Array.from(calendarElement.querySelectorAll(':scope .day-numbers input:checked'), (e) => parseInt(e.value) ) // returns an array (if using checkboxes, will return all selected options)
     if (days.length) {
-        const day = days[0]
+        const day = days[0] + 1
         const month = parseInt(calendarElement.querySelector(":scope .month .active").dataset.month)
         const year = parseInt(calendarElement.querySelector(":scope .year").innerHTML)
         const hour = parseInt(document.getElementsByClassName("hour")[0].value) // there should only be one
         const timezoneOffset = (new Date()).getTimezoneOffset() * 60
-        const timestamp = (Date.UTC(year, month - 1, days[0], hour - 1) / 1000) + timezoneOffset
+        const timestamp = (Date.UTC(year, month - 1, day, hour) / 1000) - timezoneOffset
         return timestamp
     } else {
         return null
@@ -131,6 +138,10 @@ function loadCalendarButtons(calendarElement) {
         if (e.dataset.calendarId == calendarElement.id) {
             e.onclick = () => { submitCalendar(calendarElement) }
         }
+    });
+    // any buttons
+    [...document.querySelectorAll("select:not(.staff-select)")].forEach(e => {
+        e.onchange = () => { populateStaffLists() }
     })
 }
 
@@ -231,7 +242,7 @@ function populateStaffLists() {
         // selects all dropdown elements with class "staff-select"
         const staffDropdowns = document.querySelectorAll(".staff-select");
         staffDropdowns.forEach((dropdown) => {
-            dropdown.innerHTML = "<option value=\"\">None</option>" // quick and dirty
+            dropdown.innerHTML = "<option value=\"default\" selected disabled hidden>None</option>" // quick and dirty
             staffList.forEach((staff) => {
                 const option = document.createElement("option");
                 option.value = staff[0];
