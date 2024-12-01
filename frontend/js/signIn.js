@@ -16,8 +16,8 @@ function signInSubmitted(event) {
     event.preventDefault()
     let formE = event.target
     let [email, pass] = Array.from(formE.elements, e => e.value)
-    console.log(email, pass)
-    // TODO: notify user,   evaulating info
+    const [loadingEl, doneLoading] = createLoadingIcon()
+    formE.appendChild(loadingEl)
     accountEmailExists(email).then(success => {
         if (success) {
             return passwordCorrect(email, pass)
@@ -32,6 +32,7 @@ function signInSubmitted(event) {
             return null
         }
     }).then(result => {
+        doneLoading()
         if (result != null && result != undefined) {
             // Assume valid because of prior checks
             let accountInfo = JSON.parse(result)
@@ -57,6 +58,8 @@ function registerSubmitted(event) {
         "([0-9]{4})-([0-9]{2})-([0-9]{2})",
         "$2-$3-$1"
     ))).getTime() / 1000) + ((new Date()).getTimezoneOffset() * 60)
+    const [loadingEl, doneLoading] = createLoadingIcon()
+    formE.appendChild(loadingEl)
     accountEmailExists(email).then(exists => {
         if (exists) {
             return false
@@ -64,6 +67,7 @@ function registerSubmitted(event) {
             return createAccount(first, last, addr, sex, phone, email, dob, pass)
         }
     }).then(validRegister => {
+        doneLoading()
         if (validRegister) {
             getAccount(email, pass).then(result => {
                 // Assume valid because of prior checks

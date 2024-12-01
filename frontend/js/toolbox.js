@@ -19,6 +19,12 @@ function addStylingToPage(stylesheetUrl) {
             element,   HTMLElement the loading icon element
             close()    calling this function will remove the element from DOM
     ]
+    BASICALLY, to use this-
+    1. call function, take element and close handler
+    2. append element to parent
+    3. do stuff syncornously / things that take time
+    4. call close handler
+    5. profit
 */
 function createLoadingIcon() {
     /* HTML must match:

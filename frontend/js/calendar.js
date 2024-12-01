@@ -230,14 +230,18 @@ function _isLeapYear(year)
 // TYSM DANN THE GOAT -Kyle
 // populates dummy data
 function populateStaffLists() {
+    const el = document.getElementById("cal1")
     // convert calendar time to utc timestamps
-    const timestamp = getCalendarData(document.getElementById("cal1")) // only one calendar on the page
+    const timestamp = getCalendarData(el) // only one calendar on the page
     if (!timestamp) // set available staff to none / blank if no day is selected
         return
+    const [loadingEl, doneLoading] = createLoadingIcon()
+    el.appendChild(loadingEl)
     getAvailableStaff(timestamp).then(response => {
         const staffIDs = JSON.parse(response)
         return Promise.all(Array.from(staffIDs, id => Promise.all([id, getFullName(id)])))
     }).then(response => {
+        doneLoading()
         const staffList = Array.from(response, (arrStr) => [arrStr[0], arrStr[1].join(" ")])
         // selects all dropdown elements with class "staff-select"
         const staffDropdowns = document.querySelectorAll(".staff-select");

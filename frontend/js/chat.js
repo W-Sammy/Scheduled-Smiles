@@ -53,7 +53,11 @@ function setRefreshInterval() {
 }
 
 function setLoadedListener() {
-    document.getElementById("contacts-list").addEventListener("messagesLoaded", (e) => {
+    const el = document.getElementById("contacts-list")
+    const [loadingEl, doneLoading] = createLoadingIcon()
+    el.appendChild(loadingEl)
+    el.addEventListener("messagesLoaded", (e) => {
+        doneLoading()
         // All data loaded- start adding things here
         setRefreshInterval()
         loadContactOptions()
