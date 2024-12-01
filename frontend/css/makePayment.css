@@ -81,14 +81,14 @@ select.input2 {
 
 .hyperlinkBack:active {
     transform: scale(0.95);
-}
+ }
 
 #make-payment-box button:hover {
     background-color: #116d71;
 }
 
 #make-payment-box button:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 
 #complete-payment-btn {

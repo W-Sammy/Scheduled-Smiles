@@ -7,7 +7,6 @@ const loaded = {
     appointments: false
 }
 
-
 window.onload = () => {
     document.body.addEventListener(DATA_LOADED_EVENT_NAME, (e) => {
         if (Object.values(loaded).every(el => el)) {
