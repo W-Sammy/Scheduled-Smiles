@@ -169,8 +169,9 @@ async function getRoleName(roleId) {
     return (response !== false) ? response : null
 }
 
+// expects integer, not string
 async function getAvailableStaff(timestamp) {
-    const requestBody = `{ "startTime": "${timestamp}" }`
+    const requestBody = `{ "startTime": ${timestamp} }`
     const endpoint = "/api/lookup/availability"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)

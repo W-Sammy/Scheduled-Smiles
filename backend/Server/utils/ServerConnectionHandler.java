@@ -337,13 +337,8 @@ public class ServerConnectionHandler implements HttpHandler {
         final Set<String> requestKeys = requestJsonObject.keySet();
         if (!membersMatch(requestKeys, "startTime"))
             return false;
-        final int oneHour = 60 * 60; // in seconds
         final int timestamp = requestJsonObject.get("startTime").getAsInt();
-        final String queryString = "SELECT staffID FROM staff WHERE staffID NOT IN ( " + String.join(" UNION ",
-            String.format("SELECT staff1ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp),
-            String.format("SELECT staff2ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp),
-            String.format("SELECT staff3ID FROM appointments WHERE startTime = %s AND isCanceled = 0", timestamp)
-        ) + " )";
+        final String queryString = "CALL getAvailableStaff(" + timestamp + ")";
         JsonElement result = convertToJsonElement("[]");
         try (DatabaseConnection db = new DatabaseConnection()) {
             if (db.isConnected()) {

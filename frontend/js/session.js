@@ -9,13 +9,20 @@ const loaded = {
 let allLoaded = () => Object.values(loaded).every(e => e != false)
 
 window.onload = () => {
-    document.body.addEventListener(DATA_LOADED_EVENT_NAME, dataLoadedListener)
+    initSessionsPage()
     loadAppointments()
     loadTreatments()
     showDisplay(document.getElementById("appointmentList"))
     hideDisplay(document.getElementById("sessionForm"))
     hideDisplay(document.getElementById("sessionList"))
 };
+
+// sets stuff up before loading
+function initSessionsPage() {
+    const [e, close] = createLoadingIcon()
+    document.getElementById("appointmentList").appendChild(e)
+    document.body.addEventListener(DATA_LOADED_EVENT_NAME, (e) => { dataLoadedListener(e, close) })
+}
 
 //Generic Show and Hide component functions
 function showDisplay(id) {
@@ -62,8 +69,9 @@ function allDataLoaded() {
     console.log(loaded)
 }
 
-function dataLoadedListener(e) {
+function dataLoadedListener(e, func) {
     if (allLoaded()) {
+        func()
         allDataLoaded()
         e.target.removeEventListener(DATA_LOADED_EVENT_NAME, dataLoadedListener)
     }
