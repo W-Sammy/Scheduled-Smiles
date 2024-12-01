@@ -6,6 +6,7 @@
 }
 .loading-icon {
     --size: 80px;
+    color: #2D6B6D;
     display: inline-block;
     width: var(--size);
     height: var(--size);
@@ -20,14 +21,14 @@
   transform-origin: 40px 40px;
 }
 .loading-icon div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 7.2px;
-  height: 7.2px;
-  border-radius: 50%;
-  background: currentColor;
-  margin: -3.6px 0 0 -3.6px;
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7.2px;
+    height: 7.2px;
+    border-radius: 50%;
+    background: currentColor;
+    margin: -3.6px 0 0 -3.6px;
 }
 .loading-icon div:nth-child(1) {
   animation-delay: -0.036s;

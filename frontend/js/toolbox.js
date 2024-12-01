@@ -81,7 +81,7 @@ function createBasicBox(position = "top", margin = "10%") {
     if (position)
         box.classList.add(...position.split(" "))
     if (margin)
-        box.setProperty("--margin", margin)
+        box.style.setProperty("--margin", margin)
     box.onclick = (e) => {
         fadeOut(box)
     }
@@ -98,7 +98,7 @@ function showNotification(text, duration = 0, position = null, margin = null, pa
     const box = createBasicBox(position, margin)
     box.innerHTML = text
     // don't create dupes
-    const boxes = document.getElementsByClassName(NOTIF_CLASS)
+    const boxes = document.getElementsByClassName("notification-box")
     for (i = 0; i < boxes.length; i++)
         if (boxes[i].outerHTML == box.outerHTML)
             return

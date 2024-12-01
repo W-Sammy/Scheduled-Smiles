@@ -157,19 +157,19 @@
     height: 80%;
 }
 
-.infoBox > form > div {
+.infoBox > form > div:not(.titleSection) {
     margin: 20px;
     margin-left: 20px;
     margin-right: 5px;
 }
 
-.infoBox > div {
+.infoBox > form > div.titleSection {
     flex-direction: row-reverse; 
     padding: 0px;
     margin: 0px;
 }
 
-.infoBox > div > input {
+.infoBox > form > div.titleSection > button {
     margin-top: 10px;
     margin-right: 20px;
 }
@@ -184,7 +184,7 @@
 
 }
 
-input {
+input, button {
     max-width: 200px;
     max-height: 20px;
     margin: 5px;
@@ -256,7 +256,7 @@ label {
 }
 
 
-input[type='submit'] {
+input[type='submit'], button[type='submit'] {
     border-color: rgba(46, 151, 93, 0.082);
     color: #f8faee;
     background-color: #549799;
@@ -275,11 +275,11 @@ input[type='submit'] {
     align-self: flex-end;
 }
 
-input[type='submit']:hover {
+input[type='submit']:hover, button[type='submit']:hover {
     background-color: #5aaeb1;
 }
 
-input[type='submit']:active {
+input[type='submit']:active , button[type='submit']:active {
     background-color: #466a6b;
     scale:.99;
 }

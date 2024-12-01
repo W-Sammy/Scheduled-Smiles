@@ -40,16 +40,16 @@
                 <form id="infoForm"> 
                         <div class="inputBox">        
                             <label for="staff2">Staff 2</label>
-                            <input type="text" class="info" id="staff2" placeholder="Lorem ipsum odor amet">
+                            <input type="text" class="info" id="staff2" placeholder="">
                             <label for="staff3">Staff 3</label>
-                            <input type="text" class="info" id="staff3" placeholder="Lorem ipsum odor amet">
+                            <input type="text" class="info" id="staff3" placeholder="">
                         </div>
                         <div>
-                            <label for="stationBox1"> Station Number: </label>
-                            <div class="stationBox" id="stationBox1">
+                            <label for="stationBox"> Station Number: </label>
+                            <div class="stationBox" id="stationBox">
                                 <div>
                                     <label for="station1">Station 1</label>
-                                    <input type="radio" name="station" id="station1" value="1">
+                                    <input type="radio" name="station" id="station1" value="1" required>
                                 </div>
                                 <div>
                                     <label for="station2">Station 2</label>
@@ -76,7 +76,7 @@
                         <div>
                             <label for="treatmentList">Undergoing Treatment:</label><br>
                             <select name="treatments" id="treatmentList" class="treatmentBox" required>
-                                <option value="default" disabled selected hidden>Pick a Treatment</option>
+                                <option value="" disabled selected hidden>Pick a Treatment</option>
                             </select>
                         </div>
                     <div class="healthBox">
@@ -84,41 +84,41 @@
                             <span style="color: rgba(107, 107, 86, 0.521);">Select any conditions that apply</span>
                         </div>
                         <div>
-                            <label for="health1">Cavities</label>
-                            <input type="checkbox" id="healthCheck1" name="health1" value="Cavities">
+                            <label for="healthCheck1">Cavities</label>
+                            <input type="checkbox" id="healthCheck1" name="treatment" value="Cavities">
                         </div>
                         <div>
-                            <label for="health2">Over Bite</label>
-                            <input type="checkbox" id="healthCheck2" name="health2" value="Over Bite">
+                            <label for="healthCheck2">Over Bite</label>
+                            <input type="checkbox" id="healthCheck2" name="treatment" value="Over Bite">
                         </div>
                         <div>
-                            <label for="health3">Under Bite</label>
-                            <input type="checkbox" id="healthCheck3" name="health3" value="Under Bite">
+                            <label for="healthCheck3">Under Bite</label>
+                            <input type="checkbox" id="healthCheck3" name="treatment" value="Under Bite">
                         </div>
                         <div>
-                            <label for="health4">Molar Degration</label>
-                            <input type="checkbox" id="healthCheck4" name="health4" value="Molar Degration">
+                            <label for="healthCheck4">Molar Degration</label>
+                            <input type="checkbox" id="healthCheck4" name="treatment" value="Molar Degration">
                         </div>
                         <div>
-                            <label for="health5">Gum inflam</label>
-                            <input type="checkbox" id="healthCheck5" name="health5" value="Gum inflam.">
+                            <label for="healthCheck5">Gum inflam</label>
+                            <input type="checkbox" id="healthCheck5" name="treatment" value="Gum inflam.">
                         </div>
                         <div>
-                            <label for="health6">Root Canal</label>
-                            <input type="checkbox" id="healthCheck6" name="health6" value="Root Canal">
+                            <label for="healthCheck6">Root Canal</label>
+                            <input type="checkbox" id="healthCheck6" name="treatment" value="Root Canal">
                         </div>
                         <div>
-                            <label for="health7">Fluorosis</label>
-                            <input type="checkbox" id="healthCheck7" name="health7" value="Fluorosis">
+                            <label for="healthCheck7">Fluorosis</label>
+                            <input type="checkbox" id="healthCheck7" name="treatment" value="Fluorosis">
                         </div>
-                            <div><label for="health8">Damaged Tooth</label>
-                            <input type="checkbox" id="healthCheck8" name="health8" value="Damaged Tooth">
+                            <div><label for="healthCheck8">Damaged Tooth</label>
+                            <input type="checkbox" id="healthCheck8" name="treatment" value="Damaged Tooth">
                         </div>
                     </div>
+                    <div class="titleSection">
+                        <button type="submit">Create Session</button>
+                    </div>
                 </form>            
-                <div class="titleSection">
-                    <input type="submit" value="Create Session"  onclick="openSession()">
-                </div>   
             </div>
             
             <div class="historyBox" id="historyList">

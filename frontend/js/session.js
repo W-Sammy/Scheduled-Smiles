@@ -4,6 +4,7 @@
 const DATA_LOADED_EVENT_NAME = "dataLoaded"
 const loaded = {
     treatments: false,
+    sessionForm: false,
     appointments: false 
 }
 let allLoaded = () => Object.values(loaded).every(e => e != false)
@@ -51,7 +52,7 @@ function openSession(){
 
 function closeSession(){
     hideDisplay(document.getElementById("sessionList"))
-    showDisplay(document.getElementById("sessionForm"))
+    showDisplay(document.getElementById("appointmentList"))
 }
 
 function openAppointmentList(){
@@ -66,7 +67,7 @@ function openForm(){
 
 // only runs when everything from DB is loaded
 function allDataLoaded() {
-    console.log(loaded)
+    // console.log(loaded)
 }
 
 function dataLoadedListener(e, func) {
@@ -85,36 +86,43 @@ function loadTreatments() {
             e.appendChild(createTreatment(type))
         })
         dispatchLoadedEvent(treatmentTypes, "treatments")
+        dispatchLoadedEvent(document.getElementById("sessionForm").innerHTML, "sessionForm")
     })
 }
 
 function loadAppointments() {
     getAppointments(getCookieValue("userID")).then(response => {
         Promise.all(Array.from(JSON.parse(response), appointment => {
-            const {appointmentID, patientID, staffList, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
-            const trimmedStaffList = staffList.filter(id => id && id.length && id.replace(/0/g, "").length)
+            const {patientID, staff1ID, staff2ID, staff3ID} = appointment
+            const trimmedStaffList = [staff1ID, staff2ID, staff3ID].filter(id => id && id.length && id.replace(/0/g, "").length)
             return Promise.all([
                 Promise.resolve(appointment),
                 Promise.all([
-                    Promise.resolve(getFullName(patientID)),
-                    ...Array.from(trimmedStaffList, id => getFullName(id))
+                    getFullName(patientID),
+                    ((staff1ID) ? getFullName(staff1ID) : Promise.resolve(null)),
+                    ((staff2ID) ? getFullName(staff2ID) : Promise.resolve(null)),
+                    ((staff3ID) ? getFullName(staff3ID) : Promise.resolve(null))
                 ])
             ])
         })).then(infos => {
             const appts = {}
             infos.forEach(info => {
                 const [appointment, names] = info
-                const {appointmentID, patientID, staffList, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
+                const {appointmentID, patientID, staff1ID, staff2ID, staff3ID, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
                 const [rawPatientName, ...rawStaffNames] = names
                 const patientName = rawPatientName.join(" ")
-                const staffNames = Array.from(rawStaffNames, n => n.join(" "))
+                const staffNames = Array.from(rawStaffNames, n => (n) ? n.join(" ") : '')
                 if (!isCanceled || (!isCanceled && !isComplete))
-                    createAppointmentElement(staffNames, startTime, patientName, appointmentID)
+                    createAppointmentElement(staffNames.filter(n => n.length), startTime, patientName, appointmentID)
                 appts[appointmentID] = {
                     patientID: patientID,
                     patientName: patientName,
-                    staffList: staffList,
-                    staffNames: staffNames,
+                    staff1ID: staff1ID,
+                    staff2ID: staff2ID,
+                    staff3ID: staff3ID,
+                    staff1Name: staffNames[0],
+                    staff2Name: staffNames[1],
+                    staff3Name: staffNames[2],
                     stationNumber: stationNumber,
                     treatment: treatment,
                     notes: notes,
@@ -138,7 +146,7 @@ function createTreatment(treatmentName) {
 }
 
 function dispatchLoadedEvent(value, key) {
-    console.log("finished loading " + key)
+    // console.log("finished loading " + key)
     loaded[key] = value
     document.body.dispatchEvent(new Event(DATA_LOADED_EVENT_NAME))
 }
@@ -165,7 +173,6 @@ function createAppointmentElement(staffNames, timestamp, patientName, appointmen
     apptEl.dataset.id = appointmentID
     dateEl.innerHTML = dateObj.toLocaleDateString()
     // testing
-    console.log(dateObj.toUTCString())
     patientEl.innerHTML = patientName
     timeEl.innerHTML = dateObj.toLocaleTimeString('en-US')
     staffEl.innerHTML = staffNames.join(", ")
@@ -185,12 +192,32 @@ function createAppointmentElement(staffNames, timestamp, patientName, appointmen
     apptEl.appendChild(denyEl)
 }
 
+// only call this after all data has been loaded, or the form will be removed from DOM.
+function resetSessionForm() {
+    document.getElementById("sessionForm").innerHTML = loaded.sessionForm
+    document.getElementById("infoForm").onsubmit = startSession
+}
+
 function openAppt(id) {
     if (!allLoaded())
         return
+    const appt = loaded.appointments[id]
+    console.log(appt)
+    // modify form based on appointment data
+    resetSessionForm()
+    if (appt.staff2ID) {
+        let e = document.getElementById("staff2")
+        e.readOnly = true
+        e.disabled = true
+        e.placeholder = appt.staff2Name
+    }
+    if (appt.staff3ID) {
+        let e = document.getElementById("staff3")
+        e.readOnly = true
+        e.disabled = true
+        e.placeholder = appt.staff3Name
+    }
     openForm()
-    console.log(loaded.appointments[id])
-
 }
 
 function denyAppt(id) {
@@ -210,4 +237,19 @@ function denyAppt(id) {
             showWarning("Error: failed to cancel appointment. Please try again later.", 3)
         }
     })
+}
+
+function startSession(e) {
+    e.preventDefault()
+    // load appointment history on the side
+    // TODO ...
+    openSession()
+}
+
+// get data from input fields in the DOM
+function getAppointmentData() {
+    const info = document.getElementById("infoForm")
+    const {treatment, station} = info.elements
+    const notes = document.getElementById("recordInput").value
+    return {station: station, treatment: treatment, notes: notes}
 }
