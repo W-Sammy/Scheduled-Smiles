@@ -76,7 +76,11 @@ select.input2 {
 }
 
 .hyperlinkBack:hover {
-    text-decoration: underline;
+   color: #7FA194
+}
+
+.hyperlinkBack:active {
+    transform: scale(0.95);
 }
 
 #make-payment-box button:hover {
