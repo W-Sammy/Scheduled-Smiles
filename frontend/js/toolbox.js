@@ -17,8 +17,8 @@ function addStylingToPage(stylesheetUrl) {
     returns:
         [
             element,   HTMLElement the loading icon element
-            close()    calling this function will remove the element from DOM
-    ]
+            close()    calling this handler function will remove the element from DOM
+        ]
     BASICALLY, to use this-
     1. call function, take element and close handler
     2. append element to parent

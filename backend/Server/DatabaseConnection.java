@@ -50,39 +50,16 @@ public class DatabaseConnection implements AutoCloseable {
                     while (i <= columnCount) {
                         int columnType = results.getMetaData().getColumnType(i); // inefficent to get column type for every row after the first one but I don't see a better way -Kyle
                         // Might need to stick this into it's own function -Kyle
-                        switch (columnType) {
-                            case Types.NULL:
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter()); // empty constructor defaults the type to null
-                            break;
-                            case Types.TINYINT: // Retrieve sql TINYINT as java boolean, instead of converting them to bulkier int in java
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getBoolean(i)));
-                            break;
-                            case Types.CHAR:
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i).charAt(0)));
-                            break;
-                            case Types.VARCHAR:
-                            case Types.LONGVARCHAR:
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getString(i)));
-                            break;
-                            case Types.DECIMAL:
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getDouble(i)));
-                            break;
-                            case Types.BIGINT:
-                            case Types.INTEGER:
-                                resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(results.getInt(i)));
-                            break;
-                            case Types.BINARY:
-                            default:
-                                final byte[] unknown = results.getBytes(i);
-                                //System.out.println(results.wasNull());
-                                // scuffed way to check for null, since not properly implemented by JDBC for some fucking reason -Kyle
-                                if (results.wasNull()) {
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter());
-                                } else {
-                                    // when in doubt get as bytes
-                                    resultArray.get(resultArray.size() - 1).add(new DatabaseGenericParameter(unknown));
-                                }
-                        }
+                        DatabaseGenericParameter result = (results.getBytes(i) == null) ? new DatabaseGenericParameter() : switch (columnType) {
+                            case Types.NULL -> new DatabaseGenericParameter("null");
+                            case Types.TINYINT -> new DatabaseGenericParameter(results.getBoolean(i)); // Retrieve sql TINYINT as java boolean, instead of converting them to bulkier int in java
+                            case Types.CHAR -> new DatabaseGenericParameter(results.getString(i).charAt(0));
+                            case Types.VARCHAR, Types.LONGVARCHAR -> new DatabaseGenericParameter(results.getString(i));
+                            case Types.DECIMAL -> new DatabaseGenericParameter(results.getDouble(i));
+                            case Types.BIGINT, Types.INTEGER -> new DatabaseGenericParameter(results.getInt(i));
+                            default -> new DatabaseGenericParameter(results.getBytes(i));
+                        };
+                        resultArray.get(resultArray.size() - 1).add(result);
                         i++;
                     }
                 }

@@ -10,8 +10,12 @@ public class Appointment {
     private byte[] appointmentID = new byte[32];
     @SerializedName("patientID")
     private byte[] patientID = new byte[32];
-    @SerializedName("staffList")
-    private List<byte[]> staffList;
+    @SerializedName("staff1ID")
+    private byte[] staff1ID = new byte[32];
+    @SerializedName("staff2ID")
+    private byte[] staff2ID = new byte[32];
+    @SerializedName("staff3ID")
+    private byte[] staff3ID = new byte[32];
     @SerializedName("stationNumber")
     private int stationNumber;	//Which station the appointment took place in; reflects an input accepted from frontend
     @SerializedName("treatment")
@@ -28,10 +32,12 @@ public class Appointment {
     private boolean paid; //Check if this appointment has been paid by patient (for payment page)
     
     // constructor
-    public Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid) {
+    public Appointment(byte[] appointmentID, byte[] patientID, byte[] staff1ID, byte[] staff2ID, byte[] staff3ID, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid) {
         this.appointmentID = appointmentID; 
 		this.patientID = patientID;
-		this.staffList = staffList;
+		this.staff1ID = staff1ID;
+        this.staff2ID = staff2ID;
+        this.staff3ID = staff3ID;
 		this.stationNumber = stationNumber;
 		this.treatment = treatment;
 		this.notes = notes;
@@ -48,7 +54,7 @@ public class Appointment {
 	}
 	
 	public List<byte[]> getStaffList() {
-		return staffList;
+		return List.of(staff1ID, staff2ID, staff3ID);
 	}
 
 	public int getStationNumber() {

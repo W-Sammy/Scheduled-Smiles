@@ -28,7 +28,6 @@ function signInSubmitted(event) {
         if (validLogin) {
             return getAccount(email, pass)
         } else {
-            // TODO: signin failed, notify user
             return null
         }
     }).then(result => {

@@ -2,7 +2,6 @@ package Server.Enum;
 
 // This is a map of all accepted pages to redirect to upon url request. Note that these map from url path to fileNAME only, no paths! (might change at a later date) -Kyle
 import java.util.Map;
-import java.util.*;
 
 public class Pages {
     private Pages() {

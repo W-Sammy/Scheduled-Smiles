@@ -95,27 +95,25 @@ function loadAppointments() {
             const trimmedStaffList = staffList.filter(id => id && id.length && id.replace(/0/g, "").length)
             return Promise.all([
                 Promise.resolve(appointment),
-                Promise.resolve(trimmedStaffList),
                 Promise.all([
                     Promise.resolve(getFullName(patientID)),
                     ...Array.from(trimmedStaffList, id => getFullName(id))
                 ])
             ])
         })).then(infos => {
-            const appts = []
+            const appts = {}
             infos.forEach(info => {
-                const [appointment, trimmedStaffList, names] = info
+                const [appointment, names] = info
                 const {appointmentID, patientID, staffList, stationNumber, treatment, notes, startTime, isComplete, isCanceled, isPaid} = appointment
                 const [rawPatientName, ...rawStaffNames] = names
                 const patientName = rawPatientName.join(" ")
                 const staffNames = Array.from(rawStaffNames, n => n.join(" "))
                 if (!isCanceled || (!isCanceled && !isComplete))
                     createAppointmentElement(staffNames, startTime, patientName, appointmentID)
-                appts.push({
-                    appointmentID: appointmentID,
+                appts[appointmentID] = {
                     patientID: patientID,
                     patientName: patientName,
-                    staffList: trimmedStaffList,
+                    staffList: staffList,
                     staffNames: staffNames,
                     stationNumber: stationNumber,
                     treatment: treatment,
@@ -124,7 +122,7 @@ function loadAppointments() {
                     isComplete: isComplete,
                     isCanceled: isCanceled,
                     isPaid: isPaid
-                })
+                }
                 // console.log(appts[appts.length - 1])
             })
             dispatchLoadedEvent(appts, "appointments")
@@ -191,6 +189,7 @@ function openAppt(id) {
     if (!allLoaded())
         return
     openForm()
+    console.log(loaded.appointments[id])
 
 }
 

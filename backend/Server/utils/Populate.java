@@ -38,7 +38,9 @@ public class Populate {
         
         // Prepare parameters
         final byte[] patientID = result.get(0).getAsBytes();
-        final List<byte[]> staffList = new ArrayList<byte[]>();
+        final byte[] staff1ID = result.get(1).getAsBytes();
+        final byte[] staff2ID = result.get(2).getAsBytes();
+        final byte[] staff3ID = result.get(3).getAsBytes();
         final int station = result.get(4).getAsInteger();
         final String treatment = result.get(5).getAsString();
         final String notes = result.get(6).getAsString();
@@ -47,16 +49,8 @@ public class Populate {
         final boolean canceled = result.get(9).getAsBoolean();
         final boolean paid = result.get(10).getAsBoolean();
         
-        staffList.add(result.get(1).getAsBytes()); // first staff ID should never be null -Kyle
-        if (!result.get(2).isNull()) {
-            staffList.add(result.get(2).getAsBytes());
-        }
-        if (!result.get(3).isNull()) {
-            staffList.add(result.get(3).getAsBytes());
-        }
-        
         //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
-        return new Appointment(appointmentId, patientID, staffList, station, treatment, notes, timestamp, completed, canceled, paid);
+        return new Appointment(appointmentId, patientID, staff1ID, staff2ID, staff3ID, station, treatment, notes, timestamp, completed, canceled, paid);
     }
     
     public static List<Appointment> populateAppts(final byte[] userID, DatabaseConnection db) {
@@ -78,7 +72,8 @@ public class Populate {
             // Prepare parameters
             final byte[] appointmentID = result.get(0).getAsBytes();
             final byte[] patientID = result.get(1).getAsBytes();
-            final List<byte[]> staffList = new ArrayList<byte[]>();
+            final byte[] staff2ID = result.get(2).getAsBytes();
+            final byte[] staff3ID = result.get(3).getAsBytes();
             final int station = result.get(4).getAsInteger();
             final String treatment = result.get(5).getAsString();
             final String notes = result.get(6).getAsString();
@@ -87,16 +82,8 @@ public class Populate {
             final boolean canceled = result.get(9).getAsBoolean();
             final boolean paid = result.get(10).getAsBoolean();
             
-            staffList.add(userID);
-            if (!result.get(2).isNull()) {
-                staffList.add(result.get(2).getAsBytes());
-            }
-            if (!result.get(3).isNull()) {
-                staffList.add(result.get(3).getAsBytes());
-            }
-            
             //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
-            appts.add(new Appointment(appointmentID, patientID, staffList, station, treatment, notes, timestamp, completed, canceled, paid));
+            appts.add(new Appointment(appointmentID, patientID, userID, staff2ID, staff3ID, station, treatment, notes, timestamp, completed, canceled, paid));
         }
         return appts;
     }

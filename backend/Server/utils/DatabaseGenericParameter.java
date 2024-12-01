@@ -9,11 +9,17 @@ public class DatabaseGenericParameter implements Serializable {
     // semantics not clearly defined, sorry to anyone having to work on this -Kyle
     private String stringType;
     public DatabaseGenericParameter() {
+        stringValue = null;
         stringType = "null";
     }
     public DatabaseGenericParameter(String value) {
-        stringValue = value;
-        stringType = "str";
+        if (value.equals("null")) {
+            stringValue = null;
+            stringType = "null";
+        } else {
+            stringValue = value;
+            stringType = "str";
+        }
     }
     public DatabaseGenericParameter(String value, String type) {
         stringValue = value;
@@ -104,24 +110,32 @@ public class DatabaseGenericParameter implements Serializable {
     public boolean getAsBoolean() throws UnsupportedOperationException {
         if (this.isBoolean()) {
             return Boolean.parseBoolean(stringValue);
+        } else if (this.isNull()) {
+            return false; // default value to stop things from breaking
         }
         throw new UnsupportedOperationException(String.format("Value is not of type boolean (%s, %s)", getType(), toString()));
     }
     public String getAsString() throws UnsupportedOperationException {
         if (this.isString()) {
             return stringValue;
+        } else if (this.isNull()) {
+            return null;
         }
         throw new UnsupportedOperationException(String.format("Value is not of type string (%s, %s)", getType(), toString()));
     }
     public byte[] getAsBytes() throws UnsupportedOperationException {
         if (this.isBytes()) {
             return HexFormat.of().parseHex(stringValue);
+        } else if (this.isNull()) {
+            return new byte[32]; // default value to stop things from breaking
         }
         throw new UnsupportedOperationException(String.format("Value is not of type byte[] (%s, %s)", getType(), toString()));
     }
     public int getAsInteger() throws UnsupportedOperationException {
         if (this.isInteger()) {
             return Integer.parseInt(stringValue);
+        } else if (this.isNull()) {
+            return -1; // default value to stop things from breaking
         }
         throw new UnsupportedOperationException(String.format("Value is not of type int (%s, %s)", getType(), toString()));
     }

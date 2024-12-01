@@ -172,6 +172,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
@@ -241,6 +242,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         final String resultStr = (result > 0) ? "true" : "false";
@@ -260,6 +262,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         } finally {
             sendResponse(STATUS_CODES.get("OK"), convertToJsonElement(results));
@@ -278,6 +281,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 }
             } catch (Exception e) {
                 // Errors handled in DatabaseConnection, pass
+                System.out.println("Something went wrong!");
                 e.printStackTrace();
             }
         } else if (membersMatch(requestJsonObject.keySet(), "email", "password")) {
@@ -301,6 +305,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 }
             } catch (Exception e) {
                 // Errors handled in DatabaseConnection, pass
+                System.out.println("Something went wrong!");
                 e.printStackTrace();
             }
         } else {
@@ -353,6 +358,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         sendResponse(STATUS_CODES.get("OK"), result);
@@ -398,6 +404,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         final String resultStr = (result > 0) ? "true" : "false";
@@ -436,6 +443,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         final String resultStr = (result > 0) ? "true" : "false";
@@ -453,6 +461,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 }
             } catch (Exception e) {
                 // Errors handled in DatabaseConnection, pass
+                System.out.println("Something went wrong!");
                 e.printStackTrace();
             }
         } else {
@@ -473,6 +482,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 }
             } catch (Exception e) {
                 // Errors handled in DatabaseConnection, pass
+                System.out.println("Something went wrong!");
                 e.printStackTrace();
             }
         } else {
@@ -523,6 +533,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         final String resultStr = (result > 0) ? "true" : "false";
@@ -546,6 +557,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         sendResponse(STATUS_CODES.get("OK"), result);
@@ -568,6 +580,7 @@ public class ServerConnectionHandler implements HttpHandler {
             }
         } catch (Exception e) {
             // Errors handled in DatabaseConnection, pass
+            System.out.println("Something went wrong!");
             e.printStackTrace();
         }
         final String resultStr = (result > 0) ? "true" : "false";
@@ -667,6 +680,7 @@ public class ServerConnectionHandler implements HttpHandler {
                 handleRequest();
             }
         } catch (Exception e) {
+            System.out.println("Fatal error: Server crash");
             e.printStackTrace();
         } finally {
             con.close();
