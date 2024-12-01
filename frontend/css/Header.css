@@ -16,7 +16,13 @@
     user-select: none; /* Standard syntax */
 }
 
-.header .link{
+img {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.header .link {
     color: white;
     text-decoration: none;
     text-align: right;
@@ -26,12 +32,12 @@
     cursor: pointer;
 }
 
-.header .link:hover{
+.header .link:hover {
     color: rgb(177, 177, 177);
     font-size: 18px;
 }
 
-body{
+body {
     margin: 0px;
     background-color: #f1efe0;
 }
@@ -47,7 +53,7 @@ body{
     cursor: pointer;
 }
 
-#back:hover{
+#back:hover {
     color: rgb(177, 177, 177);
 }
 

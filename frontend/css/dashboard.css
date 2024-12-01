@@ -1,4 +1,4 @@
-.navigationTabs{    
+.navigationTabs {    
     display: flex;
     position: fixed;
     top: 26px;
@@ -6,7 +6,7 @@
     z-index: 1;
 }
 
-.tab{
+.tab {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@
     font-size: 20px;
 }
 
-.tab:hover{
+.tab:hover {
     color: #ffffff;
     text-shadow: 0px 0px 3px #48ddb8;
     background-color: rgb(66, 165, 170);
@@ -41,11 +41,11 @@ div > * a {
     margin-bottom: 3px;
 }
 
-div > * a:hover{
+div > * a:hover {
     color: #ffffff;
 }
 
-.welcomeMessage{
+.welcomeMessage {
     z-index: 0;
     background-color: #4871563b;
     display: flex;
@@ -62,7 +62,7 @@ div > * a:hover{
 }
 
 
-.contentBoard{
+.contentBoard {
     z-index: 0;
     display: flex;
     flex-direction: row;
@@ -71,7 +71,7 @@ div > * a:hover{
 }
 
 
-.userInfoBox{
+.userInfoBox {
     background-color: #2e9da14d;
     flex: 1;
     align-content: center;
@@ -87,7 +87,7 @@ div > * a:hover{
     max-width: 330px;
 }
 
-.infoField{
+.infoField {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,18 +101,18 @@ div > * a:hover{
     margin-bottom: 20px;
 }
 
-.infoField{
+.infoField {
     color: #008031;
     font-weight: bold;
 }
-.infoField > label{
+.infoField > label {
     margin-top: 2em;
     color: #81837b;
 }
 
 
 
-.overviewBox{
+.overviewBox {
     display: flex;
     flex-direction: column;
     float: left;
@@ -125,7 +125,7 @@ div > * a:hover{
     flex: 1;
 }
 
-.viewBox{
+.viewBox {
     border-radius: 20px;
     box-sizing: border-box;
     color: rgb(0, 99, 99);
@@ -142,14 +142,14 @@ div > * a:hover{
     justify-content:left;
 }
 
-.viewBox > *{
+.viewBox > * {
     padding-left: 20px;
     overflow-x: hidden;
     white-space: nowrap;
 }
 
 
-.webInfo{
+.webInfo {
     margin-top: 2em;
     margin-left: 1em;
     margin-bottom: 1em;
@@ -158,18 +158,18 @@ div > * a:hover{
     flex-wrap: wrap;
 }
 
-h2{
+h2 {
     margin: 0px;
     margin-top: .2em;
     padding: 0px;
     font-size: 1.5em;
     color: #6b9497;
 }
-li{
+li {
     font-size: 1.2em;
 }
 
-.notificationsBox{
+.notificationsBox {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,7 +182,7 @@ li{
     max-width: 500px;
 }
 
-.notificationTitle{
+.notificationTitle {
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 20px;
@@ -199,7 +199,7 @@ li{
     font-weight: bolder;
 }
 
-.notificationsBox > .viewBox{
+.notificationsBox > .viewBox {
     display: flex;
     border: 4px solid #d2dabb;
     width: 80%;
@@ -208,7 +208,7 @@ li{
     background-color: #eaece2;
 }
 
-.viewBox > ul{
+.viewBox > ul {
     margin: 0px;
     margin-right: 1em;
     max-height: 2.3em;
@@ -217,7 +217,7 @@ li{
     text-wrap: wrap;
 }
 
-.buttonLine{
+.buttonLine {
     height: fit-content;
     width: fit-content;
     display: flex;
@@ -225,7 +225,7 @@ li{
     flex-direction: row-reverse;
 }
 
-div > .genericButton{
+div > .genericButton {
     height: fit-content;
     width: fit-content;
     padding: .2em .5em .2em;
@@ -234,7 +234,7 @@ div > .genericButton{
     font-size: .95em;
 }
 
-h3{
+h3 {
     margin-top: 10px;
     margin-bottom: 0px;
     padding-bottom: 0px;
@@ -242,7 +242,7 @@ h3{
     width: fit-content;
 }
 
-.note{
+.note {
     display: flex;
     height: fit-content;
     width: fit-content;

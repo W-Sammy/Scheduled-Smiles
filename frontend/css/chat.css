@@ -8,7 +8,66 @@ body {
 
 /* contact section */
 
+.new-contact-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0 10px 5px;
+    padding: 10px 0 20px 0;
+    justify-content: space-evenly;
+}
+
+#newContactDropdown {
+    font-family: Verdana, sans-serif;
+}
+
+.new-contact-row > select {
+    background-color: #008080;
+    color: white;
+    border: none;
+    justify-self: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 50px;
+    width: 100%;
+    padding-left: 1em;
+}
+
+.new-contact-row > select > option {
+    color: white;
+}
+
+.new-contact-row > a {
+    border-radius: 5px;
+    width: 20%;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.new-contact-row > a:hover {
+    color: #464646;
+}
+
+.new-contact-row > a:active {
+    color: #464646;
+    transform: scale(0.85); /* Slightly shrink the button */
+}
+
 #contacts-list .contact-icon > img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     width: 50px;
     height: auto;
 }
@@ -30,6 +89,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: auto;
 }
 
 #contacts-list:nth-child(1) {
@@ -66,6 +126,12 @@ body {
 }
 
 #current-contact > .contact-icon > img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     width: 70px;
     height: auto;
 }
@@ -188,7 +254,6 @@ body {
     overflow-y: auto;
     outline: none;
     font-size: 28px;
-
 }
 
 #message-input::placeholder {
@@ -206,6 +271,9 @@ body {
     transition: background-color 0.3s ease;
     height: 50px;
     width: 80px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 #send:hover {
@@ -215,41 +283,4 @@ body {
 #send:active {
     background-color:  #116d71;
     transform: scale(0.95); /* Slightly shrink the button */
-}
-
-.new-contact-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 0 10px 5px;
-    padding: 10px 0 20px 0;
-    justify-content: space-evenly;
-}
-
-.new-contact-row > select {
-    background-color: #008080;
-    color: white;
-    border: none;
-    justify-self: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    height: 50px;
-    width: 100%;
-    padding-left: 1em;
-}
-
-.new-contact-row > select > option {
-    color: white;   
-}
-
-.new-contact-row > a {
-    border-radius: 5px;
-    width: 20%;
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
 }

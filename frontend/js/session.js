@@ -8,7 +8,6 @@ const loaded = {
 }
 let allLoaded = () => Object.values(loaded).every(e => e != false)
 
-
 window.onload = () => {
     document.body.addEventListener(DATA_LOADED_EVENT_NAME, dataLoadedListener)
     loadAppointments()

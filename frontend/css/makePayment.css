@@ -1,0 +1,127 @@
+#make-payment-box {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+}
+
+.wrap-make-payment-form {
+    padding: 20px 40px;
+    text-align: center;
+    color: #333;
+}
+
+.wrap-make-payment-form {
+    padding: 30px;
+    text-align: left;
+    color: #333;
+}
+
+.wrap-make-payment-form h2 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #116d71;
+    text-align: center;
+}
+
+.labels {
+    font-size: 0.9rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputField {
+    margin-bottom: 20px;
+}
+
+.input2 {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.input2:focus {
+    border-color: #116d71;
+    outline: none;
+    box-shadow: 0 0 5px rgba(17, 109, 113, 0.5);
+}
+
+select.input2 {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.hyperlinkBack {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #116d71;
+    text-decoration: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.hyperlinkBack:hover {
+   color: #7FA194
+}
+
+.hyperlinkBack:active {
+    transform: scale(0.95);
+ }
+
+#make-payment-box button:hover {
+    background-color: #116d71;
+}
+
+#make-payment-box button:active {
+    transform: scale(0.95);
+}
+
+#complete-payment-btn {
+    width: 33%; 
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #64a1a3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin: 0 0 2em 11em;
+}
+
+#complete-payment-btn:hover {
+    background-color: #116d71;
+}
+
+#complete-payment-btn:active {
+    transform: scale(0.98);
+}
+
+.hyperlinkBack {
+    text-align: right;
+    margin-left: auto;
+    margin-bottom: 10PX;
+    top: 1px;
+    right: 1px;
+    float: right;
+    color:rgb(59, 116, 109);
+    font-weight: bolder;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}

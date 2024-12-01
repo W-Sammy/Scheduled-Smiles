@@ -3,7 +3,7 @@ package Users.Enum;
 import java.util.Map;
 import java.util.Arrays;
 
-import static Server.utils.Requests.*; // only need the hash256 method, is there a better way to import this? -Kyle
+import static Server.utils.Requests.hash256; // only need the hash256 method, is there a better way to import this? -Kyle
 
 public class RoleConstant {
     private RoleConstant() {

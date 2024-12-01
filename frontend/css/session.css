@@ -1,4 +1,4 @@
-.appointmentBox{
+.appointmentBox {
     display: flex;
     flex-flow: row wrap; 
     justify-content: left;
@@ -11,7 +11,7 @@
     border: 35px solid #b7e2d0;
 }
 
-.title{
+.title {
     overflow: hidden;
     white-space: nowrap;
     margin: 20px;
@@ -19,7 +19,7 @@
     color: #85b99f;
 }
 
-.appointment{
+.appointment {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -38,7 +38,7 @@
     margin-bottom: 10px;
 }
 
-.infoField{
+.infoField {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -50,7 +50,7 @@
     font-size: 1.1em;
 }
 
-.confirm{
+.confirm {
     color: #f8faee;
     background-color: #549799;
     font-size: 1em;
@@ -66,16 +66,16 @@
     border-radius: 13px;
 }
 
-.confirm:hover{
+.confirm:hover {
     background-color: #5aaeb1;
 }
 
-.confirm:active{
+.confirm:active {
     background-color: #466a6b;
     scale:.99;
 }
 
-.deny{
+.deny {
     color: #f8faee;
     background-color: #b85b5b;
     font-size: 1em;
@@ -91,16 +91,16 @@
     border-radius: 13px;
 }
 
-.deny:hover{
+.deny:hover {
     background-color: #e05555;
 }
 
-.deny:active{
+.deny:active {
     background-color: #963535;
     scale:.99;
 }
 
-.titleSection{
+.titleSection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -108,7 +108,7 @@
     flex-basis: 100%;
 }
 
-.returnButton{
+.returnButton {
     display: flex;
     color: #f8faee;
     background-color: #549799;
@@ -126,16 +126,16 @@
     padding-top: .5em;
 }
 
-.returnButton:hover{
+.returnButton:hover {
     background-color: #5aaeb1;
 }
 
-.returnButton:active{
+.returnButton:active {
     background-color: #466a6b;
     scale:.99;
 }
 
-.infoBox{
+.infoBox {
     margin: 10px;
     padding-bottom: 10px;
     width: 70%;
@@ -156,24 +156,24 @@
     height: 80%;
 }
 
-.infoBox > form > div{
+.infoBox > form > div {
     margin: 20px;
     margin-left: 20px;
     margin-right: 5px;
 }
 
-.infoBox > div{
+.infoBox > div {
     flex-direction: row-reverse; 
     padding: 0px;
     margin: 0px;
 }
 
-.infoBox > div > input{
+.infoBox > div > input {
     margin-top: 10px;
     margin-right: 20px;
 }
 
-.inputBox{
+.inputBox {
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -183,22 +183,22 @@
 
 }
 
-input{
+input {
     max-width: 200px;
     max-height: 20px;
     margin: 5px;
     border-radius: 2px;
 }
 
-input[type='text']{
+input[type='text'] {
     border-color: rgba(39, 117, 74, 0.349);
 }
 
-input[type='time']{
+input[type='time'] {
     border-color: rgba(39, 117, 74, 0.349);
 }
 
-select{
+select {
     max-width: 200px;
     margin: 5px; 
     margin-bottom: 20px;
@@ -207,13 +207,13 @@ select{
     background-color: #e9f0ed;
 }
 
-label{
+label {
     margin: 5px;
     font-size: 18.5px;
     display: inline-block;
 }
 
-.stationBox{
+.stationBox {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -224,7 +224,7 @@ label{
     margin-top: 10px;
 }
 
-.healthBox{
+.healthBox {
     align-self: flex-end;
     display: flex;
     flex-wrap: wrap;
@@ -235,7 +235,7 @@ label{
     margin-bottom: 0px;
 }
 
-.historyBox{
+.historyBox {
     height: 580px;
     width: 27%;
     min-width: 400px;
@@ -250,12 +250,12 @@ label{
     overflow-y: auto;
 }
 
-.historyBox > .appointment{
+.historyBox > .appointment {
     width: auto; 
 }
 
 
-input[type='submit']{
+input[type='submit'] {
     border-color: rgba(46, 151, 93, 0.082);
     color: #f8faee;
     background-color: #549799;
@@ -274,17 +274,17 @@ input[type='submit']{
     align-self: flex-end;
 }
 
-input[type='submit']:hover{
+input[type='submit']:hover {
     background-color: #5aaeb1;
 }
 
-input[type='submit']:active{
+input[type='submit']:active {
     background-color: #466a6b;
     scale:.99;
 }
 
 /*
-.uploadBox{
+.uploadBox {
     background-color: #9c9393;
     width: 40%;
     height: 200px;
@@ -292,18 +292,18 @@ input[type='submit']:active{
 }
     */
 
-.trackingBox{
+.trackingBox {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.trackingBox > *{
+.trackingBox > * {
     margin: 40px;
     margin-bottom: 10px;
 }
 
-.displayBox{
+.displayBox {
     margin: 20px;
     margin-left: 30px;
     margin-right: 30px;
@@ -324,7 +324,7 @@ input[type='submit']:active{
     display: flex;
 }
 
-.displayName{
+.displayName {
     flex: .9;    
     background-color: #f5fffa;
     width: fill;
@@ -333,20 +333,20 @@ input[type='submit']:active{
     align-items: center;
 }
 
-.displayStaff{
+.displayStaff {
     flex-direction: column;
     line-height: .7px;
     width: auto;
     min-width: 300px;
 }
 
-.displayStation{
+.displayStation {
     width: auto;
     justify-content: center;
     align-items: center;
 }
 
-.recordBox{
+.recordBox {
     background-color: #f5fffa;
     padding-left: 20px;
     display: flex;
@@ -357,7 +357,7 @@ input[type='submit']:active{
     border-radius: 12px;
 }
 
-.displayRecord{
+.displayRecord {
     margin-top: 10px;
     display: flex;
     flex:1;
@@ -365,23 +365,23 @@ input[type='submit']:active{
     justify-content: space-around;
 }
 
-.displayRecord > *{
+.displayRecord > * {
     margin: 15px;
     flex:1;
 }
 
-.displayRecord > p{
+.displayRecord > p {
     background-color: #d4e4da;
     min-height: 200px;
     padding: 8px;
 }
 
-.displayRecord > label{
+.displayRecord > label {
     margin: 0px;
     margin-left:15px;
 }
 
-.displayRecord > textarea{
+.displayRecord > textarea {
     display: flex;
     min-height: 200px;
     resize: none;
@@ -391,7 +391,7 @@ input[type='submit']:active{
     margin-bottom: 30px;
 }
 
-.recordSection > div{
+.recordSection > div {
     padding-top: 5px;
     padding-bottom: 5px;
     margin: 10px;
@@ -406,7 +406,7 @@ input[type='submit']:active{
     justify-content: space-around;
 }
 
-.recordSection > div > .appointment{
+.recordSection > div > .appointment {
     display: flex;
     width: auto;
     height: 20px;
@@ -419,18 +419,18 @@ input[type='submit']:active{
     margin: 5px;
 }
 
-.trackingBox > .titleSection{
+.trackingBox > .titleSection {
     justify-content: flex-end;
 }
 
 
-.trackingBox > .titleSection > input[type="submit"]{
+.trackingBox > .titleSection > input[type="submit"] {
     margin-right: 90px;
     margin-bottom: 15px;
     font-size: 17px;
 }
 
-.recordBox > hr{
+.recordBox > hr {
     align-self: center;
     color: #93a79d75;
     height: 93%;

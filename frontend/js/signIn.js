@@ -106,12 +106,13 @@ function openSignIn() {
     }
 }
 function openRegister() {
-    hideElement("signInOverlay", "passwordOverlay")
     showBlockElement("registerOverlay")
+    hideElement("signInOverlay", "passwordOverlay")
 }
+
 function openForgotPassword() {
-    hideElement("signInOverlay", "registerOverlay")
     showBlockElement("passwordOverlay")
+    hideElement("signInOverlay", "registerOverlay")
 }
 function closeSignIn() {
     hideElement("signInOverlay")
@@ -133,12 +134,12 @@ function setUserSession(roleID, userID) {
     setCookie("userID", userID, 31536000)
 }
 
-function openAboutUs(){
-    showBlockElement("aboutUsOverlay");
+function openAboutUs() {
+    showBlockElement("aboutUsOverlay")
     hideElement("signInOverlay","registerOverlay","passwordOverlay")
 }
 
-function closeAboutUs(){
+function closeAboutUs() {
     hideElement("aboutUsOverlay")
 }
 
