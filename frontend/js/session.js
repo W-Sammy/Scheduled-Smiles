@@ -105,6 +105,7 @@ function loadAppointments() {
                 ])
             ])
         })).then(infos => {
+            const apptListEl = document.getElementById("appointmentList")
             const appts = {}
             infos.forEach(info => {
                 const [appointment, names] = info
@@ -113,7 +114,9 @@ function loadAppointments() {
                 const patientName = rawPatientName.join(" ")
                 const staffNames = Array.from(rawStaffNames, n => (n) ? n.join(" ") : '')
                 if (!isCanceled || (!isCanceled && !isComplete))
-                    createAppointmentElement(staffNames.filter(n => n.length), startTime, patientName, appointmentID)
+                    apptListEl.appendChild(
+                        createAppointmentElement(staffNames.filter(n => n.length), startTime, patientName, appointmentID)
+                    )
                 appts[appointmentID] = {
                     patientID: patientID,
                     patientName: patientName,
@@ -153,7 +156,6 @@ function dispatchLoadedEvent(value, key) {
 
 function createAppointmentElement(staffNames, timestamp, patientName, appointmentID) {
     const dateObj = new Date(timestamp * 1000)
-    const apptList = document.getElementById("appointmentList")
     const apptEl = document.createElement("div")
     const infoEl = document.createElement("div")
     const dateEl = document.createElement("span")
@@ -172,17 +174,15 @@ function createAppointmentElement(staffNames, timestamp, patientName, appointmen
     denyEl.classList.add("deny")
     apptEl.dataset.id = appointmentID
     dateEl.innerHTML = dateObj.toLocaleDateString()
-    // testing
     patientEl.innerHTML = patientName
     timeEl.innerHTML = dateObj.toLocaleTimeString('en-US')
     staffEl.innerHTML = staffNames.join(", ")
-    confirmEl.innerHTML = "Approve"
-    denyEl.innerHTML = "Deny"
+    confirmEl.innerHTML = "Open"
+    denyEl.innerHTML = "Cancel"
 
     confirmEl.setAttribute("onclick",`openAppt('${appointmentID}')`)
     denyEl.setAttribute("onclick",`denyAppt('${appointmentID}')`)
     
-    apptList.appendChild(apptEl)
     apptEl.appendChild(infoEl)
     infoEl.appendChild(dateEl)
     infoEl.appendChild(patientEl)
@@ -190,6 +190,8 @@ function createAppointmentElement(staffNames, timestamp, patientName, appointmen
     infoEl.appendChild(staffEl)
     apptEl.appendChild(confirmEl)
     apptEl.appendChild(denyEl)
+
+    return apptEl
 }
 
 // only call this after all data has been loaded, or the form will be removed from DOM.
@@ -202,7 +204,7 @@ function openAppt(id) {
     if (!allLoaded())
         return
     const appt = loaded.appointments[id]
-    console.log(appt)
+    console.log(id, appt)
     // modify form based on appointment data
     resetSessionForm()
     if (appt.staff2ID) {
@@ -217,6 +219,7 @@ function openAppt(id) {
         e.disabled = true
         e.placeholder = appt.staff3Name
     }
+    loadAppointmentHistory()
     openForm()
 }
 
@@ -241,8 +244,6 @@ function denyAppt(id) {
 
 function startSession(e) {
     e.preventDefault()
-    // load appointment history on the side
-    // TODO ...
     openSession()
 }
 
@@ -252,4 +253,18 @@ function getAppointmentData() {
     const {treatment, station} = info.elements
     const notes = document.getElementById("recordInput").value
     return {station: station, treatment: treatment, notes: notes}
+}
+
+function loadAppointmentHistory() {
+    console.log("Loading appt history")
+    const historyEl = document.getElementById("historyList")
+    for (let appointmentID of Object.keys(loaded.appointments).filter(apptID => loaded.appointments[apptID].isComplete && !(loaded.appointments[apptID].isCanceled))) {
+        const appointment = loaded.appointments[appointmentID]
+        console.log(appointment)
+        const {staff1Name, staff2Name, staff3Name, startTime, patientName} = appointment
+        const staffNames = [staff1Name, staff2Name, staff3Name].filter(n => n.length)
+        historyEl.appendChild(
+            createAppointmentElement(staffNames, startTime, patientName, appointmentID)
+        )
+    }
 }
