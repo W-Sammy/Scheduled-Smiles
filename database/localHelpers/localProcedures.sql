@@ -46,3 +46,26 @@ BEGIN
     INSERT INTO messages
     VALUES(pairID, UNIX_TIMESTAMP(), textContent);
 END;
+
+DROP PROCEDURE IF EXISTS getAvailableStaff;
+
+CREATE PROCEDURE `getAvailableStaff`(
+    startTime INT
+) 
+BEGIN
+    SELECT staffID 
+    FROM staff
+    WHERE staffID NOT IN (
+        SELECT staff1ID 
+        FROM appointments 
+        WHERE appointments.isCanceled = 0 AND appointments.startTime = startTime AND staff1ID IS NOT NULL
+        UNION
+        SELECT staff2ID 
+        FROM appointments 
+        WHERE appointments.isCanceled = 0 AND appointments.startTime = startTime AND staff2ID IS NOT NULL
+        UNION
+        SELECT staff3ID 
+        FROM appointments 
+        WHERE appointments.isCanceled = 0 AND appointments.startTime = startTime AND staff3ID IS NOT NULL
+    );
+END
