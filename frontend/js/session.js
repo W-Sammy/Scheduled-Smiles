@@ -5,9 +5,11 @@ const DATA_LOADED_EVENT_NAME = "dataLoaded"
 const loaded = {
     treatments: false,
     sessionForm: false,
+    trackingBox: false,
     appointments: false
 }
 let allLoaded = () => Object.values(loaded).every(e => e != false)
+let sessionNotes = []
 
 window.onload = () => {
     if (isUserSignedIn()) {
@@ -37,12 +39,14 @@ function hideDisplay(id){
 }
 
 function addNote() {
-    let record = document.getElementById("recordList")
-    let count = record.childNodes.length
-    let div = document.createElement("div")
-    div.innerHTML = "note " + (count + 1)
+    const recordListEl = document.getElementById("recordList")
+    const noteEl = document.getElementById("recordInput")
+    const div = document.createElement("div")
+    div.innerHTML = noteEl.value
     div.classList = "appointment"
-    record.appendChild(div)
+    recordListEl.appendChild(div)
+    sessionNotes.push(noteEl.value)
+    noteEl.value = ""
     showNotification("Noted has been Added", 2)
 }
 
@@ -89,6 +93,7 @@ function loadTreatments() {
         })
         dispatchLoadedEvent(treatmentTypes, "treatments")
         dispatchLoadedEvent(document.getElementById("sessionForm").innerHTML, "sessionForm")
+        dispatchLoadedEvent(document.getElementById("tracking").innerHTML, "trackingBox")
     })
 }
 
@@ -196,17 +201,21 @@ function createAppointmentElement(staffNames, timestamp, patientName, appointmen
     return apptEl
 }
 
-// only call this after all data has been loaded, or the form will be removed from DOM.
+// only call these after all data has been loaded, or the forms will be removed from DOM.
 function resetSessionForm() {
     document.getElementById("sessionForm").innerHTML = loaded.sessionForm
     document.getElementById("infoForm").onsubmit = startSession
+}
+function resetTrackingBox() {
+    document.getElementById("tracking").innerHTML = loaded.trackingBox
+    submitOnEnter(document.getElementById("recordInput"), addNote)
 }
 
 function openAppt(id) {
     if (!allLoaded())
         return
     const appt = loaded.appointments[id]
-    console.log(id, appt)
+    // testing
     // modify form based on appointment data
     resetSessionForm()
     if (appt.staff2ID) {
@@ -221,6 +230,7 @@ function openAppt(id) {
         e.disabled = true
         e.placeholder = appt.staff3Name
     }
+    document.getElementById("infoForm").dataset.id = id
     loadAppointmentHistory()
     openForm()
 }
@@ -246,15 +256,38 @@ function denyAppt(id) {
 
 function startSession(e) {
     e.preventDefault()
+    resetTrackingBox()
     openSession()
+    populateAppointmentBox(e.target.dataset.id)
+}
+
+// wtf man
+function populateAppointmentBox(appointmentID) {
+    const appointment = loaded.appointments[appointmentID]
+    const trackingBoxEl = document.getElementById("tracking")
+    const displayStaffEl = document.getElementById("staff")
+    const {station, treatment} = getAppointmentData() // notes isnt populated yet
+    const [loadingEl, doneLoading] = createLoadingIcon(trackingBoxEl)
+    getIdAccount(appointment.patientID).then(patientData => {
+        const patientInfo = JSON.parse(patientData)
+        const notes = (patientInfo == null) ? "Error: failed to load patient notes." : (patientInfo.detail.length) ? decodeURIComponent(patientInfo.detail) : "No notes."
+        document.getElementById("record").innerHTML = notes
+        document.getElementById("patient").innerHTML += " " + appointment.patientName
+        displayStaffEl.innerHTML = `<h2>${appointment.staff1Name}</h2>`
+        displayStaffEl.innerHTML += `<h2>${appointment.staff2Name}</h2>`
+        displayStaffEl.innerHTML += `<h2>${appointment.staff3Name}</h2>`
+        document.getElementById("stationNumber").innerHTML += " " + station
+        document.getElementById("treatmentMarked").innerHTML += " " + treatment
+    }).finally(() => {
+        doneLoading()
+    })
 }
 
 // get data from input fields in the DOM
 function getAppointmentData() {
     const info = document.getElementById("infoForm")
-    const {treatment, station} = info.elements
-    const notes = document.getElementById("recordInput").value
-    return {station: station, treatment: treatment, notes: notes}
+    const [treatment, station] = [info.elements["treatments"].value, info.elements["station"].value]
+    return {station: parseInt(station), treatment: treatment, notes: sessionNotes.join(", ")}
 }
 
 function loadAppointmentHistory() {
@@ -262,11 +295,30 @@ function loadAppointmentHistory() {
     const historyEl = document.getElementById("historyList")
     for (let appointmentID of Object.keys(loaded.appointments).filter(apptID => loaded.appointments[apptID].isComplete && !(loaded.appointments[apptID].isCanceled))) {
         const appointment = loaded.appointments[appointmentID]
-        console.log(appointment)
         const {staff1Name, staff2Name, staff3Name, startTime, patientName} = appointment
         const staffNames = [staff1Name, staff2Name, staff3Name].filter(n => n.length)
         historyEl.appendChild(
             createAppointmentElement(staffNames, startTime, patientName, appointmentID)
         )
     }
+}
+
+function submitSession() {
+    const appointmentID = document.getElementById("infoForm").dataset.id
+    const {station, treatment, notes} = getAppointmentData()
+    const [loadingEl, doneLoading] = createLoadingIcon()
+    Promise.all([
+        updateAppointment(appointmentID, station, treatment, notes),
+        markAppointmentDone(appointmentID, true)
+    ]).then(success => {
+        if (success.every(s => s)) {
+            [...document.querySelectorAll("#appointmentList .appointment")].filter(el => el.dataset.id && el.dataset.id == id)[0].remove()
+            showNotification("Appointment updated!", 3)
+        } else {
+            showWarning("Error: Failed to save appointment data. Please try again.", 3)
+        }
+    }).finally(() => {
+        doneLoading()
+        closeSession()
+    })
 }

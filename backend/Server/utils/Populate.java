@@ -160,7 +160,8 @@ public class Populate {
         columns.add("sex");
         columns.add("phoneNumber");
         columns.add("email");
-        columns.add("birthDate");        
+        columns.add("birthDate");
+        columns.add("detail");
         
         // Construct query
         final String queryString = String.format("SELECT %s FROM users WHERE %s", String.join(", ", columns), id.equalsTo("userID"));
@@ -174,7 +175,8 @@ public class Populate {
         final char sex = result.get(4).getAsChar();
         final String phone = result.get(5).getAsString();
         final String email = result.get(6).getAsString();
-        final int bday = result.get(7).getAsInteger();  
+        final int bday = result.get(7).getAsInteger();
+        final String detail = result.get(8).getAsString();  
         double wage = 0.0;
         // Get role-specific info
         if (Arrays.equals(roleId, ROLE_IDS.get("Admin")) || Arrays.equals(roleId, ROLE_IDS.get("Staff"))) {
@@ -187,11 +189,11 @@ public class Populate {
         }
         // Theres probably a better way to do this but im too tired -Kyle
         if (Arrays.equals(roleId, ROLE_IDS.get("Admin"))) {
-            return new Admin(userId, first, last, address, sex, phone, email, bday, wage);
+            return new Admin(userId, first, last, address, sex, phone, email, bday, detail, wage);
         } else if (Arrays.equals(roleId, ROLE_IDS.get("Staff"))) {
-            return new Staff(userId, first, last, address, sex, phone, email, bday, wage);
+            return new Staff(userId, first, last, address, sex, phone, email, bday, detail, wage);
         } else if (Arrays.equals(roleId, ROLE_IDS.get("Patient"))) {
-            return new Patient(userId, first, last, address, sex, phone, email, bday);
+            return new Patient(userId, first, last, address, sex, phone, email, bday, detail);
         } else {
             return null;
         }

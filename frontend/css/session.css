@@ -256,7 +256,7 @@ label {
 }
 
 
-input[type='submit'], button[type='submit'] {
+input[type='submit'], button[type='submit'], .titleSection > button {
     border-color: rgba(46, 151, 93, 0.082);
     color: #f8faee;
     background-color: #549799;
@@ -418,6 +418,8 @@ input[type='submit']:active , button[type='submit']:active {
     padding: 0px;
     padding-left: 10px;
     margin: 5px;
+    overflow: clip;
+    text-overflow: ellipsis;
 }
 
 .trackingBox > .titleSection {
@@ -425,7 +427,7 @@ input[type='submit']:active , button[type='submit']:active {
 }
 
 
-.trackingBox > .titleSection > input[type="submit"] {
+.trackingBox > .titleSection > button {
     margin-right: 90px;
     margin-bottom: 15px;
     font-size: 17px;

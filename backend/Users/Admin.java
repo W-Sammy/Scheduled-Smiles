@@ -8,8 +8,8 @@ public class Admin extends User {
     @SerializedName("hourlyRate")
     private double hourlyRate;
     // constructor
-    public Admin(byte[] userID, String firstName, String lastName, String address, char sex, String phoneNumber, String email, int birthDate, double hourlyRate) {
-        super(userID, ROLE_IDS.get("Admin"), firstName, lastName, address, sex, phoneNumber, email, birthDate);
+    public Admin(byte[] userID, String firstName, String lastName, String address, char sex, String phoneNumber, String email, int birthDate, String detail, double hourlyRate) {
+        super(userID, ROLE_IDS.get("Admin"), firstName, lastName, address, sex, phoneNumber, email, birthDate, detail);
         this.hourlyRate = hourlyRate;
     } // end constructor
     
