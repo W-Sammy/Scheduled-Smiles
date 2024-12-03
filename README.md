@@ -93,7 +93,7 @@ Below is a list of all original contributors to the project with their respectiv
 | **Kaylina Kwong** | *Lead Backend Developer* | [mooneity](https://github.com/mooneity)
 | **John Vue** | *Backend Developer* | [cscjohn](https://github.com/cscjohn)
 | **Brandon Casey** | *Backend Developer* | [Zon-Vorelle](https://github.com/Zon-Vorelle)
-| **Erds Ferdi Mabilog** | *Database Developer* | [erdsmabilog](https://github.com/erdsmabilog)
+| **Erds Ferdi Mabilog** | *Lead Database Developer* | [erdsmabilog](https://github.com/erdsmabilog)
 
 </br>
 </br>
