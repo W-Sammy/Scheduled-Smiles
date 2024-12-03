@@ -86,7 +86,7 @@ Below is a list of all original contributors to the project with their respectiv
 | Contributor | Role | GitHub |
 | :-----------: | :---: | :--: |
 | **Sammy Wong** | *Scrum Master/Product Owner* | [W-Sammy](https://github.com/W-Sammy)
-| **Kyle Tran** | *Full-Stack Developer* | [scritty1249](https://github.com/scritty1249)
+| **Kyle Tran** | *Full-Stack Developer* | [scritty1249](https://kyle.bastionofsight.com)
 | **Keav'n Lor** | *Full-Stack Developer* | [Keavn-CSU](https://github.com/Keavn-CSU)
 | **Dann Manganti** | *Lead Frontend Developer* | [dmanganti](https://github.com/dmanganti)
 | **Kaylina Kwong** | *Lead Backend Developer* | [mooneity](https://github.com/mooneity)
