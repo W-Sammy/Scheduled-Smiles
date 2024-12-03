@@ -96,4 +96,4 @@ Below is a list of all original contributors to the project with their respectiv
 
 </br>
 </br>
-<a href="#overview"><h2>--> Back to Top <--</h2></a>
+<h2><a href="#overview">--> Back to Top <--</a></h2>
