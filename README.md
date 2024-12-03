@@ -70,6 +70,15 @@ java -cp ./backend/;./backend/Server/lib/gson-2.11.0.jar;./backend/Server/lib/my
 >
 > ![Successful Terminal Connection](/frontend/assets/TerminalConnection.png)
 
+
+### Valid Credentials For Test 
+
+| Role | Username | Password |
+| :--: | :------: | :------: |
+| **Patient** | ```JohnDoe@email.com``` | ```password123``` |
+| **Staff** | ```StephFu@scheduledsmiles.com``` | ```password314``` |
+| **Admin** | ```AdamMinh@scheduledsmiles.com``` | ```password159``` |
+
 ## <a id="contributors"></a>**Contributors**
 
 Below is a list of all original contributors to the project with their respective roles and contacts
