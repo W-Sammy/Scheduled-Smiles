@@ -23,9 +23,9 @@ The focus of the system is to streamline the management of  patient appointments
 
 ## <a id="doc"></a>**Documentation & Diagrams**
 
-> All documentation relating to the project can be found through the file path: </br>
+> All project documentation can be found in the directory: </br>
 > `./Root/docs`</br>
-> Primary documentation include: 
+> Primary documentation includes: 
 > * <a href="/docs/Software Requirements Specifications.pdf">Software Requirement Specification</a>
 > * <a href="/docs/Software Design Document.pdf">Software Design Document</a> </br>
 > 
