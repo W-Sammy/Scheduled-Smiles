@@ -7,8 +7,10 @@ let messagesLoading = false
 window.onload = () => {
     submitOnEnter(document.getElementById("message-input"), sendNewMessage)
     clearData()
-    setLoadedListener()
-    loadData()
+    if (isUserSignedIn()) {
+        setLoadedListener()
+        loadData()
+    }
 }
 
 function loadContactOptions() {
@@ -75,10 +77,6 @@ function loadData() {
         return
     }
     messagesLoading = true
-    if (!checkCookieExists("userID")) {
-        showWarning("Not logged in!", 3, "bottom")
-        return
-    }
     const userID = getCookieValue("userID")
     getChats(userID).then(response => {
         // Merge chats

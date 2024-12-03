@@ -1,13 +1,11 @@
 window.onload = () => {
-    loadTabs()
-    loadFields()
+    if (isUserSignedIn()) {
+        loadTabs()
+        loadFields()
+    }
 }
 
 function loadTabs() {
-    if (!checkCookieExists("roleID")) {
-        showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
-        return
-    }
     getRoleName(getCookieValue("roleID")).then(response => {
         if (response == null) {
             showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")

@@ -3,10 +3,6 @@ function redirectTo(location = "") {
     window.location.href = window.location.origin + "/" + location
 }
 
-function isUserSignedIn() {
-    return checkCookieExists("userID") && getCookieValue("userID") != undefined && getCookieValue("userID") != null && getCookieValue("userID").length == 64
-}
-
 function back() {
     if(isUserSignedIn()) {
         redirectTo("dashboard")
@@ -29,4 +25,14 @@ function submitOnEnter(targetEl, func) {
             func()
         }
     })
+}
+
+// displays login error message in the page if user is not signed in
+function isUserSignedIn(showMessage = true) {
+    if (checkCookieExists("userID") && getCookieValue("userID") != undefined && getCookieValue("userID") != null && getCookieValue("userID").length == 64) {
+        return true
+    }
+    if (showMessage)
+        showBigWarning("Not logged in!", 3, "bottom")
+    return false
 }

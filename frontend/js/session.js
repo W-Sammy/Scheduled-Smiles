@@ -5,14 +5,16 @@ const DATA_LOADED_EVENT_NAME = "dataLoaded"
 const loaded = {
     treatments: false,
     sessionForm: false,
-    appointments: false 
+    appointments: false
 }
 let allLoaded = () => Object.values(loaded).every(e => e != false)
 
 window.onload = () => {
-    initSessionsPage()
-    loadAppointments()
-    loadTreatments()
+    if (isUserSignedIn()) {
+        initSessionsPage()
+        loadAppointments()
+        loadTreatments()
+    }
     showDisplay(document.getElementById("appointmentList"))
     hideDisplay(document.getElementById("sessionForm"))
     hideDisplay(document.getElementById("sessionList"))

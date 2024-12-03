@@ -18,7 +18,7 @@ public class Populate {
         // restrict instantiation -Kyle
     }
     private static boolean verifyWhere(final String where, final String tableName, final DatabaseConnection db) {
-        final List<List<DatabaseGenericParameter>> r = db.query(String.format("SELECT 1 FROM %s WHERE %s", tableName, where));
+        final List<List<DatabaseGenericParameter>> r = db.query(String.format("SELECT 1 FROM %s WHERE %s LIMIT 1", tableName, where));
         return r != null && r.size() > 0 && !r.get(0).get(0).isNull();
     }
     public static Appointment populateAppt(final byte[] appointmentId, DatabaseConnection db) {
@@ -56,34 +56,35 @@ public class Populate {
     public static List<Appointment> populateAppts(final byte[] userID, DatabaseConnection db) {
         final DatabaseGenericParameter id = new DatabaseGenericParameter(userID);
         // Verify ID exists
-        final boolean idExists = verifyWhere(id.equalsTo("staff1ID"), "appointments", db);
+        final boolean idExists = (verifyWhere(id.equalsTo("staff1ID"), "appointments", db) || verifyWhere(id.equalsTo("patientID"), "appointments", db));
         if (!idExists) {
             return null;
         }
         // Aggregate columns
         final String[] columns = {
-            "appointmentID", "patientID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid"
+            "appointmentID", "patientID", "staff1ID", "staff2ID", "staff3ID", "stationNumber", "treatment", "notes", "startTime", "isComplete", "isCanceled", "isPaid"
         };
         // Get appointment types
-        final String queryString = String.format("SELECT %s FROM appointments WHERE %s", String.join(", ", columns), id.equalsTo("staff1ID"));
+        final String queryString = String.format("SELECT %s FROM appointments WHERE %s OR %s", String.join(", ", columns), id.equalsTo("staff1ID"), id.equalsTo("patientID"));
         final List<List<DatabaseGenericParameter>> results = db.query(queryString);
         final List<Appointment> appts = new ArrayList<Appointment>();
         for (List<DatabaseGenericParameter> result : results) {
             // Prepare parameters
             final byte[] appointmentID = result.get(0).getAsBytes();
             final byte[] patientID = result.get(1).getAsBytes();
-            final byte[] staff2ID = result.get(2).getAsBytes();
-            final byte[] staff3ID = result.get(3).getAsBytes();
-            final int station = result.get(4).getAsInteger();
-            final String treatment = result.get(5).getAsString();
-            final String notes = result.get(6).getAsString();
-            final int timestamp = result.get(7).getAsInteger();
-            final boolean completed = result.get(8).getAsBoolean();
-            final boolean canceled = result.get(9).getAsBoolean();
-            final boolean paid = result.get(10).getAsBoolean();
+            final byte[] staff1ID = result.get(2).getAsBytes();
+            final byte[] staff2ID = result.get(3).getAsBytes();
+            final byte[] staff3ID = result.get(4).getAsBytes();
+            final int station = result.get(5).getAsInteger();
+            final String treatment = result.get(6).getAsString();
+            final String notes = result.get(7).getAsString();
+            final int timestamp = result.get(8).getAsInteger();
+            final boolean completed = result.get(9).getAsBoolean();
+            final boolean canceled = result.get(10).getAsBoolean();
+            final boolean paid = result.get(11).getAsBoolean();
             
             //  Appointment(byte[] appointmentID, byte[] patientID, List<byte[]> staffList, List<byte[]> treatmentTypes, int stationNumber, String treatment, String notes, int timestamp, boolean completionStatus, boolean cancelStatus, boolean paid)
-            appts.add(new Appointment(appointmentID, patientID, userID, staff2ID, staff3ID, station, treatment, notes, timestamp, completed, canceled, paid));
+            appts.add(new Appointment(appointmentID, patientID, staff1ID, staff2ID, staff3ID, station, treatment, notes, timestamp, completed, canceled, paid));
         }
         return appts;
     }

@@ -55,6 +55,7 @@ body {
 /* Payment History */
 
 .payment-history-section {
+    overflow-y: scroll;
     width: 70%;
     border-radius: 10px;
     background-color: #f8f9fa;
