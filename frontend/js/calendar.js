@@ -1,19 +1,13 @@
 let isStaff = true
 
 window.onload = () => {
-    loadMenu()
-    loadCalendars()
+    if (isUserSignedIn()) {
+        loadMenu()
+        loadCalendars()
+    }
 }
 
 function loadMenu() {
-    if (!checkCookieExists("roleID")) {
-        showBigWarning("Login to schedule an appointment!", 5)
-        document.getElementById("staffMenu").remove()
-        document.getElementById("patientMenu").remove()
-        return
-    }
-    
-
     getRoleName(getCookieValue("roleID")).then(response => {
         const roleName = JSON.parse(response)
         if (response != null) {

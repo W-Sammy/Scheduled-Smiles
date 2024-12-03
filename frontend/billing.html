@@ -11,10 +11,9 @@
         <link rel="stylesheet" href="./css/makePayment.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
-        <script src="./js/calendar.js"></script>
-        <script src="./js/billing.js"></script>
-        <script src ="./js/navigationTab.js"></script>
+        <script src ="./js/toolbox.js"></script>
         <script src ="./js/utils.js"></script>
+        <script src="./js/billing.js"></script>
     </head>
     <body>
         <header class="header">
@@ -38,15 +37,17 @@
                         <thead>
                             <!-- Table Head Start -->
                             <tr>
-                                <th>Date</th>
-                                <th>Treatment</th>
-                                <th>Primary Staff</th>
-                                <th>Total</th>
+                                <th class="date">Date</th>
+                                <th class="treatment">Treatment</th>
+                                <th class="staff">Primary Staff</th>
+                                <th class="total">Total</th>
+                                <th class="is-paid">Status</th>
                             </tr>
                             <!-- Table Head End -->
                         </thead>
                         <tbody>
                             <!-- JS here -->
+                        <!--
                             <tr>
                                 <td>11/12/2024</td>
                                 <td>Cleaning</td>
@@ -59,6 +60,7 @@
                                 <td>Fu, Steph</td>
                                 <td>200.00</td>
                             </tr>
+                        -->
                         </tbody>
                     </table>    
                 </div>
@@ -72,12 +74,6 @@
                     </div>
                     <div class="payment-info">
                         <!-- JS needs to be added -->
-                        <div class="info-row">
-                            <p>Treatment: </p><span id="treatment">Filling</span>
-                        </div>
-                        <div class="info-row">
-                            <p>Date: </p><span id="treatment-date">12/23/2024</span>
-                        </div>
                         <div class="info-row">
                             <p>Amount Due: </p><span id="amount-due">$300.00</span>
                         </div>
@@ -102,10 +98,10 @@
                         </div>
                         <div>
                             <label class="labels">Card Details:</label>
-                            <input pattern="[\x00-\x7F]+" maxlength="19" pname="card-number" type="text" class="input2" placeholder="1234 1234 1234 1234" required />
+                            <input inputmode="numeric" pattern="[\x00-\x7F\s]{13,19}" maxlength="19" pname="card-number" type="tel" class="input2" placeholder="1234 1234 1234 1234" required />
                         </div>
-                            <input pattern="[\x00-\x7F]+" maxlength="3" pname="cvv" type="text" class="input2" placeholder="CVV" required />
-                            <input pattern="[\x00-\x7F]+" maxlength="5" pname="expiry" type="text" class="input2" placeholder="MM / YY" required />
+                            <input pattern="[\x00-\x7F]{3}" maxlength="3" pname="cvv" type="text" class="input2" placeholder="CVV" required />
+                            <input pattern="[\x00-\x7F]+" maxlength="5" pname="expiry" class="input2" type="month" placeholder="MM / YY" required />
                         </div>
                         <div>
                             <label class="labels">Billing Address:</label>
@@ -113,7 +109,7 @@
                         </div>
                         <div>
                             <input pattern="[\x00-\x7F]+" maxlength="2" pname="state" type="text" class="input2" placeholder="State / Province" style="width: 150px;" required />
-                            <input pattern="[\x00-\x7F]+" maxlength="5" pname="zipCode" type="text" class="input2" placeholder="ZIP Code" style="width: 100px;" required />
+                            <input inputmode="numeric" pattern="[\x00-\x7F]{5}" maxlength="5" pname="zipCode" type="text" class="input2" placeholder="ZIP Code" style="width: 100px;" required />
                         </div>
                         <div>
                             <label class="labels">Country:</label>
@@ -124,7 +120,7 @@
                             </select>
                         </div>
                     </div>
-                    <button onclick="submitPayment()" type="submit" id="complete-payment-btn">Complete Payment</button>
+                    <button type="submit" id="complete-payment-btn">Complete Payment</button>
                 </div>
             </form>
         </div>

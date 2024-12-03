@@ -276,7 +276,7 @@ async function getAppointments(userID) {
     const endpoint = "/api/get-appointments"
     const method = "POST"
     let response = await request(requestBody, endpoint, method)
-    if (response) {
+    if (response && JSON.parse(response)) {
         response = JSON.stringify(Array.from(JSON.parse(response), r => {
             r.staff2ID = r.staff2ID.replace(/0/g, "").length ? r.staff2ID : null
             r.staff3ID = r.staff3ID.replace(/0/g, "").length ? r.staff3ID : null

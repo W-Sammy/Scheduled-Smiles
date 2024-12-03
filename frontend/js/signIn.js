@@ -16,8 +16,7 @@ function signInSubmitted(event) {
     event.preventDefault()
     let formE = event.target
     let [email, pass] = Array.from(formE.elements, e => e.value)
-    const [loadingEl, doneLoading] = createLoadingIcon()
-    formE.appendChild(loadingEl)
+    const [loadingEl, doneLoading] = createLoadingIcon(formE)
     accountEmailExists(email).then(success => {
         if (success) {
             return passwordCorrect(email, pass)
@@ -103,7 +102,7 @@ function showBlockElement(...elementIds) {
 }
 
 function openSignIn() {
-    if(isUserSignedIn()) {
+    if(isUserSignedIn(false)) {
         redirectToDashboard()
     } else {
         showBlockElement("signInOverlay")

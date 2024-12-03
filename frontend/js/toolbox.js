@@ -14,6 +14,8 @@ function addStylingToPage(stylesheetUrl) {
 }
 
 /* too lazy to write docstring sorry
+    accepts:
+        HTMLElement the parent element to append the loading icon INTO
     returns:
         [
             element,   HTMLElement the loading icon element
@@ -26,7 +28,7 @@ function addStylingToPage(stylesheetUrl) {
     4. call close handler
     5. profit
 */
-function createLoadingIcon() {
+function createLoadingIcon(parentEl = null) {
     /* HTML must match:
         <parent-element>
             <div></div>
@@ -46,6 +48,8 @@ function createLoadingIcon() {
     for (let i  = 0; i < 8; i++) {
         el.appendChild(document.createElement("div"))
     }
+    if (parentEl)
+        parentEl.appendChild(el)
     return [el, close]
 }
 
