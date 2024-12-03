@@ -21,19 +21,10 @@ function loadTabs() {
                 addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("Chat", "chat", "chat")
                 addTabToNav("Appointment", "session", "session")
-                // TODO: Payroll needs to be different from admin
                 addTabToNav("Payroll", "payroll", "staffPayroll")
             } else if (res.includes("admin")) {
-                addTabToNav("Schedule", "scheduler", "calendar")
                 addTabToNav("Chat", "chat", "chat")
-                addTabToNav("Appointment", "session", "session")
-                // TODO: Payroll needs to be different from staff
                 addTabToNav("Payroll", "payroll", "adminPayroll")
-                //Commented out for now ~ Keav'n
-                //debugging and presentation purpose for displaying
-                //Still need role exclusive behavior for displaying 
-                //Admin: pay staff/view all staff working hours
-                //addTabToNav("Payroll", "payroll", "payroll")
             } else {
                 showBigWarning("Please Login to see dashboard information!", 0, "top", "40%")
             }
