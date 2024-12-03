@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="./css/session.css">
         <script src="./js/api.js"></script>
         <script src="./js/cookie.js"></script>
-        <script src ="./js/navigationTab.js"></script>
         <script src="./js/session.js"></script>
         <script src ="./js/utils.js"></script>
         <script src="./js/toolbox.js"></script>
@@ -158,27 +157,23 @@
                     <!-- Need Js to handle Input of User and Staff based on previous -->
                     <span class="displayName"><h1 id="patient">Patient:</h1></span>                    
                     <div class="displayStaff" id="staff">
-                        <h2>Staff 1:</h2>
-                        <h2>Staff 2:</h2>
-                        <h2>Staff 3:</h2>
+                        <h2>Staff</h2>
                     </div> 
-                    <div class="displayStation" id="stationNumber">
-                        <h3>Station: 3</h3>
+                    <div class="displayStation">
+                        <h3 id="stationNumber">Station:</h3>
                     </div>
 
-                    <div class="displayStation" id="treatmentMarked">
-                        <h3>Treatment: The test of having decay</h3>
+                    <div class="displayStation">
+                        <h3 id="treatmentMarked">Treatment:</h3>
                     </div>
                 </div>
 
                 <div class="recordBox"> 
                     <!-- JS to grab records store in session and maybe database-->
-                    <div class="displayRecord" id="record"> 
-                        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Porta mauris curae himenaeos, lacinia velit viverra ut. Molestie interdum torquent sagittis himenaeos ac pharetra primis neque. Penatibus mattis interdum rhoncus penatibus facilisis. Amet id mattis tortor; himenaeos conubia platea curabitur hac neque. Dapibus enim lacinia morbi interdum finibus. Risus porta diam in; amet imperdiet aliquam. Interdum et urna interdum ligula inceptos porta porttitor velit. 
-                        </p>
+                    <div class="displayRecord" > 
+                        <p id="record">No record</p>
                         <label for="recordInput">Create a Note:</label>
-                        <textarea id="recordInput">Lorem ipsum odor amet, consectetuer adipiscing elit. Porta mauris curae himenaeos, lacinia velit viverra ut. Molestie interdum torquent sagittis himenaeos ac pharetra primis neque. Penatibus mattis interdum rhoncus penatibus facilisis. Amet id mattis tortor; himenaeos conubia platea curabitur hac neque. Dapibus enim lacinia morbi interdum finibus. Risus porta diam in; amet imperdiet aliquam. Interdum et urna interdum ligula inceptos porta porttitor velit.
-                        </textarea>
+                        <textarea id="recordInput"></textarea>
                         <input type="submit" value="Add Note" onclick="addNote()">
                     </div>
                     <hr>
@@ -188,7 +183,7 @@
                     </div>
                 </div>
                 <div class="titleSection">
-                        <input type="submit" value="End Session" onclick="closeSession()">
+                    <button onclick="submitSession()">End Session</button>
                 </div>
             </div>
         </div>

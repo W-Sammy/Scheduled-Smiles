@@ -25,10 +25,12 @@ public class User {
     protected String email;
     @SerializedName("birthDate")
     protected int birthDate;
+    @SerializedName("detail")
+    protected String detail;
 
     // constructor
     public User(byte[] userID, byte[] roleID, String firstName, String lastName, String address, 
-                char sex, String phoneNumber, String email, int birthDate) {
+                char sex, String phoneNumber, String email, int birthDate, String detail) {
         this.userID = userID;
         this.roleID = roleID;
         this.firstName = firstName;
@@ -38,6 +40,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.birthDate = birthDate;
+        this.detail = detail;
     } // end constructor
     // getter functions
     public byte[] getUserID() {

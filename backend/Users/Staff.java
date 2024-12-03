@@ -10,8 +10,8 @@ public class Staff extends User {
     
     // Contructor
     public Staff(byte[] userID, String firstName, String lastName, String address,
-                 char sex, String phoneNumber, String email, int birthDate, double hourlyRate){
-      super(userID, ROLE_IDS.get("Staff"), firstName, lastName, address, sex, phoneNumber, email, birthDate);         
+                 char sex, String phoneNumber, String email, int birthDate, String detail, double hourlyRate){
+      super(userID, ROLE_IDS.get("Staff"), firstName, lastName, address, sex, phoneNumber, email, birthDate, detail);         
       this.hourlyRate = hourlyRate;
     }
     
