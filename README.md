@@ -70,6 +70,7 @@ java -cp ./backend/;./backend/Server/lib/gson-2.11.0.jar;./backend/Server/lib/my
 >
 > ![Successful Terminal Connection](/frontend/assets/TerminalConnection.png)
 
+*Note: The server runtime of this application relies on an active databse for information queries* 
 
 ### Valid Credentials For Test 
 
