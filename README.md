@@ -1,5 +1,5 @@
 
-# <a name="overview"></a>**Scheduled Smiles**
+# <a id="overview"></a>**Scheduled Smiles**
 
 **Scheduled Smiles** is a **Dental Clinic Management System (DCMS**) created by a group of students from California State University-Sacramento. The purpose of this application is to provide dental clinics a centralized system to manage patient records, appointment scheduling, and treatment history. This project aims to develop a system that efficiently manages clinic operations and enhance patient care. 
 
