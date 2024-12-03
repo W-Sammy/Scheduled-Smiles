@@ -1,5 +1,5 @@
 
-# <a name="overview"></a>**Scheduled Smiles**
+# <a id="overview"></a>**Scheduled Smiles**
 
 **Scheduled Smiles** is a **Dental Clinic Management System (DCMS**) created by a group of students from California State University-Sacramento. The purpose of this application is to provide dental clinics a centralized system to manage patient records, appointment scheduling, and treatment history. This project aims to develop a system that efficiently manages clinic operations and enhance patient care. 
 
@@ -93,3 +93,7 @@ Below is a list of all original contributors to the project with their respectiv
 | **John Vue** | *Backend Developer* | [cscjohn](https://github.com/cscjohn)
 | **Brandon Casey** | *Backend Developer* | [Zon-Vorelle](https://github.com/Zon-Vorelle)
 | **Erds Ferdi Mabilog** | *Database Developer* | [erdsmabilog](https://github.com/erdsmabilog)
+
+</br>
+</br>
+<h2><a href="#overview">--> Back to Top <--</a></h2>
