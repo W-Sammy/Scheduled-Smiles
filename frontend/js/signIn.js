@@ -31,7 +31,6 @@ function signInSubmitted(event) {
             return null
         }
     }).then(result => {
-        doneLoading()
         if (result != null && result != undefined) {
             // Assume valid because of prior checks
             let accountInfo = JSON.parse(result)
@@ -43,6 +42,8 @@ function signInSubmitted(event) {
         }
     }).catch(e => {
         showWarning("Error, couldn't contact server. Try again later", 5, "bottom", null, formE)
+    }).finally(() => {
+        doneLoading()
     })
 }
 function registerSubmitted(event) {
@@ -66,7 +67,6 @@ function registerSubmitted(event) {
             return createAccount(first, last, addr, sex, phone, email, dob, pass)
         }
     }).then(validRegister => {
-        doneLoading()
         if (validRegister) {
             getAccount(email, pass).then(result => {
                 // Assume valid because of prior checks
@@ -80,6 +80,8 @@ function registerSubmitted(event) {
     }).catch(e => {
         // testing
         console.log(e)
+    }).finally(() => {
+        doneLoading()
     })
 }
 function forgotPasswordSubmitted(event) {
