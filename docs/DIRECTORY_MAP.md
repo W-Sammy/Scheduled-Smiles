@@ -46,9 +46,10 @@ This document provides a visual explaination of the organization of files and fo
 │     └─ User.java                                #
 ├─ docs                                           # Package directory for project documentation 
 │  ├─ API_REFERENCE.md                            #
-│  ├─ DatabaseConnection.md                       #
+│  ├─ DIRECTORY_MAP.md                            #
+│  ├─ DATABASE_CONNECTION.md                      #
 │  ├─ Scheduled Smiles Presentation.pdf           #
-│  ├─ Server.md                                   #
+│  ├─ SERVER.md                                   #
 │  ├─ Software Design Document.pdf                #  
 │  └─ Software Requirements Specifications.pdf    #
 └─ frontend                                       # Main backend source code for the application
@@ -69,11 +70,10 @@ This document provides a visual explaination of the organization of files and fo
    ├─ billing.html                                # Patient-exclusive billing page
    ├─ calendar.html                               # User calendar page
    ├─ chat.html                                   # User chat page
-   ├─ css                                        # Package directory for site CSS  
+   ├─ css                                         # Package directory for site CSS  
    │  ├─ Header.css                               #  
    │  ├─ Landing.css                              # 
    │  ├─ Navbar.css                               #
-   │  ├─ billing.css                              #
    │  ├─ button.css                               #
    │  ├─ calendar.css                             #  
    │  ├─ chat.css                                 #
@@ -83,7 +83,8 @@ This document provides a visual explaination of the organization of files and fo
    │  ├─ payment.css                              #
    │  ├─ payroll.css                              #
    │  ├─ session.css                              #
-   │  └─ signIn.css                               #  
+   │  └─ toolbox.css                              #  
+   │  └─ signIn.css                               #
    ├─ dashboard.html                              # User dashboard page
    ├─ history.html                                # User appointment history page
    ├─ index.html                                  # Site landing page
@@ -106,4 +107,4 @@ This document provides a visual explaination of the organization of files and fo
 ```
 
 
-`Last updated: 11/29/2024`
+`Last updated: 12/02/2024`
