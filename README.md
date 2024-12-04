@@ -84,7 +84,7 @@ java -cp ./backend/;./backend/Server/lib/gson-2.11.0.jar;./backend/Server/lib/my
 
 Below is a list of all original contributors to the project with their respective roles and contacts
 
-| Contributor | Role | GitHub |
+| Contributor | Role | Profile |
 | :-----------: | :---: | :--: |
 | **Sammy Wong** | *Scrum Master/Product Owner* | [W-Sammy](https://github.com/W-Sammy)
 | **Kyle Tran** | *Full-Stack Developer* | [scritty1249](https://kyle.bastionofsight.com)
